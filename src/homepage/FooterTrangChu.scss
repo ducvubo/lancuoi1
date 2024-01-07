@@ -1,0 +1,83 @@
+.footertrangchu {
+    .item13 {
+        display        : flex;
+        justify-content: space-between;
+        padding        : 0 170px;
+        gap            : 25px;
+        margin-top     : 35px;
+        border-top     : 1px solid #ccc;
+
+        .item131 {
+            width         : 25%;
+            margin-top    : 10px;
+            display       : flex;
+            flex-direction: column;
+
+            img {
+                margin-left: 10px;
+            }
+
+            .qr-app {
+                margin         : 15px 0;
+                display        : flex;
+                justify-content: space-between;
+                gap            : 20px;
+
+                .app {
+                    display       : flex;
+                    flex-direction: column;
+                }
+            }
+
+            a {
+                margin         : 10px 0;
+                cursor         : pointer;
+                text-decoration: none;
+                color          : black;
+            }
+
+            span {
+                margin: 10px 0;
+                cursor: pointer;
+
+                i {
+                    margin-right: 5px;
+                }
+            }
+
+
+        }
+
+    }
+
+    .item14 {
+        height          : 45px;
+        padding-top     : 8px;
+        padding-bottom  : 4px;
+        background-color: #e91e63;
+        display         : flex;
+        justify-content : center;
+        position        : fixed;
+        bottom          : 0;
+        color           : #fde7ee;
+        font-weight     : 400;
+        gap             : 50px;
+        width           : 100%;
+
+
+        .ke {
+            border-left : 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            padding     : 0 50px;
+
+
+        }
+
+        span {
+            i {
+                margin: 0 15px;
+            }
+        }
+
+    }
+}

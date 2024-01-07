@@ -1,0 +1,25 @@
+.danhmuahoachitiet {
+    margin: 0 35px;
+
+    .item1 {
+        text-transform: uppercase;
+        font-weight   : 600;
+        font-size     : 25px;
+        text-align    : center;
+        margin        : 20px 0;
+
+    }
+
+    .item3 {
+        margin-top: 20px;
+
+        i {
+            margin: 0px 10px;
+        }
+
+        button {
+            border          : none;
+            background-color: white;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+.stickyheader{
+   
+    .item3 {
+        margin          : 5px 170px;
+        border-bottom   : 1px solid #ccc;
+       
+
+        .hovermenu {
+            list-style-type: none;
+            display        : flex;
+            justify-content: center;
+            position        : sticky;
+            top             : 0;
+            background-color: white;
+            z-index         : 100000;
+            width: 100%;
+
+            li {
+                position      : relative;
+                text-transform: uppercase;
+                font-weight   : 500;
+                margin        : 0 11px;
+                color         : black;
+                cursor        : pointer;
+
+
+                ul {
+                    display: none;
+
+                    li {
+                        font-weight: 400;
+                    }
+                }
+
+                &:hover {
+                    ul {
+                        display               : inline-block;
+                        position              : absolute;
+                        list-style-type       : none;
+                        height                : auto;
+                        width                 : auto;
+                        // width              : 100%;
+                        background-color      : white;
+                        padding-left          : 3px;
+                        margin-left           : -123px;
+                        margin-top            : 25px;
+                        border                : 1px solid #ccc;
+
+                        li {
+                            writing-mode: horizontal-tb;
+                            white-space : nowrap;
+                            padding     : 9px 11px;
+                            // width : auto;
+                            // height: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
