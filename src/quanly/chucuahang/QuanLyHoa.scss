@@ -32,7 +32,7 @@
 
             .anh {
                 height         : 50px;
-                width          : 100%;
+                width          : 180%;
                 border         : 1px solid #ddd;
                 border-radius  : 5px;
                 background     : center center no-repeat;
@@ -47,9 +47,13 @@
             padding-left: 16px;
 
             .khoigia {
-                input{
+                input {
                     width: 260px;
                 }
+            }
+
+            &.gia1 {
+                gap: 87px;
             }
         }
     }

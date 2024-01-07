@@ -7,7 +7,7 @@ import {
   apithemhoa,
   apitatcahoa,
   apisuahoa,
-  apixoahoa
+  apixoahoa,
 } from "../../API/GoiApi";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
@@ -26,19 +26,10 @@ class QuanLyHoa extends Component {
       danhmuchoachitietArr: [],
       anhUrlnoibat: "",
       openmoanhnoibat: false,
-      anhUrlanh2: "",
-      openmoanh2: false,
-      anhUrlanh3: "",
-      openmoanh3: false,
-      anhUrlanh4: "",
-      openmoanh4: false,
 
       id: "",
       iddanhmuchoachitiet: "",
       anhnoibat: "",
-      anh2: "",
-      anh3: "",
-      anh4: "",
       tenhoaVi: "",
       tenhoaEn: "",
       tieudehoaVi: "",
@@ -135,63 +126,6 @@ class QuanLyHoa extends Component {
     });
   };
 
-  onChangexemanh2 = async (event) => {
-    let data = event.target.files;
-    let fileanh = data[0];
-    if (fileanh) {
-      let anhbase64 = await Xulyanh.getBase64(fileanh);
-      let Url = URL.createObjectURL(fileanh);
-      this.setState({
-        anhUrlanh2: Url,
-        anh2: anhbase64,
-      });
-    }
-  };
-  nhanxemanh2 = () => {
-    if (!this.state.anhUrlanh2) return;
-    this.setState({
-      openmoanh2: true,
-    });
-  };
-
-  onChangexemanh3 = async (event) => {
-    let data = event.target.files;
-    let fileanh = data[0];
-    if (fileanh) {
-      let anhbase64 = await Xulyanh.getBase64(fileanh);
-      let Url = URL.createObjectURL(fileanh);
-      this.setState({
-        anhUrlanh3: Url,
-        anh3: anhbase64,
-      });
-    }
-  };
-  nhanxemanh3 = () => {
-    if (!this.state.anhUrlanh3) return;
-    this.setState({
-      openmoanh3: true,
-    });
-  };
-
-  onChangexemanh4 = async (event) => {
-    let data = event.target.files;
-    let fileanh = data[0];
-    if (fileanh) {
-      let anhbase64 = await Xulyanh.getBase64(fileanh);
-      let Url = URL.createObjectURL(fileanh);
-      this.setState({
-        anhUrlanh4: Url,
-        anh4: anhbase64,
-      });
-    }
-  };
-  nhanxemanh4 = () => {
-    if (!this.state.anhUrlanh4) return;
-    this.setState({
-      openmoanh4: true,
-    });
-  };
-
   nhapmotaVi = ({ html, text }) => {
     this.setState({
       motaspVi: text,
@@ -219,9 +153,6 @@ class QuanLyHoa extends Component {
     let arrCheck = [
       "iddanhmuchoachitiet",
       "anhnoibat",
-      "anh2",
-      "anh3",
-      "anh4",
       "tenhoaVi",
       "tenhoaEn",
       "tieudehoaVi",
@@ -231,7 +162,6 @@ class QuanLyHoa extends Component {
       "soluongban",
       "giathucVND",
       "giathucUSD",
-      "phantramgiam",
       "giasaukhigiamVND",
       "giasaukhigiamUSD",
       "motaspVi",
@@ -255,15 +185,12 @@ class QuanLyHoa extends Component {
   };
 
   clickthemhoa = async () => {
-    let kt = this.ktdanhapthongtinchua();
-    if (kt === false) return;
+    // let kt = this.ktdanhapthongtinchua();
+    // if (kt === false) return;
 
     let kq = await apithemhoa({
       iddanhmuchoachitiet: this.state.iddanhmuchoachitiet,
       anhnoibat: this.state.anhnoibat,
-      anh2: this.state.anh2,
-      anh3: this.state.anh3,
-      anh4: this.state.anh4,
       tenhoaVi: this.state.tenhoaVi,
       tenhoaEn: this.state.tenhoaEn,
       tieudehoaVi: this.state.tieudehoaVi,
@@ -288,11 +215,8 @@ class QuanLyHoa extends Component {
         ? toast.success("Thêm hoa thành công")
         : toast.success("Added flower successfully");
       this.setState({
-        iddanhmuchoachitiet: "",
+        // iddanhmuchoachitiet: "",
         anhnoibat: "",
-        anh2: "",
-        anh3: "",
-        anh4: "",
         tenhoaVi: "",
         tenhoaEn: "",
         tieudehoaVi: "",
@@ -310,6 +234,7 @@ class QuanLyHoa extends Component {
         motasphtmlVi: "",
         motasphtmlEn: "",
         donoibat: "",
+        anhUrlnoibat:''
       });
       await this.laytatcahoa();
     } else {
@@ -321,23 +246,15 @@ class QuanLyHoa extends Component {
 
   clicksuahoa = (hoa) => {
     let anhnoibatbase64 = "";
-    let anh2base64 = "";
-    let anh3base64 = "";
-    let anh4base64 = "";
 
     // if (hoa.anhnoibat || hoa.anh2 || hoa.anh3 || hoa.anh4) {
-      anhnoibatbase64 = new Buffer(hoa.anhnoibat, "base64").toString("binary");
-      anh2base64 = new Buffer(hoa.anh2, "base64").toString("binary");
-      anh3base64 = new Buffer(hoa.anh3, "base64").toString("binary");
-      anh4base64 = new Buffer(hoa.anh4, "base64").toString("binary");
+    anhnoibatbase64 = new Buffer(hoa.anhnoibat, "base64").toString("binary");
+
     // }
     this.setState({
       id: hoa.id,
       iddanhmuchoachitiet: hoa.iddanhmuchoachitiet,
       anhnoibat: hoa.anhnoibat,
-      anh2: hoa.anh2,
-      anh3: hoa.anh3,
-      anh4: hoa.anh4,
       tenhoaVi: hoa.tenhoaVi,
       tenhoaEn: hoa.tenhoaEn,
       tieudehoaVi: hoa.tieudehoaVi,
@@ -356,24 +273,18 @@ class QuanLyHoa extends Component {
       motasphtmlEn: hoa.motasphtmlEn,
       donoibat: hoa.donoibat,
       anhUrlnoibat: anhnoibatbase64,
-      anhUrlanh2: anh2base64,
-      anhUrlanh3: anh3base64,
-      anhUrlanh4: anh4base64,
       trangthainut: true,
     });
   };
 
   clickbtnsuahoa = async () => {
-    let kt = this.ktdanhapthongtinchua();
-    if (kt === false) return;
+    // let kt = this.ktdanhapthongtinchua();
+    // if (kt === false) return;
 
     let kq = await apisuahoa({
       id: this.state.id,
       iddanhmuchoachitiet: this.state.iddanhmuchoachitiet,
       anhnoibat: this.state.anhnoibat,
-      anh2: this.state.anh2,
-      anh3: this.state.anh3,
-      anh4: this.state.anh4,
       tenhoaVi: this.state.tenhoaVi,
       tenhoaEn: this.state.tenhoaEn,
       tieudehoaVi: this.state.tieudehoaVi,
@@ -400,9 +311,6 @@ class QuanLyHoa extends Component {
         id: "",
         iddanhmuchoachitiet: "",
         anhnoibat: "",
-        anh2: "",
-        anh3: "",
-        anh4: "",
         tenhoaVi: "",
         tenhoaEn: "",
         tieudehoaVi: "",
@@ -421,6 +329,7 @@ class QuanLyHoa extends Component {
         motasphtmlEn: "",
         donoibat: "",
         trangthainut: false,
+        anhUrlnoibat:''
       });
       await this.laytatcahoa();
     } else {
@@ -443,8 +352,6 @@ class QuanLyHoa extends Component {
         : toast.success("Delete error flower");
     }
   };
-
-  
 
   render() {
     let {
@@ -543,156 +450,79 @@ class QuanLyHoa extends Component {
               value={tieudehoaEn}
             ></textarea>
           </div>
-          <div className="col-3">
-            <label>Ảnh nổi bật</label>
-            <div className="anhabc">
-              <input
-                id="anhImg"
-                type="file"
-                hidden
-                onChange={(event) => this.onChangexemanh(event)}
-              />
-              <label className="upanh" htmlFor="anhImg">
-                Tải ảnh<i className="fas fa-upload"></i>
-              </label>
-              <div
-                className="anh"
-                style={{
-                  //backgroundImage: this.state.anhUrlnoibat ? `url(${this.state.anhUrlnoibat})` : 'none',
-                  backgroundImage: `url(${this.state.anhUrlnoibat})`,
-                }}
-                onClick={() => this.nhanxemanh()}
-              ></div>
+          <div className="gia gia1">
+            <div className="form-group khoigia">
+              <label>Ảnh nổi bật</label>
+              <div className="anhabc">
+                <input
+                  id="anhImg"
+                  type="file"
+                  hidden
+                  onChange={(event) => this.onChangexemanh(event)}
+                />
+                <label className="upanh" htmlFor="anhImg">
+                  Tải ảnh<i className="fas fa-upload"></i>
+                </label>
+                <div
+                  className="anh"
+                  style={{
+                    //backgroundImage: this.state.anhUrlnoibat ? `url(${this.state.anhUrlnoibat})` : 'none',
+                    backgroundImage: `url(${this.state.anhUrlnoibat})`,
+                  }}
+                  onClick={() => this.nhanxemanh()}
+                ></div>
+              </div>
+              {this.state.openmoanhnoibat === true && (
+                <Lightbox
+                  mainSrc={this.state.anhnoibat}
+                  onCloseRequest={() =>
+                    this.setState({ openmoanhnoibat: false })
+                  }
+                />
+              )}
             </div>
-            {this.state.openmoanhnoibat === true && (
-              <Lightbox
-                mainSrc={this.state.anhnoibat}
-                onCloseRequest={() => this.setState({ openmoanhnoibat: false })}
-              />
-            )}
-          </div>
-          <div className="col-3">
-            <label>Ảnh hoa 2</label>
-            <div className="anhabc">
+            <div className="form-group khoigia">
+              <label>Số lượng hoa nhập</label>
               <input
-                id="anhImg2"
-                type="file"
-                hidden
-                onChange={(event) => this.onChangexemanh2(event)}
-              />
-              <label className="upanh" htmlFor="anhImg2">
-                Tải ảnh<i className="fas fa-upload"></i>
-              </label>
-              <div
-                className="anh"
-                style={{
-                  backgroundImage: `url(${this.state.anhUrlanh2})`,
+                className="form-control"
+                type="number"
+                onChange={(event) => {
+                  this.nhapdulieu(event, "soluongnhap");
                 }}
-                onClick={() => this.nhanxemanh2()}
-              ></div>
-            </div>
-            {this.state.openmoanh2 === true && (
-              <Lightbox
-                mainSrc={this.state.anh2}
-                onCloseRequest={() => this.setState({ openmoanh2: false })}
+                value={soluongnhap}
               />
-            )}
-          </div>
-          <div className="col-3">
-            <label>Ảnh hoa 3</label>
-            <div className="anhabc">
+            </div>
+            <div className="form-group khoigia">
+              <label>Số lượng hoa đã bán</label>
               <input
-                id="anhImg3"
-                type="file"
-                hidden
-                onChange={(event) => this.onChangexemanh3(event)}
-              />
-              <label className="upanh" htmlFor="anhImg3">
-                Tải ảnh<i className="fas fa-upload"></i>
-              </label>
-              <div
-                className="anh"
-                style={{
-                  backgroundImage: `url(${this.state.anhUrlanh3})`,
+                className="form-control"
+                type="number"
+                onChange={(event) => {
+                  this.nhapdulieu(event, "soluongban");
                 }}
-                onClick={() => this.nhanxemanh3()}
-              ></div>
-            </div>
-            {this.state.openmoanh3 === true && (
-              <Lightbox
-                mainSrc={this.state.anh3}
-                onCloseRequest={() => this.setState({ openmoanh3: false })}
+                value={soluongban}
               />
-            )}
-          </div>
-          <div className="col-3">
-            <label>Ảnh hoa 4</label>
-            <div className="anhabc">
+            </div>
+            <div className="form-group khoigia">
+              <label>Số lượng còn</label>
               <input
-                id="anhImg4"
-                type="file"
-                hidden
-                onChange={(event) => this.onChangexemanh4(event)}
+                className="form-control"
+                type="number"
+                disabled={true}
+                value={soluongcon}
               />
-              <label className="upanh" htmlFor="anhImg4">
-                Tải ảnh<i className="fas fa-upload"></i>
-              </label>
-              <div
-                className="anh"
-                style={{
-                  backgroundImage: `url(${this.state.anhUrlanh4})`,
-                }}
-                onClick={() => this.nhanxemanh4()}
-              ></div>
             </div>
-            {this.state.openmoanh4 === true && (
-              <Lightbox
-                mainSrc={this.state.anh4}
-                onCloseRequest={() => this.setState({ openmoanh4: false })}
+            <div className="form-group khoigia">
+              <label>Độ nổi bật</label>
+              <input
+                className="form-control"
+                type="number"
+                onChange={(event) => {
+                  this.nhapdulieu(event, "donoibat");
+                }}
+                value={donoibat}
               />
-            )}
-          </div>
-          <div className="form-group col-3">
-            <label>Số lượng hoa nhập</label>
-            <input
-              className="form-control"
-              type="number"
-              onChange={(event) => {
-                this.nhapdulieu(event, "soluongnhap");
-              }}
-              value={soluongnhap}
-            />
-          </div>
-          <div className="form-group col-3">
-            <label>Số lượng hoa đã bán</label>
-            <input
-              className="form-control"
-              type="number"
-              onChange={(event) => {
-                this.nhapdulieu(event, "soluongban");
-              }}
-              value={soluongban}
-            />
-          </div>
-          <div className="form-group col-3">
-            <label>Số lượng còn</label>
-            <input
-              className="form-control"
-              type="number"
-              disabled={true}
-              value={soluongcon}
-            />
-          </div>
-          <div className="form-group col-3">
-            <label>Độ nổi bật</label>
-            <input
-              className="form-control"
-              type="number"
-              onChange={(event) => {
-                this.nhapdulieu(event, "donoibat");
-              }}
-              value={donoibat}
-            />
+            </div>
           </div>
           <div className="gia">
             <div className="form-group khoigia">
@@ -748,6 +578,21 @@ class QuanLyHoa extends Component {
             </div>
           </div>
         </div>
+        {trangthainut === false ? (
+          <button
+            className="btn btn-primary"
+            onClick={() => this.clickthemhoa()}
+          >
+            Thêm danh mục
+          </button>
+        ) : (
+          <button
+            className="btn btn-primary"
+            onClick={() => this.clickbtnsuahoa()}
+          >
+            Sửa danh mục
+          </button>
+        )}
         <div className="item4">
           <br />
           <label>Mô tả sản phẩm tiếng Việt</label> <br />
@@ -767,7 +612,7 @@ class QuanLyHoa extends Component {
           />
         </div>
 
-        {trangthainut === false ? (
+        {/* {trangthainut === false ? (
           <button
             className="btn btn-primary"
             onClick={() => this.clickthemhoa()}
@@ -781,7 +626,7 @@ class QuanLyHoa extends Component {
           >
             Sửa danh mục
           </button>
-        )}
+        )} */}
 
         <div className="item3">
           <table className="table">

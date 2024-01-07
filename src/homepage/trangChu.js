@@ -13,36 +13,106 @@ import logothuonghieu2 from "../image/logothuonghieu2.webp";
 import logothuonghieu3 from "../image/logothuonghieu3.webp";
 
 import SlideKH from "./SlideKH";
-import { danhmuchoanoibat } from "../API/ApiTrangChu";
+import {
+  danhmuchoanoibat,
+  apitatcahoa,
+  apihoagiamgia,
+  apihoakhaitruong,
+  apihoasinhnhat,
+  apihoatetbanchay,
+  apilanhodiep,
+  hoatetgiamgia,
+} from "../API/ApiTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import HeaderTrangChu from "./HeaderTrangChu";
 import { FormattedMessage } from "react-intl";
 class trangChu extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     danhmucnoibat: "",
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      hoagiamgia: [],
+      hoatetbanchay: [],
+      hoatetgiamgia: [],
+      hoakhaitruong: [],
+      hoasinhnhat: [],
+      lanhodiep: [],
+    };
+  }
 
-  // async componentDidMount() {
-  //   await this.laydanhmuchoanoibat();
-  // }
+  async componentDidMount() {
+    await this.layhoagiamgia();
+    await this.layhoakhaitruong();
+    await this.layhoatetbanchay();
+    await this.layhoatetgiamgia();
+    await this.layhoasinhnhat();
+    await this.laylanhodiep();
+  }
 
-  // laydanhmuchoanoibat = async () => {
-  //   let kq = await danhmuchoanoibat();
-  //   if (kq && kq.maCode === 0) {
-  //     let data1 = kq.data
-  //     this.setState({
-  //       danhmucnoibat: data1,
-  //     });
-  //   }
-  // };
+  layhoagiamgia = async () => {
+    let kq = await apihoagiamgia();
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data;
+      this.setState({
+        hoagiamgia: data1,
+      });
+    }
+  };
+  layhoatetbanchay = async () => {
+    let kq = await apihoatetbanchay();
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data;
+      this.setState({
+        hoatetbanchay: data1,
+      });
+    }
+  };
+  layhoatetgiamgia = async () => {
+    let kq = await hoatetgiamgia();
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data;
+      this.setState({
+        hoatetgiamgia: data1,
+      });
+    }
+  };
+  layhoakhaitruong = async () => {
+    let kq = await apihoakhaitruong();
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data;
+      this.setState({
+        hoakhaitruong: data1,
+      });
+    }
+  };
+  layhoasinhnhat = async () => {
+    let kq = await apihoasinhnhat();
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data;
+      this.setState({
+        hoasinhnhat: data1,
+      });
+    }
+  };
+  laylanhodiep = async () => {
+    let kq = await apilanhodiep();
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data;
+      this.setState({
+        lanhodiep: data1,
+      });
+    }
+  };
 
   render() {
-    // let { ngonngu } = this.props;
-    // let { danhmucnoibat } = this.state;
-    // console.log(danhmucnoibat);
+    let { ngonngu } = this.props;
+    let {
+      hoagiamgia,
+      hoatetbanchay,
+      hoatetgiamgia,
+      hoakhaitruong,
+      hoasinhnhat,
+      lanhodiep,
+    } = this.state;
     return (
       <div className="trangchu">
         <HeaderTrangChu />
@@ -51,73 +121,38 @@ class trangChu extends Component {
           <span>Đang giảm giá</span>
         </div>
         <div className="item7">
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia3} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia4} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
+          {hoagiamgia &&
+            hoagiamgia.length > 0 &&
+            hoagiamgia.map((item, index) => {
+              let anhnoibat = "";
+              if (item.anhnoibat) {
+                anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                  "binary"
+                );
+              }
+              return (
+                <div className="hoa" key={index}>
+                  <div className="anhhoa">
+                    <img src={anhnoibat} width="261" height="326" />
+                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                  </div>
+                  <div className="thongtin">
+                    <span className="ten">
+                      {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                    </span>
+                    <div className="gia">
+                      <span className="giagiam">
+                        {item.giasaukhigiamVND}VND
+                      </span>
+                      <span className="giachuagiam">{item.giathucVND}VND</span>
+                    </div>
+                    <div className="dathang">
+                      <a href="#">ĐẶT HÀNG</a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
         <div className="item8">
@@ -148,569 +183,193 @@ class trangChu extends Component {
         </div>
 
         <div className="item6">
-          <span>ĐẶT NHIỀU NHẤT</span>
+          <span>hoa tết giảm giá</span>
         </div>
         <div className="item9">
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia3} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia4} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              {/* <div className="giamgia">23% GIẢM</div> */}
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                {/* <span className="giachuagiam">480,000VND</span> */}
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
+          {hoatetgiamgia &&
+            hoatetgiamgia.length > 0 &&
+            hoatetgiamgia.map((item, index) => {
+              let anhnoibat = "";
+              if (item.anhnoibat) {
+                anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                  "binary"
+                );
+              }
+              return (
+                <div className="hoa" key={index}>
+                  <div className="anhhoa">
+                    <img src={anhnoibat} width="261" height="326" />
+                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                  </div>
+                  <div className="thongtin">
+                    <span className="ten">
+                      {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                    </span>
+                    <div className="gia">
+                      <span className="giagiam">
+                        {item.giasaukhigiamVND}VND
+                      </span>
+                      <span className="giachuagiam">{item.giathucVND}VND</span>
+                    </div>
+                    <div className="dathang">
+                      <a href="#">ĐẶT HÀNG</a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
         <div className="item6">
-          <span>SẢN PHẨM MỚI</span>
+          <span>hoa tết bán chạy</span>
         </div>
         <div className="item9">
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia3} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia4} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              {/* <div className="giamgia">23% GIẢM</div> */}
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                {/* <span className="giachuagiam">480,000VND</span> */}
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
+          {hoatetbanchay &&
+            hoatetbanchay.length > 0 &&
+            hoatetbanchay.map((item, index) => {
+              let anhnoibat = "";
+              if (item.anhnoibat) {
+                anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                  "binary"
+                );
+              }
+              return (
+                <div className="hoa" key={index}>
+                  <div className="anhhoa">
+                    <img src={anhnoibat} width="261" height="326" />
+                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                  </div>
+                  <div className="thongtin">
+                    <span className="ten">
+                      {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                    </span>
+                    <div className="gia">
+                      <span className="giagiam">
+                        {item.giasaukhigiamVND}VND
+                      </span>
+                      <span className="giachuagiam">{item.giathucVND}VND</span>
+                    </div>
+                    <div className="dathang">
+                      <a href="#">ĐẶT HÀNG</a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
         <div className="item6">
           <span>hoa sinh nhật</span>
         </div>
         <div className="item7">
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia3} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia4} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
+          {hoasinhnhat &&
+            hoasinhnhat.length > 0 &&
+            hoasinhnhat.map((item, index) => {
+              let anhnoibat = "";
+              if (item.anhnoibat) {
+                anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                  "binary"
+                );
+              }
+              return (
+                <div className="hoa" key={index}>
+                  <div className="anhhoa">
+                    <img src={anhnoibat} width="261" height="326" />
+                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                  </div>
+                  <div className="thongtin">
+                    <span className="ten">
+                      {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                    </span>
+                    <div className="gia">
+                      <span className="giagiam">
+                        {item.giasaukhigiamVND}VND
+                      </span>
+                      <span className="giachuagiam">{item.giathucVND}VND</span>
+                    </div>
+                    <div className="dathang">
+                      <a href="#">ĐẶT HÀNG</a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
         <div className="item6">
           <span>hoa khai trương</span>
         </div>
         <div className="item9">
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia3} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia4} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              {/* <div className="giamgia">23% GIẢM</div> */}
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                {/* <span className="giachuagiam">480,000VND</span> */}
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
+          {hoakhaitruong &&
+            hoakhaitruong.length > 0 &&
+            hoakhaitruong.map((item, index) => {
+              let anhnoibat = "";
+              if (item.anhnoibat) {
+                anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                  "binary"
+                );
+              }
+              return (
+                <div className="hoa" key={index}>
+                  <div className="anhhoa">
+                    <img src={anhnoibat} width="261" height="326" />
+                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                  </div>
+                  <div className="thongtin">
+                    <span className="ten">
+                      {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                    </span>
+                    <div className="gia">
+                      <span className="giagiam">
+                        {item.giasaukhigiamVND}VND
+                      </span>
+                      <span className="giachuagiam">{item.giathucVND}VND</span>
+                    </div>
+                    <div className="dathang">
+                      <a href="#">ĐẶT HÀNG</a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
         <div className="item6">
           <span>lan hồ điệp</span>
         </div>
         <div className="item7">
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia1} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia2} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia3} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hoa">
-            <div className="anhhoa">
-              <img src={hoagiamgia4} width="261" height="326" />
-              <div className="giamgia">23% GIẢM</div>
-            </div>
-            <div className="thongtin">
-              <span className="ten">Endless Love</span>
-              <div className="gia">
-                <span className="giagiam">370,000VND</span>
-                <span className="giachuagiam">480,000VND</span>
-              </div>
-              <div className="dathang">
-                <a href="#">ĐẶT HÀNG</a>
-              </div>
-            </div>
-          </div>
+          {lanhodiep &&
+            lanhodiep.length > 0 &&
+            lanhodiep.map((item, index) => {
+              let anhnoibat = "";
+              if (item.anhnoibat) {
+                anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                  "binary"
+                );
+              }
+              return (
+                <div className="hoa" key={index}>
+                  <div className="anhhoa">
+                    <img src={anhnoibat} width="261" height="326" />
+                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                  </div>
+                  <div className="thongtin">
+                    <span className="ten">
+                      {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                    </span>
+                    <div className="gia">
+                      <span className="giagiam">
+                        {item.giasaukhigiamVND}VND
+                      </span>
+                      <span className="giachuagiam">{item.giathucVND}VND</span>
+                    </div>
+                    <div className="dathang">
+                      <a href="#">ĐẶT HÀNG</a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
         <div className="item6">
@@ -989,97 +648,6 @@ class trangChu extends Component {
         </div>
 
         <FooterTrangChu />
-        {/* <div className="item13">
-          <div className="item131">
-            <img src={logo} width={"200px"} height={"200px"} />
-            <span>
-              <br />
-              Hotline: 0373 853 243 - 0356 417 863
-              <br />
-              Email: vminhduc8@gmail.com
-              <br />
-            </span>
-            <div className="qr-app">
-              <br />
-              <div className="qr">
-                <img src={qr} width={"92px"} height={"114px"} />
-              </div>
-              <div className="app">
-                <span>Tải ứng dụng ngay!</span>
-                <img src={apple} width={"139px"} height={"35px"} />
-                <img src={googleplay} width={"139px"} height={"35px"} />
-              </div>
-              <br />
-            </div>
-            <img src={bocongthuong} width={"255px"} height={"96px"} />
-          </div>
-          <div className="item131">
-            <a href="#">
-              <b>CHĂM SÓC KHÁCH HÀNG</b>{" "}
-            </a>
-            <a href="#">Giới Thiệu</a>
-            <a href="#">Liên Hệ</a>
-            <a href="#">Chính Sách Vận Chuyển</a>
-            <a href="#">Câu Hỏi Thường Gặp</a>
-            <a href="#">Hình Thức Thanh Toán</a>
-            <a href="#">Bảo Mật Thông Tin</a>
-            <a href="#">Chính Sách Hoàn Tiền</a>
-            <a href="#">Xử Lý Khiếu Nại</a>
-            <a href="#">Tại Sao Nên Chọn Hhflower.vn</a>
-            <a href="#">Blog</a>
-          </div>
-          <div className="item131">
-            <span>
-              <b>THEO DÕI</b>
-            </span>
-            <span>
-              <i className="fab fa-facebook"></i>Facebook
-            </span>
-            <span>
-              <i className="fab fa-twitter"></i>Twitter
-            </span>
-            <span>
-              <i className="fab fa-instagram"></i>Instagram
-            </span>
-            <span>
-              <i className="fab fa-linkedin"></i>Linkedin
-            </span>
-            <span>
-              <i className="fab fa-youtube"></i>Youtube
-            </span>
-          </div>
-          <div className="item131">
-            <span>
-              <b>SHOP HOA HHFLOWER</b>
-            </span>
-            <span>
-              <b>Cửa Hàng TP HCM</b>225/3 Nguyễn Đình Chiểu, Phường 5, Quận 3,
-              TP.HCM
-            </span>
-            <span>
-              <b>Văn Phòng TP HCM</b>: 412 Lê Hồng Phong, Phường 1, Quận 10,
-              TP.HCM
-            </span>
-            <span>
-              <b>Chi nhánh Hà Nội</b>: 65 Trần Phú, Ba Đình, Hà Nội
-            </span>
-            <span>CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ ZAS</span>
-            <span>Mã số thuế: 0313630426</span>
-          </div>
-        </div>
-        <div className="item14">
-          <span>
-            <i className="fas fa-phone"></i>
-            Gọi ngay 0373 853 243
-          </span>
-          <span className="ke">
-            <i className="fab fa-instagram"></i> Instagram
-          </span>
-          <span>
-            <i className="fab fa-facebook-messenger"></i>
-            Facebook
-          </span>
-        </div> */}
       </div>
     );
   }

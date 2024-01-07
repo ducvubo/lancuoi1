@@ -1,19 +1,20 @@
-.stickyheader{
-   
+.stickyheader {
+
     .item3 {
-        margin          : 5px 170px;
-        border-bottom   : 1px solid #ccc;
-       
+        margin       : 5px 170px;
+        border-bottom: 1px solid #ccc;
+
 
         .hovermenu {
-            list-style-type: none;
-            display        : flex;
-            justify-content: center;
+            list-style-type : none;
+            display         : flex;
+            justify-content : center;
             position        : sticky;
             top             : 0;
             background-color: white;
             z-index         : 100000;
-            width: 100%;
+            width           : 100%;
+            gap             : 58px;
 
             li {
                 position      : relative;
@@ -29,6 +30,8 @@
 
                     li {
                         font-weight: 400;
+                        min-width: 200px;
+
                     }
                 }
 
@@ -50,6 +53,7 @@
                             writing-mode: horizontal-tb;
                             white-space : nowrap;
                             padding     : 9px 11px;
+                            // min-height  : 231px;
                             // width : auto;
                             // height: auto;
                         }
