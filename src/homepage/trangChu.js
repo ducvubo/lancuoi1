@@ -48,7 +48,7 @@ class trangChu extends Component {
         <HeaderTrangChu />
         <SlideShow />
         <div className="item6">
-          <span>Đang giảm giá sbkzvsjja,sjjajdk s ,d</span>
+          <span>Đang giảm giá</span>
         </div>
         <div className="item7">
           <div className="hoa">
