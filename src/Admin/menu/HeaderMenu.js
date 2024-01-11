@@ -5,7 +5,7 @@ import { menu } from "./menuApp";
 import "./Header.scss";
 import _ from "lodash";
 
-import { doiNgonNgu } from "../../action/actions";
+import { doiNgonNgu,dangxuat } from "../../action/actions";
 
 class HeaderMenu extends Component {
   constructor(props) {
@@ -23,6 +23,11 @@ class HeaderMenu extends Component {
   doiNgonNgu = (ngonngu) => {
     this.props.doiNgonNgu(ngonngu);
   };
+
+  dangxuat = () => {
+    this.props.dangxuat();
+    this.props.history.push("/dangnhap");
+  };
   render() {
     return (
       <div className="header-container">
@@ -38,11 +43,7 @@ class HeaderMenu extends Component {
             EN
           </span>
           {/* nút logout */}
-          <div
-            className="btn btn-logout"
-            // onClick={processLogout}
-            // title="Log out"
-          >
+          <div className="btn btn-logout" onClick={() => this.dangxuat()}>
             <i className="fas fa-sign-out-alt"></i>
           </div>
         </div>
@@ -60,6 +61,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     doiNgonNgu: (ngongu) => dispatch(doiNgonNgu(ngongu)),
+    dangxuat: () => dispatch(dangxuat()),
   };
 };
 

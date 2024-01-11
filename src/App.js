@@ -10,9 +10,14 @@ import QuanLy from "./route/QuanLy";
 import NguoiDung from "./route/NguoiDung";
 import ThongTinHoa from "./nguoidung/ThongTinHoa";
 import DangNhap from "./nguoidung/DangNhap";
+import DangKy from "./nguoidung/DangKy";
+import XacNhanTaiKhoan from "./nguoidung/XacNhanTaiKhoan";
 const history = createBrowserHistory();
 
 class App extends Component {
+
+
+
   render() {
     let { thongtinnguoidung } = this.props;
 
@@ -24,6 +29,9 @@ class App extends Component {
             <Route path={"/quanly/"} component={QuanLy} />
             <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
             <Route path={"/dangnhap"} component={DangNhap}/>
+            <Route path={"/dangky"} component={DangKy}/>
+            <Route path={"/xacnhantaikhoan"} component={XacNhanTaiKhoan}/>
+
             {thongtinnguoidung && thongtinnguoidung.quyenId === "R1" ? (
               <Redirect to={"/quanly/"} />
             ) : (

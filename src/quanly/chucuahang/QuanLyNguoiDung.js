@@ -239,7 +239,6 @@ class QuanLyNguoiDung extends Component {
               value={sodienthoai}
             />
           </div>
-
           <div className="form-group col-6">
             <label>Địa chỉ nhà</label>
             <input
@@ -262,7 +261,6 @@ class QuanLyNguoiDung extends Component {
               value={diachicuahang}
             />
           </div>
-
           <div className="form-group col-6">
             <label>Giới tính</label>
             <select
@@ -330,6 +328,7 @@ class QuanLyNguoiDung extends Component {
                 <th scope="col">Số điện thoại</th>
                 <th scope="col">Địa chỉ nhà</th>
                 <th scope="col">Địa chỉ cửa hàng</th>
+                <th scope="col">Quyền</th>
                 <th scope="col">Hành động</th>
               </tr>
             </thead>
@@ -346,6 +345,7 @@ class QuanLyNguoiDung extends Component {
                       <td>{item.sdt}</td>
                       <td>{item.diachinha}</td>
                       <td>{item.diachicuahang}</td>
+                      <td>{item.quyenId}</td>
                       <td>
                         <button onClick={() => this.clicksuanguoidung(item)}>
                           <i className="fas fa-edit"></i>

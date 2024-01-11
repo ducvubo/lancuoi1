@@ -3,7 +3,7 @@
     z-index         : 99;
     display         : flex;
     justify-content : space-between;
-    background-color:blueviolet;
+    background-color:#e91e63;
     color           : white;
     height          : 40px;
     position        : relative;
@@ -15,7 +15,7 @@
         padding    : 0 10px;
 
         &:hover {
-            background-color: darken(blueviolet, 5);
+            background-color: #e91e63;
         }
 
         i {

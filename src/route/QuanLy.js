@@ -16,8 +16,8 @@ class QuanLy extends Component {
           <React.Fragment>
             <HeaderMenu />
             <Switch>
-              <Route path={"/quanly/quanlynguoidung"} exactcomponent={QuanLyNguoiDung}/>
               <Route path={"/quanly/quanlyhoa"} exact component={QuanLyHoa} />
+              <Route path={"/quanly/quanlynguoidung"} exact component={QuanLyNguoiDung} />
               <Route path={"/quanly/quanlydanhmuchoa"} exact component={DanhMucHoa}/>
               <Route path={"/quanly/quanlydanhmuchoachitiet"} exact component={DanhMucHoaChiTiet}/>
             </Switch>

@@ -5,6 +5,7 @@
         justify-content: space-between;
         padding        : 5px 170px;
         border-bottom  : 1px solid #ccc;
+        position       : relative;
 
         .sdt {
             color      : #696363;
@@ -39,6 +40,43 @@
                     .ngonnguduocchon {
                         opacity: 0.6;
 
+                    }
+                }
+
+                &.taikhoan {
+
+                    ul {
+                        display: none;
+                    }
+
+                    &:hover {
+                        ul {
+                            position        : absolute;
+                            display         : block;
+                            list-style-type : none;
+                            background-color: white;
+                            border          : 1px solid #ccc;
+                            width           : 200px;
+                            height          : 50px;
+                            padding-left: 21px;
+                            .dangnhap{
+                                text-decoration: none;
+                                color: #696363;
+
+                                li{
+                                    margin-left:-106px;
+                                }
+                            }
+
+                            .dangky{
+                                text-decoration: none;
+                                color: #696363;
+
+                                li{
+                                    margin-left:-121px;
+                                }
+                            }
+                        }
                     }
                 }
             }

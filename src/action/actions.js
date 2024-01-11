@@ -24,6 +24,10 @@ export const thongtinnguoidung = (thongtinnguoidung) => ({
   thongtinnguoidung: thongtinnguoidung,
 });
 
+export const dangxuat = () => ({
+  type: actionTypes.XOA_THONG_TIN_NGUOI_DUNG,
+});
+
 export const themmoinguoidung = (data) => {
   return async (dispatch, getState) => {
     try {

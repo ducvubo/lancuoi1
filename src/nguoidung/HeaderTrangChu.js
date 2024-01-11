@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import logo from "../image/logo.png";
 import "./HeaderTrangChu.scss";
 import { FormattedMessage } from "react-intl";
 import { danhmuchoanoibat } from "../API/ApiTrangChu";
-import { doiNgonNgu } from "../action/actions";
+import { dangxuat, doiNgonNgu } from "../action/actions";
 
 class HeaderTrangChu extends Component {
   constructor(props) {
@@ -31,8 +32,14 @@ class HeaderTrangChu extends Component {
       });
     }
   };
+
+  dangxuat = () => {
+    this.props.dangxuat();
+  };
+
+  dangnhap = () => {};
   render() {
-    let { ngonngu } = this.props;
+    let { ngonngu, thongtinnguoidung } = this.props;
     let { danhmucnoibat } = this.state;
     return (
       <div className="headertrangchu">
@@ -41,11 +48,23 @@ class HeaderTrangChu extends Component {
             <FormattedMessage id="sdt" />: 1900 633 045 | 0865 160 360
           </div>
           <div className="tk-gh-tt">
-            <div className="icon">
+            <div className="icon taikhoan">
               <span>
                 <i className="fas fa-user"></i>
               </span>
               <span>Tài khoản</span>
+              <ul>
+                {thongtinnguoidung ? (
+                  <li onClick={() => this.dangxuat()}>Đăng xuất</li>
+                ) : (
+                  <Link className="dangnhap" to={"/dangnhap"}>
+                    <li>Đăng nhập</li>
+                  </Link>
+                )}
+                <Link className="dangky" to={"/dangky"}>
+                  <li>Đăng ký</li>
+                </Link>
+              </ul>
             </div>
             <div className="icon">
               <span>
@@ -54,12 +73,22 @@ class HeaderTrangChu extends Component {
               <span>Giỏ hàng</span>
             </div>
             <div className="icon ngonngu">
-            <span className={ngonngu === 'vi' ? "ngonngukhongduocchon" : 'ngonnguduocchon'} onClick={() => this.doiNgonNgu("vi")}>
-            VN
-          </span>
-          <span className={ngonngu === 'en' ? "ngonngukhongduocchon" : 'ngonnguduocchon'} onClick={() => this.doiNgonNgu("en")}>
-            EN
-          </span>
+              <span
+                className={
+                  ngonngu === "vi" ? "ngonngukhongduocchon" : "ngonnguduocchon"
+                }
+                onClick={() => this.doiNgonNgu("vi")}
+              >
+                VN
+              </span>
+              <span
+                className={
+                  ngonngu === "en" ? "ngonngukhongduocchon" : "ngonnguduocchon"
+                }
+                onClick={() => this.doiNgonNgu("en")}
+              >
+                EN
+              </span>
             </div>
           </div>
         </div>
@@ -126,12 +155,14 @@ class HeaderTrangChu extends Component {
 const mapStateToProps = (state) => {
   return {
     ngonngu: state.web.ngonngu,
+    thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     doiNgonNgu: (ngongu) => dispatch(doiNgonNgu(ngongu)),
+    dangxuat: () => dispatch(dangxuat()),
   };
 };
 

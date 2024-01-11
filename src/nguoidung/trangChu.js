@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import "./trangChu.scss";
 import SlideShow from "./SlideShow";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
 import hoagiamgia4 from "../image/hoagiamgia4.webp";
 import logothuonghieu1 from "../image/logothuonghieu1.webp";
 import logothuonghieu2 from "../image/logothuonghieu2.webp";

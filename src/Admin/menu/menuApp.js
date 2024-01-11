@@ -4,7 +4,7 @@ export const menu = [
     menus: [
       {
         name: "quanlynguoidung",
-        link: "/quanly/quanlynguoidung",
+        link:"/quanly/quanlynguoidung"
       },
     ],
   },

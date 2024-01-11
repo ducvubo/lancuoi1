@@ -35,6 +35,13 @@ const apidangnhap = (data) => {
   return axios.post("/api/dangnhap", data);
 };
 
+const apidangky = (data) => {
+  return axios.post("/api/dangky", data);
+};
+
+const apixacnhantaikhoan = (data) => {
+  return axios.post("/api/xacnhandangky", data);
+};
 export { 
     danhmuchoanoibat,
     danhmuchoachitiettheodanhmuc,
@@ -45,5 +52,7 @@ export {
     apihoatet,
     apilanhodiep,
     apithongtinhoa,
-    apidangnhap
+    apidangnhap,
+    apidangky,
+    apixacnhantaikhoan
  };

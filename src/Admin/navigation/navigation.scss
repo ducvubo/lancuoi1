@@ -12,7 +12,7 @@
     .menu-group {
         &:hover {
             cursor          : pointer;
-            background-color: darken(#0071ba, 5);
+            background-color:#e91e63;
         }
 
         .menu-group-name {
@@ -85,7 +85,7 @@
 
                         &.active a {
                             font-weight: 500;
-                            color      : #0071ba;
+                            color      :#e91e63;
                         }
                     }
                 }

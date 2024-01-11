@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { Redirect, Link } from "react-router-dom";
 import "./DangNhap.scss";
 import HeaderTrangChu from "./HeaderTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import { apidangnhap } from "../API/ApiTrangChu";
 import { toast } from "react-toastify";
 import { thongtinnguoidung } from "../action/actions";
-
 
 class DangNhap extends Component {
   constructor(props) {
@@ -15,9 +15,19 @@ class DangNhap extends Component {
       email: "",
       password: "",
       xemmk: false,
-      datanguoidung:''
+      datanguoidung: "",
     };
   }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if(prevProps.thongtinnguoidung !== this.props.thongtinnguoidung){
+  //     {this.props.thongtinnguoidung &&
+  //       this.props.thongtinnguoidung.quyenId === "R1" ? (
+  //         this.props.history.push("/quanly/")
+  //       ) : (
+  //         this.props.history.push("/home")
+  //       )}
+  //   }
+  // }
 
   onChangeNhap = (event, id) => {
     let copyState = { ...this.state };
@@ -72,15 +82,31 @@ class DangNhap extends Component {
         ? toast.error("Email này chưa được đăng ký!!!")
         : toast.error("This email has not been registered!!!");
     }
-    if(data.maCode === 0) {
-      this.props.thongtinnguoidung(data.nguoidung)
+    if (data.maCode === 5) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Tài khoản của bạn chưa được xác nhận vui lòng kiểm tra hộp thư của email để xác nhận!!!")
+        : toast.error("Your account has not been confirmed, please check your email inbox to confirm!!!");
+    }
+    if (data.maCode === 0) {
+      this.props.thongtinnguoidung(data.nguoidung);
+      data && data.nguoidung && data.nguoidung.quyenId === "R1"
+        ? this.props.history.push("/quanly/")
+        : this.props.history.push("/home");
+
     }
   };
 
   render() {
     let { email, password, xemmk } = this.state;
+    let { thongtinnguoidung123 } = this.props;
+
+    console.log(thongtinnguoidung123);
     return (
       <>
+        {(thongtinnguoidung123 && thongtinnguoidung123.quyenId === "R1") ||
+        thongtinnguoidung123 === "R3" ? (
+          <Redirect to={"/quanly/"} />
+        ) :null}
         <HeaderTrangChu />
         <div className="dangnhap">
           <div className="form">
@@ -140,13 +166,13 @@ class DangNhap extends Component {
 const mapStateToProps = (state) => {
   return {
     ngonngu: state.web.ngonngu,
+    thongtinnguoidung123: state.thongtinnguoidung.thongtinnguoidung,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     thongtinnguoidung: (ngongu) => dispatch(thongtinnguoidung(ngongu)),
-
   };
 };
 

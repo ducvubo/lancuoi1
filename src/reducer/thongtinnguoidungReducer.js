@@ -6,12 +6,18 @@ const INITIAL_STATE = {
 const thongtinnguoidungReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
       case actionTypes.LUU_THONG_TIN_NGUOI_DUNG:
-        console.log("check action: ",action.thongtinnguoidung)
       return {
         ...state,
         thongtinnguoidung: action.thongtinnguoidung,
         ktdangnhap:true
       };
+
+      case actionTypes.XOA_THONG_TIN_NGUOI_DUNG:
+        return {
+          ...state,
+          thongtinnguoidung: '',
+          ktdangnhap:false
+        };
     default:
       return state;
   }
