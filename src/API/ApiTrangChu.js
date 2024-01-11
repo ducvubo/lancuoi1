@@ -1,33 +1,38 @@
 import axios from "../axios";
 
 const danhmuchoanoibat = () => {
-  return axios.post("/api/danhmuchoanoibat");
+  return axios.get("/api/danhmuchoanoibat");
 };
 const danhmuchoachitiettheodanhmuc = (iddanhmuchoa) => {
-    return axios.post(`api/danhmuchoachitiettheodanhmuc?iddanhmuchoa=${iddanhmuchoa}`);
+    return axios.get(`api/danhmuchoachitiettheodanhmuc?iddanhmuchoa=${iddanhmuchoa}`);
 }
 
 const apitatcahoa = () => {
-  return axios.post("/api/tatcahoa");
+  return axios.get("/api/tatcahoa");
 };
 
 const apihoagiamgia = () => {
-  return axios.post("/api/hoagiamgia");
+  return axios.get("/api/hoagiamgia");
 };
-const apihoatetbanchay = () => {
-  return axios.post("/api/hoatetbanchay");
-};
-const hoatetgiamgia = () => {
-  return axios.post("/api/hoatetgiamgia");
+const apihoatet = () => {
+  return axios.get("/api/hoatet");
 };
 const apihoasinhnhat = () => {
-  return axios.post("/api/hoasinhnhat");
+  return axios.get("/api/hoasinhnhat");
 };
 const apihoakhaitruong = () => {
-  return axios.post("/api/hoakhaitruong");
+  return axios.get("/api/hoakhaitruong");
 };
 const apilanhodiep = () => {
-  return axios.post("/api/lanhodiep");
+  return axios.get("/api/lanhodiep");
+};
+
+const apithongtinhoa = (id) => {
+  return axios.get(`api/thongtinhoa?id=${id}`);
+};
+
+const apidangnhap = (data) => {
+  return axios.post("/api/dangnhap", data);
 };
 
 export { 
@@ -37,7 +42,8 @@ export {
     apihoagiamgia,
     apihoakhaitruong,
     apihoasinhnhat,
-    apihoatetbanchay,
+    apihoatet,
     apilanhodiep,
-    hoatetgiamgia
+    apithongtinhoa,
+    apidangnhap
  };

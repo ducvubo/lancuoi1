@@ -63,7 +63,7 @@ class QuanLyNguoiDung extends Component {
   };
   ktdanhapthongtinchua = () => {
     let kt = true;
-    let arrCheck = [
+    let nhapdaydu = [
       "email",
       "password",
       "ho",
@@ -72,9 +72,9 @@ class QuanLyNguoiDung extends Component {
       "diachinha",
       "diachicuahang",
     ];
-    for (let i = 0; i < arrCheck.length; i++) {
-      if (!this.state[arrCheck[i]]) {
-        console.log(this.state[arrCheck[i]]);
+    for (let i = 0; i < nhapdaydu.length; i++) {
+      if (!this.state[nhapdaydu[i]]) {
+        console.log(this.state[nhapdaydu[i]]);
 
         kt = false;
         this.props.ngonngu === "vi"

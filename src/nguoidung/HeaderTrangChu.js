@@ -3,32 +3,37 @@ import { connect } from "react-redux";
 import logo from "../image/logo.png";
 import "./HeaderTrangChu.scss";
 import { FormattedMessage } from "react-intl";
-import StickyHeader from "./StickyHeader";
+import { danhmuchoanoibat } from "../API/ApiTrangChu";
+import { doiNgonNgu } from "../action/actions";
 
 class HeaderTrangChu extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     danhmucnoibat: "",
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      danhmucnoibat: "",
+    };
+  }
 
-  // async componentDidMount() {
-  //   await this.laydanhmuchoanoibat();
-  // }
+  async componentDidMount() {
+    await this.laydanhmuchoanoibat();
+  }
 
-  // laydanhmuchoanoibat = async () => {
-  //   let kq = await danhmuchoanoibat();
-  //   if (kq && kq.maCode === 0) {
-  //     let data1 = kq.data;
-  //     this.setState({
-  //       danhmucnoibat: data1,
-  //     });
-  //   }
-  // };
+  doiNgonNgu = (ngonngu) => {
+    this.props.doiNgonNgu(ngonngu);
+  };
+
+  laydanhmuchoanoibat = async () => {
+    let kq = await danhmuchoanoibat();
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data;
+      this.setState({
+        danhmucnoibat: data1,
+      });
+    }
+  };
   render() {
-    // let { ngonngu } = this.props;
-    // let { danhmucnoibat } = this.state;
+    let { ngonngu } = this.props;
+    let { danhmucnoibat } = this.state;
     return (
       <div className="headertrangchu">
         <div className="item1">
@@ -48,11 +53,13 @@ class HeaderTrangChu extends Component {
               </span>
               <span>Giỏ hàng</span>
             </div>
-            <div className="icon">
-              <span>
-                <i className="fas fa-share"></i>
-              </span>
-              <span>Thanh toán</span>
+            <div className="icon ngonngu">
+            <span className={ngonngu === 'vi' ? "ngonngukhongduocchon" : 'ngonnguduocchon'} onClick={() => this.doiNgonNgu("vi")}>
+            VN
+          </span>
+          <span className={ngonngu === 'en' ? "ngonngukhongduocchon" : 'ngonnguduocchon'} onClick={() => this.doiNgonNgu("en")}>
+            EN
+          </span>
             </div>
           </div>
         </div>
@@ -79,7 +86,7 @@ class HeaderTrangChu extends Component {
             </span>
           </div>
         </div>
-        {/* <div className="item3">
+        <div className="item3">
           <ul className="hovermenu">
             {danhmucnoibat &&
               danhmucnoibat.length > 0 &&
@@ -104,8 +111,7 @@ class HeaderTrangChu extends Component {
                 );
               })}
           </ul>
-        </div> */}
-        <StickyHeader/>
+        </div>
         <div className="item4">
           <span>
             ĐẶT HOA ONLINE - GIAO MIỄN PHÍ TP HCM & HÀ NỘI - GỌI NGAY 1900 633
@@ -124,7 +130,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    doiNgonNgu: (ngongu) => dispatch(doiNgonNgu(ngongu)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderTrangChu);

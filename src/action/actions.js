@@ -12,10 +12,16 @@ import store from "../redux/store";
 
 let ngonngu1 = store.getState().web.ngonngu;
 export const doiNgonNgu = (ngonngu) => (
-  ngonngu1 = ngonngu,
+  (ngonngu1 = ngonngu),
   {
-  type: actionTypes.DOI_NGON_NGU,
-  ngonngu: ngonngu,
+    type: actionTypes.DOI_NGON_NGU,
+    ngonngu: ngonngu,
+  }
+);
+
+export const thongtinnguoidung = (thongtinnguoidung) => ({
+  type: actionTypes.LUU_THONG_TIN_NGUOI_DUNG,
+  thongtinnguoidung: thongtinnguoidung,
 });
 
 export const themmoinguoidung = (data) => {
@@ -47,7 +53,6 @@ export const themnguoidungthatbai = () => ({
 export const themnguoidungthanhcong = () => ({
   type: actionTypes.THEM_NGUOI_DUNG_THANH_CONG,
 });
-
 
 export const layGioiTinh = () => {
   return async (dispatch, getState) => {
@@ -94,7 +99,6 @@ export const layQuyenThanhCong = (quyen) => ({
 export const layQuyenThatBai = () => ({
   type: actionTypes.LAY_ALLCODE_QUYEN_THAT_BAI,
 });
-
 
 export const allnguoidung = () => {
   return async (dispatch, getState) => {
@@ -148,12 +152,16 @@ export const xoanguoidung = (id) => {
     try {
       let res = await apixoanguoidung(id);
       if (res && res.maCode === 0) {
-        ngonngu1 === "vi" ? toast.success("Xóa người dùng thành công") : toast.success("Delete users success")
+        ngonngu1 === "vi"
+          ? toast.success("Xóa người dùng thành công")
+          : toast.success("Delete users success");
         dispatch(xoanguoidungthanhcong());
         dispatch(allnguoidung());
       } else {
         dispatch(xoanguoidungthatbai());
-        ngonngu1 === "vi" ? toast.success("Xóa người dùng thất bại") : toast.success("Delete users failed")
+        ngonngu1 === "vi"
+          ? toast.success("Xóa người dùng thất bại")
+          : toast.success("Delete users failed");
       }
     } catch (e) {
       dispatch(xoanguoidungthatbai());
@@ -173,12 +181,16 @@ export const suanguoidung = (data) => {
     try {
       let res = await apisuanguoidung(data);
       if (res && res.maCode === 0) {
-        ngonngu1 === "vi" ? toast.success("Sửa người dùng thành công") : toast.success("Edit users success")
+        ngonngu1 === "vi"
+          ? toast.success("Sửa người dùng thành công")
+          : toast.success("Edit users success");
         dispatch(suanguoidungthanhcong());
         dispatch(allnguoidung());
       } else {
         dispatch(suanguoidungthatbai());
-        ngonngu1 === "vi" ? toast.success("Sửa người dùng thất bại") : toast.success("Edit users failed")
+        ngonngu1 === "vi"
+          ? toast.success("Sửa người dùng thất bại")
+          : toast.success("Edit users failed");
       }
     } catch (e) {
       dispatch(suanguoidungthatbai());

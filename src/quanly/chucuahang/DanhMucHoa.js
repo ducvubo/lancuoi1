@@ -51,11 +51,9 @@ class DanhMucHoa extends Component {
 
   ktdanhapthongtinchua = () => {
     let kt = true;
-    let arrCheck = ["tendanhmucVi", "tendanhmucEn", "donoibat"];
-    for (let i = 0; i < arrCheck.length; i++) {
-      if (!this.state[arrCheck[i]]) {
-        console.log(this.state[arrCheck[i]]);
-
+    let nhapdaydu = ["tendanhmucVi", "tendanhmucEn", "donoibat"];
+    for (let i = 0; i < nhapdaydu.length; i++) {
+      if (!this.state[nhapdaydu[i]]) {
         kt = false;
         this.props.ngonngu === "vi"
           ? alert("Vui lòng nhập đầy đủ thông tin")

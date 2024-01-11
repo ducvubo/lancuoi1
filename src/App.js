@@ -1,22 +1,34 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect,redirect } from "react-router-dom";
 import { Router } from "react-router";
 import { createBrowserHistory } from "history";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import trangChu from "./homepage/trangChu";
+import trangChu from "./nguoidung/trangChu";
 import QuanLy from "./route/QuanLy";
+import NguoiDung from "./route/NguoiDung";
+import ThongTinHoa from "./nguoidung/ThongTinHoa";
+import DangNhap from "./nguoidung/DangNhap";
 const history = createBrowserHistory();
 
 class App extends Component {
   render() {
+    let { thongtinnguoidung } = this.props;
+
     return (
       <React.Fragment>
         <Router history={history}>
           <Switch>
-            <Route path={"/"} exact component={trangChu} />
+            <Route path={"/home"} exact component={trangChu} />
             <Route path={"/quanly/"} component={QuanLy} />
+            <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
+            <Route path={"/dangnhap"} component={DangNhap}/>
+            {thongtinnguoidung && thongtinnguoidung.quyenId === "R1" ? (
+              <Redirect to={"/quanly/"} />
+            ) : (
+              <Redirect to={"/home"} />
+            )}
           </Switch>
         </Router>
 
@@ -37,7 +49,9 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

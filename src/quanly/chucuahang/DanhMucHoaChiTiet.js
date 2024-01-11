@@ -46,7 +46,7 @@ class DanhMucHoaChiTiet extends Component {
   laytatcadanhmucchitiet = async () => {
     let kq = await tatcadanhmucchitiet();
     if (kq && kq.maCode === 0) {
-    let data1 = kq.data;
+      let data1 = kq.data;
       this.setState({
         tatcadanhmuchoachitiet: data1,
       });
@@ -72,10 +72,10 @@ class DanhMucHoaChiTiet extends Component {
 
   ktdanhapthongtinchua = () => {
     let kt = true;
-    let arrCheck = ["tendanhmucchitietVi", "tendanhmucchitietEn"];
-    for (let i = 0; i < arrCheck.length; i++) {
-      if (!this.state[arrCheck[i]]) {
-        console.log(this.state[arrCheck[i]]);
+    let nhapdaydu = ["tendanhmucchitietVi", "tendanhmucchitietEn"];
+    for (let i = 0; i < nhapdaydu.length; i++) {
+      if (!this.state[nhapdaydu[i]]) {
+        console.log(this.state[nhapdaydu[i]]);
 
         kt = false;
         this.props.ngonngu === "vi"
@@ -296,7 +296,6 @@ class DanhMucHoaChiTiet extends Component {
             </tbody>
           </table>
         </div>
-      
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import axios from "../axios";
 
 const layAllCode = (kieu) => {
-  return axios.post(`/api/allcode?kieu=${kieu}`);
+  return axios.get(`/api/allcode?kieu=${kieu}`);
 };
 
 const themnguoidung = (data) => {
@@ -9,11 +9,11 @@ const themnguoidung = (data) => {
 };
 
 const laytatcanguoidung = () => {
-  return axios.post("/api/allnguoidung");
+  return axios.get("/api/allnguoidung");
 };
 
 const lay1nguoidung = (id) => {
-  return axios.post(`api/all1nguoidung?id=${id}`);
+  return axios.get(`api/all1nguoidung?id=${id}`);
 };
 
 const apixoanguoidung = (id) => {
@@ -29,7 +29,7 @@ const themdanhmuc = (data) => {
 };
 
 const tatcadanhmuc = () => {
-  return axios.post("/api/alldanhmuc");
+  return axios.get("/api/alldanhmuc");
 };
 
 const apisuadanhmuc = (data) => {
@@ -45,7 +45,7 @@ const themdanhmucchitiet = (data) => {
 };
 
 const tatcadanhmucchitiet = () => {
-  return axios.post("/api/alldanhmuchoachitiet");
+  return axios.get("/api/alldanhmuchoachitiet");
 };
 
 const apisuadanhmucchitiet = (data) => {
@@ -61,7 +61,7 @@ const apithemhoa = (data) => {
 };
 
 const apitatcahoa = () => {
-  return axios.post("/api/tatcahoa");
+  return axios.get("/api/tatcahoa");
 };
 
 const apisuahoa = (data) => {

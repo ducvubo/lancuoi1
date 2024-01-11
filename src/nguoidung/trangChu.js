@@ -1,12 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./trangChu.scss";
-import logo from "../image/logo.png";
 import SlideShow from "./SlideShow";
-import TestSwitch from "./TestSwitch";
-import hoagiamgia1 from "../image/hoagiamgia1.webp";
-import hoagiamgia2 from "../image/hoagiamgia2.webp";
-import hoagiamgia3 from "../image/hoagimagia3.webp";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 import hoagiamgia4 from "../image/hoagiamgia4.webp";
 import logothuonghieu1 from "../image/logothuonghieu1.webp";
 import logothuonghieu2 from "../image/logothuonghieu2.webp";
@@ -14,14 +11,11 @@ import logothuonghieu3 from "../image/logothuonghieu3.webp";
 
 import SlideKH from "./SlideKH";
 import {
-  danhmuchoanoibat,
-  apitatcahoa,
   apihoagiamgia,
   apihoakhaitruong,
   apihoasinhnhat,
-  apihoatetbanchay,
+  apihoatet,
   apilanhodiep,
-  hoatetgiamgia,
 } from "../API/ApiTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import HeaderTrangChu from "./HeaderTrangChu";
@@ -42,8 +36,7 @@ class trangChu extends Component {
   async componentDidMount() {
     await this.layhoagiamgia();
     await this.layhoakhaitruong();
-    await this.layhoatetbanchay();
-    await this.layhoatetgiamgia();
+    await this.layhoatet();
     await this.layhoasinhnhat();
     await this.laylanhodiep();
   }
@@ -57,21 +50,26 @@ class trangChu extends Component {
       });
     }
   };
-  layhoatetbanchay = async () => {
-    let kq = await apihoatetbanchay();
+  layhoatet = async () => {
+    let kq = await apihoatet();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
-      this.setState({
-        hoatetbanchay: data1,
+      let epdata = data1
+        .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
+        .flat();
+
+      epdata.map((item, index) => {
+        item.donoibat = parseFloat(item.donoibat);
+        item.donoibat = parseFloat(item.phantramgiam);
       });
-    }
-  };
-  layhoatetgiamgia = async () => {
-    let kq = await hoatetgiamgia();
-    if (kq && kq.maCode === 0) {
-      let data1 = kq.data;
+      let sxdata = epdata.slice().sort((a, b) => b.soluongban - a.soluongban);
+      let sxdata1 = epdata
+        .slice()
+        .sort((a, b) => b.phantramgiam - a.phantramgiam);
+
       this.setState({
-        hoatetgiamgia: data1,
+        hoatetgiamgia: sxdata1,
+        hoatetbanchay: sxdata,
       });
     }
   };
@@ -79,8 +77,13 @@ class trangChu extends Component {
     let kq = await apihoakhaitruong();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
+      let epdata = data1.flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet)).flat();
+      epdata.map((item, index) => {
+        item.donoibat = parseFloat(item.donoibat);
+      });
+      let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
       this.setState({
-        hoakhaitruong: data1,
+        hoakhaitruong: sxdata,
       });
     }
   };
@@ -88,8 +91,16 @@ class trangChu extends Component {
     let kq = await apihoasinhnhat();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
+      let epdata = data1
+        .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
+        .flat();
+
+      epdata.map((item, index) => {
+        item.donoibat = parseFloat(item.donoibat); // Hoặc parseInt(item.donoibat) nếu donoibat là số nguyên
+      });
+      let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
       this.setState({
-        hoasinhnhat: data1,
+        hoasinhnhat: sxdata,
       });
     }
   };
@@ -97,10 +108,22 @@ class trangChu extends Component {
     let kq = await apilanhodiep();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
+      let epdata = data1
+        .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
+        .flat();
+
+      epdata.map((item, index) => {
+        item.donoibat = parseFloat(item.donoibat); // Hoặc parseInt(item.donoibat) nếu donoibat là số nguyên
+      });
+      let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
       this.setState({
-        lanhodiep: data1,
+        lanhodiep: sxdata,
       });
     }
+  };
+
+  thongtinhoa = (hoa) => {
+    this.props.history.push(`/thongtinhoa/${hoa.id}`);
   };
 
   render() {
@@ -123,7 +146,7 @@ class trangChu extends Component {
         <div className="item7">
           {hoagiamgia &&
             hoagiamgia.length > 0 &&
-            hoagiamgia.map((item, index) => {
+            hoagiamgia.slice(0, 4).map((item, index) => {
               let anhnoibat = "";
               if (item.anhnoibat) {
                 anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -132,20 +155,58 @@ class trangChu extends Component {
               }
               return (
                 <div className="hoa" key={index}>
-                  <div className="anhhoa">
+                  <div
+                    className="anhhoa"
+                    onClick={() => this.thongtinhoa(item)}
+                  >
                     <img src={anhnoibat} width="261" height="326" />
-                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+
+                    {item.phantramgiam > 0 ? (
+                      <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                    ) : null}
                   </div>
                   <div className="thongtin">
-                    <span className="ten">
+                    <span
+                      className="ten"
+                      onClick={() => this.thongtinhoa(item)}
+                    >
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
-                    <div className="gia">
-                      <span className="giagiam">
-                        {item.giasaukhigiamVND}VND
-                      </span>
-                      <span className="giachuagiam">{item.giathucVND}VND</span>
-                    </div>
+
+                    {ngonngu === "vi" ? (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamVND}VND
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucVND}VND
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucVND}VND</span>
+                        )}
+                      </div>
+                    ) : (
+                      <div
+                        className="gia"
+                        onClick={() => this.thongtinhoa(item)}
+                      >
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamUSD}USD
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucUSD}USD</span>
+                        )}
+                      </div>
+                    )}
                     <div className="dathang">
                       <a href="#">ĐẶT HÀNG</a>
                     </div>
@@ -188,7 +249,7 @@ class trangChu extends Component {
         <div className="item9">
           {hoatetgiamgia &&
             hoatetgiamgia.length > 0 &&
-            hoatetgiamgia.map((item, index) => {
+            hoatetgiamgia.slice(0, 8).map((item, index) => {
               let anhnoibat = "";
               if (item.anhnoibat) {
                 anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -199,18 +260,47 @@ class trangChu extends Component {
                 <div className="hoa" key={index}>
                   <div className="anhhoa">
                     <img src={anhnoibat} width="261" height="326" />
-                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+
+                    {item.phantramgiam > 0 ? (
+                      <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                    ) : null}
                   </div>
                   <div className="thongtin">
                     <span className="ten">
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
-                    <div className="gia">
-                      <span className="giagiam">
-                        {item.giasaukhigiamVND}VND
-                      </span>
-                      <span className="giachuagiam">{item.giathucVND}VND</span>
-                    </div>
+
+                    {ngonngu === "vi" ? (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamVND}VND
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucVND}VND
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucVND}VND</span>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamUSD}USD
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucUSD}USD</span>
+                        )}
+                      </div>
+                    )}
                     <div className="dathang">
                       <a href="#">ĐẶT HÀNG</a>
                     </div>
@@ -226,7 +316,7 @@ class trangChu extends Component {
         <div className="item9">
           {hoatetbanchay &&
             hoatetbanchay.length > 0 &&
-            hoatetbanchay.map((item, index) => {
+            hoatetbanchay.slice(0, 8).map((item, index) => {
               let anhnoibat = "";
               if (item.anhnoibat) {
                 anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -237,18 +327,47 @@ class trangChu extends Component {
                 <div className="hoa" key={index}>
                   <div className="anhhoa">
                     <img src={anhnoibat} width="261" height="326" />
-                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+
+                    {item.phantramgiam > 0 ? (
+                      <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                    ) : null}
                   </div>
                   <div className="thongtin">
                     <span className="ten">
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
-                    <div className="gia">
-                      <span className="giagiam">
-                        {item.giasaukhigiamVND}VND
-                      </span>
-                      <span className="giachuagiam">{item.giathucVND}VND</span>
-                    </div>
+
+                    {ngonngu === "vi" ? (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamVND}VND
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucVND}VND
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucVND}VND</span>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamUSD}USD
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucUSD}USD</span>
+                        )}
+                      </div>
+                    )}
                     <div className="dathang">
                       <a href="#">ĐẶT HÀNG</a>
                     </div>
@@ -264,7 +383,7 @@ class trangChu extends Component {
         <div className="item7">
           {hoasinhnhat &&
             hoasinhnhat.length > 0 &&
-            hoasinhnhat.map((item, index) => {
+            hoasinhnhat.slice(0, 4).map((item, index) => {
               let anhnoibat = "";
               if (item.anhnoibat) {
                 anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -275,18 +394,47 @@ class trangChu extends Component {
                 <div className="hoa" key={index}>
                   <div className="anhhoa">
                     <img src={anhnoibat} width="261" height="326" />
-                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+
+                    {item.phantramgiam > 0 ? (
+                      <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                    ) : null}
                   </div>
                   <div className="thongtin">
                     <span className="ten">
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
-                    <div className="gia">
-                      <span className="giagiam">
-                        {item.giasaukhigiamVND}VND
-                      </span>
-                      <span className="giachuagiam">{item.giathucVND}VND</span>
-                    </div>
+
+                    {ngonngu === "vi" ? (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamVND}VND
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucVND}VND
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucVND}VND</span>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamUSD}USD
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucUSD}USD</span>
+                        )}
+                      </div>
+                    )}
                     <div className="dathang">
                       <a href="#">ĐẶT HÀNG</a>
                     </div>
@@ -302,7 +450,7 @@ class trangChu extends Component {
         <div className="item9">
           {hoakhaitruong &&
             hoakhaitruong.length > 0 &&
-            hoakhaitruong.map((item, index) => {
+            hoakhaitruong.slice(0, 8).map((item, index) => {
               let anhnoibat = "";
               if (item.anhnoibat) {
                 anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -313,18 +461,47 @@ class trangChu extends Component {
                 <div className="hoa" key={index}>
                   <div className="anhhoa">
                     <img src={anhnoibat} width="261" height="326" />
-                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+
+                    {item.phantramgiam > 0 ? (
+                      <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                    ) : null}
                   </div>
                   <div className="thongtin">
                     <span className="ten">
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
-                    <div className="gia">
-                      <span className="giagiam">
-                        {item.giasaukhigiamVND}VND
-                      </span>
-                      <span className="giachuagiam">{item.giathucVND}VND</span>
-                    </div>
+
+                    {ngonngu === "vi" ? (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamVND}VND
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucVND}VND
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucVND}VND</span>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamUSD}USD
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucUSD}USD</span>
+                        )}
+                      </div>
+                    )}
                     <div className="dathang">
                       <a href="#">ĐẶT HÀNG</a>
                     </div>
@@ -337,10 +514,11 @@ class trangChu extends Component {
         <div className="item6">
           <span>lan hồ điệp</span>
         </div>
+
         <div className="item7">
           {lanhodiep &&
             lanhodiep.length > 0 &&
-            lanhodiep.map((item, index) => {
+            lanhodiep.slice(0, 4).map((item, index) => {
               let anhnoibat = "";
               if (item.anhnoibat) {
                 anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -351,18 +529,47 @@ class trangChu extends Component {
                 <div className="hoa" key={index}>
                   <div className="anhhoa">
                     <img src={anhnoibat} width="261" height="326" />
-                    <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+
+                    {item.phantramgiam > 0 ? (
+                      <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                    ) : null}
                   </div>
                   <div className="thongtin">
                     <span className="ten">
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
-                    <div className="gia">
-                      <span className="giagiam">
-                        {item.giasaukhigiamVND}VND
-                      </span>
-                      <span className="giachuagiam">{item.giathucVND}VND</span>
-                    </div>
+
+                    {ngonngu === "vi" ? (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamVND}VND
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucVND}VND
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucVND}VND</span>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="gia">
+                        {item.phantramgiam > 0 ? (
+                          <>
+                            <span className="giagiam">
+                              {item.giasaukhigiamUSD}USD
+                            </span>
+                            <span className="giachuagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          </>
+                        ) : (
+                          <span className="giagiam">{item.giathucUSD}USD</span>
+                        )}
+                      </div>
+                    )}
                     <div className="dathang">
                       <a href="#">ĐẶT HÀNG</a>
                     </div>
@@ -646,7 +853,6 @@ class trangChu extends Component {
             </span>
           </div>
         </div>
-
         <FooterTrangChu />
       </div>
     );

@@ -1,0 +1,213 @@
+.thongtinhoa {
+    .item1 {
+        display        : flex;
+        justify-content: center;
+        margin         : 37px 167px;
+        gap            : 37px;
+
+        .thongtin {
+            .tenhoa {
+                font-weight   : 400;
+                font-size     : 35px;
+                border-bottom : 1px solid #ccc;
+                padding-bottom: 10px;
+                display       : flex;
+            }
+
+            .gia {
+                display      : flex;
+                gap          : 25px;
+                border-bottom: 1px solid #ccc;
+                padding      : 7px 0;
+
+                .giathuc {
+
+                    color          : #866969;
+                    font-size      : 26px;
+                    text-decoration: line-through;
+                }
+
+                .giagiam {
+                    color    : #e91e63;
+                    font-size: 26px;
+                }
+
+                .phantram {
+                    background-color: #ff0000;
+                    padding         : auto;
+                    display         : flex;
+                    justify-content : center;
+                    align-items     : center;
+                    height          : 28px;
+                    margin          : 8px 0;
+                    font-weight     : 500;
+                    color           : white;
+                    padding         : 0 7px
+                }
+            }
+
+
+            .tieude {
+                font-size: 17px;
+
+            }
+
+            .sdt {
+                margin: 17px 0;
+
+
+                .goi {
+                    font-weight: 700;
+                    font-size  : 17px;
+                    color      : #db1b57;
+                }
+
+                .sodienthoai {
+                    background-color: #ffe1e1;
+                    font-size       : 27px;
+                    font-weight     : 500;
+                    border-radius   : 6px;
+                    margin          : -9px 24px;
+                    padding         : 4px;
+                    color           : #db1b57;
+                }
+            }
+
+            .chat {
+                margin : 17px 0;
+                display: flex;
+
+                span {
+                    font-weight: 700;
+                    font-size  : 17px;
+                    color      : #db1b57;
+                }
+
+                .icon {
+                    margin: 0 23px;
+
+                    img {
+                        border-radius: 50%;
+                        width        : 38%;
+                        height       : auto;
+                        margin-right : 12px;
+                        margin-top   : -8px;
+                    }
+                }
+
+            }
+
+            .giaohang {
+                display       : flex;
+                flex-direction: column;
+
+                span {
+                    font-weight: 700;
+                    font-size  : 17px;
+                    color      : #db1b57;
+                }
+
+                .giaohang1 {
+                    .giaohang11 {
+                        font-weight: 400;
+                        font-size  : 17px;
+                        color      : black;
+                    }
+
+                }
+            }
+
+            .ghichu {
+                background-color: #feedd6;
+                padding         : 9px;
+                border-radius   : 8px;
+
+                i {
+                    color           : white;
+                    background-color: #6e5b40;
+                    width           : 20px;
+                    height          : 20px;
+                    border-radius   : 10px;
+                    text-align      : center;
+                    padding-top     : 3px;
+                    margin-right    : 5px;
+                }
+
+                span {
+                    font-weight: 400;
+                }
+            }
+
+
+            .sl-gh-dh {
+                .sl {
+                    display       : flex;
+                    flex-direction: row;
+                    gap           : 21px;
+
+                    input {
+                        width: 106px;
+                    }
+                }
+
+                .nutbam {
+                    display       : flex;
+                    flex-direction: row;
+                    gap           : 21px;
+
+                    .dh {
+                        color           : white;
+                        background-color: #ffa500;
+                        width           : 106px;
+                        text-transform  : uppercase;
+                    }
+
+                    .gh {
+                        color           : white;
+                        background-color: #e55f00;
+                        width           : 106px;
+                    }
+                }
+            }
+
+            .tangkem {
+                display: flex;
+                gap    : 46px;
+
+                .giaohangnhanh {
+                    font-weight: 400;
+
+                }
+
+                .thiep {
+                    font-weight: 400;
+
+                }
+            }
+        }
+    }
+
+    .item2 {
+        font-weight: 400;
+        margin     : 0 167px;
+
+        .mota {
+            font-weight : 600;
+            border-top  : 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-left : 1px solid #ccc;
+            padding     : 11px;
+        }
+
+        .boder {
+            border-bottom: 1px solid #ccc;
+            margin-left: 140px;
+            margin-top: 9px;
+        }
+    }
+
+    .item3{
+        margin     : 0 167px;
+
+    }
+}

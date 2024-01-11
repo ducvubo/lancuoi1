@@ -47,6 +47,8 @@ class QuanLyHoa extends Component {
       motasphtmlVi: "",
       motasphtmlEn: "",
       donoibat: "",
+      ghichuVi: "",
+      ghichuEn: "",
       tatcahoa: "",
 
       trangthainut: false,
@@ -150,7 +152,7 @@ class QuanLyHoa extends Component {
 
   ktdanhapthongtinchua = () => {
     let kt = true;
-    let arrCheck = [
+    let nhapdaydu = [
       "iddanhmuchoachitiet",
       "anhnoibat",
       "tenhoaVi",
@@ -169,10 +171,12 @@ class QuanLyHoa extends Component {
       "motasphtmlVi",
       "motasphtmlEn",
       "donoibat",
+      "ghichuVi",
+      "ghichuEn",
     ];
-    for (let i = 0; i < arrCheck.length; i++) {
-      if (!this.state[arrCheck[i]]) {
-        console.log(this.state[arrCheck[i]]);
+    for (let i = 0; i < nhapdaydu.length; i++) {
+      if (!this.state[nhapdaydu[i]]) {
+        console.log(this.state[nhapdaydu[i]]);
 
         kt = false;
         this.props.ngonngu === "vi"
@@ -185,8 +189,8 @@ class QuanLyHoa extends Component {
   };
 
   clickthemhoa = async () => {
-    // let kt = this.ktdanhapthongtinchua();
-    // if (kt === false) return;
+    let kt = this.ktdanhapthongtinchua();
+    if (kt === false) return;
 
     let kq = await apithemhoa({
       iddanhmuchoachitiet: this.state.iddanhmuchoachitiet,
@@ -208,6 +212,8 @@ class QuanLyHoa extends Component {
       motasphtmlVi: this.state.motasphtmlVi,
       motasphtmlEn: this.state.motasphtmlEn,
       donoibat: this.state.donoibat,
+      ghichuVi: this.state.ghichuVi,
+      ghichuEn: this.state.ghichuEn,
     });
 
     if (kq.maCode === 0 && kq) {
@@ -234,7 +240,9 @@ class QuanLyHoa extends Component {
         motasphtmlVi: "",
         motasphtmlEn: "",
         donoibat: "",
-        anhUrlnoibat:''
+        ghichuVi: "",
+        ghichuEn: "",
+        anhUrlnoibat: "",
       });
       await this.laytatcahoa();
     } else {
@@ -272,14 +280,16 @@ class QuanLyHoa extends Component {
       motasphtmlVi: hoa.motasphtmlVi,
       motasphtmlEn: hoa.motasphtmlEn,
       donoibat: hoa.donoibat,
+      ghichuVi: hoa.ghichuVi,
+      ghichuEn: hoa.ghichuEn,
       anhUrlnoibat: anhnoibatbase64,
       trangthainut: true,
     });
   };
 
   clickbtnsuahoa = async () => {
-    // let kt = this.ktdanhapthongtinchua();
-    // if (kt === false) return;
+    let kt = this.ktdanhapthongtinchua();
+    if (kt === false) return;
 
     let kq = await apisuahoa({
       id: this.state.id,
@@ -302,6 +312,8 @@ class QuanLyHoa extends Component {
       motasphtmlVi: this.state.motasphtmlVi,
       motasphtmlEn: this.state.motasphtmlEn,
       donoibat: this.state.donoibat,
+      ghichuVi: this.state.ghichuVi,
+      ghichuEn: this.state.ghichuEn,
     });
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
@@ -329,7 +341,9 @@ class QuanLyHoa extends Component {
         motasphtmlEn: "",
         donoibat: "",
         trangthainut: false,
-        anhUrlnoibat:''
+        anhUrlnoibat: "",
+        ghichuVi: "",
+        ghichuEn: "",
       });
       await this.laytatcahoa();
     } else {
@@ -374,6 +388,8 @@ class QuanLyHoa extends Component {
       motaspEn,
       donoibat,
       tatcahoa,
+      ghichuVi,
+      ghichuEn,
     } = this.state;
     let { ngonngu } = this.props;
 
@@ -576,6 +592,29 @@ class QuanLyHoa extends Component {
                 disabled={true}
               />
             </div>
+          </div>
+
+          <div className="form-group col-6">
+            <label>Ghi chú tiếng Việt</label>
+            <input
+              className="form-control"
+              type="text"
+              onChange={(event) => {
+                this.nhapdulieu(event, "ghichuVi");
+              }}
+              value={ghichuVi}
+            />
+          </div>
+          <div className="form-group col-6">
+            <label>Ghi chú tiếng Anh</label>
+            <input
+              className="form-control"
+              type="text"
+              onChange={(event) => {
+                this.nhapdulieu(event, "ghichuEn");
+              }}
+              value={ghichuEn}
+            />
           </div>
         </div>
         {trangthainut === false ? (
