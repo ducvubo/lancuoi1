@@ -219,7 +219,10 @@ class DangKy extends Component {
               Đăng ký
             </button>
             <div className="qmk-dk">
-              <span className="qmk">Bạn đã quên mật khẩu</span>
+              <Link className="dangky" to={"/quenmk"}>
+                <span className="qmk">Bạn đã quên mật khẩu</span>
+              </Link>
+
               <Link className="dangnhap" to={"/dangnhap"}>
                 <span className="dk">Bạn đã có tài khoản? Đăng nhập</span>
               </Link>
