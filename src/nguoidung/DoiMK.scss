@@ -1,0 +1,21 @@
+.doimk {
+    border : 1px solid #ccc;
+    width  : 410px;
+    margin : auto;
+    padding: 15px;
+
+    span {
+        text-transform: uppercase;
+        font-weight   : 600;
+        display        : flex;
+        justify-content: center;
+        font-size      : 23px;
+    }
+
+    .btndoimk {
+        font-weight     : 400;
+        background-color: #e91e63;
+        color           : white;
+        text-transform  : uppercase;
+    }
+}

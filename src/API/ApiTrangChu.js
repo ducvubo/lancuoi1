@@ -4,8 +4,10 @@ const danhmuchoanoibat = () => {
   return axios.get("/api/danhmuchoanoibat");
 };
 const danhmuchoachitiettheodanhmuc = (iddanhmuchoa) => {
-    return axios.get(`api/danhmuchoachitiettheodanhmuc?iddanhmuchoa=${iddanhmuchoa}`);
-}
+  return axios.get(
+    `api/danhmuchoachitiettheodanhmuc?iddanhmuchoa=${iddanhmuchoa}`
+  );
+};
 
 const apitatcahoa = () => {
   return axios.get("/api/tatcahoa");
@@ -42,17 +44,27 @@ const apidangky = (data) => {
 const apixacnhantaikhoan = (data) => {
   return axios.post("/api/xacnhandangky", data);
 };
-export { 
-    danhmuchoanoibat,
-    danhmuchoachitiettheodanhmuc,
-    apitatcahoa,
-    apihoagiamgia,
-    apihoakhaitruong,
-    apihoasinhnhat,
-    apihoatet,
-    apilanhodiep,
-    apithongtinhoa,
-    apidangnhap,
-    apidangky,
-    apixacnhantaikhoan
- };
+
+const apiquenmk = (data) => {
+  return axios.post("/api/quenmk", data);
+};
+
+const apidoimk = (data) => {
+  return axios.post("/api/doimk", data);
+};
+export {
+  danhmuchoanoibat,
+  danhmuchoachitiettheodanhmuc,
+  apitatcahoa,
+  apihoagiamgia,
+  apihoakhaitruong,
+  apihoasinhnhat,
+  apihoatet,
+  apilanhodiep,
+  apithongtinhoa,
+  apidangnhap,
+  apidangky,
+  apixacnhantaikhoan,
+  apiquenmk,
+  apidoimk,
+};

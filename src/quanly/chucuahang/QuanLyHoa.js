@@ -69,7 +69,6 @@ class QuanLyHoa extends Component {
         iddanhmuchoachitiet: data1 && data1.length > 0 ? data1[0].id : "",
       });
     }
-    console.log("check dm chi tiet: ", data1);
   };
 
   laytatcahoa = async () => {
@@ -114,7 +113,6 @@ class QuanLyHoa extends Component {
     if (fileanh) {
       let anhbase64 = await Xulyanh.getBase64(fileanh);
       let Url = URL.createObjectURL(fileanh);
-      console.log("Check url: ", Url);
       this.setState({
         anhUrlnoibat: Url,
         anhnoibat: anhbase64,
@@ -176,7 +174,6 @@ class QuanLyHoa extends Component {
     ];
     for (let i = 0; i < nhapdaydu.length; i++) {
       if (!this.state[nhapdaydu[i]]) {
-        console.log(this.state[nhapdaydu[i]]);
 
         kt = false;
         this.props.ngonngu === "vi"
@@ -393,7 +390,6 @@ class QuanLyHoa extends Component {
     } = this.state;
     let { ngonngu } = this.props;
 
-    console.log("check hoa: ", this.state);
     return (
       <div className="quanlyhoa">
         <div className="item1">

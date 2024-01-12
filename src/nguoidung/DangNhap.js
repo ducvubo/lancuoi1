@@ -84,15 +84,18 @@ class DangNhap extends Component {
     }
     if (data.maCode === 5) {
       this.props.ngonngu === "vi"
-        ? toast.error("Tài khoản của bạn chưa được xác nhận vui lòng kiểm tra hộp thư của email để xác nhận!!!")
-        : toast.error("Your account has not been confirmed, please check your email inbox to confirm!!!");
+        ? toast.error(
+            "Tài khoản của bạn chưa được xác nhận vui lòng kiểm tra hộp thư của email để xác nhận!!!"
+          )
+        : toast.error(
+            "Your account has not been confirmed, please check your email inbox to confirm!!!"
+          );
     }
     if (data.maCode === 0) {
       this.props.thongtinnguoidung(data.nguoidung);
       data && data.nguoidung && data.nguoidung.quyenId === "R1"
         ? this.props.history.push("/quanly/")
         : this.props.history.push("/home");
-
     }
   };
 
@@ -106,7 +109,7 @@ class DangNhap extends Component {
         {(thongtinnguoidung123 && thongtinnguoidung123.quyenId === "R1") ||
         thongtinnguoidung123 === "R3" ? (
           <Redirect to={"/quanly/"} />
-        ) :null}
+        ) : null}
         <HeaderTrangChu />
         <div className="dangnhap">
           <div className="form">
@@ -153,7 +156,9 @@ class DangNhap extends Component {
             </button>
             <div className="qmk-dk">
               <span className="qmk">Bạn đã quên mật khẩu</span>
-              <span className="dk">Bạn chưa có tài khoản? Đăng ký</span>
+              <Link className="dangky" to={"/dangky"}>
+                <span className="dk">Bạn chưa có tài khoản? Đăng ký</span>
+              </Link>
             </div>
           </div>
         </div>

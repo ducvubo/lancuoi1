@@ -45,9 +45,15 @@
         cursor: pointer;
       }
 
-      .dk {
-        cursor: pointer;
+      .dangky {
+        text-decoration: none;
+        color          : #696363;
+
+        .dk {
+          cursor: pointer;
+        }
       }
+
     }
   }
 }

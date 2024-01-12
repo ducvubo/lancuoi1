@@ -74,7 +74,6 @@ class QuanLyNguoiDung extends Component {
     ];
     for (let i = 0; i < nhapdaydu.length; i++) {
       if (!this.state[nhapdaydu[i]]) {
-        console.log(this.state[nhapdaydu[i]]);
 
         kt = false;
         this.props.ngonngu === "vi"
@@ -86,8 +85,8 @@ class QuanLyNguoiDung extends Component {
     return kt;
   };
   clickThemMoi = () => {
-    let kt = this.ktdanhapthongtinchua();
-    if (kt === false) return;
+    // let kt = this.ktdanhapthongtinchua();
+    // if (kt === false) return;
 
     this.props.themnguoidung({
       email: this.state.email,
@@ -176,7 +175,6 @@ class QuanLyNguoiDung extends Component {
     } = this.state;
     let tatcanguoidung = this.state.tatcanguoidung;
     let trangthainut = this.state.trangthainut;
-    console.log(tatcanguoidung);
     return (
       <div className="quanlynguoidung">
         <div className="item1">

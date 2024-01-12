@@ -50,9 +50,14 @@
                 cursor: pointer;
             }
 
-            .dk {
-                cursor: pointer;
-            }
+            .dangnhap {
+                text-decoration: none;
+                color          : #696363;
+        
+                .dk {
+                  cursor: pointer;
+                }
+              }
         }
     }
 }

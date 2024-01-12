@@ -45,7 +45,7 @@ class XacNhanTaiKhoan extends Component {
   }
 
   render() {
-    let { trangthaixacnhan, maCode, email, linkxacnhan } = this.state;
+    let { trangthaixacnhan, maCode } = this.state;
     console.log(this.state);
     return (
       <>

@@ -4,7 +4,7 @@ import NavigationTest from "../navigation/NavigationTest";
 import { menu } from "./menuApp";
 import "./Header.scss";
 import _ from "lodash";
-
+import { withRouter } from 'react-router-dom';
 import { doiNgonNgu,dangxuat } from "../../action/actions";
 
 class HeaderMenu extends Component {
@@ -65,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderMenu);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderMenu));

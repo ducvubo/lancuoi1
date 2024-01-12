@@ -87,11 +87,15 @@ class DangKy extends Component {
       diachinha: this.state.diachinha,
       sodienthoai: this.state.sodienthoai,
     });
-    if(data.maCode === 1 ){
-     this.props.ngonngu === 'vi' ? alert(data.thongDiep) : alert(data.thongDiepen)
+    if (data.maCode === 1) {
+      this.props.ngonngu === "vi"
+        ? alert(data.thongDiep)
+        : alert(data.thongDiepen);
     }
-    if(data.maCode === 0){
-      this.props.ngonngu === 'vi' ? toast.success("Vui lòng xác nhận tài khoản trong email") : toast.success("Please confirm your account in email")
+    if (data.maCode === 0) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Vui lòng xác nhận tài khoản trong email")
+        : toast.success("Please confirm your account in email");
       this.props.history.push("/home");
     }
   };
@@ -101,7 +105,6 @@ class DangKy extends Component {
     let { ngonngu } = this.props;
     let { email, password, xemmk, gioitinh, ho, ten, diachinha, sodienthoai } =
       this.state;
-    console.log(this.state);
     return (
       <>
         <HeaderTrangChu />
@@ -217,7 +220,9 @@ class DangKy extends Component {
             </button>
             <div className="qmk-dk">
               <span className="qmk">Bạn đã quên mật khẩu</span>
-              <span className="dk">Bạn đã có tài khoản? Đăng nhập</span>
+              <Link className="dangnhap" to={"/dangnhap"}>
+                <span className="dk">Bạn đã có tài khoản? Đăng nhập</span>
+              </Link>
             </div>
           </div>
         </div>
