@@ -60,6 +60,8 @@ class App extends Component {
     );
   }
 }
+
+// sdjfbbsdkf
 const mapStateToProps = (state) => {
   return {
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
