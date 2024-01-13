@@ -12,7 +12,7 @@ class QuanLy extends Component {
     return (
       <>
         {thongtinnguoidung.quyenId === "R1" ||
-        thongtinnguoidung.quyenId === "R3" ? (
+        thongtinnguoidung.quyenId === "R2" ? (
           <React.Fragment>
             <HeaderMenu />
             <Switch>

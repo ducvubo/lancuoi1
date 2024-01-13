@@ -36,7 +36,7 @@ class App extends Component {
             <Route path={"/quenmk"} component={QuenMK}/>
             <Route path={"/doimk"} component={DoiMK}/>
 
-            {thongtinnguoidung && thongtinnguoidung.quyenId === "R1" ? (
+            {thongtinnguoidung && thongtinnguoidung.quyenId === "R1" || thongtinnguoidung.quyenId === "R2" ? (
               <Redirect to={"/quanly/"} />
             ) : (
               <Redirect to={"/home"} />
