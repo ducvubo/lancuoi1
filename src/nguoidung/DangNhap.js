@@ -24,7 +24,7 @@ class DangNhap extends Component {
   //       this.props.thongtinnguoidung.quyenId === "R1" ? (
   //         this.props.history.push("/quanly/")
   //       ) : (
-  //         this.props.history.push("/home")
+  //         this.props.history.push("/trangchu")
   //       )}
   //   }
   // }
@@ -93,17 +93,16 @@ class DangNhap extends Component {
     }
     if (data.maCode === 0) {
       this.props.thongtinnguoidung(data.nguoidung);
-      data && data.nguoidung && data.nguoidung.quyenId === "R1" || data.nguoidung.quyenId === "R2"
+      (data && data.nguoidung && data.nguoidung.quyenId === "R1") ||
+      data.nguoidung.quyenId === "R2"
         ? this.props.history.push("/quanly/")
-        : this.props.history.push("/home");
+        : this.props.history.push("/trangchu");
     }
   };
 
   render() {
     let { email, password, xemmk } = this.state;
     let { thongtinnguoidung123 } = this.props;
-
-    console.log(thongtinnguoidung123);
     return (
       <>
         {(thongtinnguoidung123 && thongtinnguoidung123.quyenId === "R1") ||

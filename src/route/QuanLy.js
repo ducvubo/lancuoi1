@@ -17,15 +17,17 @@ class QuanLy extends Component {
             <HeaderMenu />
             <Switch>
               <Route path={"/quanly/quanlyhoa"} exact component={QuanLyHoa} />
-              <Route path={"/quanly/quanlynguoidung"} exact component={QuanLyNguoiDung} />
-              <Route path={"/quanly/quanlydanhmuchoa"} exact component={DanhMucHoa}/>
-              <Route path={"/quanly/quanlydanhmuchoachitiet"} exact component={DanhMucHoaChiTiet}/>
+              <Route path={"/quanly/quanlynguoidung"} exact component={QuanLyNguoiDung}/>
+              <Route path={"/quanly/quanlydanhmuchoa"} exact component={DanhMucHoa} />
+              <Route path={"/quanly/quanlydanhmuchoachitiet"} exact component={DanhMucHoaChiTiet}  />
+              {/* <Route path={"/quanly/quanlynhaphoa"} exact component={QuanLyNhapHoa}  />
+              <Route path={"/quanly/quanlybanhoa"} exact component={QuanLyBanHoa}  /> */}
             </Switch>
           </React.Fragment>
         ) : (
           <div>
             Trang này chỉ dành cho nhân viên và chủ cửa hàng. Nếu bạn là khách
-            hàng, vui lòng <Link to={"/home"}>nhấn vào đây</Link>.
+            hàng, vui lòng <Link to={"/trangchu"}>nhấn vào đây</Link>.
           </div>
         )}
       </>
@@ -38,7 +40,7 @@ class QuanLy extends Component {
       //     <Route path={"/quanly/quanlydanhmuchoa"} exact component={DanhMucHoa}/>
       //     <Route path={"/quanly/quanlydanhmuchoachitiet"} exact component={DanhMucHoaChiTiet}/>
       //   </Switch>)
-      //   : (<div>Trang này chỉ dành cho nhân viên và chủ cửa hàng. Nếu bạn là khách hàng, vui lòng <Link to={"/home"}>nhấn vào đây</Link>.</div>)}
+      //   : (<div>Trang này chỉ dành cho nhân viên và chủ cửa hàng. Nếu bạn là khách hàng, vui lòng <Link to={"/trangchu"}>nhấn vào đây</Link>.</div>)}
       // </React.Fragment>
     );
   }

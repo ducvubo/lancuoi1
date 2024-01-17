@@ -3,7 +3,36 @@
   "quanlyhoa": "Quản lý hoa",
   "quanlydanhmuchoa": "Quản lý danh mục hoa",
   "quanlydanhmuchoachitiet": "Quản lý danh mục hoa chi tiết",
+  "quanlynhapban": "Quản lý nhập, bán hoa",
+  "quanlynhaphoa": "Quản lý nhập hoa",
+  "quanlybanhoa": "Quản lý bán hoa",
 
-  "sdt":"Số điện thoại liên hệ"
- 
+  "headersdt": "SỐ ĐIỆN THOẠI LIÊN HỆ",
+  "headertaikhoan": "Tài khoản",
+  "headerdangnhap": "Đăng nhập",
+  "headerdangxuat": "Đăng xuất",
+  "headerdangky": "Đăng ký",
+  "headergioahang": "Giỏ hàng",
+  "headerdemu": "ĐẶT HOA ONLINE - GIAO MIỄN PHÍ TP HCM & HÀ NỘI - GỌI NGAY 1900 633 045 HOẶC 0865 160 360",
+
+  "trangchudanggiamgia": "ĐANG GIẢM GIÁ",
+  "trangchugiamgia": "% GIẢM",
+  "trangchudathang": "ĐẶT HÀNG",
+  "trangchumienphigiaohang": "MIỄN PHÍ GIAO HÀNG",
+  "trangchumienphigiaohangnd": "Hh flower giao miễn phí các nội thành TP.HCM đối với tất cả bó hoa, lẵng hoa, và kệ hoa trên 1 triệu.",
+  "trangchugiaohangnhanh": "GIAO NHANH TRONG 90 PHÚT",
+  "trangchugiaohangnhanhnd": "Hh flower có thể giao nhanh trong 90' khu vực nội thành TP.HCM với bó / lẵng hoa đơn giản.",
+  "trangchuhoanhuhinh": "HOA ĐẸP NHƯ HÌNH",
+  "trangchuhoanhuhinhnd": "Cam kết hoa đẹp như hình và giống đến 90% so với hình chụp trên website.",
+  "trangchuhoatetgiamgia": "hoa tết giảm giá",
+  "trangchuhoatetbanchay": "hoa tết bán chạy",
+  "trangchuhoasinhnhat": "hoa sinh nhật",
+  "trangchuhoakhaitruong": "hoa khai trương",
+  "trangchulanhodiep": "lan hồ điệp",
+  "trangchukhachhangtieubieu": "KHÁCH HÀNG TIÊU BIỂU",
+  "trangchutenshop": "Shop Hoa Tươi Hhflower.vn",
+  "trangchugioithieu": "Giới Thiệu Về Hhflower.vn",
+  "trangchugttraiindam": "shop hoa tươi",
+  "trangchugttraiitem1": "Hhflower.vn là một trong những tiệm hoa tươi uy tín nhất tại TP HCM, Việt Nam. Hhflower.vn cung cấp dịch vụ đặt hoa online giao tận nơi tại TP HCM, Hà Nội và trên tất cả các tỉnh – thành phố tại Việt Nam. Với hệ thống cửa hàng hoa tươi liên kết rộng khắp tất cả các tỉnh – thành phố trên toàn quốc, Hhflower.vn có thể giúp bạn gửi tặng hoa tươi cho người thân ở bất cứ nơi đâu tại Việt Nam. Hhflower cam kết mang đến cho bạn những sản phẩm hoa tươi chất lượng cao, với mức giá tốt nhất và dịch chuyên nghiệp nhất khi sử dụng dịch vụ đặt hoa tươi online giao tận nơi tại Hhflower.vn.",
+  "trangchugttraiitem2": " Đặt Hoa Online – Ưu Đãi Hấp Dẫn"
 }

@@ -3,7 +3,15 @@
   "quanlyhoa": "Flower management",
   "quanlydanhmuchoa": "Manage flower catalogs",
   "quanlydanhmuchoachitiet": "Manage detailed flower catalogs",
+  "quanlynhapban": "Managing import and sale of flowers",
+  "quanlynhaphoa": "Flower import management",
+  "quanlybanhoa": "Florist manager",
 
-
-  "sdt":"HOTLINE"
+  "headersdt": "HOTLINE",
+  "headertaikhoan": "Account",
+  "headerdangnhap": "Log in",
+  "headerdangxuat": "Sign out",
+  "headerdangky": "Sign in",
+  "headergioahang": "Cart",
+  "headerdemu": "ORDER FLOWERS ONLINE - FREE DELIVERY IN HCM & HANOI - CALL NOW 1900 633 045 OR 0865 160 360"
 }

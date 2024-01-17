@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../image/logo.png";
 import "./HeaderTrangChu.scss";
 import { FormattedMessage } from "react-intl";
 import { danhmuchoanoibat } from "../API/ApiTrangChu";
 import { dangxuat, doiNgonNgu } from "../action/actions";
-
+import { apidangxuat } from "../API/GoiApi";
+import { withRouter } from "react-router-dom";
 class HeaderTrangChu extends Component {
   constructor(props) {
     super(props);
@@ -33,11 +34,11 @@ class HeaderTrangChu extends Component {
     }
   };
 
-  dangxuat = () => {
+  dangxuat = async () => {
     this.props.dangxuat();
+    await apidangxuat();
   };
 
-  dangnhap = () => {};
   render() {
     let { ngonngu, thongtinnguoidung } = this.props;
     let { danhmucnoibat } = this.state;
@@ -45,32 +46,41 @@ class HeaderTrangChu extends Component {
       <div className="headertrangchu">
         <div className="item1">
           <div className="sdt">
-            <FormattedMessage id="sdt" />: 1900 633 045 | 0865 160 360
+            <FormattedMessage id="headersdt" />: 1900 633 045 | 0865 160 360
           </div>
           <div className="tk-gh-tt">
             <div className="icon taikhoan">
               <span>
                 <i className="fas fa-user"></i>
               </span>
-              <span>Tài khoản</span>
+              <span>
+                {thongtinnguoidung
+                  ? `${thongtinnguoidung.ten} ${thongtinnguoidung.ho}`
+                  : <FormattedMessage id="headertaikhoan" />}{" "}
+              </span>
               <ul>
                 {thongtinnguoidung ? (
-                  <li onClick={() => this.dangxuat()}>Đăng xuất</li>
+                  <li onClick={() => this.dangxuat()}><FormattedMessage id='headerdangxuat'/></li>
                 ) : (
                   <Link className="dangnhap" to={"/dangnhap"}>
-                    <li>Đăng nhập</li>
+                    <li><FormattedMessage id='headerdangnhap'/></li>
                   </Link>
                 )}
                 <Link className="dangky" to={"/dangky"}>
-                  <li>Đăng ký</li>
+                  <li><FormattedMessage id= 'headerdangky'/></li>
                 </Link>
               </ul>
             </div>
             <div className="icon">
-              <span>
-                <i className="fas fa-shopping-cart"></i>
-              </span>
-              <span>Giỏ hàng</span>
+              <Link
+                className="iconlink"
+                to={`/giohang/${thongtinnguoidung.id}`}
+              >
+                <span>
+                  <i className="fas fa-shopping-cart"></i>
+                </span>
+                <span><FormattedMessage id='headergioahang'/></span>
+              </Link>
             </div>
             <div className="icon ngonngu">
               <span
@@ -105,13 +115,21 @@ class HeaderTrangChu extends Component {
             </span>
           </div>
           <div className="logo">
-            <img src={logo} width={"350px"} height={"350px"} />
+            <Link to={"/trangchu"}>
+              <img src={logo} width={"350px"} height={"350px"} />
+            </Link>
           </div>
           <div className="tk-gh">
             <input className="form-control tk" />
             <i className="fas fa-search search"></i>
+
             <span>
-              <i className="fas fa-shopping-cart"></i>
+              <Link
+                className="iconlink"
+                to={`/giohang/${thongtinnguoidung.id}`}
+              >
+                <i className="fas fa-shopping-cart"></i>
+              </Link>
             </span>
           </div>
         </div>
@@ -122,15 +140,28 @@ class HeaderTrangChu extends Component {
               danhmucnoibat.map((item, index) => {
                 return (
                   <li key={index}>
-                    {ngonngu === "vi" ? item.tendanhmucVi : item.tendanhmucEn}
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/hoatheodanhmuc/${item.id}`}
+                    >
+                      {ngonngu === "vi" ? item.tendanhmucVi : item.tendanhmucEn}
+                    </Link>
                     <ul>
                       {item.danhmuc && item.danhmuc.length > 0
-                        ? item.danhmuc.map((item1, index1) => {
+                        ? item.danhmuc.map((item, index1) => {
                             return (
                               <li key={index1}>
-                                {ngonngu === "vi"
-                                  ? item1.tendanhmucchitietVi
-                                  : item1.tendanhmucchitietEn}
+                                <Link
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                  }}
+                                  to={`/hoatheodanhmucchitiet/${item.id}`}
+                                >
+                                  {ngonngu === "vi"
+                                    ? item.tendanhmucchitietVi
+                                    : item.tendanhmucchitietEn}
+                                </Link>
                               </li>
                             );
                           })
@@ -143,8 +174,7 @@ class HeaderTrangChu extends Component {
         </div>
         <div className="item4">
           <span>
-            ĐẶT HOA ONLINE - GIAO MIỄN PHÍ TP HCM & HÀ NỘI - GỌI NGAY 1900 633
-            045 HOẶC 0865 160 360
+            <FormattedMessage id='headerdemu'/>
           </span>
         </div>
       </div>

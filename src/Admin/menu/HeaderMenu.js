@@ -6,7 +6,7 @@ import "./Header.scss";
 import _ from "lodash";
 import { withRouter } from 'react-router-dom';
 import { doiNgonNgu,dangxuat } from "../../action/actions";
-
+import { apidangxuat } from "../../API/GoiApi";
 class HeaderMenu extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,8 @@ class HeaderMenu extends Component {
     this.props.doiNgonNgu(ngonngu);
   };
 
-  dangxuat = () => {
+  dangxuat = async () => {
+    await apidangxuat()
     this.props.dangxuat();
     this.props.history.push("/dangnhap");
   };

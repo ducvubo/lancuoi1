@@ -64,6 +64,9 @@ class DoiMK extends Component {
       });
 
       if(kq && kq.maCode === 0){
+
+        this.props.history.push("/dangnhap")
+
         this.props.ngonngu === 'vi' ? toast.success("Đổi mật khẩu thành công!!!") : toast.success("Password changed successfully!!!")
       }
     }

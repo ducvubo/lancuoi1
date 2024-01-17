@@ -6,6 +6,7 @@ import {
   lay1nguoidung,
   apixoanguoidung,
   apisuanguoidung,
+  apirefreshtoken,
 } from "../API/GoiApi";
 import { toast } from "react-toastify";
 import store from "../redux/store";
@@ -31,6 +32,12 @@ export const dangxuat = () => ({
 export const themmoinguoidung = (data) => {
   return async (dispatch, getState) => {
     try {
+      let token = await apirefreshtoken();
+
+      if (token.maCode === 10) {
+        toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      }
+
       let res = await themnguoidung(data);
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"
@@ -43,7 +50,7 @@ export const themmoinguoidung = (data) => {
         ngonngu1 === "vi"
           ? toast.success("Thêm người dùng thất bại")
           : toast.success("Added users failed");
-        ngonngu1 === "vi" ? alert(res.thongDiep) : alert(res.thongDiepen);
+        // ngonngu1 === "vi" ? alert(res.thongDiep) : alert(res.thongDiepen);
       }
     } catch (e) {
       dispatch(themnguoidungthatbai());
@@ -107,6 +114,12 @@ export const layQuyenThatBai = () => ({
 export const allnguoidung = () => {
   return async (dispatch, getState) => {
     try {
+      let token = await apirefreshtoken();
+
+      if (token.maCode === 10) {
+        toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      }
+
       let res = await laytatcanguoidung();
       if (res && res.maCode === 0) {
         dispatch(laytatcanguoidungthanhcong(res.data));
@@ -131,7 +144,6 @@ export const laynguoidung = (id) => {
   return async (dispatch, getState) => {
     try {
       let res = await lay1nguoidung(id);
-      console.log(res);
       if (res) {
         dispatch(layNguoiDungThanhCong(res));
       } else {
@@ -154,6 +166,12 @@ export const layNguoiDungThatBai = () => ({
 export const xoanguoidung = (id) => {
   return async (dispatch, getState) => {
     try {
+      let token = await apirefreshtoken();
+
+      if (token.maCode === 10) {
+        toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      }
+
       let res = await apixoanguoidung(id);
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"
@@ -183,6 +201,12 @@ export const xoanguoidungthanhcong = () => ({
 export const suanguoidung = (data) => {
   return async (dispatch, getState) => {
     try {
+      let token = await apirefreshtoken();
+
+      if (token.maCode === 10) {
+        toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      }
+
       let res = await apisuanguoidung(data);
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"

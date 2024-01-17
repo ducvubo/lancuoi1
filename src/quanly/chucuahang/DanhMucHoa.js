@@ -8,6 +8,7 @@ import {
   themdanhmuc,
   apisuadanhmuc,
   apixoadanhmuc,
+  apirefreshtoken
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 
@@ -30,6 +31,13 @@ class DanhMucHoa extends Component {
   }
 
   laytatcadanhmuc = async () => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
+
+
     let kq = await tatcadanhmuc();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
@@ -65,6 +73,13 @@ class DanhMucHoa extends Component {
   };
 
   clickthemdanhmuc = async () => {
+
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
+
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
     let kq = await themdanhmuc({
@@ -100,6 +115,13 @@ class DanhMucHoa extends Component {
   };
 
   clickbtnsuadanhmuc = async () => {
+
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
+
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
 
@@ -129,6 +151,16 @@ class DanhMucHoa extends Component {
   };
 
   clickxoadanhmuc = async (id) => {
+
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
+
+    
+
+
     let kq = await apixoadanhmuc(id);
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"

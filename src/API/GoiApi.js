@@ -1,5 +1,9 @@
 import axios from "../axios";
 
+const apidangxuat = (data) => {
+  return axios.get("/api/dangxuat");
+};
+
 const layAllCode = (kieu) => {
   return axios.get(`/api/allcode?kieu=${kieu}`);
 };
@@ -72,6 +76,11 @@ const apixoahoa = (id) => {
   return axios.delete(`api/xoahoa?id=${id}`);
 };
 
+const apirefreshtoken = () => {
+  return axios.post("api/refresh-token");
+  
+}
+
 export {
   layAllCode,
   themnguoidung,
@@ -90,5 +99,7 @@ export {
   apithemhoa,
   apitatcahoa,
   apisuahoa,
-  apixoahoa
+  apixoahoa,
+  apidangxuat,
+  apirefreshtoken
 };

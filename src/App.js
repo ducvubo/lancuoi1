@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Route, Switch, Redirect,redirect } from "react-router-dom";
+import { Route, Switch, Redirect, redirect } from "react-router-dom";
 import { Router } from "react-router";
 import { createBrowserHistory } from "history";
 import { ToastContainer } from "react-toastify";
@@ -14,12 +14,12 @@ import DangKy from "./nguoidung/DangKy";
 import XacNhanTaiKhoan from "./nguoidung/XacNhanTaiKhoan";
 import QuenMK from "./nguoidung/QuenMK";
 import DoiMK from "./nguoidung/DoiMK";
+import GioHang from "./nguoidung/GioHang";
+import HoaTheoDanhMucTheoChiTiet from "./nguoidung/HoaTheoDanhMucTheoChiTiet";
+import HoaTheoDanhMuc from "./nguoidung/HoaTheoDanhMuc";
 const history = createBrowserHistory();
 
 class App extends Component {
-
-
-
   render() {
     let { thongtinnguoidung } = this.props;
 
@@ -27,25 +27,29 @@ class App extends Component {
       <React.Fragment>
         <Router history={history}>
           <Switch>
-            <Route path={"/home"} exact component={trangChu} />
+            <Route path={"/trangchu"} exact component={trangChu} />
             <Route path={"/quanly/"} component={QuanLy} />
             <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
-            <Route path={"/dangnhap"} component={DangNhap}/>
-            <Route path={"/dangky"} component={DangKy}/>
-            <Route path={"/xacnhantaikhoan"} component={XacNhanTaiKhoan}/>
-            <Route path={"/quenmk"} component={QuenMK}/>
-            <Route path={"/doimk"} component={DoiMK}/>
+            <Route path={"/hoatheodanhmucchitiet/:id"} component={HoaTheoDanhMucTheoChiTiet} />
+            <Route path={"/hoatheodanhmuc/:id"} component={HoaTheoDanhMuc} />
+            <Route path={"/giohang/:id"} component={GioHang} />
+            <Route path={"/dangnhap"} component={DangNhap} />
+            <Route path={"/dangky"} component={DangKy} />
+            <Route path={"/xacnhantaikhoan"} component={XacNhanTaiKhoan} />
+            <Route path={"/quenmk"} component={QuenMK} />
+            <Route path={"/doimk"} component={DoiMK} />
 
-            {thongtinnguoidung && thongtinnguoidung.quyenId === "R1" || thongtinnguoidung.quyenId === "R2" ? (
+            {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
+            thongtinnguoidung.quyenId === "R2" ? (
               <Redirect to={"/quanly/"} />
             ) : (
-              <Redirect to={"/home"} />
+              <Redirect to={"/trangchu"} />
             )}
           </Switch>
         </Router>
 
         <ToastContainer
-          position="bottom-right"
+          position="top-right"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}

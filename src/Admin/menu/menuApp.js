@@ -26,4 +26,18 @@ export const menu = [
       },
     ],
   },
+  {
+    name: "quanlynhapban",
+    menus: [
+      {
+        name: "quanlynhaphoa",
+        link: "/quanly/quanlynhaphoa",
+      },
+      {
+        name: "quanlybanhoa",
+        link: "/quanly/quanlybanhoa",
+      },
+    ],
+  },
+
 ];

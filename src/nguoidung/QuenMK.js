@@ -5,11 +5,13 @@ import HeaderTrangChu from "./HeaderTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import { apiquenmk } from "../API/ApiTrangChu";
 import { toast } from "react-toastify";
+import LoadingOverlay from "react-loading-overlay";
 class QuenMK extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
+      loading: false,
     };
   }
 
@@ -37,6 +39,9 @@ class QuenMK extends Component {
   };
 
   clickquenmk = async () => {
+    this.setState({
+      loading: true,
+    });
     let kq = await apiquenmk({
       email: this.state.email,
     });
@@ -52,6 +57,9 @@ class QuenMK extends Component {
         : toast.error("Account not yet activated, please activate first!!!");
     }
     if (kq && kq.maCode === 0) {
+      this.setState({
+        loading: false,
+      });
       this.props.ngonngu === "vi"
         ? toast.success("Vui lòng kiểm tra hộp thư email của ban!!!")
         : toast.success("Please check your email inbox!!!");
@@ -59,27 +67,32 @@ class QuenMK extends Component {
   };
 
   render() {
-    let { email } = this.state;
+    let { email, loading } = this.state;
     return (
       <>
-        <HeaderTrangChu />
-        <div className="quenmk">
-          <div className="form-group">
-            <label>Nhập email đã đăng ký</label>
-            <input
-              className="form-control"
-              type="email"
-              onChange={(event) => {
-                this.onChangeNhap(event, "email");
-              }}
-              value={email}
-            />
+        <LoadingOverlay active={loading} spinner text="Từ từ đi bạn ei....">
+          <HeaderTrangChu />
+          <div className="quenmk">
+            <div className="form-group">
+              <label>Nhập email đã đăng ký</label>
+              <input
+                className="form-control"
+                type="email"
+                onChange={(event) => {
+                  this.onChangeNhap(event, "email");
+                }}
+                value={email}
+              />
+            </div>
+            <button
+              className="btn btnquenmk"
+              onClick={() => this.clickquenmk()}
+            >
+              Quên mật khẩu
+            </button>
           </div>
-          <button className="btn btnquenmk" onClick={() => this.clickquenmk()}>
-            Quên mật khẩu
-          </button>
-        </div>
-        <FooterTrangChu />
+          <FooterTrangChu />
+        </LoadingOverlay>
       </>
     );
   }

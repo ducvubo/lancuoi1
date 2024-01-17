@@ -52,6 +52,31 @@ const apiquenmk = (data) => {
 const apidoimk = (data) => {
   return axios.post("/api/doimk", data);
 };
+
+const apigiohang = (idnguoidung) => {
+  return axios.get(`api/giohang?id=${idnguoidung}`);
+};
+
+const apisuagiohang = (data) => {
+    return axios.post("api/suagiohang",data);
+}
+
+const apithemgiohang = (data) => {
+  return axios.post("api/themgiohang",data);
+}
+
+const apisanphamlienquan = (iddanhmucchitiet,id) => {
+  return axios.get(`api/sanphamlienquan?iddanhmuchoachitiet=${iddanhmucchitiet}&id=${id}`);
+}
+
+const apihoatheodanhmucchitiet = (iddanhmucchitiet) => {
+  return axios.get(`api/hoatheodanhmucchitiet?iddanhmuchoachitiet=${iddanhmucchitiet}`);
+}
+
+const apihoatheodanhmuc = (iddanhmuchoa) => {
+  return axios.get(`api/hoatheodanhmuc?iddanhmuchoa=${iddanhmuchoa}`);
+}
+
 export {
   danhmuchoanoibat,
   danhmuchoachitiettheodanhmuc,
@@ -67,4 +92,10 @@ export {
   apixacnhantaikhoan,
   apiquenmk,
   apidoimk,
+  apigiohang,
+  apisuagiohang,
+  apithemgiohang,
+  apisanphamlienquan,
+  apihoatheodanhmucchitiet,
+  apihoatheodanhmuc
 };

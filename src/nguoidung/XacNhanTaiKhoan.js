@@ -25,7 +25,6 @@ class XacNhanTaiKhoan extends Component {
       email: email,
       linkxacnhan: linkxacnhan,
     });
-    console.log(this.state);
     let data = await apixacnhantaikhoan({
       linkxacnhan: linkxacnhan,
       email: email,
@@ -46,7 +45,6 @@ class XacNhanTaiKhoan extends Component {
 
   render() {
     let { trangthaixacnhan, maCode } = this.state;
-    console.log(this.state);
     return (
       <>
         <HeaderTrangChu />

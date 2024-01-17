@@ -23,6 +23,12 @@
                 margin: 0 3px;
                 cursor: pointer;
 
+                .iconlink {
+                    text-decoration: none;
+                    color          : #696363;
+
+                }
+
                 span {
                     margin: 0 2px;
                 }
@@ -38,7 +44,7 @@
                     }
 
                     .ngonnguduocchon {
-                        opacity: 0.6;
+                        opacity: 0.4;
 
                     }
                 }
@@ -58,22 +64,23 @@
                             border          : 1px solid #ccc;
                             width           : 200px;
                             height          : 50px;
-                            padding-left: 21px;
-                            .dangnhap{
-                                text-decoration: none;
-                                color: #696363;
+                            padding-left    : 21px;
 
-                                li{
-                                    margin-left:-106px;
+                            .dangnhap {
+                                text-decoration: none;
+                                color          : #696363;
+
+                                li {
+                                    margin-left: -106px;
                                 }
                             }
 
-                            .dangky{
+                            .dangky {
                                 text-decoration: none;
-                                color: #696363;
+                                color          : #696363;
 
-                                li{
-                                    margin-left:-121px;
+                                li {
+                                    margin-left: -124px;
                                 }
                             }
                         }
@@ -189,7 +196,7 @@
         position        : sticky;
         top             : 0;
         background-color: white;
-        z-index         : 9999999;
+        z-index         : 10;
 
         .hovermenu {
             list-style-type: none;

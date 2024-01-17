@@ -2,8 +2,6 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./trangChu.scss";
 import SlideShow from "./SlideShow";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import hoagiamgia4 from "../image/hoagiamgia4.webp";
 import logothuonghieu1 from "../image/logothuonghieu1.webp";
 import logothuonghieu2 from "../image/logothuonghieu2.webp";
 import logothuonghieu3 from "../image/logothuonghieu3.webp";
@@ -177,14 +175,14 @@ class trangChu extends Component {
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
-                              {item.giasaukhigiamVND}VND
+                              {item.giasaukhigiamVND.toLocaleString()}VND
                             </span>
                             <span className="giachuagiam">
-                              {item.giathucVND}VND
+                              {item.giathucVND.toLocaleString()}VND
                             </span>
                           </>
                         ) : (
-                          <span className="giagiam">{item.giathucVND}VND</span>
+                          <span className="giagiam">{item.giathucVND.toLocaleString()}VND</span>
                         )}
                       </div>
                     ) : (
@@ -257,7 +255,10 @@ class trangChu extends Component {
               }
               return (
                 <div className="hoa" key={index}>
-                  <div className="anhhoa">
+                  <div className="anhhoa"
+                  
+                  onClick={() => this.thongtinhoa(item)}
+                  >
                     <img src={anhnoibat} width="261" height="326" />
 
                     {item.phantramgiam > 0 ? (
@@ -265,27 +266,33 @@ class trangChu extends Component {
                     ) : null}
                   </div>
                   <div className="thongtin">
-                    <span className="ten">
+                    <span className="ten"
+                    onClick={() => this.thongtinhoa(item)}
+                    >
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
 
                     {ngonngu === "vi" ? (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
-                              {item.giasaukhigiamVND}VND
+                              {item.giasaukhigiamVND.toLocaleString()}VND
                             </span>
                             <span className="giachuagiam">
-                              {item.giathucVND}VND
+                              {item.giathucVND.toLocaleString()}VND
                             </span>
                           </>
                         ) : (
-                          <span className="giagiam">{item.giathucVND}VND</span>
+                          <span className="giagiam">{item.giathucVND.toLocaleString()}VND</span>
                         )}
                       </div>
                     ) : (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
@@ -324,7 +331,9 @@ class trangChu extends Component {
               }
               return (
                 <div className="hoa" key={index}>
-                  <div className="anhhoa">
+                  <div className="anhhoa"
+                  onClick={() => this.thongtinhoa(item)}
+                  >
                     <img src={anhnoibat} width="261" height="326" />
 
                     {item.phantramgiam > 0 ? (
@@ -332,27 +341,33 @@ class trangChu extends Component {
                     ) : null}
                   </div>
                   <div className="thongtin">
-                    <span className="ten">
+                    <span className="ten"
+                    onClick={() => this.thongtinhoa(item)}
+                    >
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
 
                     {ngonngu === "vi" ? (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
-                              {item.giasaukhigiamVND}VND
+                              {item.giasaukhigiamVND.toLocaleString()}VND
                             </span>
                             <span className="giachuagiam">
-                              {item.giathucVND}VND
+                              {item.giathucVND.toLocaleString()}VND
                             </span>
                           </>
                         ) : (
-                          <span className="giagiam">{item.giathucVND}VND</span>
+                          <span className="giagiam">{item.giathucVND.toLocaleString()}VND</span>
                         )}
                       </div>
                     ) : (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
@@ -391,7 +406,9 @@ class trangChu extends Component {
               }
               return (
                 <div className="hoa" key={index}>
-                  <div className="anhhoa">
+                  <div className="anhhoa"
+                  onClick={() => this.thongtinhoa(item)}
+                  >
                     <img src={anhnoibat} width="261" height="326" />
 
                     {item.phantramgiam > 0 ? (
@@ -399,27 +416,33 @@ class trangChu extends Component {
                     ) : null}
                   </div>
                   <div className="thongtin">
-                    <span className="ten">
+                    <span className="ten"
+                    onClick={() => this.thongtinhoa(item)}
+                    >
                       {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                     </span>
 
                     {ngonngu === "vi" ? (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
-                              {item.giasaukhigiamVND}VND
+                              {item.giasaukhigiamVND.toLocaleString()}VND
                             </span>
                             <span className="giachuagiam">
-                              {item.giathucVND}VND
+                              {item.giathucVND.toLocaleString()}VND
                             </span>
                           </>
                         ) : (
-                          <span className="giagiam">{item.giathucVND}VND</span>
+                          <span className="giagiam">{item.giathucVND.toLocaleString()}VND</span>
                         )}
                       </div>
                     ) : (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
@@ -458,7 +481,9 @@ class trangChu extends Component {
               }
               return (
                 <div className="hoa" key={index}>
-                  <div className="anhhoa">
+                  <div className="anhhoa"
+                  onClick={() => this.thongtinhoa(item)}
+                  >
                     <img src={anhnoibat} width="261" height="326" />
 
                     {item.phantramgiam > 0 ? (
@@ -471,22 +496,26 @@ class trangChu extends Component {
                     </span>
 
                     {ngonngu === "vi" ? (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
-                              {item.giasaukhigiamVND}VND
+                              {item.giasaukhigiamVND.toLocaleString()}VND
                             </span>
                             <span className="giachuagiam">
-                              {item.giathucVND}VND
+                              {item.giathucVND.toLocaleString()}VND
                             </span>
                           </>
                         ) : (
-                          <span className="giagiam">{item.giathucVND}VND</span>
+                          <span className="giagiam">{item.giathucVND.toLocaleString()}VND</span>
                         )}
                       </div>
                     ) : (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
@@ -526,7 +555,9 @@ class trangChu extends Component {
               }
               return (
                 <div className="hoa" key={index}>
-                  <div className="anhhoa">
+                  <div className="anhhoa"
+                  onClick={() => this.thongtinhoa(item)}
+                  >
                     <img src={anhnoibat} width="261" height="326" />
 
                     {item.phantramgiam > 0 ? (
@@ -539,22 +570,26 @@ class trangChu extends Component {
                     </span>
 
                     {ngonngu === "vi" ? (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
-                              {item.giasaukhigiamVND}VND
+                              {item.giasaukhigiamVND.toLocaleString()}VND
                             </span>
                             <span className="giachuagiam">
-                              {item.giathucVND}VND
+                              {item.giathucVND.toLocaleString()}VND
                             </span>
                           </>
                         ) : (
-                          <span className="giagiam">{item.giathucVND}VND</span>
+                          <span className="giagiam">{item.giathucVND.toLocaleString()}VND</span>
                         )}
                       </div>
                     ) : (
-                      <div className="gia">
+                      <div className="gia"
+                      onClick={() => this.thongtinhoa(item)}
+                      >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">

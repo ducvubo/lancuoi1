@@ -10,7 +10,7 @@ class NavigationTest extends Component {
     let { menu } = this.props;
     return (
         <>
-          <ul className="navigator-menu list-unstyled">
+          <ul className="thanhmenu list-unstyled">
             {menu.map((menuGroup, index) => (
               <li key={index} className="menu-group">
                 <div className="menu-group-name">

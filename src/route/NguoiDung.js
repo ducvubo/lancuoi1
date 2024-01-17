@@ -7,7 +7,7 @@
 // class NguoiDung extends Component {
 //   render() {
 //     let { thongtinnguoidung } = this.props;
-//     let link = thongtinnguoidung ? "/quanly/" : "/home";
+//     let link = thongtinnguoidung ? "/quanly/" : "/trangchu";
 //     console.log(thongtinnguoidung.quyenId);
 //     return <Redirect to={link} />;
 //   }

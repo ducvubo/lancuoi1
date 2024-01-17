@@ -8,6 +8,7 @@ import {
   apitatcahoa,
   apisuahoa,
   apixoahoa,
+  apirefreshtoken
 } from "../../API/GoiApi";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
@@ -61,6 +62,13 @@ class QuanLyHoa extends Component {
   }
 
   laytatcadanhmucchitiet = async () => {
+
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
+
     let kq = await tatcadanhmucchitiet();
     let data1 = kq.data;
     if (kq && kq.maCode === 0) {
@@ -72,6 +80,14 @@ class QuanLyHoa extends Component {
   };
 
   laytatcahoa = async () => {
+
+
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
+
     let kq = await apitatcahoa();
     let data1 = kq.data;
     if (kq && kq.maCode === 0) {
@@ -186,6 +202,12 @@ class QuanLyHoa extends Component {
   };
 
   clickthemhoa = async () => {
+    
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
 
@@ -211,6 +233,8 @@ class QuanLyHoa extends Component {
       donoibat: this.state.donoibat,
       ghichuVi: this.state.ghichuVi,
       ghichuEn: this.state.ghichuEn,
+      anhnoibat: this.state.anhnoibat,
+
     });
 
     if (kq.maCode === 0 && kq) {
@@ -285,6 +309,12 @@ class QuanLyHoa extends Component {
   };
 
   clickbtnsuahoa = async () => {
+    
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
 
@@ -351,6 +381,12 @@ class QuanLyHoa extends Component {
   };
 
   clickxoahoa = async (id) => {
+    
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+    }
     let kq = await apixoahoa(id);
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
