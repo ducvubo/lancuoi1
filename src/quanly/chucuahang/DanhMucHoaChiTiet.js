@@ -97,9 +97,6 @@ class DanhMucHoaChiTiet extends Component {
   };
 
   clickthemdanhmucchitiet = async (data) => {
-
-
-
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
@@ -147,17 +144,12 @@ class DanhMucHoaChiTiet extends Component {
   };
 
   clickbtnsuadanhmucchitiet = async () => {
-
-
     let token = await apirefreshtoken();
-
     if (token.maCode === 10) {
       toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
     }
-
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
-
     let kq = await apisuadanhmucchitiet({
       id: this.state.id,
       iddanhmuchoa: this.state.iddanhmuchoa,
@@ -302,7 +294,7 @@ class DanhMucHoaChiTiet extends Component {
                     return (
                       <tr key={index}>
                         <th scope="row">{item.id}</th>
-                        <td>{item.iddanhmuchoa}</td>
+                        <td>{ngonngu === 'vi' ? item.danhmuc.tendanhmucVi : item.danhmuc.tendanhmucEn}</td>
                         <td>{item.tendanhmucchitietVi}</td>
                         <td>{item.tendanhmucchitietEn}</td>
                         <td>{item.danhmuc && item.danhmuc.tendanhmucVi}</td>

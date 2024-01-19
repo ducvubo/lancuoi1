@@ -30,7 +30,10 @@ class App extends Component {
             <Route path={"/trangchu"} exact component={trangChu} />
             <Route path={"/quanly/"} component={QuanLy} />
             <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
-            <Route path={"/hoatheodanhmucchitiet/:id"} component={HoaTheoDanhMucTheoChiTiet} />
+            <Route
+              path={"/hoatheodanhmucchitiet/:id"}
+              component={HoaTheoDanhMucTheoChiTiet}
+            />
             <Route path={"/hoatheodanhmuc/:id"} component={HoaTheoDanhMuc} />
             <Route path={"/giohang/:id"} component={GioHang} />
             <Route path={"/dangnhap"} component={DangNhap} />
@@ -40,7 +43,7 @@ class App extends Component {
             <Route path={"/doimk"} component={DoiMK} />
 
             {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
-            thongtinnguoidung.quyenId === "R2" ? (
+            thongtinnguoidung.quyenId === "R3" ? (
               <Redirect to={"/quanly/"} />
             ) : (
               <Redirect to={"/trangchu"} />

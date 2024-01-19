@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./QuanLyBanHoa.scss";
-import HeaderMenu from "../Admin/menu/HeaderMenu";
 class QuanLyBanHoa extends Component {
   render() {
     return (

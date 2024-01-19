@@ -157,10 +157,6 @@ class DanhMucHoa extends Component {
     if (token.maCode === 10) {
       toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
     }
-
-    
-
-
     let kq = await apixoadanhmuc(id);
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"

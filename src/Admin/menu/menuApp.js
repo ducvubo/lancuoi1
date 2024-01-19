@@ -4,7 +4,7 @@ export const menu = [
     menus: [
       {
         name: "quanlynguoidung",
-        link:"/quanly/quanlynguoidung"
+        link: "/quanly/quanlynguoidung",
       },
     ],
   },
@@ -30,8 +30,12 @@ export const menu = [
     name: "quanlynhapban",
     menus: [
       {
-        name: "quanlynhaphoa",
-        link: "/quanly/quanlynhaphoa",
+        name: "quanlyhoadonnhaphoa",
+        link: "/quanly/quanlyhoadonnhaphoa",
+      },
+      {
+        name: "quanlynhaphoachitiet",
+        link: "/quanly/quanlynhaphoachitiet",
       },
       {
         name: "quanlybanhoa",
@@ -39,5 +43,4 @@ export const menu = [
       },
     ],
   },
-
 ];

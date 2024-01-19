@@ -8,7 +8,7 @@ import {
   apitatcahoa,
   apisuahoa,
   apixoahoa,
-  apirefreshtoken
+  apirefreshtoken,
 } from "../../API/GoiApi";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
@@ -62,7 +62,6 @@ class QuanLyHoa extends Component {
   }
 
   laytatcadanhmucchitiet = async () => {
-
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
@@ -80,8 +79,6 @@ class QuanLyHoa extends Component {
   };
 
   laytatcahoa = async () => {
-
-
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
@@ -190,7 +187,6 @@ class QuanLyHoa extends Component {
     ];
     for (let i = 0; i < nhapdaydu.length; i++) {
       if (!this.state[nhapdaydu[i]]) {
-
         kt = false;
         this.props.ngonngu === "vi"
           ? alert("Vui lòng nhập đầy đủ thông tin")
@@ -202,7 +198,6 @@ class QuanLyHoa extends Component {
   };
 
   clickthemhoa = async () => {
-    
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
@@ -234,7 +229,6 @@ class QuanLyHoa extends Component {
       ghichuVi: this.state.ghichuVi,
       ghichuEn: this.state.ghichuEn,
       anhnoibat: this.state.anhnoibat,
-
     });
 
     if (kq.maCode === 0 && kq) {
@@ -309,7 +303,6 @@ class QuanLyHoa extends Component {
   };
 
   clickbtnsuahoa = async () => {
-    
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
@@ -381,7 +374,6 @@ class QuanLyHoa extends Component {
   };
 
   clickxoahoa = async (id) => {
-    
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
@@ -425,7 +417,6 @@ class QuanLyHoa extends Component {
       ghichuEn,
     } = this.state;
     let { ngonngu } = this.props;
-
     return (
       <div className="quanlyhoa">
         <div className="item1">
@@ -721,7 +712,11 @@ class QuanLyHoa extends Component {
                 ? tatcahoa.map((item, index) => {
                     return (
                       <tr key={index}>
-                        <th scope="row">{item.iddanhmuchoachitiet}</th>
+                        <th scope="row">
+                          {ngonngu === "vi"
+                            ? item.danhmuchoachitiet.tendanhmucchitietVi
+                            : item.danhmuchoachitiet.tendanhmucchitietEn}
+                        </th>
                         <td>{item.tenhoaVi}</td>
                         <td>{item.tenhoaEn}</td>
                         <td>{item.soluongcon}</td>

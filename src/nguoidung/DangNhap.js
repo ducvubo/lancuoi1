@@ -94,7 +94,7 @@ class DangNhap extends Component {
     if (data.maCode === 0) {
       this.props.thongtinnguoidung(data.nguoidung);
       (data && data.nguoidung && data.nguoidung.quyenId === "R1") ||
-      data.nguoidung.quyenId === "R2"
+      data.nguoidung.quyenId === "R3"
         ? this.props.history.push("/quanly/")
         : this.props.history.push("/trangchu");
     }

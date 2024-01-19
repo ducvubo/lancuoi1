@@ -61,7 +61,7 @@ const apixoadanhmucchitiet = (id) => {
 };
 
 const apithemhoa = (data) => {
-  return axios.post("api/themhoa",data);
+  return axios.post("api/themhoa", data);
 };
 
 const apitatcahoa = () => {
@@ -78,8 +78,28 @@ const apixoahoa = (id) => {
 
 const apirefreshtoken = () => {
   return axios.post("api/refresh-token");
-  
-}
+};
+
+const apitatcanhanvien = () => {
+  return axios.get("/api/laytatcanhanvien");
+};
+
+const apithemhoadon = (data) => {
+  return axios.post("/api/themhoadon", data);
+};
+
+const apitatcahoadon = () => {
+  return axios.get("/api/tatcahoadon");
+};
+
+const apisuahoadon = (data) => {
+  return axios.put("/api/suahoadon", data);
+};
+
+const apixoahoadon = (id) => {
+  return axios.delete(`api/xoahoadon?id=${id}`);
+};
+
 
 export {
   layAllCode,
@@ -101,5 +121,10 @@ export {
   apisuahoa,
   apixoahoa,
   apidangxuat,
-  apirefreshtoken
+  apirefreshtoken,
+  apitatcanhanvien,
+  apithemhoadon,
+  apitatcahoadon,
+  apisuahoadon,
+  apixoahoadon
 };

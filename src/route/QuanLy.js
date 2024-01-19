@@ -6,22 +6,50 @@ import QuanLyNguoiDung from "../quanly/chucuahang/QuanLyNguoiDung";
 import DanhMucHoaChiTiet from "../quanly/chucuahang/DanhMucHoaChiTiet";
 import DanhMucHoa from "../quanly/chucuahang/DanhMucHoa";
 import QuanLyHoa from "../quanly/chucuahang/QuanLyHoa";
+import QuanLyBanHoa from "../quanly/chucuahang/QuanLyBanHoa";
+import QuanLyNhapHoa from "../quanly/chucuahang/QuanLyNhapHoa";
+import QuanLyNhapHoaChiTiet from "../quanly/chucuahang/QuanLyNhapHoaChiTiet";
 class QuanLy extends Component {
   render() {
     let { thongtinnguoidung } = this.props;
     return (
       <>
         {thongtinnguoidung.quyenId === "R1" ||
-        thongtinnguoidung.quyenId === "R2" ? (
+        thongtinnguoidung.quyenId === "R3" ? (
           <React.Fragment>
             <HeaderMenu />
             <Switch>
               <Route path={"/quanly/quanlyhoa"} exact component={QuanLyHoa} />
-              <Route path={"/quanly/quanlynguoidung"} exact component={QuanLyNguoiDung}/>
-              <Route path={"/quanly/quanlydanhmuchoa"} exact component={DanhMucHoa} />
-              <Route path={"/quanly/quanlydanhmuchoachitiet"} exact component={DanhMucHoaChiTiet}  />
-              {/* <Route path={"/quanly/quanlynhaphoa"} exact component={QuanLyNhapHoa}  />
-              <Route path={"/quanly/quanlybanhoa"} exact component={QuanLyBanHoa}  /> */}
+              <Route
+                path={"/quanly/quanlynguoidung"}
+                exact
+                component={QuanLyNguoiDung}
+              />
+              <Route
+                path={"/quanly/quanlydanhmuchoa"}
+                exact
+                component={DanhMucHoa}
+              />
+              <Route
+                path={"/quanly/quanlydanhmuchoachitiet"}
+                exact
+                component={DanhMucHoaChiTiet}
+              />
+              <Route
+                path={"/quanly/quanlyhoadonnhaphoa"}
+                exact
+                component={QuanLyNhapHoa}
+              />
+              <Route
+                path={"/quanly/quanlynhaphoachitiet"}
+                exact
+                component={QuanLyNhapHoaChiTiet}
+              />
+              <Route
+                path={"/quanly/quanlybanhoa"}
+                exact
+                component={QuanLyBanHoa}
+              />
             </Switch>
           </React.Fragment>
         ) : (
@@ -31,17 +59,6 @@ class QuanLy extends Component {
           </div>
         )}
       </>
-
-      // <React.Fragment>
-      //  {thongtinnguoidung.quyenId === 'R1' || thongtinnguoidung.quyenId === 'R3' ? (<HeaderMenu />
-      //   <Switch>
-      //     <Route path={"/quanly/quanlynguoidung"} exact component={QuanLyNguoiDung}/>
-      //     <Route path={"/quanly/quanlyhoa"} exact component={QuanLyHoa} />
-      //     <Route path={"/quanly/quanlydanhmuchoa"} exact component={DanhMucHoa}/>
-      //     <Route path={"/quanly/quanlydanhmuchoachitiet"} exact component={DanhMucHoaChiTiet}/>
-      //   </Switch>)
-      //   : (<div>Trang này chỉ dành cho nhân viên và chủ cửa hàng. Nếu bạn là khách hàng, vui lòng <Link to={"/trangchu"}>nhấn vào đây</Link>.</div>)}
-      // </React.Fragment>
     );
   }
 }
