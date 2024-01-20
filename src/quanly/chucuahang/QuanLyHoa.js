@@ -186,7 +186,7 @@ class QuanLyHoa extends Component {
       "ghichuEn",
     ];
     for (let i = 0; i < nhapdaydu.length; i++) {
-      if (!this.state[nhapdaydu[i]]) {
+      if (!this.state[nhapdaydu[i]] || this.state[nhapdaydu[i]] === null) {
         kt = false;
         this.props.ngonngu === "vi"
           ? alert("Vui lòng nhập đầy đủ thông tin")
@@ -260,6 +260,7 @@ class QuanLyHoa extends Component {
         anhUrlnoibat: "",
       });
       await this.laytatcahoa();
+      await this.laytatcadanhmucchitiet();
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Thêm hoa thất bại")
@@ -268,36 +269,37 @@ class QuanLyHoa extends Component {
   };
 
   clicksuahoa = (hoa) => {
-    let anhnoibatbase64 = "";
+    let anhnoibatbase64 = ''
 
-    // if (hoa.anhnoibat || hoa.anh2 || hoa.anh3 || hoa.anh4) {
-    anhnoibatbase64 = new Buffer(hoa.anhnoibat, "base64").toString("binary");
-
-    // }
+    if (hoa.anhnoibat || hoa.anh2 || hoa.anh3 || hoa.anh4) {
+      anhnoibatbase64 = new Buffer(hoa.anhnoibat, "base64").toString("binary");
+    }
     this.setState({
       id: hoa.id,
-      iddanhmuchoachitiet: hoa.iddanhmuchoachitiet,
-      anhnoibat: hoa.anhnoibat,
+      iddanhmuchoachitiet: hoa.iddanhmuchoachitiet
+        ? hoa.iddanhmuchoachitiet
+        : null,
+      anhnoibat: hoa.anhnoibat ? hoa.anhnoibat : null,
       tenhoaVi: hoa.tenhoaVi,
-      tenhoaEn: hoa.tenhoaEn,
-      tieudehoaVi: hoa.tieudehoaVi,
-      tieudehoaEn: hoa.tieudehoaEn,
-      soluongcon: hoa.soluongcon,
-      soluongnhap: hoa.soluongnhap,
-      soluongban: hoa.soluongban,
-      giathucVND: hoa.giathucVND,
-      giathucUSD: hoa.giathucUSD,
-      phantramgiam: hoa.phantramgiam,
-      giasaukhigiamVND: hoa.giasaukhigiamVND,
-      giasaukhigiamUSD: hoa.giasaukhigiamUSD,
-      motaspVi: hoa.motaspVi,
-      motaspEn: hoa.motaspEn,
-      motasphtmlVi: hoa.motasphtmlVi,
-      motasphtmlEn: hoa.motasphtmlEn,
-      donoibat: hoa.donoibat,
-      ghichuVi: hoa.ghichuVi,
-      ghichuEn: hoa.ghichuEn,
-      anhUrlnoibat: anhnoibatbase64,
+      tenhoaEn: hoa.tenhoaEn ? hoa.tenhoaEn : null,
+      tieudehoaVi: hoa.tieudehoaVi ? hoa.tieudehoaVi : null,
+      tieudehoaEn: hoa.tieudehoaEn ? hoa.tieudehoaEn : null,
+      soluongcon: hoa.soluongcon ? hoa.soluongcon : null,
+      soluongnhap: hoa.soluongnhap ? hoa.soluongnhap : null,
+      soluongban: hoa.soluongban ? hoa.soluongban : null,
+      giathucVND: hoa.giathucVND ? hoa.giathucVND : null,
+      giathucUSD: hoa.giathucUSD ? hoa.giathucUSD : null,
+      phantramgiam: hoa.phantramgiam ? hoa.phantramgiam : null,
+      giasaukhigiamVND: hoa.giasaukhigiamVND ? hoa.giasaukhigiamVND : null,
+      giasaukhigiamUSD: hoa.giasaukhigiamUSD ? hoa.giasaukhigiamUSD : null,
+      motaspVi: hoa.motaspVi ? hoa.motaspVi : null,
+      motaspEn: hoa.motaspEn ? hoa.motaspEn : null,
+      motasphtmlVi: hoa.motasphtmlVi ? hoa.motasphtmlVi : null,
+      motasphtmlEn: hoa.motasphtmlEn ? hoa.motasphtmlEn : null,
+      donoibat: hoa.donoibat ? hoa.donoibat : null,
+      ghichuVi: hoa.ghichuVi ? hoa.ghichuVi : null,
+      ghichuEn: hoa.ghichuEn ? hoa.ghichuEn : null,
+      anhUrlnoibat: anhnoibatbase64 ? anhnoibatbase64 : null,
       trangthainut: true,
     });
   };
@@ -366,6 +368,7 @@ class QuanLyHoa extends Component {
         ghichuEn: "",
       });
       await this.laytatcahoa();
+      await this.laytatcadanhmucchitiet();
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Sửa hoa thất bại")
@@ -417,6 +420,7 @@ class QuanLyHoa extends Component {
       ghichuEn,
     } = this.state;
     let { ngonngu } = this.props;
+    console.log(this.state);
     return (
       <div className="quanlyhoa">
         <div className="item1">
@@ -430,8 +434,11 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "iddanhmuchoachitiet");
               }}
-              value={iddanhmuchoachitiet}
+              value={iddanhmuchoachitiet ? iddanhmuchoachitiet : ""}
             >
+              <option value={null}>
+                Chưa có danh mục hoa chi tiết vui lòng chọn danh mục!!!
+              </option>
               {danhmuchoachitietArr &&
                 danhmuchoachitietArr.length > 0 &&
                 danhmuchoachitietArr.map((item, index) => {
@@ -453,7 +460,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "tenhoaVi");
               }}
-              value={tenhoaVi}
+              value={tenhoaVi ? tenhoaVi : ''}
             />
           </div>
           <div className="form-group col-4">
@@ -464,7 +471,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "tenhoaEn");
               }}
-              value={tenhoaEn}
+              value={tenhoaEn ? tenhoaEn : ''}
             />
           </div>
           <div className="form-group col-6">
@@ -475,7 +482,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "tieudehoaVi");
               }}
-              value={tieudehoaVi}
+              value={tieudehoaVi ? tieudehoaVi : ''}
             ></textarea>
           </div>
           <div className="form-group col-6">
@@ -486,7 +493,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "tieudehoaEn");
               }}
-              value={tieudehoaEn}
+              value={tieudehoaEn ? tieudehoaEn : ''}
             ></textarea>
           </div>
           <div className="gia gia1">
@@ -528,7 +535,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "soluongnhap");
                 }}
-                value={soluongnhap}
+                value={soluongnhap ? soluongnhap : ''}
               />
             </div>
             <div className="form-group khoigia">
@@ -539,7 +546,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "soluongban");
                 }}
-                value={soluongban}
+                value={soluongban ? soluongban : ''}
               />
             </div>
             <div className="form-group khoigia">
@@ -548,7 +555,7 @@ class QuanLyHoa extends Component {
                 className="form-control"
                 type="number"
                 disabled={true}
-                value={soluongcon}
+                value={soluongcon ? soluongcon : ''}
               />
             </div>
             <div className="form-group khoigia">
@@ -559,7 +566,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "donoibat");
                 }}
-                value={donoibat}
+                value={donoibat ? donoibat : ''}
               />
             </div>
           </div>
@@ -572,7 +579,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "giathucVND");
                 }}
-                value={giathucVND}
+                value={giathucVND ? giathucVND : ''}
               />
             </div>
             <div className="form-group khoigia">
@@ -583,7 +590,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "giathucUSD");
                 }}
-                value={giathucUSD}
+                value={giathucUSD ? giathucUSD : ''}
               />
             </div>
             <div className="form-group khoigia">
@@ -594,7 +601,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "phantramgiam");
                 }}
-                value={phantramgiam}
+                value={phantramgiam ? phantramgiam : ''}
               />
             </div>
             <div className="form-group khoigia">
@@ -602,7 +609,7 @@ class QuanLyHoa extends Component {
               <input
                 className="form-control"
                 type="text"
-                value={giasaukhigiamVND}
+                value={giasaukhigiamVND ? giasaukhigiamVND : ''}
                 disabled={true}
               />
             </div>
@@ -611,7 +618,7 @@ class QuanLyHoa extends Component {
               <input
                 className="form-control"
                 type="text"
-                value={giasaukhigiamUSD}
+                value={giasaukhigiamUSD ? giasaukhigiamUSD : ''}
                 disabled={true}
               />
             </div>
@@ -625,7 +632,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "ghichuVi");
               }}
-              value={ghichuVi}
+              value={ghichuVi ? ghichuVi : ''}
             />
           </div>
           <div className="form-group col-6">
@@ -636,7 +643,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "ghichuEn");
               }}
-              value={ghichuEn}
+              value={ghichuEn ? ghichuEn :''}
             />
           </div>
         </div>
@@ -662,7 +669,7 @@ class QuanLyHoa extends Component {
             style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.nhapmotaVi}
-            value={motaspVi}
+            value={motaspVi ? motaspVi : ''}
           />
           <br />
           <label>Mô tả sản phẩm tiếng Anh</label> <br />
@@ -670,7 +677,7 @@ class QuanLyHoa extends Component {
             style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.nhapmotaEn}
-            value={motaspEn}
+            value={motaspEn ? motaspEn : ''}
           />
         </div>
 
@@ -713,9 +720,11 @@ class QuanLyHoa extends Component {
                     return (
                       <tr key={index}>
                         <th scope="row">
-                          {ngonngu === "vi"
-                            ? item.danhmuchoachitiet.tendanhmucchitietVi
-                            : item.danhmuchoachitiet.tendanhmucchitietEn}
+                          {item.iddanhmuchoachitiet
+                            ? ngonngu === "vi"
+                              ? item.danhmuchoachitiet.tendanhmucchitietVi
+                              : item.danhmuchoachitiet.tendanhmucchitietEn
+                            : null}
                         </th>
                         <td>{item.tenhoaVi}</td>
                         <td>{item.tenhoaEn}</td>

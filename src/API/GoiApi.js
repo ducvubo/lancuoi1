@@ -100,6 +100,25 @@ const apixoahoadon = (id) => {
   return axios.delete(`api/xoahoadon?id=${id}`);
 };
 
+const apithemhoamoi = (data) => {
+  return axios.post("/api/themhoamoi", data);
+};
+
+const apicapnhathoacu = (data) => {
+  return axios.post("/api/capnhathoacu", data);
+};
+
+const apitatcahoadonchitiet = () => {
+  return axios.get("/api/tatcanhaphoachitiet");
+};
+
+const apisuahoadonchitiet = (data) => {
+  return axios.put("/api/suanhaphoachitiet", data);
+};
+
+const apixoahoadonchitiet = (id) => {
+  return axios.delete(`api/xoanhaphoachitiet?id=${id}`);
+};
 
 export {
   layAllCode,
@@ -126,5 +145,10 @@ export {
   apithemhoadon,
   apitatcahoadon,
   apisuahoadon,
-  apixoahoadon
+  apixoahoadon,
+  apithemhoamoi,
+  apicapnhathoacu,
+  apitatcahoadonchitiet,
+  apisuahoadonchitiet,
+  apixoahoadonchitiet
 };

@@ -10,6 +10,25 @@
 
     }
 
+    .item11 {
+        font-weight: 400;
+
+        span {
+            font-weight: 500;
+            font-size  : 19px;
+        }
+
+        button {
+            font-weight: 500;
+            font-size  : 19px;
+            opacity    : 1;
+
+            &.trangthai {
+                opacity: 0.4;
+            }
+        }
+    }
+
     .item3 {
         margin-top: 20px;
 

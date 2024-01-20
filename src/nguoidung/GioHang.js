@@ -22,12 +22,6 @@ class GioHang extends Component {
   async componentDidMount() {
     await this.laygiohang();
     this.capNhatGiaChuaGiam();
-    // for(let i = 0; i < this.state.giohang.length; i++){
-    //   this.setState((prevState) => ({
-    //     giachuagiam : prevState.giachuagiam + this.state.giohang[i].Giohanghoa.soluong * (this.props.ngonngu === 'vi' ? this.state.giohang[i].giathucVND : this.state.giohang[i].giathucUSD),
-    //     giagiam : prevState.giagiam + this.state.giohang[i].Giohanghoa.soluong * this.state.giohang[i].giasaukhigiamVND
-    //   }))
-    // }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -103,6 +97,8 @@ class GioHang extends Component {
     this.setState({
       giohang: giohangclone,
     });
+
+    
     let datasuagiohang = this.state.giohang.filter(
       (item) => item.Giohanghoa.soluong > 0
     );

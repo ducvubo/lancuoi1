@@ -9,6 +9,7 @@ import QuanLyHoa from "../quanly/chucuahang/QuanLyHoa";
 import QuanLyBanHoa from "../quanly/chucuahang/QuanLyBanHoa";
 import QuanLyNhapHoa from "../quanly/chucuahang/QuanLyNhapHoa";
 import QuanLyNhapHoaChiTiet from "../quanly/chucuahang/QuanLyNhapHoaChiTiet";
+import QuanLyNhapHoaChiTiet2 from "../quanly/chucuahang/QuanLyNhapHoaChiTiet2";
 class QuanLy extends Component {
   render() {
     let { thongtinnguoidung } = this.props;
