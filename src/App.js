@@ -17,6 +17,8 @@ import DoiMK from "./nguoidung/DoiMK";
 import GioHang from "./nguoidung/GioHang";
 import HoaTheoDanhMucTheoChiTiet from "./nguoidung/HoaTheoDanhMucTheoChiTiet";
 import HoaTheoDanhMuc from "./nguoidung/HoaTheoDanhMuc";
+import TestPdf from './nguoidung/TestPdf'
+import DatHang from "./nguoidung/DatHang";
 const history = createBrowserHistory();
 
 class App extends Component {
@@ -30,10 +32,7 @@ class App extends Component {
             <Route path={"/trangchu"} exact component={trangChu} />
             <Route path={"/quanly/"} component={QuanLy} />
             <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
-            <Route
-              path={"/hoatheodanhmucchitiet/:id"}
-              component={HoaTheoDanhMucTheoChiTiet}
-            />
+            <Route path={"/hoatheodanhmucchitiet/:id"}component={HoaTheoDanhMucTheoChiTiet}/>
             <Route path={"/hoatheodanhmuc/:id"} component={HoaTheoDanhMuc} />
             <Route path={"/giohang/:id"} component={GioHang} />
             <Route path={"/dangnhap"} component={DangNhap} />
@@ -41,6 +40,8 @@ class App extends Component {
             <Route path={"/xacnhantaikhoan"} component={XacNhanTaiKhoan} />
             <Route path={"/quenmk"} component={QuenMK} />
             <Route path={"/doimk"} component={DoiMK} />
+            <Route path={"/pdf"} component={TestPdf} />
+            {/* <Route path={"/dathang/:id"} component={DatHang} /> */}
 
             {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
             thongtinnguoidung.quyenId === "R3" ? (

@@ -6,7 +6,7 @@ import QuanLyNguoiDung from "../quanly/chucuahang/QuanLyNguoiDung";
 import DanhMucHoaChiTiet from "../quanly/chucuahang/DanhMucHoaChiTiet";
 import DanhMucHoa from "../quanly/chucuahang/DanhMucHoa";
 import QuanLyHoa from "../quanly/chucuahang/QuanLyHoa";
-import QuanLyBanHoa from "../quanly/chucuahang/QuanLyBanHoa";
+import QuanLyBanHoa from "../quanly/chucuahang/QuanLyDonHangChuaXacNhan";
 import QuanLyNhapHoa from "../quanly/chucuahang/QuanLyNhapHoa";
 import QuanLyNhapHoaChiTiet from "../quanly/chucuahang/QuanLyNhapHoaChiTiet";
 import QuanLyNhapHoaChiTiet2 from "../quanly/chucuahang/QuanLyNhapHoaChiTiet2";
@@ -47,7 +47,7 @@ class QuanLy extends Component {
                 component={QuanLyNhapHoaChiTiet}
               />
               <Route
-                path={"/quanly/quanlybanhoa"}
+                path={"/quanly/quanlydonhangchuaxacnhan"}
                 exact
                 component={QuanLyBanHoa}
               />

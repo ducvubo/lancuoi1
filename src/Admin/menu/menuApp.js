@@ -27,7 +27,7 @@ export const menu = [
     ],
   },
   {
-    name: "quanlynhapban",
+    name: "quanlynhap",
     menus: [
       {
         name: "quanlyhoadonnhaphoa",
@@ -37,9 +37,14 @@ export const menu = [
         name: "quanlynhaphoachitiet",
         link: "/quanly/quanlynhaphoachitiet",
       },
+    ],
+  },
+  {
+    name: "quanlybanhoa",
+    menus: [
       {
-        name: "quanlybanhoa",
-        link: "/quanly/quanlybanhoa",
+        name: "quanlydonchuaxacnhan",
+        link: "/quanly/quanlydonhangchuaxacnhan",
       },
     ],
   },

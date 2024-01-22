@@ -63,6 +63,11 @@
 
         i {
             margin: 0px 10px;
+            opacity: 0.5;
+
+            &:hover{
+                opacity: 1;
+            }
         }
 
         button {

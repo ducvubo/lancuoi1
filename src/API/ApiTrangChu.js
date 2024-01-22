@@ -58,24 +58,36 @@ const apigiohang = (idnguoidung) => {
 };
 
 const apisuagiohang = (data) => {
-    return axios.post("api/suagiohang",data);
-}
+  return axios.post("api/suagiohang", data);
+};
 
 const apithemgiohang = (data) => {
-  return axios.post("api/themgiohang",data);
-}
+  return axios.post("api/themgiohang", data);
+};
 
-const apisanphamlienquan = (iddanhmucchitiet,id) => {
-  return axios.get(`api/sanphamlienquan?iddanhmuchoachitiet=${iddanhmucchitiet}&id=${id}`);
-}
+const apisanphamlienquan = (iddanhmucchitiet, id) => {
+  return axios.get(
+    `api/sanphamlienquan?iddanhmuchoachitiet=${iddanhmucchitiet}&id=${id}`
+  );
+};
 
 const apihoatheodanhmucchitiet = (iddanhmucchitiet) => {
-  return axios.get(`api/hoatheodanhmucchitiet?iddanhmuchoachitiet=${iddanhmucchitiet}`);
-}
+  return axios.get(
+    `api/hoatheodanhmucchitiet?iddanhmuchoachitiet=${iddanhmucchitiet}`
+  );
+};
 
 const apihoatheodanhmuc = (iddanhmuchoa) => {
   return axios.get(`api/hoatheodanhmuc?iddanhmuchoa=${iddanhmuchoa}`);
-}
+};
+
+const apitatcaphuongthucvanchuyen = () => {
+  return axios.get("/api/laytatcaphuongthucvanchuyen");
+};
+
+const apidathang = (data) => {
+  return axios.post("api/dathang", data);
+};
 
 export {
   danhmuchoanoibat,
@@ -97,5 +109,7 @@ export {
   apithemgiohang,
   apisanphamlienquan,
   apihoatheodanhmucchitiet,
-  apihoatheodanhmuc
+  apihoatheodanhmuc,
+  apitatcaphuongthucvanchuyen,
+  apidathang,
 };

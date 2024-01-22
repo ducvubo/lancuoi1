@@ -7,7 +7,7 @@ import {
   tatcadanhmucchitiet,
   apisuadanhmucchitiet,
   apixoadanhmucchitiet,
-  apirefreshtoken
+  apirefreshtoken,
 } from "../../API/GoiApi";
 import "./DanhMucHoaChiTiet.scss";
 import { toast } from "react-toastify";
@@ -34,15 +34,29 @@ class DanhMucHoaChiTiet extends Component {
   }
 
   laytatcadanhmuc = async () => {
-
-
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kq = await tatcadanhmuc();
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     let data1 = kq.data;
     if (kq && kq.maCode === 0) {
       this.setState({
@@ -54,6 +68,20 @@ class DanhMucHoaChiTiet extends Component {
 
   laytatcadanhmucchitiet = async () => {
     let kq = await tatcadanhmucchitiet();
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
@@ -100,7 +128,9 @@ class DanhMucHoaChiTiet extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kt = this.ktdanhapthongtinchua();
@@ -111,6 +141,20 @@ class DanhMucHoaChiTiet extends Component {
       tendanhmucchitietVi: this.state.tendanhmucchitietVi,
       tendanhmucchitietEn: this.state.tendanhmucchitietEn,
     });
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq.maCode === 0 && kq) {
       this.props.ngonngu === "vi"
         ? toast.success("Thêm danh mục chi tiết thành công")
@@ -121,7 +165,7 @@ class DanhMucHoaChiTiet extends Component {
           : "";
       this.setState({
         id: "",
-        iddanhmuchoa: iddanhmuc,
+        // iddanhmuchoa: iddanhmuc,
         tendanhmucchitietVi: "",
         tendanhmucchitietEn: "",
       });
@@ -145,9 +189,13 @@ class DanhMucHoaChiTiet extends Component {
 
   clickbtnsuadanhmucchitiet = async () => {
     let token = await apirefreshtoken();
+
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
+
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
     let kq = await apisuadanhmucchitiet({
@@ -156,6 +204,20 @@ class DanhMucHoaChiTiet extends Component {
       tendanhmucchitietVi: this.state.tendanhmucchitietVi,
       tendanhmucchitietEn: this.state.tendanhmucchitietEn,
     });
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Sửa danh mục chi tiết thành công")
@@ -181,15 +243,29 @@ class DanhMucHoaChiTiet extends Component {
   };
 
   clickxoadanhmucchitiet = async (id) => {
-
-
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kq = await apixoadanhmucchitiet(id);
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Xóa danh mục chi tiết thành công")
@@ -294,7 +370,11 @@ class DanhMucHoaChiTiet extends Component {
                     return (
                       <tr key={index}>
                         <th scope="row">{item.id}</th>
-                        <td>{ngonngu === 'vi' ? item.danhmuc.tendanhmucVi : item.danhmuc.tendanhmucEn}</td>
+                        <td>
+                          {ngonngu === "vi"
+                            ? item.danhmuc.tendanhmucVi
+                            : item.danhmuc.tendanhmucEn}
+                        </td>
                         <td>{item.tendanhmucchitietVi}</td>
                         <td>{item.tendanhmucchitietEn}</td>
                         <td>{item.danhmuc && item.danhmuc.tendanhmucVi}</td>

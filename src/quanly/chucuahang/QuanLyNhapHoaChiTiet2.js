@@ -15,7 +15,7 @@ class QuanLyNhapHoaChiTiet2 extends Component {
       hoaArr: [],
 
       idnhaphoa: "",
-      inputValue: '',
+      inputValue: "",
       danhsachhoadon: [
         {
           idhoa: "",
@@ -39,17 +39,17 @@ class QuanLyNhapHoaChiTiet2 extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kq = await apitatcahoa();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
-        hoaArr:data1
-
+        hoaArr: data1,
       });
-      
     }
   };
 
@@ -108,10 +108,8 @@ class QuanLyNhapHoaChiTiet2 extends Component {
     });
   };
 
-
   render() {
-    let { danhsachhoadon, idnhaphoa, nhaphoaArr, hoaArr } =
-      this.state;
+    let { danhsachhoadon, idnhaphoa, nhaphoaArr, hoaArr } = this.state;
 
     return (
       <div className="quanlynhaphoachitiet">

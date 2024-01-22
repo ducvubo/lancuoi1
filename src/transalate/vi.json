@@ -3,10 +3,11 @@
   "quanlyhoa": "Quản lý hoa",
   "quanlydanhmuchoa": "Quản lý danh mục hoa",
   "quanlydanhmuchoachitiet": "Quản lý danh mục hoa chi tiết",
-  "quanlynhapban": "Quản lý nhập, bán hoa",
+  "quanlynhap": "Quản lý nhập hoa",
   "quanlyhoadonnhaphoa": "Quản lý nhập hoa",
-  "quanlynhaphoachitiet":"Quản lý nhập hoa chi tiết",
+  "quanlynhaphoachitiet": "Quản lý nhập hoa chi tiết",
   "quanlybanhoa": "Quản lý bán hoa",
+  "quanlydonchuaxacnhan": "Đơn hàng chưa xác nhận",
 
   "headersdt": "SỐ ĐIỆN THOẠI LIÊN HỆ",
   "headertaikhoan": "Tài khoản",

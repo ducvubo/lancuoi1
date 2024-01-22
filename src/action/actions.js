@@ -34,11 +34,21 @@ export const themmoinguoidung = (data) => {
     try {
       let token = await apirefreshtoken();
 
-      if (token.maCode === 10) {
-        toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
-      }
+    if (token.maCode === 10) {
+      ngonngu1 === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
+
+    
 
       let res = await themnguoidung(data);
+      if(res.maCode === 6){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      }
+      if(res.maCode === 7){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      }
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"
           ? toast.success("Thêm người dùng thành công")
@@ -68,7 +78,20 @@ export const themnguoidungthanhcong = () => ({
 export const layGioiTinh = () => {
   return async (dispatch, getState) => {
     try {
+      let token = await apirefreshtoken();
+
+      if (token.maCode === 10) {
+        ngonngu1 === "vi"
+          ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+          : toast.error("You are not logged in, please log in!!!");
+      }
       let res = await layAllCode("GIOITINH");
+      if(res.maCode === 6){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      }
+      if(res.maCode === 7){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      }
       if (res && res.maCode === 0) {
         dispatch(layGioiTinhThanhCong(res.data));
       } else {
@@ -91,7 +114,20 @@ export const layGioiTinhThatBai = () => ({
 export const layQuyen = () => {
   return async (dispatch, getState) => {
     try {
+      let token = await apirefreshtoken();
+
+      if (token.maCode === 10) {
+        ngonngu1 === "vi"
+          ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+          : toast.error("You are not logged in, please log in!!!");
+      }
       let kq = await layAllCode("QUYEN");
+      if(kq.maCode === 6){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      }
+      if(kq.maCode === 7){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      }
       if (kq && kq.maCode === 0) {
         dispatch(layQuyenThanhCong(kq.data));
       } else {
@@ -117,10 +153,18 @@ export const allnguoidung = () => {
       let token = await apirefreshtoken();
 
       if (token.maCode === 10) {
-        toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+        ngonngu1 === "vi"
+          ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+          : toast.error("You are not logged in, please log in!!!");
       }
-
+  
       let res = await laytatcanguoidung();
+      if(res.maCode === 6){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      }
+      if(res.maCode === 7){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      }
       if (res && res.maCode === 0) {
         dispatch(laytatcanguoidungthanhcong(res.data));
       } else {
@@ -169,10 +213,18 @@ export const xoanguoidung = (id) => {
       let token = await apirefreshtoken();
 
       if (token.maCode === 10) {
-        toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+        ngonngu1 === "vi"
+          ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+          : toast.error("You are not logged in, please log in!!!");
       }
 
       let res = await apixoanguoidung(id);
+      if(res.maCode === 6){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      }
+      if(res.maCode === 7){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      }
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"
           ? toast.success("Xóa người dùng thành công")
@@ -204,10 +256,18 @@ export const suanguoidung = (data) => {
       let token = await apirefreshtoken();
 
       if (token.maCode === 10) {
-        toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+        ngonngu1 === "vi"
+          ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+          : toast.error("You are not logged in, please log in!!!");
       }
 
       let res = await apisuanguoidung(data);
+      if(res.maCode === 6){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      }
+      if(res.maCode === 7){
+        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      }
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"
           ? toast.success("Sửa người dùng thành công")

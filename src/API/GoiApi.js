@@ -120,6 +120,15 @@ const apixoahoadonchitiet = (id) => {
   return axios.delete(`api/xoanhaphoachitiet?id=${id}`);
 };
 
+const apidonhangchuaxacnhan = () => {
+  return axios.get("/api/donhangchuaxacnhan");
+};
+
+const apixacnhandonhang  = (data) => {
+  return axios.put("/api/xacnhandonhang", data);
+};
+
+
 export {
   layAllCode,
   themnguoidung,
@@ -150,5 +159,7 @@ export {
   apicapnhathoacu,
   apitatcahoadonchitiet,
   apisuahoadonchitiet,
-  apixoahoadonchitiet
+  apixoahoadonchitiet,
+  apidonhangchuaxacnhan,
+  apixacnhandonhang
 };

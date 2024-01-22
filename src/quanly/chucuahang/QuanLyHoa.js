@@ -65,10 +65,26 @@ class QuanLyHoa extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kq = await tatcadanhmucchitiet();
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     let data1 = kq.data;
     if (kq && kq.maCode === 0) {
       this.setState({
@@ -82,10 +98,26 @@ class QuanLyHoa extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kq = await apitatcahoa();
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     let data1 = kq.data;
     if (kq && kq.maCode === 0) {
       this.setState({
@@ -201,8 +233,11 @@ class QuanLyHoa extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
+
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
 
@@ -230,7 +265,20 @@ class QuanLyHoa extends Component {
       ghichuEn: this.state.ghichuEn,
       anhnoibat: this.state.anhnoibat,
     });
-
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq.maCode === 0 && kq) {
       this.props.ngonngu === "vi"
         ? toast.success("Thêm hoa thành công")
@@ -269,7 +317,7 @@ class QuanLyHoa extends Component {
   };
 
   clicksuahoa = (hoa) => {
-    let anhnoibatbase64 = ''
+    let anhnoibatbase64 = "";
 
     if (hoa.anhnoibat || hoa.anh2 || hoa.anh3 || hoa.anh4) {
       anhnoibatbase64 = new Buffer(hoa.anhnoibat, "base64").toString("binary");
@@ -308,8 +356,11 @@ class QuanLyHoa extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
+
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
 
@@ -337,6 +388,20 @@ class QuanLyHoa extends Component {
       ghichuVi: this.state.ghichuVi,
       ghichuEn: this.state.ghichuEn,
     });
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Sửa hoa thành công")
@@ -380,9 +445,26 @@ class QuanLyHoa extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
+
     let kq = await apixoahoa(id);
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Xóa hoa thành công")
@@ -460,7 +542,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "tenhoaVi");
               }}
-              value={tenhoaVi ? tenhoaVi : ''}
+              value={tenhoaVi ? tenhoaVi : ""}
             />
           </div>
           <div className="form-group col-4">
@@ -471,7 +553,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "tenhoaEn");
               }}
-              value={tenhoaEn ? tenhoaEn : ''}
+              value={tenhoaEn ? tenhoaEn : ""}
             />
           </div>
           <div className="form-group col-6">
@@ -482,7 +564,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "tieudehoaVi");
               }}
-              value={tieudehoaVi ? tieudehoaVi : ''}
+              value={tieudehoaVi ? tieudehoaVi : ""}
             ></textarea>
           </div>
           <div className="form-group col-6">
@@ -493,7 +575,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "tieudehoaEn");
               }}
-              value={tieudehoaEn ? tieudehoaEn : ''}
+              value={tieudehoaEn ? tieudehoaEn : ""}
             ></textarea>
           </div>
           <div className="gia gia1">
@@ -535,7 +617,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "soluongnhap");
                 }}
-                value={soluongnhap ? soluongnhap : ''}
+                value={soluongnhap ? soluongnhap : ""}
               />
             </div>
             <div className="form-group khoigia">
@@ -546,7 +628,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "soluongban");
                 }}
-                value={soluongban ? soluongban : ''}
+                value={soluongban ? soluongban : ""}
               />
             </div>
             <div className="form-group khoigia">
@@ -555,7 +637,7 @@ class QuanLyHoa extends Component {
                 className="form-control"
                 type="number"
                 disabled={true}
-                value={soluongcon ? soluongcon : ''}
+                value={soluongcon ? soluongcon : ""}
               />
             </div>
             <div className="form-group khoigia">
@@ -566,7 +648,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "donoibat");
                 }}
-                value={donoibat ? donoibat : ''}
+                value={donoibat ? donoibat : ""}
               />
             </div>
           </div>
@@ -579,7 +661,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "giathucVND");
                 }}
-                value={giathucVND ? giathucVND : ''}
+                value={giathucVND ? giathucVND : ""}
               />
             </div>
             <div className="form-group khoigia">
@@ -590,7 +672,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "giathucUSD");
                 }}
-                value={giathucUSD ? giathucUSD : ''}
+                value={giathucUSD ? giathucUSD : ""}
               />
             </div>
             <div className="form-group khoigia">
@@ -601,7 +683,7 @@ class QuanLyHoa extends Component {
                 onChange={(event) => {
                   this.nhapdulieu(event, "phantramgiam");
                 }}
-                value={phantramgiam ? phantramgiam : ''}
+                value={phantramgiam ? phantramgiam : ""}
               />
             </div>
             <div className="form-group khoigia">
@@ -609,7 +691,7 @@ class QuanLyHoa extends Component {
               <input
                 className="form-control"
                 type="text"
-                value={giasaukhigiamVND ? giasaukhigiamVND : ''}
+                value={giasaukhigiamVND ? giasaukhigiamVND : ""}
                 disabled={true}
               />
             </div>
@@ -618,7 +700,7 @@ class QuanLyHoa extends Component {
               <input
                 className="form-control"
                 type="text"
-                value={giasaukhigiamUSD ? giasaukhigiamUSD : ''}
+                value={giasaukhigiamUSD ? giasaukhigiamUSD : ""}
                 disabled={true}
               />
             </div>
@@ -632,7 +714,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "ghichuVi");
               }}
-              value={ghichuVi ? ghichuVi : ''}
+              value={ghichuVi ? ghichuVi : ""}
             />
           </div>
           <div className="form-group col-6">
@@ -643,7 +725,7 @@ class QuanLyHoa extends Component {
               onChange={(event) => {
                 this.nhapdulieu(event, "ghichuEn");
               }}
-              value={ghichuEn ? ghichuEn :''}
+              value={ghichuEn ? ghichuEn : ""}
             />
           </div>
         </div>
@@ -669,7 +751,7 @@ class QuanLyHoa extends Component {
             style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.nhapmotaVi}
-            value={motaspVi ? motaspVi : ''}
+            value={motaspVi ? motaspVi : ""}
           />
           <br />
           <label>Mô tả sản phẩm tiếng Anh</label> <br />
@@ -677,7 +759,7 @@ class QuanLyHoa extends Component {
             style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.nhapmotaEn}
-            value={motaspEn ? motaspEn : ''}
+            value={motaspEn ? motaspEn : ""}
           />
         </div>
 

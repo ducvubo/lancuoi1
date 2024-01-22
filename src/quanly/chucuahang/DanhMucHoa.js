@@ -8,7 +8,7 @@ import {
   themdanhmuc,
   apisuadanhmuc,
   apixoadanhmuc,
-  apirefreshtoken
+  apirefreshtoken,
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 
@@ -34,11 +34,26 @@ class DanhMucHoa extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
-
     let kq = await tatcadanhmuc();
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
@@ -73,11 +88,12 @@ class DanhMucHoa extends Component {
   };
 
   clickthemdanhmuc = async () => {
-
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kt = this.ktdanhapthongtinchua();
@@ -87,6 +103,20 @@ class DanhMucHoa extends Component {
       tendanhmucEn: this.state.tendanhmucEn,
       donoibat: this.state.donoibat,
     });
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq.maCode === 0 && kq) {
       this.props.ngonngu === "vi"
         ? toast.success("Thêm danh mục thành công")
@@ -115,11 +145,12 @@ class DanhMucHoa extends Component {
   };
 
   clickbtnsuadanhmuc = async () => {
-
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kt = this.ktdanhapthongtinchua();
@@ -131,6 +162,20 @@ class DanhMucHoa extends Component {
       tendanhmucEn: this.state.tendanhmucEn,
       donoibat: this.state.donoibat,
     });
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Sửa danh mục thành công")
@@ -151,13 +196,29 @@ class DanhMucHoa extends Component {
   };
 
   clickxoadanhmuc = async (id) => {
-
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
+
     let kq = await apixoadanhmuc(id);
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Xóa danh mục thành công")

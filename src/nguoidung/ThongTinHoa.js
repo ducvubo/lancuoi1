@@ -31,15 +31,18 @@ class ThongTinHoa extends Component {
     await this.thongtinhoa(id);
     await this.sanphamlienquan();
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps.match.params.id !== this.props.match.params.id) {
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.match.params.id !== this.props.match.params.id 
+      // || prevState.thongtinhoa !== this.state.thongtinhoa
+    ) {
       // Xử lý khi URL thay đổi
       let id = this.props.match.params.id;
       this.thongtinhoa(id);
       this.sanphamlienquan();
     }
   }
-  
+
   thongtinhoa = async (id) => {
     let kq = await apithongtinhoa(id);
     if (kq && kq.maCode === 0) {
@@ -77,7 +80,9 @@ class ThongTinHoa extends Component {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
-      toast.error("Phiên làm việc đã hết hạn vui lòng đăng nhập lại");
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
     }
 
     let kq = await apithemgiohang({
@@ -273,7 +278,7 @@ class ThongTinHoa extends Component {
                       </Link>
                     </div>
                     <div className="thongtin">
-                      <Link className='linkten' to={`/thongtinhoa/${item.id}`}>
+                      <Link className="linkten" to={`/thongtinhoa/${item.id}`}>
                         <span className="ten">
                           {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                         </span>
@@ -343,4 +348,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ThongTinHoa));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ThongTinHoa)
+);
