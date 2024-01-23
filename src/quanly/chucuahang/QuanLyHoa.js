@@ -453,8 +453,8 @@ class QuanLyHoa extends Component {
     let kq = await apixoahoa(id);
     if (kq.maCode === 6) {
       this.props.ngonngu === "vi"
-        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
-        : toast.error("You are not an admin, please come back!!!");
+        ? toast.error("Chỉ có admin mới được phép xóa hoa!!!")
+        : toast.error("Only admins are allowed to delete flowers!!!");
     }
     if (kq.maCode === 7) {
       this.props.ngonngu === "vi"
@@ -472,7 +472,7 @@ class QuanLyHoa extends Component {
       await this.laytatcahoa();
     } else {
       this.props.ngonngu === "vi"
-        ? toast.success("Xóa danh mục thất bại")
+        ? toast.success("Xóa hoa thất bại")
         : toast.success("Delete error flower");
     }
   };
@@ -734,14 +734,14 @@ class QuanLyHoa extends Component {
             className="btn btn-primary"
             onClick={() => this.clickthemhoa()}
           >
-            Thêm danh mục
+            Thêm hoa
           </button>
         ) : (
           <button
             className="btn btn-primary"
             onClick={() => this.clickbtnsuahoa()}
           >
-            Sửa danh mục
+            Sửa hoa
           </button>
         )}
         <div className="item4">

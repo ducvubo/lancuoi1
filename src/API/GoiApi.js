@@ -120,14 +120,13 @@ const apixoahoadonchitiet = (id) => {
   return axios.delete(`api/xoanhaphoachitiet?id=${id}`);
 };
 
-const apidonhangchuaxacnhan = () => {
-  return axios.get("/api/donhangchuaxacnhan");
+const apitatcadonhang = (trangthai) => {
+  return axios.get(`/api/donhang?trangthai=${trangthai}`);
 };
 
-const apixacnhandonhang  = (data) => {
+const apixacnhandonhang = (data) => {
   return axios.put("/api/xacnhandonhang", data);
 };
-
 
 export {
   layAllCode,
@@ -160,6 +159,6 @@ export {
   apitatcahoadonchitiet,
   apisuahoadonchitiet,
   apixoahoadonchitiet,
-  apidonhangchuaxacnhan,
-  apixacnhandonhang
+  apitatcadonhang,
+  apixacnhandonhang,
 };

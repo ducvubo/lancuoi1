@@ -36,7 +36,7 @@ class HeaderMenu extends Component {
           <NavigationTest menu={this.state.menuApp} />
         </div>
         <div className="languages">
-          <span className="welcome">Welcome</span>
+          <span className="welcome">{`Wellcome: ${this.props.thongtinnguoidung.ho} ${this.props.thongtinnguoidung.ten}`}</span>
           <span className="language-vi" onClick={() => this.doiNgonNgu("vi")}>
             VN
           </span>
@@ -56,6 +56,7 @@ class HeaderMenu extends Component {
 const mapStateToProps = (state) => {
   return {
     ngonngu: state.web.ngonngu,
+    thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
   };
 };
 

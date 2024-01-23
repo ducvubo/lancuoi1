@@ -8,6 +8,11 @@
   "quanlynhaphoachitiet":"Manage detailed flower imports",
   "quanlybanhoa": "Florist manager",
   "quanlydonchuaxacnhan": "  Order not confirmed",
+  "quanlydonchovanchuyen": "Order awaiting shipping",
+  "quanlydondanggiao":"Transacting orders",
+  "quanlydondagiaodenkhachhang":"The order has been delivered to the customer",
+  "quanlydonkhachdanhan":"Order has been delivered successfully",
+  "quanlydondahuy":"Order has been cancelled",
 
   "headersdt": "HOTLINE",
   "headertaikhoan": "Account",

@@ -41,6 +41,9 @@ class ThongTinHoa extends Component {
       this.thongtinhoa(id);
       this.sanphamlienquan();
     }
+    if(prevState.thongtinhoa !== this.state.thongtinhoa){
+      this.sanphamlienquan();
+    }
   }
 
   thongtinhoa = async (id) => {

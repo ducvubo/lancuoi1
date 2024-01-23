@@ -245,7 +245,7 @@ class DanhMucHoa extends Component {
       <div className="quanlydanhmuc">
         <div className="item1">
           <span>
-            <FormattedMessage id="quanlydanhmuchoa" />
+            <FormattedMessage id="quanlydanhmuchoa" />jdbs,fs,nd
           </span>
         </div>
         <div className="row item2">
@@ -340,6 +340,7 @@ class DanhMucHoa extends Component {
           </table>
         </div>
       </div>
+
     );
   }
 }

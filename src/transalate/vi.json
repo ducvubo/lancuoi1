@@ -8,7 +8,12 @@
   "quanlynhaphoachitiet": "Quản lý nhập hoa chi tiết",
   "quanlybanhoa": "Quản lý bán hoa",
   "quanlydonchuaxacnhan": "Đơn hàng chưa xác nhận",
-
+  "quanlydonchovanchuyen": "Đơn hàng chờ vận chuyển",
+  "quanlydondanggiao":"Đơn hàng đang giao",
+  "quanlydondagiaodenkhachhang":"Đơn hàng đã giao đến khách hàng",
+  "quanlydonkhachdanhan":"Đơn hàng đã giao thành công",
+  "quanlydondahuy":"Đơn hàng đã hủy",
+  
   "headersdt": "SỐ ĐIỆN THOẠI LIÊN HỆ",
   "headertaikhoan": "Tài khoản",
   "headerdangnhap": "Đăng nhập",

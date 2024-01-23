@@ -164,8 +164,8 @@ class DanhMucHoaChiTiet extends Component {
           ? this.state.danhmuchoaArr[0].id
           : "";
       this.setState({
-        id: "",
-        // iddanhmuchoa: iddanhmuc,
+        // id: "",
+        iddanhmuchoa: iddanhmuc,
         tendanhmucchitietVi: "",
         tendanhmucchitietEn: "",
       });

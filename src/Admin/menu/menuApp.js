@@ -46,6 +46,26 @@ export const menu = [
         name: "quanlydonchuaxacnhan",
         link: "/quanly/quanlydonhangchuaxacnhan",
       },
+      {
+        name: "quanlydonchovanchuyen",
+        link: "/quanly/quanlydonhangchovanchuyen",
+      },
+      {
+        name: "quanlydondanggiao",
+        link: "/quanly/quanlydondanggiao",
+      },
+      {
+        name: "quanlydondagiaodenkhachhang",
+        link: "/quanly/quanlydondagiaodenkhachhang",
+      },
+      {
+        name: "quanlydonkhachdanhan",
+        link: "/quanly/quanlydonkhachdanhan",
+      },
+      {
+        name: "quanlydondahuy",
+        link: "/quanly/quanlydondahuy",
+      },
     ],
   },
 ];
