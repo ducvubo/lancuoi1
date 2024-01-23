@@ -10,12 +10,20 @@ class QuanLyDonHangChuaXacNhan extends Component {
     this.state = {
       tatcadonhangchuaxacnhan: "",
       trangthaithongtindonhang: false,
-      thongtindonhang:{}
+      thongtindonhang: {},
     };
   }
 
   async componentDidMount() {
     await this.laytatcadonhangchuaxacnhan();
+  }
+
+  async componentDidUpdate(prevState) {
+    if (
+      prevState.tatcadonhangchuaxacnhan !== this.state.tatcadonhangchuaxacnhan
+    ) {
+      await this.laytatcadonhangchuaxacnhan();
+    }
   }
 
   laytatcadonhangchuaxacnhan = async () => {
@@ -31,8 +39,7 @@ class QuanLyDonHangChuaXacNhan extends Component {
   xemchitietdonhang = (thongtindonhang) => {
     this.setState({
       trangthaithongtindonhang: true,
-      thongtindonhang:thongtindonhang
-
+      thongtindonhang: thongtindonhang,
     });
   };
 
@@ -40,10 +47,10 @@ class QuanLyDonHangChuaXacNhan extends Component {
     this.setState({
       trangthaithongtindonhang: false,
     });
-
   };
   render() {
-    let { tatcadonhangchuaxacnhan, trangthaithongtindonhang,thongtindonhang } = this.state;
+    let { tatcadonhangchuaxacnhan, trangthaithongtindonhang, thongtindonhang } =
+      this.state;
     return (
       <div className="donhangchuaxacnhan">
         <div className="item1">
@@ -83,18 +90,16 @@ class QuanLyDonHangChuaXacNhan extends Component {
                             Xem chi tiết
                           </button>
                           <ThongTinDonHang
-                          thongtindonhang={thongtindonhang}
-                          trangthaithongtindonhang={trangthaithongtindonhang}
-                          huyxemchitietdonhang={this.huyxemchitietdonhang}
-                        />
+                            thongtindonhang={thongtindonhang}
+                            trangthaithongtindonhang={trangthaithongtindonhang}
+                            huyxemchitietdonhang={this.huyxemchitietdonhang}
+                          />
                         </td>
-                        
                       </tr>
                     );
                   })
                 : null}
             </tbody>
-       
           </table>
         </div>
       </div>

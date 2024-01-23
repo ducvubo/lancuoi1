@@ -39,9 +39,6 @@ export const themmoinguoidung = (data) => {
         ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
         : toast.error("You are not logged in, please log in!!!");
     }
-
-    
-
       let res = await themnguoidung(data);
       if(res.maCode === 6){
         ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")

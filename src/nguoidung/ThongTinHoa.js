@@ -33,7 +33,7 @@ class ThongTinHoa extends Component {
   }
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevProps.match.params.id !== this.props.match.params.id 
+      prevProps.match.params.id !== this.props.match.params.id
       // || prevState.thongtinhoa !== this.state.thongtinhoa
     ) {
       // Xử lý khi URL thay đổi
@@ -219,10 +219,17 @@ class ThongTinHoa extends Component {
                 </div>
 
                 <div className="nutbam">
-                  <button className="btn gh" onClick={() => this.themgiohang()}>
-                    <i className="fas fa-cart-plus"></i>
-                  </button>
-                  <button className="btn dh">Đặt hàng</button>
+                  {thongtinhoa.soluongcon > 0 ? (
+                    <>
+                      <button
+                        className="btn gh"
+                        onClick={() => this.themgiohang()}
+                      >
+                        <i className="fas fa-cart-plus"></i>
+                      </button>
+                      <button className="btn dh">Đặt hàng</button>
+                    </>
+                  ) : null}
                 </div>
               </div>
               <div className="tangkem">

@@ -47,6 +47,7 @@ class NhapThongTinDatHang extends Component {
   };
 
   dathang = async () => {
+    console.log(this.props.idgiohangchitietduocchon)
     let kq = await apidathang({
       idnguoidung: this.props.thongtinnguoidung.id,
       tennguoinhan: this.state.tennguoinhan,
@@ -57,13 +58,18 @@ class NhapThongTinDatHang extends Component {
       phuongthucvanchuyenid:this.props.phuongthucvanchuyenid,
       tongtien:this.props.tongtien,
       donhangchitiet:this.props.donhangchitiet,
-      ngonngu:this.props.ngonngu
+      ngonngu:this.props.ngonngu,
+      idgiohangchitietduocchon:this.props.idgiohangchitietduocchon
     });
+    
 
     if (kq.maCode === 0 && kq) {
       this.props.ngonngu === "vi"
         ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
         : toast.success("Order successful, waiting for staff to confirm!!!");
+        this.props.huydathang()
+        this.props.doitrangthai()
+        this.props.trangthaidathang ()
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Đặt hàng thất bại")

@@ -22,12 +22,14 @@ class GioHang extends Component {
       phuongthucvanchuyenArr: [],
       donhangchitiet: [],
 
+      idgiohangchitietduocchon: "",
       suagiohang: "",
       giachuagiam: 0,
       giagiam: 0,
       phuongthucvanchuyenid: "",
       giaship: "",
 
+      trangthaidathang: false,
       trangthai: false,
       trangthainhapthongtin: false,
     };
@@ -82,7 +84,6 @@ class GioHang extends Component {
     if (
       prevProps.ngonngu !== this.props.ngonngu ||
       prevState.giohang !== this.state.giohang ||
-      prevState.sanphamduocchon !== this.state.sanphamduocchon ||
       prevState.sanphamduocchon !== this.state.sanphamduocchon
     ) {
       this.capNhatGiaChuaGiam();
@@ -98,6 +99,16 @@ class GioHang extends Component {
         giaship: this.state.phuongthucvanchuyenArr.find(
           (item) => item.id === +this.state.phuongthucvanchuyenid
         ),
+      });
+    }
+    if (prevState.trangthainhapthongtin !== this.state.trangthainhapthongtin) {
+      await this.laygiohang();
+    }
+    if (prevState.trangthaidathang !== this.state.trangthaidathang) {
+      this.setState({
+        sanphamduocchon: [],
+        giagiam: 0,
+        giachuagiam: 0,
       });
     }
   }
@@ -224,17 +235,20 @@ class GioHang extends Component {
   dathang = () => {
     this.setState({
       trangthainhapthongtin: true,
+      trangthaidathang:false
     });
   };
 
   huydathang = () => {
     this.setState({
       trangthainhapthongtin: false,
+      trangthaidathang:false
     });
   };
 
   buildonhangchitiet = () => {
     let donhangclone = [];
+    let idgiohangchitietduocchonclone = {};
     donhangclone = this.state.sanphamduocchon.map((item, index) => {
       return {
         idhoa: item.id,
@@ -245,11 +259,25 @@ class GioHang extends Component {
             : item.Giohanghoa.soluong * item.giasaukhigiamUSD,
       };
     });
+    idgiohangchitietduocchonclone = this.state.sanphamduocchon.map(
+      (item, index) => {
+        return {
+          id: item.Giohanghoa.id,
+        };
+      }
+    );
+
     this.setState({
       donhangchitiet: donhangclone,
+      idgiohangchitietduocchon: idgiohangchitietduocchonclone,
     });
   };
 
+  trangthaidathang = () => {
+    this.setState({
+      trangthaidathang:true
+    })
+  }
   render() {
     let {
       giohang,
@@ -262,10 +290,13 @@ class GioHang extends Component {
       phuongthucvanchuyenid,
       giaship,
       donhangchitiet,
+      idgiohangchitietduocchon,
+      trangthaidathang,
     } = this.state;
     let { ngonngu } = this.props;
     let giaship123 = ngonngu === "vi" ? giaship.giaVND : giaship.giaUSD;
     let tongtien = giaship123 + giagiam;
+    console.log(idgiohangchitietduocchon);
     return (
       <>
         <HeaderTrangChu />
@@ -299,7 +330,8 @@ class GioHang extends Component {
                       return (
                         <tr key={index}>
                           <td>
-                            {item.soluongcon > 0 && item.soluongcon >= item.Giohanghoa.soluong ? (
+                            {item.soluongcon > 0 &&
+                            item.soluongcon >= item.Giohanghoa.soluong ? (
                               <input
                                 type="checkbox"
                                 onChange={() => this.chonsanpham(item)}
@@ -508,6 +540,9 @@ class GioHang extends Component {
               donhangchitiet={donhangchitiet}
               phuongthucvanchuyenid={phuongthucvanchuyenid}
               tongtien={tongtien}
+              idgiohangchitietduocchon={idgiohangchitietduocchon}
+              doitrangthai={this.doitrangthai}
+              trangthaidathang={this.trangthaidathang}
             />
           </>
         )}
