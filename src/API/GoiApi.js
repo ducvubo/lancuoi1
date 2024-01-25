@@ -128,6 +128,18 @@ const apixacnhandonhang = (data) => {
   return axios.put("/api/xacnhandonhang", data);
 };
 
+const apihuydonhang = (data) => {
+  return axios.put("/api/huydonhang", data);
+};
+
+const apixacnhandondagiaochodonvivanchuyen = (data) => {
+  return axios.put("/api/xacnhandondagiaochodonvivanchuyen", data);
+};
+
+const apixacnhandonhangdagiaochokhachhang = (data) => {
+  return axios.put("/api/xacnhandonhangdagiaochokhachhang", data);
+};
+
 export {
   layAllCode,
   themnguoidung,
@@ -161,4 +173,7 @@ export {
   apixoahoadonchitiet,
   apitatcadonhang,
   apixacnhandonhang,
+  apihuydonhang,
+  apixacnhandondagiaochodonvivanchuyen,
+  apixacnhandonhangdagiaochokhachhang
 };

@@ -105,6 +105,7 @@ class DangNhap extends Component {
     let { thongtinnguoidung123 } = this.props;
     return (
       <>
+      {/* {thongtinnguoidung123 ? thongtinnguoidung123.quyenId === "R1" || thongtinnguoidung123.quyenId === "R3" ? (<Redirect to={"/quanly/"}/>) : (<Redirect to={"/trangchu"}/>)} */}
         {(thongtinnguoidung123 && thongtinnguoidung123.quyenId === "R1") ||
         thongtinnguoidung123 === "R3" ? (
           <Redirect to={"/quanly/"} />
@@ -165,7 +166,9 @@ class DangNhap extends Component {
           </div>
         </div>
         <FooterTrangChu />
+
       </>
+        
     );
   }
 }

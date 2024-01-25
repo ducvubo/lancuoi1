@@ -56,7 +56,7 @@ class HeaderTrangChu extends Component {
               <span>
                 {thongtinnguoidung
                   ? `${thongtinnguoidung.ten} ${thongtinnguoidung.ho}`
-                  : <FormattedMessage id="headertaikhoan" />}{" "}
+                  : <FormattedMessage id="headertaikhoan"/>}{" "}
               </span>
               <ul>
                 {thongtinnguoidung ? (
@@ -81,6 +81,15 @@ class HeaderTrangChu extends Component {
                 </span>
                 <span><FormattedMessage id='headergioahang'/></span>
               </Link>
+            </div>
+            <div className="icon">
+            <Link
+                className="iconlink"
+                to={`/donhang`}
+              >
+                  <span><i className="fas fa-truck"></i></span>
+                  <span><FormattedMessage id="headerdonhang"/></span>
+                  </Link>
             </div>
             <div className="icon ngonngu">
               <span

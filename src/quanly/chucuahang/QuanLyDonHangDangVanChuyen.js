@@ -1,16 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./QuanLyDonHangDangVanChuyen.scss";
-import { apitatcadonhang, apixacnhandonhang } from "../../API/GoiApi";
+import { apitatcadonhang, apixacnhandonhangdagiaochokhachhang } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import ThongTinDonHang from "./ThongTinDonHang";
 class QuanLyDonHangDangVanChuyen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tatcadonhangchovanchuyen: "",
-      trangthaithongtindonhang: false,
-      thongtindonhang: {},
+      tatcadonhang: "",
     };
   }
 
@@ -18,38 +16,35 @@ class QuanLyDonHangDangVanChuyen extends Component {
     await this.laytatcadonhang();
   }
 
-  async componentDidUpdate(prevState) {
-    if (
-      prevState.tatcadonhangchovanchuyen !== this.state.tatcadonhangchovanchuyen
-    ) {
-      await this.laytatcadonhang();
-    }
-  }
 
   laytatcadonhang = async () => {
     let kq = await apitatcadonhang("H3");
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
-        tatcadonhangchovanchuyen: data1,
+        tatcadonhang: data1,
       });
     }
   };
 
-  //   xemchitietdonhang = (thongtindonhang) => {
-  //     this.setState({
-  //       trangthaithongtindonhang: true,
-  //       thongtindonhang: thongtindonhang,
-  //     });
-  //   };
-
-  //   huyxemchitietdonhang = () => {
-  //     this.setState({
-  //       trangthaithongtindonhang: false,
-  //     });
-  //   };
+  xacnhandonhangdagiaodenkhachhang = async (madonhang) => {
+    let kq = await apixacnhandonhangdagiaochokhachhang({
+      madonhang: madonhang,
+    });
+    if (kq && kq.maCode === 0) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Xác nhận đơn hàng thành công!!!")
+        : toast.success("Order comfirm successful!!!");
+      this.laytatcadonhang()
+    } else {
+      this.props.ngonngu === "vi"
+        ? toast.success("Hủy đơn hàng thất bại")
+        : toast.success("Order comfirm failed!!!");
+        
+    }
+  }
   render() {
-    let { tatcadonhangchovanchuyen } = this.state;
+    let { tatcadonhang } = this.state;
     return (
       <div className="donhangdangvanchuyen">
         <div className="item1">
@@ -70,8 +65,8 @@ class QuanLyDonHangDangVanChuyen extends Component {
               </tr>
             </thead>
             <tbody>
-              {tatcadonhangchovanchuyen && tatcadonhangchovanchuyen.length > 0
-                ? tatcadonhangchovanchuyen.map((item, index) => {
+              {tatcadonhang && tatcadonhang.length > 0
+                ? tatcadonhang.map((item, index) => {
                     return (
                       <tr key={index}>
                         <th scope="row">{item.madonhang}</th>
@@ -86,15 +81,10 @@ class QuanLyDonHangDangVanChuyen extends Component {
                         <td>
                           <button
                             className="btn btn-primary mr-2"
-                            onClick={() => this.xemchitietdonhang(item)}
+                            onClick={() => this.xacnhandonhangdagiaodenkhachhang(item.madonhang)}
                           >
-                            Xem chi tiết
+                           Xác nhận
                           </button>
-                          {/* <ThongTinDonHang
-                            thongtindonhang={thongtindonhang}
-                            trangthaithongtindonhang={trangthaithongtindonhang}
-                            huyxemchitietdonhang={this.huyxemchitietdonhang}
-                          /> */}
                         </td>
                       </tr>
                     );

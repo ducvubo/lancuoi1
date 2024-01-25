@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Route, Switch, Redirect, redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { Router } from "react-router";
 import { createBrowserHistory } from "history";
 import { ToastContainer } from "react-toastify";
@@ -18,7 +18,8 @@ import GioHang from "./nguoidung/GioHang";
 import HoaTheoDanhMucTheoChiTiet from "./nguoidung/HoaTheoDanhMucTheoChiTiet";
 import HoaTheoDanhMuc from "./nguoidung/HoaTheoDanhMuc";
 import TestPdf from './nguoidung/TestPdf'
-import DatHang from "./nguoidung/DatHang";
+import Chat from "./nguoidung/Chat";
+import QuanLyDonHang from "./nguoidung/QuanLyDonHang";
 const history = createBrowserHistory();
 
 class App extends Component {
@@ -41,6 +42,9 @@ class App extends Component {
             <Route path={"/quenmk"} component={QuenMK} />
             <Route path={"/doimk"} component={DoiMK} />
             <Route path={"/pdf"} component={TestPdf} />
+            <Route path={"/donhang"} component={QuanLyDonHang}/>
+            <Route path={"/chat"} exact component={Chat} />
+
             {/* <Route path={"/dathang/:id"} component={DatHang} /> */}
 
             {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
@@ -69,7 +73,7 @@ class App extends Component {
   }
 }
 
-// sdjfbbsdkf
+
 const mapStateToProps = (state) => {
   return {
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,

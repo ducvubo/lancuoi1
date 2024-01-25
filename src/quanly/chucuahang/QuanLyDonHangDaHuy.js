@@ -8,8 +8,6 @@ class QuanLyDonHangDaHuy extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tatcadonhangchovanchuyen: "",
-      trangthaithongtindonhang: false,
       thongtindonhang: {},
     };
   }
@@ -18,38 +16,19 @@ class QuanLyDonHangDaHuy extends Component {
     await this.laytatcadonhang();
   }
 
-  async componentDidUpdate(prevState) {
-    if (
-      prevState.tatcadonhangchovanchuyen !== this.state.tatcadonhangchovanchuyen
-    ) {
-      await this.laytatcadonhang();
-    }
-  }
 
   laytatcadonhang = async () => {
     let kq = await apitatcadonhang("H6");
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
-        tatcadonhangchovanchuyen: data1,
+        tatcadonhang: data1,
       });
     }
   };
 
-  //   xemchitietdonhang = (thongtindonhang) => {
-  //     this.setState({
-  //       trangthaithongtindonhang: true,
-  //       thongtindonhang: thongtindonhang,
-  //     });
-  //   };
-
-  //   huyxemchitietdonhang = () => {
-  //     this.setState({
-  //       trangthaithongtindonhang: false,
-  //     });
-  //   };
   render() {
-    let { tatcadonhangchovanchuyen } = this.state;
+    let { tatcadonhang } = this.state;
     return (
       <div className="donhangdahuy">
         <div className="item1">
@@ -61,41 +40,27 @@ class QuanLyDonHangDaHuy extends Component {
               <tr className="item31">
                 <th scope="col">Mã đơn hàng</th>
                 <th scope="col">Tên người nhận</th>
-                <th scope="col">Email</th>
+                <th scope="col">Phản hồi khách hàng</th>
                 <th scope="col">Số điện thoại</th>
                 <th scope="col">Địa chỉ</th>
                 <th scope="col">Ghi chú</th>
                 <th scope="col">Tổng tiền</th>
-                <th>Hành động</th>
               </tr>
             </thead>
             <tbody>
-              {tatcadonhangchovanchuyen && tatcadonhangchovanchuyen.length > 0
-                ? tatcadonhangchovanchuyen.map((item, index) => {
+              {tatcadonhang && tatcadonhang.length > 0
+                ? tatcadonhang.map((item, index) => {
                     return (
                       <tr key={index}>
                         <th scope="row">{item.madonhang}</th>
                         <td>{item.tennguoinhan}</td>
                         <td>{item.email}</td>
-                        <td>{item.sodienthoai}</td>
+                        <td>{item.phanhoicuahang}</td>
                         <td>{item.diachi}</td>
                         <td>{item.ghichu}</td>
                         <td>{`${item.tongtien} ${
                           item.ngonngu === "vi" ? "đ" : "USD"
                         }`}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary mr-2"
-                            onClick={() => this.xemchitietdonhang(item)}
-                          >
-                            Xem chi tiết
-                          </button>
-                          {/* <ThongTinDonHang
-                            thongtindonhang={thongtindonhang}
-                            trangthaithongtindonhang={trangthaithongtindonhang}
-                            huyxemchitietdonhang={this.huyxemchitietdonhang}
-                          /> */}
-                        </td>
                       </tr>
                     );
                   })

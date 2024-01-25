@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./ThongTinDonHang.scss";
 import { Modal } from "reactstrap";
-import { apixacnhandonhang } from "../../API/GoiApi";
+import { apixacnhandonhang, apihuydonhang } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import _ from "lodash";
 import jsPDF from "jspdf";
@@ -40,6 +40,22 @@ class ThongTinDonHang extends Component {
       ...copyState,
     });
   };
+
+  ktdanhapthongtinchua = () => {
+    let kt = true;
+    let nhapdaydu = ["phanhoicuahang"];
+    for (let i = 0; i < nhapdaydu.length; i++) {
+      if (!this.state[nhapdaydu[i]]) {
+        kt = false;
+        this.props.ngonngu === "vi"
+          ? alert("Vui lòng nhập đầy đủ thông tin")
+          : alert("Please enter complete information");
+        break;
+      }
+    }
+    return kt;
+  };
+
 
   buildataxacnhandonhang = () => {
     let dataxacnhandonhang = {};
@@ -346,11 +362,33 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
         ? this.hoadontiengviet()
         : this.hoadontienganh();
       this.props.huyxemchitietdonhang();
-      
+      this.props.laytatcadonhang ()
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Xác nhận đơn hàng thất bại")
         : toast.success("Order confirmation successful!!!");
+    }
+  };
+
+  huydonhang = async () => {
+    let kt = this.ktdanhapthongtinchua();
+    if (kt === false) return;
+     
+    let kq = await apihuydonhang({
+      madonhang: this.props.thongtindonhang.madonhang,
+      phanhoicuahang: this.state.phanhoicuahang,
+    });
+    if (kq && kq.maCode === 0) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Hủy đơn hàng thành công!!!")
+        : toast.success("Order cancel successful!!!");
+      this.props.huyxemchitietdonhang();
+      this.props.laytatcadonhang()
+    } else {
+      this.props.ngonngu === "vi"
+        ? toast.success("Hủy đơn hàng thất bại")
+        : toast.success("Order cancel failed!!!");
+        
     }
   };
 
@@ -454,7 +492,9 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
               </div>
             </div>
             <div className="item4 mb-3">
-              <button className="btn nutbam ">Hủy đơn hàng</button>
+              <button className="btn nutbam" onClick={() => this.huydonhang()}>
+                Hủy đơn hàng
+              </button>
               <button
                 className="btn nutbam ml-4"
                 onClick={() => this.xacnhandonhang()}

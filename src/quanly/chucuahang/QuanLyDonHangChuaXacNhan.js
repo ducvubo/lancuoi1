@@ -18,13 +18,11 @@ class QuanLyDonHangChuaXacNhan extends Component {
     await this.laytatcadonhang();
   }
 
-  async componentDidUpdate(prevState) {
-    if (
-      prevState.tatcadonhangchuaxacnhan !== this.state.tatcadonhangchuaxacnhan
-    ) {
-      await this.laytatcadonhang();
-    }
-  }
+  // async componentDidUpdate(prevState) {
+  //   if (prevState.trangthaidonhang !== this.state.trangthaidonhang) {
+  //     await this.laytatcadonhang();
+  //   }
+  // }
 
   laytatcadonhang = async () => {
     let kq = await apitatcadonhang("H1");
@@ -95,6 +93,7 @@ class QuanLyDonHangChuaXacNhan extends Component {
                             thongtindonhang={thongtindonhang}
                             trangthaithongtindonhang={trangthaithongtindonhang}
                             huyxemchitietdonhang={this.huyxemchitietdonhang}
+                            laytatcadonhang = {this.laytatcadonhang}
                           />
                         </td>
                       </tr>

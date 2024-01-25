@@ -1,0 +1,40 @@
+.chat {
+    width  : 100%;
+    display: flex;
+    height : 356px;
+
+    .trai {
+        width: 30%;
+
+        .selected {
+            background-color: #f4e9e9;
+            border-left     : 4px solid blue;
+        }
+
+        .nguoichat {
+            cursor    : pointer;
+            height    : 38px;
+            text-align: center;
+            font-size : 22px;
+        }
+    }
+
+    .phai {
+        display         : flex;
+        width           : 70%;
+        background-color: #f4e9e9;
+
+        .input {
+            margin-top: auto;
+        }
+
+        .button {
+            height    : 39px;
+            margin-top: auto;
+
+        }
+        .gui{
+            background-color: burlywood;
+        }
+    }
+}

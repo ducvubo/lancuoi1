@@ -18,13 +18,13 @@ class QuanLyDonHangGiaoThanhCong extends Component {
     await this.laytatcadonhang();
   }
 
-  async componentDidUpdate(prevState) {
-    if (
-      prevState.tatcadonhangchovanchuyen !== this.state.tatcadonhangchovanchuyen
-    ) {
-      await this.laytatcadonhang();
-    }
-  }
+  // async componentDidUpdate(prevState) {
+  //   if (
+  //     prevState.tatcadonhangchovanchuyen !== this.state.tatcadonhangchovanchuyen
+  //   ) {
+  //     await this.laytatcadonhang();
+  //   }
+  // }
 
   laytatcadonhang = async () => {
     let kq = await apitatcadonhang("H5");
