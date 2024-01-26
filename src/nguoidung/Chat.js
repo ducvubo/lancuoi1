@@ -7,91 +7,89 @@ class Chat extends Component {
     super(props);
     this.state = {
       ws: null,
-      onlinePeople: {},
-      selectedUserId: null,
-      newMessageText: "",
-      messages: [],
+      nguoionline: {},
+      nguoidangnhan: null,
+      tinnhanmoi: "",
+      tinnhanArr: [],
     };
   }
 
   componentDidMount() {
-    this.connectToWs();
+    this.ketnoiws();
   }
 
-  connectToWs = () => {
+  ketnoiws = () => {
     const ws = new WebSocket("ws://localhost:8080");
     this.setState({
       ws: ws,
     });
-    ws.addEventListener("message", this.handleMessage);
+    ws.addEventListener("message", this.xuLyDataTuServerTraVe);
     ws.addEventListener("close", () => {
       setTimeout(() => {
         console.log("Ket noi lai");
-        this.connectToWs();
+        this.ketnoiws();
       }, 3000);
     });
+    console.log(ws)
   };
 
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   if(prevState.messages !== this.state.messages){
-  //     this.state.ws.addEventListener("message", this.handleMessage);
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState, snapshot) {}
 
-  handleMessage = (ev) => {
-    const messageData = JSON.parse(ev.data);
-    if ("online" in messageData) {
-      this.showOnlinePeople(messageData.online);
-    } else if ("text" in messageData) {
+  xuLyDataTuServerTraVe = (ev) => {
+    const tinnhandata = JSON.parse(ev.data);
+    console.log(ev)
+    if ("online" in tinnhandata) {
+      this.nguoiDangOnline(tinnhandata.online);
+    } else if ("noidung" in tinnhandata) {
       this.setState((prevState) => ({
-        messages: [
-          ...prevState.messages,
+        tinnhanArr: [
+          ...prevState.tinnhanArr,
           {
-            ...messageData,
+            ...tinnhandata,
           },
         ],
       }));
-      console.log("check tra ve: ", this.state.messages);
+      console.log("check tra ve: ", this.state.tinnhanArr);
     }
   };
 
-  showOnlinePeople = (peopleArr) => {
-    const people = {};
-    peopleArr.forEach(({ userId, userName }) => {
-      people[userId] = userName;
+  nguoiDangOnline = (nguoidungArr) => {
+    const nguoi = {};
+    nguoidungArr.forEach(({ id, ten }) => {
+      nguoi[id] = ten;
     });
     this.setState({
-      onlinePeople: people,
+      nguoionline: nguoi,
     });
   };
 
-  selectContact(userId) {
+  chonnguoichat(id) {
     this.setState({
-      selectedUserId: userId,
+      nguoidangnhan: id,
     });
   }
 
   nhapTinNhan = (event) => {
     this.setState({
-      newMessageText: event.target.value,
+      tinnhanmoi: event.target.value,
     });
   };
 
-  sendMessage = () => {
+  guitinnhan = () => {
     this.state.ws.send(
       JSON.stringify({
-        recipient: this.state.selectedUserId,
-        text: this.state.newMessageText,
+        nguoinhan: this.state.nguoidangnhan,
+        noidung: this.state.tinnhanmoi,
       })
     );
     this.setState((prevState) => ({
-      newMessageText: "",
-      messages: [
-        ...prevState.messages,
+      tinnhanmoi: "",
+      tinnhanArr: [
+        ...prevState.tinnhanArr,
         {
-          text: this.state.newMessageText,
-          sender: this.props.thongtinnguoidung.id,
-          recipient: this.state.selectedUserId,
+          noidung: this.state.tinnhanmoi,
+          nguoigui: this.props.thongtinnguoidung.id,
+          nguoinhan: this.state.nguoidangnhan,
           id: Date.now(),
         },
       ],
@@ -99,49 +97,37 @@ class Chat extends Component {
   };
 
   render() {
-    let { onlinePeople, selectedUserId, newMessageText, messages } = this.state;
-    const onlinePeopleExclOurUser = { ...this.state.onlinePeople };
-    delete onlinePeopleExclOurUser[this.props.thongtinnguoidung.id];
-    const messageWithouDupes = uniqBy(messages, "id");
-    console.log(messageWithouDupes);
-    console.log(selectedUserId)
+    let { nguoionline, nguoidangnhan, tinnhanmoi, tinnhanArr } = this.state;
+    const loaibonguoidungbitrung = { ...this.state.nguoionline };
+    delete loaibonguoidungbitrung[this.props.thongtinnguoidung.id];
+    console.log(nguoionline);
+    console.log(nguoidangnhan);
     return (
       <div className="chat">
         <div className="trai">
-          {Object.keys(onlinePeopleExclOurUser).map((item, index) => (
+          {Object.keys(loaibonguoidungbitrung).map((item, index) => (
             <div
               key={index}
-              onClick={() => this.selectContact(item)}
+              onClick={() => this.chonnguoichat(item)}
               className={
-                "nguoichat" + (item === selectedUserId ? " selected" : "")
+                "nguoichat" + (item === nguoidangnhan ? " selected" : "")
               }
             >
-              <span>{onlinePeople[item]}</span>
+              <span>{nguoionline[item]}</span>
             </div>
           ))}
         </div>
         <div className="phai">
-          {/* {!selectedUserId ? (
-            <div>
-              {messages.map((item) => (
-                <div>
-                  <span>sender:{item.sender}</span>
-                  <span> my id:{this.props.thongtinnguoidung.id}</span>
-                  {item.text}
-                </div>
-              ))}
-            </div>
-          ) : null} */}
-          {!selectedUserId ? (
+          {!nguoidangnhan ? (
             <div>Vui lòng chọn người chat</div>
           ) : (
             <>
               <div>
-                {messages.map((item) => (
-                  <div
+                {tinnhanArr.map((item,index) => (
+                  <div key={index}
                     className={
                       "" +
-                      (item.sender === this.props.thongtinnguoidung.id
+                      (item.nguoigui === this.props.thongtinnguoidung.id
                         ? "abc"
                         : "")
                     }
@@ -149,31 +135,32 @@ class Chat extends Component {
                     <div
                       className={
                         "" +
-                        (item.sender === this.props.thongtinnguoidung.id
+                        (item.nguoigui === this.props.thongtinnguoidung.id
                           ? " gui"
                           : "")
                       }
                     >
-                      {/* <span>sender:{item.sender}</span>
+                      {/* <span>nguoigui:{item.nguoigui}</span>
                       <br />
                       <span> my id:{this.props.thongtinnguoidung.id}</span>
                       <br /> */}
-                      {+selectedUserId === +item.sender || +selectedUserId === +item.recipient
-                        ? item.text
+                      {+nguoidangnhan === +item.nguoigui ||
+                      +nguoidangnhan === +item.nguoinhan
+                        ? item.noidung
                         : null}
-                      {/* {item.text} */}
+                      {/* {item.noidung} */}
                     </div>
                   </div>
                 ))}
               </div>
               <input
-                value={newMessageText}
+                value={tinnhanmoi}
                 className="form-control input mr-2"
                 onChange={(event) => this.nhapTinNhan(event)}
               />
               <button
                 className="btn btn-primary button"
-                onClick={() => this.sendMessage()}
+                onClick={() => this.guitinnhan()}
               >
                 Gửi
               </button>
