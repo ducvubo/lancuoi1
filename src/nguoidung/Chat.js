@@ -15,7 +15,7 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    this.connectToWs()
+    this.connectToWs();
   }
 
   connectToWs = () => {
@@ -24,23 +24,19 @@ class Chat extends Component {
       ws: ws,
     });
     ws.addEventListener("message", this.handleMessage);
-    ws.addEventListener('close', () => {
+    ws.addEventListener("close", () => {
       setTimeout(() => {
-        console.log('Ket noi lai');
-        this.connectToWs()
-      },3000)
+        console.log("Ket noi lai");
+        this.connectToWs();
+      }, 3000);
     });
   };
 
-  showOnlinePeople = (peopleArr) => {
-    const people = {};
-    peopleArr.forEach(({ userId, userName }) => {
-      people[userId] = userName;
-    });
-    this.setState({
-      onlinePeople: people,
-    });
-  };
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if(prevState.messages !== this.state.messages){
+  //     this.state.ws.addEventListener("message", this.handleMessage);
+  //   }
+  // }
 
   handleMessage = (ev) => {
     const messageData = JSON.parse(ev.data);
@@ -57,6 +53,16 @@ class Chat extends Component {
       }));
       console.log("check tra ve: ", this.state.messages);
     }
+  };
+
+  showOnlinePeople = (peopleArr) => {
+    const people = {};
+    peopleArr.forEach(({ userId, userName }) => {
+      people[userId] = userName;
+    });
+    this.setState({
+      onlinePeople: people,
+    });
   };
 
   selectContact(userId) {
@@ -98,6 +104,7 @@ class Chat extends Component {
     delete onlinePeopleExclOurUser[this.props.thongtinnguoidung.id];
     const messageWithouDupes = uniqBy(messages, "id");
     console.log(messageWithouDupes);
+    console.log(selectedUserId)
     return (
       <div className="chat">
         <div className="trai">
@@ -130,7 +137,7 @@ class Chat extends Component {
           ) : (
             <>
               <div>
-                {messageWithouDupes.map((item) => (
+                {messages.map((item) => (
                   <div
                     className={
                       "" +
@@ -147,11 +154,14 @@ class Chat extends Component {
                           : "")
                       }
                     >
-                      <span>sender:{item.sender}</span>
+                      {/* <span>sender:{item.sender}</span>
                       <br />
                       <span> my id:{this.props.thongtinnguoidung.id}</span>
-                      <br />
-                      {item.text}
+                      <br /> */}
+                      {+selectedUserId === +item.sender || +selectedUserId === +item.recipient
+                        ? item.text
+                        : null}
+                      {/* {item.text} */}
                     </div>
                   </div>
                 ))}
