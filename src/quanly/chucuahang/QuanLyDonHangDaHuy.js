@@ -9,6 +9,7 @@ class QuanLyDonHangDaHuy extends Component {
     super(props);
     this.state = {
       thongtindonhang: {},
+      tatcadonhang:''
     };
   }
 
@@ -35,8 +36,8 @@ class QuanLyDonHangDaHuy extends Component {
           <span>Quản lý đơn hàng đã hủy</span>
         </div>
         <div className="item3">
-          <table className="table">
-            <thead className="thead-dark">
+        <table className="table table-bordered ">
+              <thead>
               <tr className="item31">
                 <th scope="col">Mã đơn hàng</th>
                 <th scope="col">Tên người nhận</th>

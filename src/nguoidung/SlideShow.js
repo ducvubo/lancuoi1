@@ -7,17 +7,31 @@ import slide2 from "../image/slide2.webp";
 import slide3 from "../image/slide3.webp";
 import slide4 from "../image/slide4.webp";
 import slide5 from "../image/slide5.webp";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 class SlideShow extends Component {
+  // constructor() {
+  //   this.state = {
+  //     autoplay: false,
+  //   };
+  // }
+  
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       autoplay: true,
+  //     });
+  //   }, 2000);
+  // }
   render() {
     let settings = {
-      dots: true,
+      // dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
+      autoplay: true, // Bật tự động chuyển đổi
+      autoplaySpeed: 3000,
 
     };
     return (
@@ -25,7 +39,7 @@ class SlideShow extends Component {
         <div className="item51">
           <div className="item511">
             <div className="item5111">
-              <Slider>
+              <Slider {...settings}>
                 <div className="anh">
                   <img
                     src={slide1}

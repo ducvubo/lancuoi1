@@ -20,6 +20,8 @@ import HoaTheoDanhMuc from "./nguoidung/HoaTheoDanhMuc";
 import TestPdf from './nguoidung/TestPdf'
 import Chat from "./nguoidung/Chat";
 import QuanLyDonHang from "./nguoidung/QuanLyDonHang";
+import ChatKhachHang from "./nguoidung/ChatKhachHang";
+import ChatCuaHang from "./quanly/chucuahang/ChatCuaHang";
 const history = createBrowserHistory();
 
 class App extends Component {
@@ -42,11 +44,7 @@ class App extends Component {
             <Route path={"/quenmk"} component={QuenMK} />
             <Route path={"/doimk"} component={DoiMK} />
             <Route path={"/pdf"} component={TestPdf} />
-            <Route path={"/donhang"} component={QuanLyDonHang}/>
-            <Route path={"/chat"} exact component={Chat} />
-
-            {/* <Route path={"/dathang/:id"} component={DatHang} /> */}
-
+            <Route path={"/donhang/:id"} component={QuanLyDonHang}/>
             {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
             thongtinnguoidung.quyenId === "R3" ? (
               <Redirect to={"/quanly/"} />

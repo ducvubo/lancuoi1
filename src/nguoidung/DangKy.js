@@ -95,6 +95,7 @@ class DangKy extends Component {
       gioitinh: this.state.gioitinh,
       diachinha: this.state.diachinha,
       sodienthoai: this.state.sodienthoai,
+      ngonngu: this.props.ngonngu
     });
     if (data) {
       this.setState({

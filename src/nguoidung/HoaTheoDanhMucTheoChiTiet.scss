@@ -1,28 +1,27 @@
 .hoatheodanhmuchoachitiet {
-    display          : flex;
-    flex-wrap        : wrap;
-    display          : flex;
-    flex-wrap        : wrap;
-    padding-left     : 169px;
-    padding-right    : 124px;
-
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 135px;
+    gap: 45px;
+    margin-right: 135px;
 
     .hoa {
-        flex       : 1 0 calc(25%);
-        padding-top: 21px;
+        margin-top: 25px;
 
         .anhhoa {
             position: relative;
-text-align: center;
+
             .giamgia {
                 position        : absolute;
                 color           : white;
+                position        : absolute;
                 width           : 50px;
                 height          : 50px;
                 border          : 1px solid red;
                 border-radius   : 50%;
-                left            : 223px;
-                top             : 9px;
+                left            : 205px;
+                top             : 11px;
                 background-color: red;
                 font-weight     : 500;
                 display         : inline-block;
@@ -37,7 +36,7 @@ text-align: center;
             flex-direction: column;
             align-items   : center;
             gap           : 10px;
-            margin-right  : 15px;
+            margin-right  : 8px;
 
             .ten {
                 font-weight: 700;
@@ -70,12 +69,15 @@ text-align: center;
                     display        : flex;
                     font-weight    : 500;
                     justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                    margin-top: 3px;
+                    align-items    : center;
+                    text-align     : center;
+                    margin-top     : 3px;
                 }
             }
 
         }
+
     }
+
+
 }

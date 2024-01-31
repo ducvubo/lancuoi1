@@ -319,7 +319,7 @@ class QuanLyHoa extends Component {
   clicksuahoa = (hoa) => {
     let anhnoibatbase64 = "";
 
-    if (hoa.anhnoibat || hoa.anh2 || hoa.anh3 || hoa.anh4) {
+    if (hoa.anhnoibat ) {
       anhnoibatbase64 = new Buffer(hoa.anhnoibat, "base64").toString("binary");
     }
     this.setState({
@@ -500,9 +500,9 @@ class QuanLyHoa extends Component {
       tatcahoa,
       ghichuVi,
       ghichuEn,
+      anhnoibat
     } = this.state;
     let { ngonngu } = this.props;
-    console.log(this.state);
     return (
       <div className="quanlyhoa">
         <div className="item1">
@@ -729,21 +729,7 @@ class QuanLyHoa extends Component {
             />
           </div>
         </div>
-        {trangthainut === false ? (
-          <button
-            className="btn btn-primary"
-            onClick={() => this.clickthemhoa()}
-          >
-            Thêm hoa
-          </button>
-        ) : (
-          <button
-            className="btn btn-primary"
-            onClick={() => this.clickbtnsuahoa()}
-          >
-            Sửa hoa
-          </button>
-        )}
+       
         <div className="item4">
           <br />
           <label>Mô tả sản phẩm tiếng Việt</label> <br />
@@ -763,25 +749,25 @@ class QuanLyHoa extends Component {
           />
         </div>
 
-        {/* {trangthainut === false ? (
+        {trangthainut === false ? (
           <button
             className="btn btn-primary"
             onClick={() => this.clickthemhoa()}
           >
-            Thêm danh mục
+            Thêm hoa
           </button>
         ) : (
           <button
             className="btn btn-primary"
             onClick={() => this.clickbtnsuahoa()}
           >
-            Sửa danh mục
+            Sửa hoa
           </button>
-        )} */}
+        )}
 
         <div className="item3">
-          <table className="table">
-            <thead className="thead-dark">
+        <table className="table table-bordered ">
+              <thead>
               <tr className="item31">
                 <th scope="col">Danh mục chi tiết</th>
                 <th scope="col">Tên hoa tiếng Việt</th>

@@ -6,9 +6,25 @@ import googleplay from "../image/googleplay.webp";
 import bocongthuong from "../image/bocongthuong.webp";
 import logo from "../image/logo.png";
 import "./FooterTrangChu.scss";
-
+import ChatKhachHang from "./ChatKhachHang";
+import ms from "../image/ms.png";
 class FooterTrangChu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      trangthai: false,
+    };
+  }
+  battatchat = () => {
+    
+    this.setState({
+      trangthai: !this.state.trangthai,
+    });
+  };
   render() {
+    let { thongtinnguoidung,ktdangnhap } = this.props;
+    console.log(ktdangnhap)
+    let { trangthai } = this.state;
     return (
       <div className="footertrangchu">
         <div className="item13">
@@ -89,6 +105,17 @@ class FooterTrangChu extends Component {
             <span>Mã số thuế: 0313630426</span>
           </div>
         </div>
+        <div className="item140">
+        {trangthai === true && ktdangnhap === true ? (
+          <div className="manhinhchat">
+            <ChatKhachHang />
+          </div>
+        ) : null}
+          <div className="chat">
+            <img src={ms} onClick={() => this.battatchat()} />
+          </div>
+          
+        </div>
         <div className="item14">
           <span>
             <i className="fas fa-phone"></i>
@@ -108,7 +135,10 @@ class FooterTrangChu extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
+    ktdangnhap:state.thongtinnguoidung.ktdangnhap
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

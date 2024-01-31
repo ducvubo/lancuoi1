@@ -2,7 +2,11 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./ThongTinDonHang.scss";
 import { Modal } from "reactstrap";
-import { apixacnhandonhang, apihuydonhang } from "../../API/GoiApi";
+import {
+  apixacnhandonhang,
+  apihuydonhang,
+  apixacnhandaxulyyeucauhoanhanghoantien,
+} from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import _ from "lodash";
 import jsPDF from "jspdf";
@@ -16,7 +20,6 @@ class ThongTinDonHang extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phanhoicuahang: "",
       dataxacnhandonhang: "",
     };
   }
@@ -55,7 +58,6 @@ class ThongTinDonHang extends Component {
     }
     return kt;
   };
-
 
   buildataxacnhandonhang = () => {
     let dataxacnhandonhang = {};
@@ -362,7 +364,7 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
         ? this.hoadontiengviet()
         : this.hoadontienganh();
       this.props.huyxemchitietdonhang();
-      this.props.laytatcadonhang ()
+      this.props.laytatcadonhang();
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Xác nhận đơn hàng thất bại")
@@ -373,7 +375,7 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
   huydonhang = async () => {
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
-     
+
     let kq = await apihuydonhang({
       madonhang: this.props.thongtindonhang.madonhang,
       phanhoicuahang: this.state.phanhoicuahang,
@@ -383,12 +385,29 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
         ? toast.success("Hủy đơn hàng thành công!!!")
         : toast.success("Order cancel successful!!!");
       this.props.huyxemchitietdonhang();
-      this.props.laytatcadonhang()
+      this.props.laytatcadonhang();
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Hủy đơn hàng thất bại")
         : toast.success("Order cancel failed!!!");
-        
+    }
+  };
+
+  daxuly = async () => {
+    let kq = await apixacnhandaxulyyeucauhoanhanghoantien({
+      madonhang: this.props.thongtindonhang.madonhang,
+      phanhoicuahang: this.state.phanhoicuahang,
+    });
+    if (kq && kq.maCode === 0) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Đã xử lý đơn hàng thành công!!!")
+        : toast.success("Order processed successfully!!!");
+      this.props.huyxemchitietdonhang();
+      this.props.laytatcadonhang();
+    } else {
+      this.props.ngonngu === "vi"
+        ? toast.success("Xử lý đơn hàng thất bại")
+        : toast.success("Order processed failed!!!");
     }
   };
 
@@ -399,7 +418,7 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
       huyxemchitietdonhang,
       ngonngu,
     } = this.props;
-    let { dataxacnhandonhang, phanhoicuahang } = this.state;
+    let { phanhoicuahang } = this.state;
     return (
       <div className="thongtindonhang">
         <Modal
@@ -433,6 +452,11 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
               <span>
                 <b>Ghi chú:</b> {thongtindonhang.ghichu}
               </span>
+              {thongtindonhang.trangthaidonhangid === "H7" ? (
+                <span>
+                  <b>Lý do:</b> {thongtindonhang.phanhoikhachhang}
+                </span>
+              ) : null}
               <span>
                 <b>Tổng tiền:</b>{" "}
                 {`${thongtindonhang.tongtien} ${
@@ -478,23 +502,36 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
                 </tbody>
               </table>
             </div>
-            <div className="row">
-              <div className="form-group col-12 pl-5 pr-5">
-                <label>Ghi chú</label>
-                <textarea
-                  className="form-control"
-                  type="text"
-                  onChange={(event) => {
-                    this.onChangeNhap(event, "phanhoicuahang");
-                  }}
-                  value={phanhoicuahang}
-                ></textarea>
+            {thongtindonhang.trangthaidonhangid === "H1" ? (
+              <div className="row">
+                <div className="form-group col-12 pl-5 pr-5">
+                  <label>Ghi chú</label>
+                  <textarea
+                    className="form-control"
+                    type="text"
+                    onChange={(event) => {
+                      this.onChangeNhap(event, "phanhoicuahang");
+                    }}
+                    value={phanhoicuahang}
+                  ></textarea>
+                </div>
               </div>
-            </div>
+            ) : null}
+
             <div className="item4 mb-3">
-              <button className="btn nutbam" onClick={() => this.huydonhang()}>
-                Hủy đơn hàng
-              </button>
+              {thongtindonhang.trangthaidonhangid === "H1" ? (
+                <button
+                  className="btn nutbam"
+                  onClick={() => this.huydonhang()}
+                >
+                  Hủy đơn hàng
+                </button>
+              ) : (
+                <button className="btn nutbam" onClick={() => this.daxuly()}>
+                  Đã xử lý
+                </button>
+              )}
+
               <button
                 className="btn nutbam ml-4"
                 onClick={() => this.xacnhandonhang()}

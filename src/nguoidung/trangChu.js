@@ -136,8 +136,9 @@ class trangChu extends Component {
       lanhodiep,
     } = this.state;
     return (
+      <>
       <div className="trangchu">
-        <HeaderTrangChu />
+      <HeaderTrangChu />
         <SlideShow />
         <div className="item6">
           <span>
@@ -847,8 +848,9 @@ class trangChu extends Component {
             </span>
           </div>
         </div>
-        <FooterTrangChu />
+      <FooterTrangChu />
       </div>
+      </>
     );
   }
 }

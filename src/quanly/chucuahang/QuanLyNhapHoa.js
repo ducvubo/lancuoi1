@@ -464,8 +464,8 @@ class QuanLyNhapHoa extends Component {
           </button>
         )}
         <div className="item3">
-          <table className="table">
-            <thead className="thead-dark">
+        <table className="table table-bordered ">
+              <thead>
               <tr className="item31">
                 <th scope="col">Mã hóa đơn</th>
                 <th scope="col">Tên nhân viên</th>

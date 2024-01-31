@@ -140,6 +140,22 @@ const apixacnhandonhangdagiaochokhachhang = (data) => {
   return axios.put("/api/xacnhandonhangdagiaochokhachhang", data);
 };
 
+const apixacnhandaxulyyeucauhoanhanghoantien = (data) => {
+  return axios.put("/api/xacnhandaxulyyeucauhoanhanghoantien", data);
+};
+
+const apitatcacuoctrochuyen = () => {
+  return axios.get("/api/tatcacuoctrochuyen");
+};
+
+const apitatcakhachhang = () => {
+  return axios.get("/api/tatcakhachhang");
+};
+
+const apidoanchatkhachang = (idchat) => {
+  return axios.get(`/api/doanchatkhachhang?idchat=${idchat}`);
+};
+
 export {
   layAllCode,
   themnguoidung,
@@ -175,5 +191,8 @@ export {
   apixacnhandonhang,
   apihuydonhang,
   apixacnhandondagiaochodonvivanchuyen,
-  apixacnhandonhangdagiaochokhachhang
+  apixacnhandonhangdagiaochokhachhang,
+  apixacnhandaxulyyeucauhoanhanghoantien,
+  apitatcacuoctrochuyen,apitatcakhachhang,
+  apidoanchatkhachang
 };

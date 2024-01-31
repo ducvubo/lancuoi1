@@ -11,6 +11,7 @@ class Chat extends Component {
       nguoidangnhan: null,
       tinnhanmoi: "",
       tinnhanArr: [],
+      tennguoinhan: "",
     };
   }
 
@@ -30,14 +31,12 @@ class Chat extends Component {
         this.ketnoiws();
       }, 3000);
     });
-    console.log(ws)
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {}
 
   xuLyDataTuServerTraVe = (ev) => {
     const tinnhandata = JSON.parse(ev.data);
-    console.log(ev)
     if ("online" in tinnhandata) {
       this.nguoiDangOnline(tinnhandata.online);
     } else if ("noidung" in tinnhandata) {
@@ -55,17 +54,20 @@ class Chat extends Component {
 
   nguoiDangOnline = (nguoidungArr) => {
     const nguoi = {};
-    nguoidungArr.forEach(({ id, ten }) => {
-      nguoi[id] = ten;
+    nguoidungArr.forEach(({ idchat, ten }) => {
+      nguoi[idchat] = ten;
     });
     this.setState({
       nguoionline: nguoi,
     });
   };
 
-  chonnguoichat(id) {
+  chonnguoichat(idchat) {
+    let tennguoinhan = this.state.nguoionline[idchat];
+    console.log(tennguoinhan);
     this.setState({
-      nguoidangnhan: id,
+      nguoidangnhan: idchat,
+      tennguoinhan: tennguoinhan,
     });
   }
 
@@ -78,8 +80,11 @@ class Chat extends Component {
   guitinnhan = () => {
     this.state.ws.send(
       JSON.stringify({
+        tennguoinhan:this.state.tennguoinhan,
+        tennguoigui: this.props.thongtinnguoidung.ten,
         nguoinhan: this.state.nguoidangnhan,
         noidung: this.state.tinnhanmoi,
+        thoigian: Date.now(),
       })
     );
     this.setState((prevState) => ({
@@ -88,9 +93,9 @@ class Chat extends Component {
         ...prevState.tinnhanArr,
         {
           noidung: this.state.tinnhanmoi,
-          nguoigui: this.props.thongtinnguoidung.id,
+          nguoigui: this.props.thongtinnguoidung.idchat,
           nguoinhan: this.state.nguoidangnhan,
-          id: Date.now(),
+          thoigian: Date.now(),
         },
       ],
     }));
@@ -99,11 +104,10 @@ class Chat extends Component {
   render() {
     let { nguoionline, nguoidangnhan, tinnhanmoi, tinnhanArr } = this.state;
     const loaibonguoidungbitrung = { ...this.state.nguoionline };
-    delete loaibonguoidungbitrung[this.props.thongtinnguoidung.id];
-    console.log(nguoionline);
-    console.log(nguoidangnhan);
+    console.log(loaibonguoidungbitrung);
+    delete loaibonguoidungbitrung[this.props.thongtinnguoidung.idchat];
     return (
-      <div className="chat">
+      <div className="chat123">
         <div className="trai">
           {Object.keys(loaibonguoidungbitrung).map((item, index) => (
             <div
@@ -123,11 +127,12 @@ class Chat extends Component {
           ) : (
             <>
               <div>
-                {tinnhanArr.map((item,index) => (
-                  <div key={index}
+                {tinnhanArr.map((item, index) => (
+                  <div
+                    key={index}
                     className={
                       "" +
-                      (item.nguoigui === this.props.thongtinnguoidung.id
+                      (item.nguoigui === this.props.thongtinnguoidung.idchat
                         ? "abc"
                         : "")
                     }
@@ -135,18 +140,18 @@ class Chat extends Component {
                     <div
                       className={
                         "" +
-                        (item.nguoigui === this.props.thongtinnguoidung.id
+                        (item.nguoigui === this.props.thongtinnguoidung.idchat
                           ? " gui"
                           : "")
                       }
                     >
                       {/* <span>nguoigui:{item.nguoigui}</span>
                       <br />
-                      <span> my id:{this.props.thongtinnguoidung.id}</span>
-                      <br /> */}
-                      {+nguoidangnhan === +item.nguoigui ||
-                      +nguoidangnhan === +item.nguoinhan
-                        ? item.noidung
+                      <span> my id:{this.props.thongtinnguoidung.idchat}</span>
+                      <br />  */}
+                      {nguoidangnhan === item.nguoigui ||
+                      nguoidangnhan === item.nguoinhan
+                        ? `${item.noidung} ${item.thoigian}`
                         : null}
                       {/* {item.noidung} */}
                     </div>

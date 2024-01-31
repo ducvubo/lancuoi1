@@ -192,7 +192,6 @@ class ThongTinHoa extends Component {
                   </div>
                   <div className="form-group">
                     <label>Số lượng mua</label>
-                    {/* <input type="number" className="form-control" min="0" /> */}
                     <div className="soluongmua">
                       {soluong > 1 && (
                         <button

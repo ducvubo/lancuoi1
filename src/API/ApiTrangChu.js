@@ -89,6 +89,22 @@ const apidathang = (data) => {
   return axios.post("api/dathang", data);
 };
 
+const apidonhangnguoidung = (id) => {
+  return axios.get(`api/donhangnguoidung?idnguoidung=${id}`);
+};
+
+const apixacnhandanhanduochang = (data) => {
+  return axios.put("/api/xacnhandanhanduochang", data);
+};
+
+const apihuydonhangnguoidung = (data) => {
+  return axios.put("/api/huydonhangnguoidung", data);
+};
+
+const apihoanhanghoantien = (data) => {
+  return axios.put("/api/yeucauhoanhanghoantien", data);
+};
+
 export {
   danhmuchoanoibat,
   danhmuchoachitiettheodanhmuc,
@@ -112,4 +128,8 @@ export {
   apihoatheodanhmuc,
   apitatcaphuongthucvanchuyen,
   apidathang,
+  apidonhangnguoidung,
+  apixacnhandanhanduochang,
+  apihuydonhangnguoidung,
+  apihoanhanghoantien
 };

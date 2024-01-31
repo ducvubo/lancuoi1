@@ -46,6 +46,7 @@ class QuenMK extends Component {
     });
     let kq = await apiquenmk({
       email: this.state.email,
+      ngonngu:this.props.ngonngu
     });
 
     if (kq) {

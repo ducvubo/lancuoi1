@@ -1,5 +1,5 @@
-.headertrangchu {
-    .item1 {
+
+    .headeritem1 {
         height         : 100%;
         display        : flex;
         justify-content: space-between;
@@ -90,7 +90,7 @@
         }
     }
 
-    .item2 {
+    .headeritem2 {
         height : 100%;
         width  : 100%;
         display: flex;
@@ -190,7 +190,7 @@
         }
     }
 
-    .item3 {
+    .headeritem3 {
         margin          : 5px 170px;
         border-bottom   : 1px solid #ccc;
         position        : sticky;
@@ -251,7 +251,7 @@
         }
     }
 
-    .item4 {
+    .headeritem4 {
         text-align: center;
         margin    : 8px 172px;
 
@@ -262,4 +262,3 @@
             color         : #ff3b3d;
         }
     }
-}

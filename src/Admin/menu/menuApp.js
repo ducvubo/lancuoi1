@@ -66,6 +66,14 @@ export const menu = [
         name: "quanlydondahuy",
         link: "/quanly/quanlydondahuy",
       },
+      {
+        name: "quanlydonYChoanhanghoantien",
+        link: "/quanly/quanlydonyeucauhoanhanghoantien",
+      },
+      {
+        name: "quanlydonhangdaxulyyeucauhoanhanghoantien",
+        link: "/quanly/quanlydonhangdaxulyhoanhanghoantien",
+      },
     ],
   },
 ];

@@ -43,8 +43,9 @@ class HeaderTrangChu extends Component {
     let { ngonngu, thongtinnguoidung } = this.props;
     let { danhmucnoibat } = this.state;
     return (
-      <div className="headertrangchu">
-        <div className="item1">
+      //  <div className="headertrangchu">
+       <>
+        <div className="headeritem1">
           <div className="sdt">
             <FormattedMessage id="headersdt" />: 1900 633 045 | 0865 160 360
           </div>
@@ -85,7 +86,7 @@ class HeaderTrangChu extends Component {
             <div className="icon">
             <Link
                 className="iconlink"
-                to={`/donhang`}
+                to={`/donhang/${thongtinnguoidung.id}`}
               >
                   <span><i className="fas fa-truck"></i></span>
                   <span><FormattedMessage id="headerdonhang"/></span>
@@ -111,7 +112,7 @@ class HeaderTrangChu extends Component {
             </div>
           </div>
         </div>
-        <div className="item2">
+        <div className="headeritem2">
           <div className="fb-tw-it">
             <span className="fb">
               <i className="fab fa-facebook-f"></i>
@@ -142,7 +143,7 @@ class HeaderTrangChu extends Component {
             </span>
           </div>
         </div>
-        <div className="item3">
+        <div className="headeritem3">
           <ul className="hovermenu">
             {danhmucnoibat &&
               danhmucnoibat.length > 0 &&
@@ -181,12 +182,13 @@ class HeaderTrangChu extends Component {
               })}
           </ul>
         </div>
-        <div className="item4">
+        <div className="headeritem4">
           <span>
             <FormattedMessage id='headerdemu'/>
           </span>
         </div>
-      </div>
+        </>
+      //  </div> 
     );
   }
 }
