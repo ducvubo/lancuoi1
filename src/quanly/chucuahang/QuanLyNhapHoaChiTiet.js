@@ -466,7 +466,7 @@ class QuanLyNhapHoaChiTiet extends Component {
               <select
                 className="form-control"
                 onChange={(event) => {
-                  this.onChangeNhap(event, "idnhaphoa");
+                  this.onChangeNhap(event, "idhoa");
                 }}
                 value={idhoa}
               >
@@ -513,7 +513,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             <label>Số lượng trên phiếu</label>
             <input
               className="form-control"
-              type="text"
+              type="number"
               onChange={(event) => {
                 this.onChangeNhap(event, "soluongnhaptrenphieu");
               }}
@@ -524,7 +524,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             <label>Số lượng nhập thực tế</label>
             <input
               className="form-control"
-              type="text"
+              type="number"
               onChange={(event) => {
                 this.onChangeNhap(event, "soluongnhapthucte");
               }}
@@ -535,7 +535,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             <label>Giá nhập</label>
             <input
               className="form-control"
-              type="text"
+              type="number"
               onChange={(event) => {
                 this.onChangeNhap(event, "gianhap");
               }}

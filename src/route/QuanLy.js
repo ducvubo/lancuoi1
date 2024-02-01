@@ -19,6 +19,8 @@ import DonHangDaXLHHHT from "../quanly/chucuahang/DonHangDaXLHHHT";
 import ms from "../image/ms.png";
 import "./QuanLy.scss";
 import ChatCuaHang from "../quanly/chucuahang/ChatCuaHang";
+import ThongKeBanHoa from "../quanly/chucuahang/ThongKeBanHoa";
+ import ThongKeNhapHoa from "../quanly/chucuahang/ThongKeNhapHoa";
 class QuanLy extends Component {
   constructor(props) {
     super(props);
@@ -43,71 +45,22 @@ class QuanLy extends Component {
             <HeaderMenu />
             <Switch>
               <Route path={"/quanly/quanlyhoa"} exact component={QuanLyHoa} />
-              <Route
-                path={"/quanly/quanlynguoidung"}
-                exact
-                component={QuanLyNguoiDung}
-              />
-              <Route
-                path={"/quanly/quanlydanhmuchoa"}
-                exact
-                component={DanhMucHoa}
-              />
-              <Route
-                path={"/quanly/quanlydanhmuchoachitiet"}
-                exact
-                component={DanhMucHoaChiTiet}
-              />
-              <Route
-                path={"/quanly/quanlyhoadonnhaphoa"}
-                exact
-                component={QuanLyNhapHoa}
-              />
-              <Route
-                path={"/quanly/quanlynhaphoachitiet"}
-                exact
-                component={QuanLyNhapHoaChiTiet}
-              />
-              <Route
-                path={"/quanly/quanlydonhangchuaxacnhan"}
-                exact
-                component={QuanLyDonHangChuaXacNhan}
-              />
-              <Route
-                path={"/quanly/quanlydonhangchovanchuyen"}
-                exact
-                component={QuanLyDonHangChoVanChuyen}
-              />
-              <Route
-                path={"/quanly/quanlydondanggiao"}
-                exact
-                component={QuanLyDonHangDangVanChuyen}
-              />
-              <Route
-                path={"/quanly/quanlydondagiaodenkhachhang"}
-                exact
-                component={DonHangDaGiaoDenKH}
-              />
-              <Route
-                path={"/quanly/quanlydonkhachdanhan"}
-                exact
-                component={QuanLyDonHangGiaoThanhCong}
-              />
-              <Route
-                path={"/quanly/quanlydondahuy"}
-                exact
-                component={QuanLyDonHangDaHuy}
-              />
-              <Route
-                path={"/quanly/quanlydonyeucauhoanhanghoantien"}
-                exact
-                component={DonHangYcHHHT}
-              />
-              <Route
-                path={"/quanly/quanlydonhangdaxulyhoanhanghoantien"}
-                exact
-                component={DonHangDaXLHHHT}
-              />
+              <Route path={"/quanly/quanlynguoidung"} exact component={QuanLyNguoiDung} />
+              <Route path={"/quanly/quanlydanhmuchoa"} exact component={DanhMucHoa} />
+              <Route path={"/quanly/quanlydanhmuchoachitiet"} exact component={DanhMucHoaChiTiet} />
+              <Route path={"/quanly/quanlyhoadonnhaphoa"} exact component={QuanLyNhapHoa}  />
+              <Route path={"/quanly/quanlynhaphoachitiet"} exact component={QuanLyNhapHoaChiTiet}  />
+              <Route path={"/quanly/quanlydonhangchuaxacnhan"} exact component={QuanLyDonHangChuaXacNhan} />
+              <Route path={"/quanly/quanlydonhangchovanchuyen"} exact component={QuanLyDonHangChoVanChuyen} />
+              <Route path={"/quanly/quanlydondanggiao"} exact component={QuanLyDonHangDangVanChuyen} />
+              <Route path={"/quanly/quanlydondagiaodenkhachhang"} exact component={DonHangDaGiaoDenKH} />
+              <Route path={"/quanly/quanlydonkhachdanhan"} exact component={QuanLyDonHangGiaoThanhCong} />
+              <Route path={"/quanly/quanlydondahuy"} exact component={QuanLyDonHangDaHuy} />
+              <Route path={"/quanly/quanlydonyeucauhoanhanghoantien"} exact component={DonHangYcHHHT} />
+              <Route path={"/quanly/quanlydonhangdaxulyhoanhanghoantien"} exact component={DonHangDaXLHHHT} />
+              <Route path={"/quanly/thongkenhaphoa"} exact component={ThongKeNhapHoa} />
+              <Route path={"/quanly/thongkebanhoa"} exact component={ThongKeBanHoa} />
+
             </Switch>
           </React.Fragment>
         ) : (

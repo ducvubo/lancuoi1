@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./DonHangDaXLHHHT.scss";
-import { apitatcadonhang, apixacnhandondagiaochodonvivanchuyen } from "../../API/GoiApi";
+import {
+  apitatcadonhangtheotrangthai,
+  apixacnhandondagiaochodonvivanchuyen,
+  apirefreshtoken,
+} from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import ThongTinDonHang from "./ThongTinDonHang";
 class DonHangDaXLHHHT extends Component {
@@ -17,7 +21,28 @@ class DonHangDaXLHHHT extends Component {
   }
 
   laytatcadonhang = async () => {
-    let kq = await apitatcadonhang("H8");
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
+    let kq = await apitatcadonhangtheotrangthai("H8");
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
@@ -25,23 +50,6 @@ class DonHangDaXLHHHT extends Component {
       });
     }
   };
-
-//   xacnhandagiaochodonvivanchuyen = async (madonhang) => {
-//     let kq = await apixacnhandondagiaochodonvivanchuyen({
-//       madonhang: madonhang,
-//     });
-//     if (kq && kq.maCode === 0) {
-//       this.props.ngonngu === "vi"
-//         ? toast.success("Xác nhận đơn hàng thành công!!!")
-//         : toast.success("Order comfirm successful!!!");
-//       this.laytatcadonhang()
-//     } else {
-//       this.props.ngonngu === "vi"
-//         ? toast.success("Hủy đơn hàng thất bại")
-//         : toast.success("Order comfirm failed!!!");
-        
-//     }
-//   }
 
   render() {
     let { tatcadonhang } = this.state;
@@ -51,8 +59,8 @@ class DonHangDaXLHHHT extends Component {
           <span>Quản lý đơn hàng đã xử lý yêu cầu hoàn hàng, hoàn tiền</span>
         </div>
         <div className="item3">
-        <table className="table table-bordered ">
-              <thead>
+          <table className="table table-bordered ">
+            <thead>
               <tr className="item31">
                 <th scope="col">Mã đơn hàng</th>
                 <th scope="col">Tên người nhận</th>
@@ -97,7 +105,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DonHangDaXLHHHT);
+export default connect(mapStateToProps, mapDispatchToProps)(DonHangDaXLHHHT);

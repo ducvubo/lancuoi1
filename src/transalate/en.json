@@ -15,6 +15,9 @@
   "quanlydonYChoanhanghoantien":"Manage orders and request returns and refunds",
   "quanlydonhangdaxulyyeucauhoanhanghoantien":"The order has been processed and refunded",
   "quanlydondahuy":"Order has been cancelled",
+  "thongke": "Statistical",
+  "thongkenhaphoa": "Flower import statistics",
+  "thongkebanhoa": "Flower sales statistics",
 
   "headersdt": "HOTLINE",
   "headertaikhoan": "Account",

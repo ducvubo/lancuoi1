@@ -4,6 +4,7 @@ import "./ThongTinDonHangNguoiDung.scss";
 import { Modal } from "reactstrap";
 import { toast } from "react-toastify";
 import _ from "lodash";
+import { apirefreshtoken } from "../API/GoiApi";
 import {
   apixacnhandanhanduochang,
   apihuydonhangnguoidung,
@@ -45,11 +46,26 @@ class ThongTinDonHangNguoiDung extends Component {
   huydonhang = async () => {
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
+    let token = await apirefreshtoken();
 
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
     let kq = await apihuydonhangnguoidung({
       madonhang: this.props.thongtindonhang.madonhang,
       phanhoikhachhang: this.state.phanhoikhachhang,
     });
+    if (kq && kq.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
+          )
+        : toast.error(
+            "You are not logged in, please log in to view your shopping cart!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Hủy đơn hàng thành công!!!")
@@ -64,9 +80,25 @@ class ThongTinDonHangNguoiDung extends Component {
   };
 
   xacnhandanhanduochang = async () => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
     let kq = await apixacnhandanhanduochang({
       madonhang: this.props.thongtindonhang.madonhang,
     });
+    if (kq && kq.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
+          )
+        : toast.error(
+            "You are not logged in, please log in to view your shopping cart!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Xác nhận đơn hàng thành công!!!")
@@ -83,9 +115,25 @@ class ThongTinDonHangNguoiDung extends Component {
   yeucauhoanhanghoantien = async () => {
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
     let kq = await apihoanhanghoantien({
       madonhang: this.props.thongtindonhang.madonhang,
     });
+    if (kq && kq.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
+          )
+        : toast.error(
+            "You are not logged in, please log in to view your shopping cart!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Yêu cầu hoàn hàng, hoàn tiền thành công!!!")

@@ -13,6 +13,7 @@ class HeaderTrangChu extends Component {
     super(props);
     this.state = {
       danhmucnoibat: "",
+      tenhoa: "",
     };
   }
 
@@ -39,12 +40,18 @@ class HeaderTrangChu extends Component {
     await apidangxuat();
   };
 
+  nhaphoacantim = (event) => {
+    this.setState({
+      tenhoa: event.target.value,
+    });
+  };
+
   render() {
     let { ngonngu, thongtinnguoidung } = this.props;
-    let { danhmucnoibat } = this.state;
+    let { danhmucnoibat,tenhoa } = this.state;
+    console.log(tenhoa)
     return (
-      //  <div className="headertrangchu">
-       <>
+      <>
         <div className="headeritem1">
           <div className="sdt">
             <FormattedMessage id="headersdt" />: 1900 633 045 | 0865 160 360
@@ -55,20 +62,28 @@ class HeaderTrangChu extends Component {
                 <i className="fas fa-user"></i>
               </span>
               <span>
-                {thongtinnguoidung
-                  ? `${thongtinnguoidung.ten} ${thongtinnguoidung.ho}`
-                  : <FormattedMessage id="headertaikhoan"/>}{" "}
+                {thongtinnguoidung ? (
+                  `${thongtinnguoidung.ten} ${thongtinnguoidung.ho}`
+                ) : (
+                  <FormattedMessage id="headertaikhoan" />
+                )}{" "}
               </span>
               <ul>
                 {thongtinnguoidung ? (
-                  <li onClick={() => this.dangxuat()}><FormattedMessage id='headerdangxuat'/></li>
+                  <li onClick={() => this.dangxuat()}>
+                    <FormattedMessage id="headerdangxuat" />
+                  </li>
                 ) : (
                   <Link className="dangnhap" to={"/dangnhap"}>
-                    <li><FormattedMessage id='headerdangnhap'/></li>
+                    <li>
+                      <FormattedMessage id="headerdangnhap" />
+                    </li>
                   </Link>
                 )}
                 <Link className="dangky" to={"/dangky"}>
-                  <li><FormattedMessage id= 'headerdangky'/></li>
+                  <li>
+                    <FormattedMessage id="headerdangky" />
+                  </li>
                 </Link>
               </ul>
             </div>
@@ -80,17 +95,23 @@ class HeaderTrangChu extends Component {
                 <span>
                   <i className="fas fa-shopping-cart"></i>
                 </span>
-                <span><FormattedMessage id='headergioahang'/></span>
+                <span>
+                  <FormattedMessage id="headergioahang" />
+                </span>
               </Link>
             </div>
             <div className="icon">
-            <Link
+              <Link
                 className="iconlink"
                 to={`/donhang/${thongtinnguoidung.id}`}
               >
-                  <span><i className="fas fa-truck"></i></span>
-                  <span><FormattedMessage id="headerdonhang"/></span>
-                  </Link>
+                <span>
+                  <i className="fas fa-truck"></i>
+                </span>
+                <span>
+                  <FormattedMessage id="headerdonhang" />
+                </span>
+              </Link>
             </div>
             <div className="icon ngonngu">
               <span
@@ -130,7 +151,11 @@ class HeaderTrangChu extends Component {
             </Link>
           </div>
           <div className="tk-gh">
-            <input className="form-control tk" />
+            <input
+              className="form-control tk"
+              onChange={(event) => this.nhaphoacantim(event)}
+              value={tenhoa}
+            />
             <i className="fas fa-search search"></i>
 
             <span>
@@ -184,11 +209,10 @@ class HeaderTrangChu extends Component {
         </div>
         <div className="headeritem4">
           <span>
-            <FormattedMessage id='headerdemu'/>
+            <FormattedMessage id="headerdemu" />
           </span>
         </div>
-        </>
-      //  </div> 
+      </>
     );
   }
 }

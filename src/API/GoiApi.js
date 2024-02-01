@@ -120,7 +120,7 @@ const apixoahoadonchitiet = (id) => {
   return axios.delete(`api/xoanhaphoachitiet?id=${id}`);
 };
 
-const apitatcadonhang = (trangthai) => {
+const apitatcadonhangtheotrangthai = (trangthai) => {
   return axios.get(`/api/donhang?trangthai=${trangthai}`);
 };
 
@@ -156,6 +156,18 @@ const apidoanchatkhachang = (idchat) => {
   return axios.get(`/api/doanchatkhachhang?idchat=${idchat}`);
 };
 
+const apithongkenhaphoa = (ngay) => {
+  return axios.put("/api/thongkenhaphoa", ngay);
+};
+
+const apithongkebanhoa = (ngay) => {
+  return axios.put("/api/thongkebanhoa", ngay);
+};
+
+const apitatcadonhang = () => {
+  return axios.get("/api/tatcadonhang", );
+};
+
 export {
   layAllCode,
   themnguoidung,
@@ -187,12 +199,16 @@ export {
   apitatcahoadonchitiet,
   apisuahoadonchitiet,
   apixoahoadonchitiet,
-  apitatcadonhang,
+  apitatcadonhangtheotrangthai,
   apixacnhandonhang,
   apihuydonhang,
   apixacnhandondagiaochodonvivanchuyen,
   apixacnhandonhangdagiaochokhachhang,
   apixacnhandaxulyyeucauhoanhanghoantien,
-  apitatcacuoctrochuyen,apitatcakhachhang,
-  apidoanchatkhachang
+  apitatcacuoctrochuyen,
+  apitatcakhachhang,
+  apidoanchatkhachang,
+  apithongkenhaphoa,
+  apithongkebanhoa,
+  apitatcadonhang
 };

@@ -29,7 +29,6 @@ class GioHang extends Component {
       phuongthucvanchuyenid: "",
       giaship: "",
 
-      trangthaidathang: false,
       trangthai: false,
       trangthainhapthongtin: false,
     };
@@ -103,13 +102,6 @@ class GioHang extends Component {
     }
     if (prevState.trangthainhapthongtin !== this.state.trangthainhapthongtin) {
       await this.laygiohang();
-    }
-    if (prevState.trangthaidathang !== this.state.trangthaidathang) {
-      this.setState({
-        sanphamduocchon: [],
-        giagiam: 0,
-        giachuagiam: 0,
-      });
     }
   }
 
@@ -235,14 +227,12 @@ class GioHang extends Component {
   dathang = () => {
     this.setState({
       trangthainhapthongtin: true,
-      trangthaidathang:false
     });
   };
 
   huydathang = () => {
     this.setState({
       trangthainhapthongtin: false,
-      trangthaidathang:false
     });
   };
 
@@ -275,8 +265,10 @@ class GioHang extends Component {
 
   trangthaidathang = () => {
     this.setState({
-      trangthaidathang:true
-    })
+      sanphamduocchon: [],
+      giagiam: 0,
+      giachuagiam: 0,
+    });
   }
   render() {
     let {
@@ -291,12 +283,11 @@ class GioHang extends Component {
       giaship,
       donhangchitiet,
       idgiohangchitietduocchon,
-      trangthaidathang,
     } = this.state;
     let { ngonngu } = this.props;
     let giaship123 = ngonngu === "vi" ? giaship.giaVND : giaship.giaUSD;
     let tongtien = giaship123 + giagiam;
-    console.log(idgiohangchitietduocchon);
+
     return (
       <>
         <HeaderTrangChu />
@@ -516,7 +507,7 @@ class GioHang extends Component {
                 {/* <span>{giagiam}</span>
                 <span>{giaship123}</span> */}
                 <span>
-                  Tổng tiền: <label> {`${tongtien.toLocaleString()}đ`}</label>
+                  Tổng tiền: <label> {ngonngu === 'vi' ? `${tongtien.toLocaleString()}đ` : `${tongtien}USD`}</label>
                 </span>
               </div>
               <div className="nutbam">
@@ -546,7 +537,6 @@ class GioHang extends Component {
             />
           </>
         )}
-
         <FooterTrangChu />
       </>
     );

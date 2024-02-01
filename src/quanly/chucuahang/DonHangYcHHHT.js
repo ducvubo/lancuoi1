@@ -2,8 +2,9 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./DonHangYcHHHT.scss";
 import {
-  apitatcadonhang,
+  apitatcadonhangtheotrangthai,
   apixacnhandaxulyyeucauhoanhanghoantien,
+  apirefreshtoken,
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import ThongTinDonHang from "./ThongTinDonHang";
@@ -22,7 +23,28 @@ class DonHangYcHHHT extends Component {
   }
 
   laytatcadonhang = async () => {
-    let kq = await apitatcadonhang("H7");
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
+    let kq = await apitatcadonhangtheotrangthai("H7");
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({

@@ -373,13 +373,12 @@ class QuanLyNhapHoa extends Component {
             <label>Ngày nhập</label>
             <input
               className="form-control"
-              // type="text"
               type="date"
               onChange={(event) => {
                 this.onChangeNhap(event, "ngaynhap");
               }}
               value={ngaynhap}
-              min={this.ngayhomnay}
+              max={this.ngayhomnay}
             />
           </div>
           <div className="form-group col-2">
@@ -464,7 +463,7 @@ class QuanLyNhapHoa extends Component {
           </button>
         )}
         <div className="item3">
-        <table className="table table-bordered ">
+          {/* <table className="table table-bordered ">
               <thead>
               <tr className="item31">
                 <th scope="col">Mã hóa đơn</th>
@@ -508,6 +507,96 @@ class QuanLyNhapHoa extends Component {
                           </button>
                         </td>
                       </tr>
+                    );
+                  })
+                : null}
+            </tbody>
+          </table> */}
+          <table className="table table-bordered">
+            <thead>
+              <tr className="item31">
+                <th scope="col" rowSpan="2">
+                  Tên nhân viên{" "}
+                </th>
+                <th scope="col" rowSpan="2">
+                  Mã phiếu nhập{" "}
+                </th>
+                <th scope="col" rowSpan="2">
+                  Ngày nhập{" "}
+                </th>
+                <th scope="col" rowSpan="2">
+                  Tên nhà cung cấp{" "}
+                </th>
+                <th scope="col" rowSpan="2">
+                  Tổng hóa đơn{" "}
+                </th>
+                <th scope="col" colSpan="4">
+                  Thông tin
+                </th>
+                <th scope="col" rowSpan="2">
+                  Hành động
+                </th>
+              </tr>
+              <tr className="item31">
+                <th scope="col">Tên hoa</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Giá nhập</th>
+                <th scope="col">Giá tổng</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tatcahoadon && tatcahoadon.length > 0
+                ? tatcahoadon.map((item, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <tr>
+                          <td rowSpan={item.hoa123.length + 1}>
+                            {item.nhanvien.ten}
+                          </td>
+                          <td rowSpan={item.hoa123.length + 1}>
+                            {item.maphieunhap}
+                          </td>
+                          <td rowSpan={item.hoa123.length + 1}>
+                            {moment(item.ngaynhap).format("DD-MM-YYYY")}
+                          </td>
+                          <td rowSpan={item.hoa123.length + 1}>
+                            {item.tennhacungcap}
+                          </td>
+                          <td rowSpan={item.hoa123.length + 1}>
+                            {item.tonghoadon}
+                          </td>
+                        </tr>
+                        {item.hoa123 && item.hoa123.length > 0
+                          ? item.hoa123.map((hoa, hoaIndex) => {
+                              return (
+                                <tr key={index + "-" + hoaIndex}>
+                                  <td>{hoa.hoa123.tenhoavi}</td>
+                                  <td>{hoa.soluongnhapthucte}</td>
+                                  <td>{hoa.gianhap}</td>
+                                  <td>{hoa.giatong}</td>
+                                  <td>
+                                    <button>
+                                      <i
+                                        className="fas fa-edit"
+                                        onClick={() =>
+                                          this.clicksuahoadon(item)
+                                        }
+                                      ></i>
+                                    </button>
+                                    <button>
+                                      <i
+                                        className="fas fa-trash"
+                                        onClick={() =>
+                                          this.clickxoahondon(item.id)
+                                        }
+                                      ></i>
+                                    </button>
+                                  </td>
+                                </tr>
+                              );
+                            })
+                          : null}
+                      </React.Fragment>
                     );
                   })
                 : null}

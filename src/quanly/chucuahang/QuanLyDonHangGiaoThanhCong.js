@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./QuanLyDonHangGiaoThanhCong.scss";
-import { apitatcadonhang, apixacnhandonhang } from "../../API/GoiApi";
+import {
+  apitatcadonhangtheotrangthai,
+  apixacnhandonhang,
+  apirefreshtoken,
+} from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import ThongTinDonHang from "./ThongTinDonHang";
 class QuanLyDonHangGiaoThanhCong extends Component {
@@ -18,16 +22,29 @@ class QuanLyDonHangGiaoThanhCong extends Component {
     await this.laytatcadonhang();
   }
 
-  // async componentDidUpdate(prevState) {
-  //   if (
-  //     prevState.tatcadonhangchovanchuyen !== this.state.tatcadonhangchovanchuyen
-  //   ) {
-  //     await this.laytatcadonhang();
-  //   }
-  // }
-
   laytatcadonhang = async () => {
-    let kq = await apitatcadonhang("H5");
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
+    let kq = await apitatcadonhangtheotrangthai("H5");
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
@@ -35,19 +52,6 @@ class QuanLyDonHangGiaoThanhCong extends Component {
       });
     }
   };
-
-  //   xemchitietdonhang = (thongtindonhang) => {
-  //     this.setState({
-  //       trangthaithongtindonhang: true,
-  //       thongtindonhang: thongtindonhang,
-  //     });
-  //   };
-
-  //   huyxemchitietdonhang = () => {
-  //     this.setState({
-  //       trangthaithongtindonhang: false,
-  //     });
-  //   };
   render() {
     let { tatcadonhangchovanchuyen } = this.state;
     return (
@@ -56,8 +60,8 @@ class QuanLyDonHangGiaoThanhCong extends Component {
           <span>Quản lý đơn hàng đã giao thành công</span>
         </div>
         <div className="item3">
-        <table className="table table-bordered ">
-              <thead>
+          <table className="table table-bordered ">
+            <thead>
               <tr className="item31">
                 <th scope="col">Mã đơn hàng</th>
                 <th scope="col">Tên người nhận</th>

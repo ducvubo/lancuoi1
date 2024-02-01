@@ -7,7 +7,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import trangChu from "./nguoidung/trangChu";
 import QuanLy from "./route/QuanLy";
-import NguoiDung from "./route/NguoiDung";
 import ThongTinHoa from "./nguoidung/ThongTinHoa";
 import DangNhap from "./nguoidung/DangNhap";
 import DangKy from "./nguoidung/DangKy";
@@ -17,11 +16,8 @@ import DoiMK from "./nguoidung/DoiMK";
 import GioHang from "./nguoidung/GioHang";
 import HoaTheoDanhMucTheoChiTiet from "./nguoidung/HoaTheoDanhMucTheoChiTiet";
 import HoaTheoDanhMuc from "./nguoidung/HoaTheoDanhMuc";
-import TestPdf from './nguoidung/TestPdf'
-import Chat from "./nguoidung/Chat";
 import QuanLyDonHang from "./nguoidung/QuanLyDonHang";
-import ChatKhachHang from "./nguoidung/ChatKhachHang";
-import ChatCuaHang from "./quanly/chucuahang/ChatCuaHang";
+import TestExcel from "./quanly/chucuahang/TestExcel";
 const history = createBrowserHistory();
 
 class App extends Component {
@@ -43,8 +39,9 @@ class App extends Component {
             <Route path={"/xacnhantaikhoan"} component={XacNhanTaiKhoan} />
             <Route path={"/quenmk"} component={QuenMK} />
             <Route path={"/doimk"} component={DoiMK} />
-            <Route path={"/pdf"} component={TestPdf} />
             <Route path={"/donhang/:id"} component={QuanLyDonHang}/>
+            <Route path={"/testexcel"} component={TestExcel} />
+
             {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
             thongtinnguoidung.quyenId === "R3" ? (
               <Redirect to={"/quanly/"} />

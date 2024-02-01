@@ -6,6 +6,7 @@ import {
   apixacnhandonhang,
   apihuydonhang,
   apixacnhandaxulyyeucauhoanhanghoantien,
+  apirefreshtoken
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import _ from "lodash";
@@ -177,7 +178,7 @@ class ThongTinDonHang extends Component {
     );
 
     doc.text(
-      `Lưu ý: ${this.state.phanhoicuahang}`,
+      `Lưu ý: ${this.state.phanhoicuahang ? this.state.phanhoicuahang : ''}`,
       15,
       chieucaoketiepcuabang + 13
     );
@@ -353,9 +354,30 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
   };
 
   xacnhandonhang = async () => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
     let kq = await apixacnhandonhang({
       dataxacnhandonhang: this.state.dataxacnhandonhang,
     });
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Xác nhận đơn hàng thành công!!!")
@@ -375,11 +397,31 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
   huydonhang = async () => {
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
+    let token = await apirefreshtoken();
 
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
     let kq = await apihuydonhang({
       madonhang: this.props.thongtindonhang.madonhang,
       phanhoicuahang: this.state.phanhoicuahang,
     });
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Hủy đơn hàng thành công!!!")
@@ -394,10 +436,31 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
   };
 
   daxuly = async () => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
     let kq = await apixacnhandaxulyyeucauhoanhanghoantien({
       madonhang: this.props.thongtindonhang.madonhang,
       phanhoicuahang: this.state.phanhoicuahang,
     });
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Đã xử lý đơn hàng thành công!!!")

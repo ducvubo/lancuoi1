@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Modal } from "reactstrap";
 import "./NhapThongTinDatHang.scss";
 import { apidathang } from "../API/ApiTrangChu";
+import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
 class NhapThongTinDatHang extends Component {
   constructor(props) {
@@ -47,7 +48,13 @@ class NhapThongTinDatHang extends Component {
   };
 
   dathang = async () => {
-    console.log(this.props.idgiohangchitietduocchon)
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
     let kq = await apidathang({
       idnguoidung: this.props.thongtinnguoidung.id,
       tennguoinhan: this.state.tennguoinhan,
@@ -62,7 +69,15 @@ class NhapThongTinDatHang extends Component {
       idgiohangchitietduocchon:this.props.idgiohangchitietduocchon
     });
     
-
+    if (kq && kq.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
+          )
+        : toast.error(
+            "You are not logged in, please log in to view your shopping cart!!!"
+          );
+    }
     if (kq.maCode === 0 && kq) {
       this.props.ngonngu === "vi"
         ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
