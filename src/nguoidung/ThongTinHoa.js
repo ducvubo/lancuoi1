@@ -8,6 +8,7 @@ import vanchuyen from "../image/vanchuyen.png";
 import banner from "../image/banner.png";
 import ms from "../image/ms.png";
 import zalo from "../image/zalo.png";
+import { FormattedMessage } from "react-intl";
 import {
   apithongtinhoa,
   apithemgiohang,
@@ -16,6 +17,8 @@ import {
 import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import * as actions from "../action/actions";
+
 class ThongTinHoa extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +44,7 @@ class ThongTinHoa extends Component {
       this.thongtinhoa(id);
       this.sanphamlienquan();
     }
-    if(prevState.thongtinhoa !== this.state.thongtinhoa){
+    if (prevState.thongtinhoa !== this.state.thongtinhoa) {
       this.sanphamlienquan();
     }
   }
@@ -105,9 +108,21 @@ class ThongTinHoa extends Component {
     }
   };
 
+  dathangtrangchu = (hoa) => {
+    hoa.soluongmua = 1;
+    this.props.thongtinhoadathang(hoa);
+    this.props.history.push(`/dathang`);
+  };
+
+  dathangthongtinhoa = () => {
+    let hoa = { ...this.state.thongtinhoa };
+    hoa.soluongmua = this.state.soluong;
+    this.props.thongtinhoadathang(hoa);
+    this.props.history.push(`/dathang`);
+  };
+
   render() {
     let { thongtinhoa, soluong, sanphamlienquan } = this.state;
-    console.log("check: ", sanphamlienquan);
     let anhnoibat = "";
     if (thongtinhoa.anhnoibat) {
       anhnoibat = new Buffer(thongtinhoa.anhnoibat, "base64").toString(
@@ -117,7 +132,7 @@ class ThongTinHoa extends Component {
     let { ngonngu } = this.props;
     return (
       <>
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         <div className="thongtinhoa">
           <div className="item1">
             <div className="anh">
@@ -229,7 +244,12 @@ class ThongTinHoa extends Component {
                       >
                         <i className="fas fa-cart-plus"></i>
                       </button>
-                      <button className="btn dh">Đặt hàng</button>
+                      <button
+                        className="btn dh"
+                        onClick={() => this.dathangthongtinhoa()}
+                      >
+                        Đặt hàng
+                      </button>
                     </>
                   ) : null}
                 </div>
@@ -276,7 +296,10 @@ class ThongTinHoa extends Component {
                 return (
                   <div className="hoa" key={index}>
                     <div className="anhhoa">
-                      <Link to={`/thongtinhoa/${item.id}`}>
+                      <Link to={`/thongtinhoa/${item.id}`}
+                        style={{ cursor: 'pointer' }}
+                      
+                      >
                         <img src={anhnoibat} width="261" height="326" />
 
                         {item.phantramgiam > 0 ? (
@@ -287,7 +310,10 @@ class ThongTinHoa extends Component {
                       </Link>
                     </div>
                     <div className="thongtin">
-                      <Link className="linkten" to={`/thongtinhoa/${item.id}`}>
+                      <Link className="linkten" to={`/thongtinhoa/${item.id}`}
+                        style={{ cursor: 'pointer' }}
+
+                      >
                         <span className="ten">
                           {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                         </span>
@@ -311,8 +337,12 @@ class ThongTinHoa extends Component {
                           )}
                         </div>
                       ) : (
-                        <div className="gia">
-                          <Link to={`/thongtinhoa/${item.id}`}>
+                        <div className="gia"
+                        >
+                          <Link to={`/thongtinhoa/${item.id}`}
+                        style={{ cursor: 'pointer' }}
+                          
+                          >
                             {item.phantramgiam > 0 ? (
                               <>
                                 <span className="giagiam">
@@ -331,7 +361,12 @@ class ThongTinHoa extends Component {
                         </div>
                       )}
                       <div className="dathang">
-                        <a href="#">ĐẶT HÀNG</a>
+                        <span
+                          className="btn"
+                          onClick={() => this.dathangtrangchu(item)}
+                        >
+                          <FormattedMessage id="trangchudathang" />
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -339,8 +374,7 @@ class ThongTinHoa extends Component {
               })}
           </div>
         </div>
-
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
       </>
     );
   }
@@ -354,7 +388,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    thongtinhoadathang: (hoa) => dispatch(actions.thongtinhoadathang(hoa)),
+  };
 };
 
 export default withRouter(

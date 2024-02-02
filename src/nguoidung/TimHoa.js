@@ -8,60 +8,46 @@ class TimHoa extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hoatheodanhmuc: "",
+      hoatimduoc: "",
     };
   }
 
-  async componentDidMount() {
-    // let id = this.props.match.params.id;
-    // await this.hoatheodanhmuc(id);
-  }
+
 
   componentDidUpdate(prevProps) {
-    // if (prevProps.match.params.id !== this.props.match.params.id) {
-    //   // Xử lý khi URL thay đổi
-    //   let id = this.props.match.params.id;
-    //   this.hoatheodanhmuc(id);
-    // }
+    if (prevProps.hoa !== this.props.hoa) {
+     this.buildlaidata()
+    }
   }
 
-//   hoatheodanhmuc = async (id) => {
-//     let kq = await apihoatheodanhmuc(id);
-//     if (kq && kq.maCode === 0) {
-//       let data1 = kq.data;
-//       let epdata = data1
-//         .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
-//         .flat();
-//       epdata.map((item, index) => {
-//         item.donoibat = parseFloat(item.donoibat);
-//       });
-//       let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
-//       this.setState({
-//         hoatheodanhmuc: sxdata,
-//       });
-//     }
-//   };
-
-
-//   thongtinhoa = (hoa) => {
-//     this.props.history.push(`/thongtinhoa/${hoa.id}`);
-//   }
-
+  buildlaidata =  () => {
+      // let data1 =this.props.hoa;
+      // let epdata = data1 ? data1 : null
+      //   .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
+      //   .flat();
+      // epdata.map((item, index) => {
+      //   item.donoibat = parseFloat(item.donoibat);
+      // });
+      // let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+      this.setState({
+        hoatimduoc: this.props.hoa,
+      });
+  };
   render() {
-    let { hoatheodanhmuc } = this.state;
     let { ngonngu } = this.props;
+    let {hoatimduoc} = this.state
     return (
       <>
-        <HeaderTrangChu />
-        {/* <div className="hoatheodanhmuc">
-          {hoatheodanhmuc &&
-            hoatheodanhmuc.length > 0 &&
-            hoatheodanhmuc.map((item, index) => {
+        <div className="timhoa">
+          {hoatimduoc &&
+            hoatimduoc.length > 0 &&
+            hoatimduoc.map((item, index) => {
               let anhnoibat = "";
               if (item.anhnoibat) {
                 anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
                   "binary"
                 );
+                
               }
               return (
                 <div className="hoa" key={index}>
@@ -124,15 +110,16 @@ class TimHoa extends Component {
                 </div>
               );
             })}
-        </div> */}
-        <FooterTrangChu />
+        </div>
       </>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    hoa: state.admin.hoa,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

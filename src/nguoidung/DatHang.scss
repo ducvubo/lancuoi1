@@ -1,0 +1,112 @@
+.dathangtrangchu {
+    width : 1181px;
+    margin: auto;
+
+    .sanpham {
+        .table-bordered {
+            border: none;
+
+            thead {
+                border: none;
+
+                tr {
+                    border: none;
+
+                    th {
+                        text-align    : center;
+                        vertical-align: middle;
+                        border        : none;
+
+                    }
+
+                    td {
+                        border        : 1px solid #dee2e6;
+                        text-align    : center;
+                        vertical-align: middle;
+                        border        : none;
+
+                    }
+                }
+
+            }
+
+            tbody {
+                border: none;
+
+                tr {
+
+                    border: none;
+
+                    th {
+                        border        : none;
+                        text-align    : center;
+                        vertical-align: middle;
+                    }
+
+                    td {
+                        border        : none;
+                        text-align    : center;
+                        vertical-align: middle;
+
+                        select {
+                            margin: auto;
+                            border: none;
+                            width : 400px;
+                        }
+                    }
+                    .tenanh{
+                        display: flex;
+                    justify-content: flex-start;
+                    margin-left: 40px;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .tongtien {
+        margin-left: 895px;
+        font-weight: 500;
+    }
+
+    .phuongthucthanhtoan {
+        display        : flex;
+        justify-content: center;
+        gap            : 704px;
+
+        .item2 {
+            font-weight: 500;
+        }
+    }
+
+    .thanhtoan {
+        display       : flex;
+        flex-direction: column;
+        margin-left   : 943px;
+
+        span {
+            font-weight: 500;
+
+            label {
+                font-weight: 600;
+                color      : #e91e63;
+                font-size  : 28px;
+            }
+        }
+    }
+
+    .nutbam {
+        display    : flex;
+        margin-left: 921px;
+        gap        : 22px;
+
+        .btndathang {
+            font-weight     : 500;
+            background-color: #e91e63;
+            color           : white;
+            width           : 95px;
+        }
+    }
+
+}

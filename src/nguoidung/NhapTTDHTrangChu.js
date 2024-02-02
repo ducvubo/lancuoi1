@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Modal } from "reactstrap";
-import "./NhapThongTinDatHang.scss";
-import { apidathang } from "../API/ApiTrangChu";
+import "./NhapTTDHTrangChu.scss";
+import { apidathangtrangchu } from "../API/ApiTrangChu";
 import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
-import { withRouter } from 'react-router-dom';
-class NhapThongTinDatHang extends Component {
+import { withRouter } from "react-router-dom";
+class NhapTTDHTrangChu extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +15,7 @@ class NhapThongTinDatHang extends Component {
       sodienthoai: "",
       diachi: "",
       ghichu: "",
-      tongtien:''
+      tongtien: "",
     };
   }
 
@@ -56,25 +56,30 @@ class NhapThongTinDatHang extends Component {
         ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
         : toast.error("You are not logged in, please log in!!!");
     }
-    let kq = await apidathang({
+    let kq = await apidathangtrangchu({
       idnguoidung: this.props.thongtinnguoidung.id,
       tennguoinhan: this.state.tennguoinhan,
       email: this.state.email,
       sodienthoai: this.state.sodienthoai,
       diachi: this.state.diachi,
       ghichu: this.state.ghichu,
-      phuongthucvanchuyenid:this.props.phuongthucvanchuyenid,
-      tongtien:this.props.tongtien,
-      donhangchitiet:this.props.donhangchitiet,
-      ngonngu:this.props.ngonngu,
-      idgiohangchitietduocchon:this.props.idgiohangchitietduocchon
+      phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
+      tongtien: this.props.tongtien,
+      ngonngu: this.props.ngonngu,
+      idhoa: this.props.thongtinhoadathang.id,
+      soluongmua: this.props.thongtinhoadathang.soluongmua,
+      tongtienhang:
+        this.props.thongtinhoadathang.soluongmua *
+        (this.props.ngonngu === "vi"
+          ? this.props.thongtinhoadathang.giasaukhigiamVND *
+            this.props.thongtinhoadathang.soluongmua
+          : this.props.thongtinhoadathang.giasaukhigiamUSD *
+            this.props.thongtinhoadathang.soluongmua),
     });
-    
+
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
-        ? toast.error(
-            "Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!"
-          )
+        ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!")
         : toast.error(
             "You are not logged in, please log in to view your shopping order!!!"
           );
@@ -83,11 +88,11 @@ class NhapThongTinDatHang extends Component {
       this.props.ngonngu === "vi"
         ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
         : toast.success("Order successful, waiting for staff to confirm!!!");
-        this.props.huydathang()
-        this.props.doitrangthai()
-        this.props.dathangthanhcong ()
-        // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
-
+      this.props.huydathang();
+      this.props.history.push("/trangchu");
+      // this.props.doitrangthai()
+      // this.props.dathangthanhcong ()
+      // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Đặt hàng thất bại")
@@ -95,25 +100,23 @@ class NhapThongTinDatHang extends Component {
     }
   };
 
-
-
   render() {
     let {
       trangthainhapthongtin,
       huydathang,
       donhangchitiet,
       phuongthucvanchuyenid,
-      ngonngu
+      ngonngu,
     } = this.props;
     let { tennguoinhan, email, sodienthoai, diachi, ghichu } = this.state;
     return (
       <Modal
         isOpen={trangthainhapthongtin}
-        className={"nhapthongtindathang"}
+        className={"nhapthongtindathangtrangchu"}
         size="lg"
         //centered
       >
-        <div className="nhapthongtindathang">
+        <div className="nhapthongtindathangtrangchu">
           <div className="item1">
             <span className="chu ml-3">Thông tin đặt hàng</span>
             <span onClick={huydathang} className="tat mt-1 mr-1">
@@ -193,8 +196,9 @@ class NhapThongTinDatHang extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ngonngu : state.web.ngonngu,
+    ngonngu: state.web.ngonngu,
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
+    thongtinhoadathang: state.dathanghoa.thongtinhoadathang,
   };
 };
 
@@ -202,7 +206,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NhapThongTinDatHang));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(NhapTTDHTrangChu)
+);

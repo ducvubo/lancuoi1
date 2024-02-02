@@ -47,7 +47,7 @@ class XacNhanTaiKhoan extends Component {
     let { trangthaixacnhan, maCode } = this.state;
     return (
       <>
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         <div className="xacnhantaikhoan">
           {trangthaixacnhan === false ? (
             <div>Đang load</div>
@@ -61,8 +61,7 @@ class XacNhanTaiKhoan extends Component {
             </div>
           )}
         </div>
-
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
       </>
     );
   }

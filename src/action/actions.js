@@ -8,6 +8,7 @@ import {
   apisuanguoidung,
   apirefreshtoken,
 } from "../API/GoiApi";
+import { apitimhoanguoidung } from "../API/ApiTrangChu";
 import { toast } from "react-toastify";
 import store from "../redux/store";
 
@@ -267,3 +268,33 @@ export const suanguoidungthatbai = () => ({
 export const suanguoidungthanhcong = () => ({
   type: actionTypes.SUA_NGUOI_DUNG_THANH_CONG,
 });
+
+export const timhoa = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let kq = await apitimhoanguoidung(data);
+      if (kq && kq.maCode === 0) {
+        dispatch(timhoathanhcong(kq.data));
+      } else {
+        dispatch(timhoathatbai());
+      }
+    } catch (e) {
+      dispatch(timhoathatbai());
+      console.log("tim hoa that bai loi: ", e);
+    }
+  };
+};
+export const timhoathanhcong = (data) => ({
+  type: actionTypes.TIM_HOA_THANH_CONG,
+  hoa: data,
+});
+export const timhoathatbai = () => ({
+  type: actionTypes.TIM_HOA_THAT_BAI,
+});
+
+export const thongtinhoadathang = (hoa) => (
+  {
+    type: actionTypes.THONG_TIN_HOA_DAT_HANG_TRANG_CHU,
+    hoa: hoa,
+  }
+);

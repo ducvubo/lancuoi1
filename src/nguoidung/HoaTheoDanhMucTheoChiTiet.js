@@ -4,6 +4,9 @@ import "./HoaTheoDanhMucTheoChiTiet.scss";
 import HeaderTrangChu from "./HeaderTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import { apihoatheodanhmucchitiet } from "../API/ApiTrangChu";
+import { FormattedMessage } from "react-intl";
+import * as actions from "../action/actions";
+
 class HoaTheoDanhMucTheoChiTiet extends Component {
   constructor(props) {
     super(props);
@@ -39,12 +42,18 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
     this.props.history.push(`/thongtinhoa/${hoa.id}`);
   }
 
+  dathangtrangchu = (hoa) => {
+    hoa.soluongmua = 1;
+    this.props.thongtinhoadathang(hoa);
+    this.props.history.push(`/dathang`);
+  };
+
   render() {
     let { hoatheodanhmucchitiet } = this.state;
     let { ngonngu } = this.props;
     return (
       <>
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         <div className="hoatheodanhmuchoachitiet">
           {hoatheodanhmucchitiet &&
             hoatheodanhmucchitiet.length > 0 &&
@@ -60,6 +69,8 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
                   <div
                     className="anhhoa"
                     onClick={() => this.thongtinhoa(item)}
+                    style={{ cursor: 'pointer' }}
+
                   >
                     <img src={anhnoibat} width="261" height="326" />
 
@@ -76,6 +87,8 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
                       <div
                         className="gia"
                         onClick={() => this.thongtinhoa(item)}
+                        style={{ cursor: 'pointer' }}
+
                       >
                         {item.phantramgiam > 0 ? (
                           <>
@@ -94,6 +107,8 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
                       <div
                         className="gia"
                         onClick={() => this.thongtinhoa(item)}
+                        style={{ cursor: 'pointer' }}
+
                       >
                         {item.phantramgiam > 0 ? (
                           <>
@@ -110,14 +125,19 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
                       </div>
                     )}
                     <div className="dathang">
-                      <a href="#">ĐẶT HÀNG</a>
+                    <span
+                          className="btn"
+                          onClick={() => this.dathangtrangchu(item)}
+                        >
+                          <FormattedMessage id="trangchudathang" />
+                        </span>
                     </div>
                   </div>
                 </div>
               );
             })}
         </div>
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
       </>
     );
   }
@@ -130,7 +150,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    thongtinhoadathang: (hoa) => dispatch(actions.thongtinhoadathang(hoa)),
+
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HoaTheoDanhMucTheoChiTiet);

@@ -77,7 +77,7 @@ class QuenMK extends Component {
     return (
       <>
         <LoadingOverlay active={loading} spinner text="Từ từ đi bạn ei....">
-          <HeaderTrangChu />
+          {/* <HeaderTrangChu /> */}
           <div className="quenmk">
             <div className="form-group">
               <label>Nhập email đã đăng ký</label>
@@ -97,7 +97,7 @@ class QuenMK extends Component {
               Quên mật khẩu
             </button>
           </div>
-          <FooterTrangChu />
+          {/* <FooterTrangChu /> */}
         </LoadingOverlay>
       </>
     );

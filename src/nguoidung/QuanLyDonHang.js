@@ -72,7 +72,7 @@ class QuanLyDonHang extends Component {
     let { ngonngu } = this.props;
     return (
       <>
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         <div className="donhangnguoidung">
           <div className="item1">
             <span>Quản lý đơn hàng</span>
@@ -125,7 +125,7 @@ class QuanLyDonHang extends Component {
             </table>
           </div>
         </div>
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
       </>
     );
   }

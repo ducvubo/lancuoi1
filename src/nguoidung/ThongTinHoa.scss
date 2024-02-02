@@ -303,14 +303,16 @@
                     width           : 91px;
                     height          : 24px;
 
-                    a {
+                    span {
                         color          : white;
                         text-decoration: none;
                         font-size      : 12px;
                         display        : flex;
                         font-weight    : 500;
-                        margin-top     : 3px;
-                        margin-left    : 16px;
+                        justify-content: center;
+                        align-items    : center;
+                        text-align     : center;
+                        margin-top     : -3px;
                     }
                 }
             }

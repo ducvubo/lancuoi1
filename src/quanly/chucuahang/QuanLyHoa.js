@@ -327,7 +327,7 @@ class QuanLyHoa extends Component {
       iddanhmuchoachitiet: hoa.iddanhmuchoachitiet
         ? hoa.iddanhmuchoachitiet
         : null,
-      anhnoibat: hoa.anhnoibat ? hoa.anhnoibat : null,
+      anhnoibat: anhnoibatbase64 ? anhnoibatbase64 : null,
       tenhoaVi: hoa.tenhoaVi,
       tenhoaEn: hoa.tenhoaEn ? hoa.tenhoaEn : null,
       tieudehoaVi: hoa.tieudehoaVi ? hoa.tieudehoaVi : null,
@@ -353,6 +353,12 @@ class QuanLyHoa extends Component {
   };
 
   clickbtnsuahoa = async () => {
+    let anhnoibat = "";
+    if (this.state.anhnoibat) {
+      anhnoibat = new Buffer(this.state.anhnoibat, "base64").toString(
+        "binary"
+      );
+    }
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
@@ -503,6 +509,7 @@ class QuanLyHoa extends Component {
       anhnoibat
     } = this.state;
     let { ngonngu } = this.props;
+    console.log(anhnoibat)
     return (
       <div className="quanlyhoa">
         <div className="item1">

@@ -77,7 +77,7 @@ class DoiMK extends Component {
     let { password, nhaplaipassword } = this.state;
     return (
       <>
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         <div className="doimk">
           <span>Đổi mật khẩu</span>
           <div className="form-group">
@@ -106,7 +106,7 @@ class DoiMK extends Component {
             Đổi mật khẩu
           </button>
         </div>
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
       </>
     );
   }

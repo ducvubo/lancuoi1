@@ -263,13 +263,13 @@ class GioHang extends Component {
     });
   };
 
-  trangthaidathang = () => {
+  dathangthanhcong = () => {
     this.setState({
       sanphamduocchon: [],
       giagiam: 0,
       giachuagiam: 0,
     });
-  }
+  };
   render() {
     let {
       giohang,
@@ -290,7 +290,7 @@ class GioHang extends Component {
 
     return (
       <>
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         {trangthai === false ? (
           <div className="giohang">
             <table className="table table-bordered">
@@ -339,7 +339,10 @@ class GioHang extends Component {
                               height={"51px"}
                             />
                           </td>
-                          <td>
+                          <td 
+                          onClick={() => this.thongtinhoa(item.id)}
+                          style={{ cursor: 'pointer' }}
+                          >
                             {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                           </td>
                           <td>{item.soluongcon}</td>
@@ -437,7 +440,10 @@ class GioHang extends Component {
                         }
                         return (
                           <tr key={index}>
-                            <td scope="row" className="tenanh">
+                            <td scope="row" className="tenanh"
+                            onClick={() => this.thongtinhoa(item.id)}
+                            style={{ cursor: 'pointer' }}
+                            >
                               <img
                                 src={anhnoibat}
                                 width={"41px"}
@@ -502,12 +508,22 @@ class GioHang extends Component {
                 </div>
               </div>
               <div className="thanhtoan mt-3">
-                <span>{`Tổng tiền hàng: ${giagiam.toLocaleString()}đ`}</span>
-                <span>{`Phí vận chuyển: ${giaship123.toLocaleString()}đ`}</span>
+                <span>{`Tổng tiền hàng: ${
+                  ngonngu === "vi" ? giagiam.toLocaleString() : giagiam
+                } ${ngonngu === "vi" ? "đ" : "USD"}`}</span>
+                <span>{`Phí vận chuyển: ${
+                  ngonngu === "vi" ? giaship123.toLocaleString() : giaship123
+                } ${ngonngu === "vi" ? "đ" : "USD"}`}</span>
                 {/* <span>{giagiam}</span>
                 <span>{giaship123}</span> */}
                 <span>
-                  Tổng tiền: <label> {ngonngu === 'vi' ? `${tongtien.toLocaleString()}đ` : `${tongtien}USD`}</label>
+                  Tổng tiền:{" "}
+                  <label>
+                    {" "}
+                    {ngonngu === "vi"
+                      ? `${tongtien.toLocaleString()}đ`
+                      : `${tongtien}USD`}
+                  </label>
                 </span>
               </div>
               <div className="nutbam">
@@ -533,11 +549,11 @@ class GioHang extends Component {
               tongtien={tongtien}
               idgiohangchitietduocchon={idgiohangchitietduocchon}
               doitrangthai={this.doitrangthai}
-              trangthaidathang={this.trangthaidathang}
+              dathangthanhcong={this.dathangthanhcong}
             />
           </>
         )}
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
       </>
     );
   }

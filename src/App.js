@@ -17,16 +17,29 @@ import GioHang from "./nguoidung/GioHang";
 import HoaTheoDanhMucTheoChiTiet from "./nguoidung/HoaTheoDanhMucTheoChiTiet";
 import HoaTheoDanhMuc from "./nguoidung/HoaTheoDanhMuc";
 import QuanLyDonHang from "./nguoidung/QuanLyDonHang";
-import TestExcel from "./quanly/chucuahang/TestExcel";
+import HeaderTrangChu from "./nguoidung/HeaderTrangChu";
+import FooterTrangChu from "./nguoidung/FooterTrangChu";
+import TimHoa from "./nguoidung/TimHoa";
+import DatHang from "./nguoidung/DatHang";
 const history = createBrowserHistory();
 
 class App extends Component {
-  render() {
-    let { thongtinnguoidung } = this.props;
+  constructor(props) {
+    super(props);
+    this.state = {
+      hoatimduoc: this.props.hoa,
+    };
+  }
 
+  render() {
+    let { thongtinnguoidung,hoatimduoc } = this.props;
     return (
       <React.Fragment>
+        
         <Router history={history}>
+        {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
+            thongtinnguoidung.quyenId === "R3" ?null :<HeaderTrangChu/>}
+           {/* {hoatimduoc  ? <TimHoa/> : null} */}
           <Switch>
             <Route path={"/trangchu"} exact component={trangChu} />
             <Route path={"/quanly/"} component={QuanLy} />
@@ -40,7 +53,7 @@ class App extends Component {
             <Route path={"/quenmk"} component={QuenMK} />
             <Route path={"/doimk"} component={DoiMK} />
             <Route path={"/donhang/:id"} component={QuanLyDonHang}/>
-            <Route path={"/testexcel"} component={TestExcel} />
+            <Route path={"/dathang"} component={DatHang}/>
 
             {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
             thongtinnguoidung.quyenId === "R3" ? (
@@ -49,8 +62,10 @@ class App extends Component {
               <Redirect to={"/trangchu"} />
             )}
           </Switch>
+          {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
+            thongtinnguoidung.quyenId === "R3" ? null :<FooterTrangChu/>}
         </Router>
-
+        
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -72,6 +87,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
+    hoa: state.admin.hoa,
   };
 };
 

@@ -135,7 +135,7 @@ class DangKy extends Component {
     return (
       <>
         <LoadingOverlay active={loading} spinner text="Từ từ đi bạn ei...."> 
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         <div className="dangky">
           <div className="form">
             <div className="spandangky">
@@ -258,8 +258,7 @@ class DangKy extends Component {
             </div>
           </div>
         </div>
-
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
          </LoadingOverlay> 
       </>
     );

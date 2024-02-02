@@ -23,7 +23,6 @@ class FooterTrangChu extends Component {
   };
   render() {
     let { thongtinnguoidung,ktdangnhap } = this.props;
-    console.log(ktdangnhap)
     let { trangthai } = this.state;
     return (
       <div className="footertrangchu">

@@ -89,6 +89,10 @@ const apidathang = (data) => {
   return axios.post("api/dathang", data);
 };
 
+const apidathangtrangchu = (data) => {
+  return axios.post("api/dathangtrangchu", data);
+};
+
 const apidonhangnguoidung = (id) => {
   return axios.get(`api/donhangnguoidung?idnguoidung=${id}`);
 };
@@ -103,6 +107,10 @@ const apihuydonhangnguoidung = (data) => {
 
 const apihoanhanghoantien = (data) => {
   return axios.put("/api/yeucauhoanhanghoantien", data);
+};
+
+const apitimhoanguoidung = (data) => {
+  return axios.put(`api/timhoanguoidung`,data);
 };
 
 export {
@@ -131,5 +139,6 @@ export {
   apidonhangnguoidung,
   apixacnhandanhanduochang,
   apihuydonhangnguoidung,
-  apihoanhanghoantien
+  apihoanhanghoantien,
+  apitimhoanguoidung,apidathangtrangchu
 };

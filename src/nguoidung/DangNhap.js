@@ -18,16 +18,6 @@ class DangNhap extends Component {
       datanguoidung: "",
     };
   }
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   if(prevProps.thongtinnguoidung !== this.props.thongtinnguoidung){
-  //     {this.props.thongtinnguoidung &&
-  //       this.props.thongtinnguoidung.quyenId === "R1" ? (
-  //         this.props.history.push("/quanly/")
-  //       ) : (
-  //         this.props.history.push("/trangchu")
-  //       )}
-  //   }
-  // }
 
   onChangeNhap = (event, id) => {
     let copyState = { ...this.state };
@@ -110,7 +100,7 @@ class DangNhap extends Component {
         thongtinnguoidung123 === "R3" ? (
           <Redirect to={"/quanly/"} />
         ) : null}
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         <div className="dangnhap">
           <div className="form">
             <div className="spandangnhap">
@@ -165,7 +155,7 @@ class DangNhap extends Component {
             </div>
           </div>
         </div>
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
 
       </>
         

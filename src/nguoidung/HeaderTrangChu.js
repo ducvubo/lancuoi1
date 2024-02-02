@@ -5,16 +5,19 @@ import logo from "../image/logo.png";
 import "./HeaderTrangChu.scss";
 import { FormattedMessage } from "react-intl";
 import { danhmuchoanoibat } from "../API/ApiTrangChu";
-import { dangxuat, doiNgonNgu } from "../action/actions";
+import { dangxuat, doiNgonNgu, timhoa } from "../action/actions";
 import { apidangxuat } from "../API/GoiApi";
 import { withRouter } from "react-router-dom";
+import { debounce } from "lodash";
 class HeaderTrangChu extends Component {
   constructor(props) {
     super(props);
     this.state = {
       danhmucnoibat: "",
       tenhoa: "",
+      hoatimduoc: [],
     };
+    this.debouncedSearch = debounce(this.nhaphoacantim, 3000);
   }
 
   async componentDidMount() {
@@ -40,16 +43,20 @@ class HeaderTrangChu extends Component {
     await apidangxuat();
   };
 
-  nhaphoacantim = (event) => {
+  nhaphoacantim = async (event) => {
+    console.log(event.target.value);
     this.setState({
       tenhoa: event.target.value,
     });
+    // await this.props.timhoa({
+    //   tenhoa: this.state.tenhoa,
+    //   ngongu: this.props.ngonngu,
+    // });
   };
 
   render() {
-    let { ngonngu, thongtinnguoidung } = this.props;
-    let { danhmucnoibat,tenhoa } = this.state;
-    console.log(tenhoa)
+    let { ngonngu, thongtinnguoidung, hoa } = this.props;
+    let { danhmucnoibat, tenhoa, hoatimduoc } = this.state;
     return (
       <>
         <div className="headeritem1">
@@ -74,7 +81,10 @@ class HeaderTrangChu extends Component {
                     <FormattedMessage id="headerdangxuat" />
                   </li>
                 ) : (
-                  <Link className="dangnhap" to={"/dangnhap"}>
+                  <Link
+                    className={ngonngu === "vi" ? "dangnhap" : "dangnhap mr-4"}
+                    to={"/dangnhap"}
+                  >
                     <li>
                       <FormattedMessage id="headerdangnhap" />
                     </li>
@@ -221,6 +231,7 @@ const mapStateToProps = (state) => {
   return {
     ngonngu: state.web.ngonngu,
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
+    hoa: state.admin.hoa,
   };
 };
 
@@ -228,6 +239,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     doiNgonNgu: (ngongu) => dispatch(doiNgonNgu(ngongu)),
     dangxuat: () => dispatch(dangxuat()),
+    timhoa: (data) => dispatch(timhoa(data)),
   };
 };
 

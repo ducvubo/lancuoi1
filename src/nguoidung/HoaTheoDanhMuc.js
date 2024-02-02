@@ -4,6 +4,9 @@ import "./HoaTheoDanhMuc.scss";
 import HeaderTrangChu from "./HeaderTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import { apihoatheodanhmuc } from "../API/ApiTrangChu";
+import { FormattedMessage } from "react-intl";
+import * as actions from "../action/actions";
+
 class HoaTheoDanhMuc extends Component {
   constructor(props) {
     super(props);
@@ -47,12 +50,18 @@ class HoaTheoDanhMuc extends Component {
     this.props.history.push(`/thongtinhoa/${hoa.id}`);
   }
 
+  dathangtrangchu = (hoa) => {
+    hoa.soluongmua = 1;
+    this.props.thongtinhoadathang(hoa);
+    this.props.history.push(`/dathang`);
+  };
+
   render() {
     let { hoatheodanhmuc } = this.state;
     let { ngonngu } = this.props;
     return (
       <>
-        <HeaderTrangChu />
+        {/* <HeaderTrangChu /> */}
         <div className="hoatheodanhmuc">
           {hoatheodanhmuc &&
             hoatheodanhmuc.length > 0 &&
@@ -68,6 +77,8 @@ class HoaTheoDanhMuc extends Component {
                   <div
                     className="anhhoa"
                     onClick={() => this.thongtinhoa(item)}
+                    style={{ cursor: 'pointer' }}
+
                   >
                     <img src={anhnoibat} width="261" height="326" />
 
@@ -84,6 +95,8 @@ class HoaTheoDanhMuc extends Component {
                       <div
                         className="gia"
                         onClick={() => this.thongtinhoa(item)}
+                        style={{ cursor: 'pointer' }}
+
                       >
                         {item.phantramgiam > 0 ? (
                           <>
@@ -102,6 +115,8 @@ class HoaTheoDanhMuc extends Component {
                       <div
                         className="gia"
                         onClick={() => this.thongtinhoa(item)}
+                        style={{ cursor: 'pointer' }}
+
                       >
                         {item.phantramgiam > 0 ? (
                           <>
@@ -118,25 +133,35 @@ class HoaTheoDanhMuc extends Component {
                       </div>
                     )}
                     <div className="dathang">
-                      <a href="#">ĐẶT HÀNG</a>
+                    <span
+                          className="btn"
+                          onClick={() => this.dathangtrangchu(item)}
+                        >
+                          <FormattedMessage id="trangchudathang" />
+                        </span>
                     </div>
                   </div>
                 </div>
               );
             })}
         </div>
-        <FooterTrangChu />
+        {/* <FooterTrangChu /> */}
       </>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    ngonngu: state.web.ngonngu,
+
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    thongtinhoadathang: (hoa) => dispatch(actions.thongtinhoadathang(hoa)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HoaTheoDanhMuc);

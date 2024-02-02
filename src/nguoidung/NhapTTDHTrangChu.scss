@@ -1,0 +1,29 @@
+.nhapthongtindathangtrangchu{
+    .item1{
+        display: flex;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 8px; 
+        border-bottom:1px solid #ccc ;
+        padding-bottom: 5px;
+        .chu{
+            font-weight: 600;
+            font-size: 20px;
+        }
+        .tat{
+            cursor: pointer;
+        }
+    }
+    // .item2{
+    //     border-bottom: 1px solid #ccc;
+    // }
+    .item3{
+        margin-left: 564px;
+        .nutbam{
+            font-weight     : 500;
+            background-color: #e91e63;
+            color           : white;
+            width           : 95px;
+        }
+    }
+}
