@@ -45,10 +45,9 @@ class HoaTheoDanhMuc extends Component {
     }
   };
 
-
   thongtinhoa = (hoa) => {
     this.props.history.push(`/thongtinhoa/${hoa.id}`);
-  }
+  };
 
   dathangtrangchu = (hoa) => {
     hoa.soluongmua = 1;
@@ -77,8 +76,7 @@ class HoaTheoDanhMuc extends Component {
                   <div
                     className="anhhoa"
                     onClick={() => this.thongtinhoa(item)}
-                    style={{ cursor: 'pointer' }}
-
+                    style={{ cursor: "pointer" }}
                   >
                     <img src={anhnoibat} width="261" height="326" />
 
@@ -95,28 +93,26 @@ class HoaTheoDanhMuc extends Component {
                       <div
                         className="gia"
                         onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                        style={{ cursor: "pointer" }}
                       >
                         {item.phantramgiam > 0 ? (
                           <>
                             <span className="giagiam">
-                              {item.giasaukhigiamVND}VND
+                              {item.giasaukhigiamVND}đ
                             </span>
                             <span className="giachuagiam">
-                              {item.giathucVND}VND
+                              {item.giathucVND}đ
                             </span>
                           </>
                         ) : (
-                          <span className="giagiam">{item.giathucVND}VND</span>
+                          <span className="giagiam">{item.giathucVND}đ</span>
                         )}
                       </div>
                     ) : (
                       <div
                         className="gia"
                         onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                        style={{ cursor: "pointer" }}
                       >
                         {item.phantramgiam > 0 ? (
                           <>
@@ -133,12 +129,12 @@ class HoaTheoDanhMuc extends Component {
                       </div>
                     )}
                     <div className="dathang">
-                    <span
-                          className="btn"
-                          onClick={() => this.dathangtrangchu(item)}
-                        >
-                          <FormattedMessage id="trangchudathang" />
-                        </span>
+                      <span
+                        className="btn"
+                        onClick={() => this.dathangtrangchu(item)}
+                      >
+                        <FormattedMessage id="trangchudathang" />
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -154,7 +150,6 @@ class HoaTheoDanhMuc extends Component {
 const mapStateToProps = (state) => {
   return {
     ngonngu: state.web.ngonngu,
-
   };
 };
 

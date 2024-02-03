@@ -105,9 +105,11 @@ class DatHang extends Component {
             </thead>
             <tbody>
               <tr>
-                <td scope="row" className="tenanh"
-                onClick={() =>this.thongtinhoa(thongtinhoadathang)}
-                          style={{ cursor: 'pointer' }}
+                <td
+                  scope="row"
+                  className="tenanh"
+                  onClick={() => this.thongtinhoa(thongtinhoadathang)}
+                  style={{ cursor: "pointer" }}
                 >
                   <img
                     src={anhnoibat}
@@ -133,7 +135,7 @@ class DatHang extends Component {
                       ).toLocaleString()
                     : thongtinhoadathang.soluongmua *
                       thongtinhoadathang.giasaukhigiamUSD}
-                  {ngonngu === "vi" ? "VND" : "USD"}
+                  {ngonngu === "vi" ? "đ" : "USD"}
                 </td>
               </tr>
 

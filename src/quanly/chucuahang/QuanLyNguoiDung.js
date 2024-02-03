@@ -74,7 +74,6 @@ class QuanLyNguoiDung extends Component {
     ];
     for (let i = 0; i < nhapdaydu.length; i++) {
       if (!this.state[nhapdaydu[i]]) {
-
         kt = false;
         this.props.ngonngu === "vi"
           ? alert("Vui lòng nhập đầy đủ thông tin")
@@ -138,7 +137,7 @@ class QuanLyNguoiDung extends Component {
       diachinha: this.state.diachinha,
       diachicuahang: this.state.diachicuahang,
       gioitinhId: this.state.gioitinh,
-      quyenId: this.state.quyenId,
+      quyenId: this.state.quyen,
     });
     this.setState({
       trangthainut: false,
@@ -174,6 +173,7 @@ class QuanLyNguoiDung extends Component {
       quyen,
     } = this.state;
     let tatcanguoidung = this.state.tatcanguoidung;
+    console.log(tatcanguoidung);
     let trangthainut = this.state.trangthainut;
     return (
       <div className="quanlynguoidung">
@@ -316,8 +316,8 @@ class QuanLyNguoiDung extends Component {
           </button>
         )}
         <div className="item3">
-        <table className="table table-bordered ">
-              <thead>
+          <table className="table table-bordered ">
+            <thead>
               <tr className="item31">
                 <th scope="col">id</th>
                 <th scope="col">Email</th>
@@ -343,7 +343,11 @@ class QuanLyNguoiDung extends Component {
                       <td>{item.sdt}</td>
                       <td>{item.diachinha}</td>
                       <td>{item.diachicuahang}</td>
-                      <td>{item.quyenId}</td>
+                      <td>
+                        {ngonngu === "vi"
+                          ? item.quyen.tiengViet
+                          : item.quyen.tiengAnh}
+                      </td>
                       <td>
                         <button onClick={() => this.clicksuanguoidung(item)}>
                           <i className="fas fa-edit"></i>

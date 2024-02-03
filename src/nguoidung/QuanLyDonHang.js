@@ -13,7 +13,7 @@ class QuanLyDonHang extends Component {
     this.state = {
       thongtindonhang: {},
       tatcadonhang: [],
-      trangthaithongtindonhang:false
+      trangthaithongtindonhang: false,
     };
   }
 
@@ -68,7 +68,8 @@ class QuanLyDonHang extends Component {
   };
 
   render() {
-    let { tatcadonhang,trangthaithongtindonhang,thongtindonhang } = this.state;
+    let { tatcadonhang, trangthaithongtindonhang, thongtindonhang } =
+      this.state;
     let { ngonngu } = this.props;
     return (
       <>
@@ -102,21 +103,29 @@ class QuanLyDonHang extends Component {
                         <td>{item.sodienthoai}</td>
                         <td>{item.diachi}</td>
                         <td>{item.ghichu}</td>
-                        <td>{ngonngu === 'vi' ? item.trangthaidonhang.tiengViet : item.trangthaidonhang.tiengAnh}</td>
+                        <td>
+                          {ngonngu === "vi"
+                            ? item.trangthaidonhang.tiengViet
+                            : item.trangthaidonhang.tiengAnh}
+                        </td>
                         <td>
                           {item.ngonngu === "vi"
-                            ? `${item.tongtien.toLocaleString()} VND`
+                            ? `${item.tongtien.toLocaleString()} đ`
                             : `${item.tongtien} USD`}
                         </td>
-                        <td><button className="btn button"
-                        onClick={() => this.xemchitietdonhang(item)}
-                        >Chi tiết</button>
-                        <ThongTinDonHangNguoiDung
-                         thongtindonhang={thongtindonhang}
-                         trangthaithongtindonhang={trangthaithongtindonhang}
-                         huyxemchitietdonhang={this.huyxemchitietdonhang}
-                         laytatcadonhang = {this.laytatcadonhang}
-                        />
+                        <td>
+                          <button
+                            className="btn button"
+                            onClick={() => this.xemchitietdonhang(item)}
+                          >
+                            Chi tiết
+                          </button>
+                          <ThongTinDonHangNguoiDung
+                            thongtindonhang={thongtindonhang}
+                            trangthaithongtindonhang={trangthaithongtindonhang}
+                            huyxemchitietdonhang={this.huyxemchitietdonhang}
+                            laytatcadonhang={this.laytatcadonhang}
+                          />
                         </td>
                       </tr>
                     );

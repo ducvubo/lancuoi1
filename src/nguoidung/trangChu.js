@@ -166,8 +166,7 @@ class trangChu extends Component {
                     <div
                       className="anhhoa"
                       onClick={() => this.thongtinhoa(item)}
-                      style={{ cursor: 'pointer' }}
-
+                      style={{ cursor: "pointer" }}
                     >
                       <img src={anhnoibat} width="261" height="326" />
 
@@ -182,8 +181,7 @@ class trangChu extends Component {
                       <span
                         className="ten"
                         onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                        style={{ cursor: "pointer" }}
                       >
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
@@ -193,15 +191,15 @@ class trangChu extends Component {
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
-                                {item.giasaukhigiamVND.toLocaleString()}VND
+                                {item.giasaukhigiamVND.toLocaleString()}đ
                               </span>
                               <span className="giachuagiam">
-                                {item.giathucVND.toLocaleString()}VND
+                                {item.giathucVND.toLocaleString()}đ
                               </span>
                             </>
                           ) : (
                             <span className="giagiam">
-                              {item.giathucVND.toLocaleString()}VND
+                              {item.giathucVND.toLocaleString()}đ
                             </span>
                           )}
                         </div>
@@ -209,8 +207,7 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
@@ -292,8 +289,7 @@ class trangChu extends Component {
                     <div
                       className="anhhoa"
                       onClick={() => this.thongtinhoa(item)}
-                      style={{ cursor: 'pointer' }}
-
+                      style={{ cursor: "pointer" }}
                     >
                       <img src={anhnoibat} width="261" height="326" />
 
@@ -308,8 +304,7 @@ class trangChu extends Component {
                       <span
                         className="ten"
                         onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                        style={{ cursor: "pointer" }}
                       >
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
@@ -318,21 +313,20 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
-                                {item.giasaukhigiamVND.toLocaleString()}VND
+                                {item.giasaukhigiamVND.toLocaleString()}đ
                               </span>
                               <span className="giachuagiam">
-                                {item.giathucVND.toLocaleString()}VND
+                                {item.giathucVND.toLocaleString()}đ
                               </span>
                             </>
                           ) : (
                             <span className="giagiam">
-                              {item.giathucVND.toLocaleString()}VND
+                              {item.giathucVND.toLocaleString()}đ
                             </span>
                           )}
                         </div>
@@ -340,8 +334,7 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
@@ -393,8 +386,7 @@ class trangChu extends Component {
                     <div
                       className="anhhoa"
                       onClick={() => this.thongtinhoa(item)}
-                      style={{ cursor: 'pointer' }}
-
+                      style={{ cursor: "pointer" }}
                     >
                       <img src={anhnoibat} width="261" height="326" />
 
@@ -409,8 +401,7 @@ class trangChu extends Component {
                       <span
                         className="ten"
                         onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                        style={{ cursor: "pointer" }}
                       >
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
@@ -419,21 +410,20 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
-                                {item.giasaukhigiamVND.toLocaleString()}VND
+                                {item.giasaukhigiamVND.toLocaleString()}đ
                               </span>
                               <span className="giachuagiam">
-                                {item.giathucVND.toLocaleString()}VND
+                                {item.giathucVND.toLocaleString()}đ
                               </span>
                             </>
                           ) : (
                             <span className="giagiam">
-                              {item.giathucVND.toLocaleString()}VND
+                              {item.giathucVND.toLocaleString()}đ
                             </span>
                           )}
                         </div>
@@ -441,8 +431,7 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
@@ -494,8 +483,7 @@ class trangChu extends Component {
                     <div
                       className="anhhoa"
                       onClick={() => this.thongtinhoa(item)}
-                      style={{ cursor: 'pointer' }}
-
+                      style={{ cursor: "pointer" }}
                     >
                       <img src={anhnoibat} width="261" height="326" />
 
@@ -510,8 +498,7 @@ class trangChu extends Component {
                       <span
                         className="ten"
                         onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                        style={{ cursor: "pointer" }}
                       >
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
@@ -520,21 +507,20 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
-                                {item.giasaukhigiamVND.toLocaleString()}VND
+                                {item.giasaukhigiamVND.toLocaleString()}đ
                               </span>
                               <span className="giachuagiam">
-                                {item.giathucVND.toLocaleString()}VND
+                                {item.giathucVND.toLocaleString()}đ
                               </span>
                             </>
                           ) : (
                             <span className="giagiam">
-                              {item.giathucVND.toLocaleString()}VND
+                              {item.giathucVND.toLocaleString()}đ
                             </span>
                           )}
                         </div>
@@ -542,8 +528,7 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
@@ -595,8 +580,7 @@ class trangChu extends Component {
                     <div
                       className="anhhoa"
                       onClick={() => this.thongtinhoa(item)}
-                      style={{ cursor: 'pointer' }}
-
+                      style={{ cursor: "pointer" }}
                     >
                       <img src={anhnoibat} width="261" height="326" />
 
@@ -616,21 +600,20 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
-                                {item.giasaukhigiamVND.toLocaleString()}VND
+                                {item.giasaukhigiamVND.toLocaleString()}đ
                               </span>
                               <span className="giachuagiam">
-                                {item.giathucVND.toLocaleString()}VND
+                                {item.giathucVND.toLocaleString()}đ
                               </span>
                             </>
                           ) : (
                             <span className="giagiam">
-                              {item.giathucVND.toLocaleString()}VND
+                              {item.giathucVND.toLocaleString()}đ
                             </span>
                           )}
                         </div>
@@ -638,8 +621,7 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
@@ -692,8 +674,7 @@ class trangChu extends Component {
                     <div
                       className="anhhoa"
                       onClick={() => this.thongtinhoa(item)}
-                      style={{ cursor: 'pointer' }}
-
+                      style={{ cursor: "pointer" }}
                     >
                       <img src={anhnoibat} width="261" height="326" />
 
@@ -713,21 +694,20 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
-                                {item.giasaukhigiamVND.toLocaleString()}VND
+                                {item.giasaukhigiamVND.toLocaleString()}đ
                               </span>
                               <span className="giachuagiam">
-                                {item.giathucVND.toLocaleString()}VND
+                                {item.giathucVND.toLocaleString()}đ
                               </span>
                             </>
                           ) : (
                             <span className="giagiam">
-                              {item.giathucVND.toLocaleString()}VND
+                              {item.giathucVND.toLocaleString()}đ
                             </span>
                           )}
                         </div>
@@ -735,8 +715,7 @@ class trangChu extends Component {
                         <div
                           className="gia"
                           onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: 'pointer' }}
-
+                          style={{ cursor: "pointer" }}
                         >
                           {item.phantramgiam > 0 ? (
                             <>

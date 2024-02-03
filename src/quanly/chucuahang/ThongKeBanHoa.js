@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./ThongKeBanHoa.scss";
-import { apithongkebanhoa,apitatcadonhang,apirefreshtoken } from "../../API/GoiApi";
+import {
+  apithongkebanhoa,
+  apitatcadonhang,
+  apirefreshtoken,
+} from "../../API/GoiApi";
 import moment from "moment";
 import * as XLSX from "xlsx";
 import { toast } from "react-toastify";
@@ -85,7 +89,7 @@ class ThongKeBanHoa extends Component {
             item.sodienthoai,
             item.diachi,
             item.ngonngu === "vi"
-              ? `${item.tongtien.toLocaleString()} VND`
+              ? `${item.tongtien.toLocaleString()} đ`
               : `${item.tongtien.toLocaleString()} USD`,
             moment(item.createdAt).format("DD-MM-YYYY"),
             this.props.ngonngu === "vi"
@@ -95,7 +99,7 @@ class ThongKeBanHoa extends Component {
             this.props.ngonngu === "vi" ? hoa.tenhoaVi : hoa.tenhoaEn,
             hoa.Donhangchitiet.soluongmua,
             item.ngonngu === "vi"
-              ? `${hoa.Donhangchitiet.tongtien.toLocaleString()} VND`
+              ? `${hoa.Donhangchitiet.tongtien.toLocaleString()} đ`
               : `${hoa.Donhangchitiet.tongtien.toLocaleString()} USD`,
           ];
           builddataexcel.push(arr);
@@ -164,7 +168,7 @@ class ThongKeBanHoa extends Component {
             item.sodienthoai,
             item.diachi,
             item.ngonngu === "vi"
-              ? `${item.tongtien.toLocaleString()} VND`
+              ? `${item.tongtien.toLocaleString()} đ`
               : `${item.tongtien.toLocaleString()} USD`,
             moment(item.createdAt).format("DD-MM-YYYY"),
             this.props.ngonngu === "vi"
@@ -174,7 +178,7 @@ class ThongKeBanHoa extends Component {
             this.props.ngonngu === "vi" ? hoa.tenhoaVi : hoa.tenhoaEn,
             hoa.Donhangchitiet.soluongmua,
             item.ngonngu === "vi"
-              ? `${hoa.Donhangchitiet.tongtien.toLocaleString()} VND`
+              ? `${hoa.Donhangchitiet.tongtien.toLocaleString()} đ`
               : `${hoa.Donhangchitiet.tongtien.toLocaleString()} USD`,
           ];
           builddataexcel.push(arr);
@@ -193,7 +197,6 @@ class ThongKeBanHoa extends Component {
     });
   };
 
-  
   xuatexcel = () => {
     const ws = XLSX.utils.aoa_to_sheet(this.state.dataexcel);
     const wb = XLSX.utils.book_new();
@@ -304,7 +307,7 @@ class ThongKeBanHoa extends Component {
                           <td rowSpan={item.hoas.length + 1}>{item.diachi}</td>
                           <td rowSpan={item.hoas.length + 1}>
                             {item.ngonngu === "vi"
-                              ? `${item.tongtien.toLocaleString()} VND`
+                              ? `${item.tongtien.toLocaleString()} đ`
                               : `${item.tongtien.toLocaleString()} USD`}
                           </td>
                           <td rowSpan={item.hoas.length + 1}>
@@ -329,7 +332,7 @@ class ThongKeBanHoa extends Component {
                                   <td>{hoa.Donhangchitiet.soluongmua}</td>
                                   <td>
                                     {item.ngonngu === "vi"
-                                      ? `${hoa.Donhangchitiet.tongtien.toLocaleString()} VND`
+                                      ? `${hoa.Donhangchitiet.tongtien.toLocaleString()} đ`
                                       : `${hoa.Donhangchitiet.tongtien.toLocaleString()} USD`}
                                   </td>
                                 </tr>

@@ -1,12 +1,13 @@
-
 .header-container {
-    z-index         : 99;
-    display         : flex;
-    justify-content : space-between;
-    background-color:#e91e63;
-    color           : white;
-    height          : 40px;
-    position        : relative;
+    z-index            : 99;
+    display            : flex;
+    justify-content    : space-between;
+    background-color   : #e91e63;
+    color              : white;
+    height             : 40px;
+    // position        : relative;
+    position           : sticky;
+    top                : 0;
 
     .btn-logout {
         color      : white;
@@ -24,9 +25,10 @@
     }
 
     .languages {
-        .welcome{
+        .welcome {
             margin-right: 10px;
         }
+
         .language-en {
             margin-right: 15px;
             margin-left : 10px;

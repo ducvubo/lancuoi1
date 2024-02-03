@@ -146,14 +146,18 @@ class ThongTinHoa extends Component {
                 <span className="giathuc">
                   {ngonngu === "vi"
                     ? thongtinhoa.giathucVND
+                      ? thongtinhoa.giathucVND.toLocaleString()
+                      : null
                     : thongtinhoa.giathucUSD}
-                  VND
+                  {ngonngu === "vi" ? "đ" : "USD"}
                 </span>
                 <span className="giagiam">
                   {ngonngu === "vi"
                     ? thongtinhoa.giasaukhigiamVND
+                      ? thongtinhoa.giasaukhigiamVND.toLocaleString()
+                      : null
                     : thongtinhoa.giasaukhigiamUSD}
-                  VND
+                  {ngonngu === "vi" ? "đ" : "USD"}
                 </span>
                 <span className="phantram">
                   {thongtinhoa.phantramgiam}% giảm
@@ -296,9 +300,9 @@ class ThongTinHoa extends Component {
                 return (
                   <div className="hoa" key={index}>
                     <div className="anhhoa">
-                      <Link to={`/thongtinhoa/${item.id}`}
-                        style={{ cursor: 'pointer' }}
-                      
+                      <Link
+                        to={`/thongtinhoa/${item.id}`}
+                        style={{ cursor: "pointer" }}
                       >
                         <img src={anhnoibat} width="261" height="326" />
 
@@ -310,9 +314,10 @@ class ThongTinHoa extends Component {
                       </Link>
                     </div>
                     <div className="thongtin">
-                      <Link className="linkten" to={`/thongtinhoa/${item.id}`}
-                        style={{ cursor: 'pointer' }}
-
+                      <Link
+                        className="linkten"
+                        to={`/thongtinhoa/${item.id}`}
+                        style={{ cursor: "pointer" }}
                       >
                         <span className="ten">
                           {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
@@ -324,40 +329,43 @@ class ThongTinHoa extends Component {
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
-                                {item.giasaukhigiamVND}VND
+                                {item.giasaukhigiamVND
+                                  ? item.giasaukhigiamVND.toLocaleString()
+                                  : null}
+                                đ
                               </span>
                               <span className="giachuagiam">
-                                {item.giathucVND}VND
+                                {item.giathucVND
+                                  ? item.giathucVND.toLocaleString()
+                                  : null}
+                                đ
                               </span>
                             </>
                           ) : (
                             <span className="giagiam">
-                              {item.giathucVND}VND
+                              {item.giathucVND
+                                ? item.giathucVND.toLocaleString()
+                                : null}
+                              đ
                             </span>
                           )}
                         </div>
                       ) : (
-                        <div className="gia"
-                        >
-                          <Link to={`/thongtinhoa/${item.id}`}
-                        style={{ cursor: 'pointer' }}
-                          
-                          >
-                            {item.phantramgiam > 0 ? (
-                              <>
-                                <span className="giagiam">
-                                  {item.giasaukhigiamUSD}USD
-                                </span>
-                                <span className="giachuagiam">
-                                  {item.giathucUSD}USD
-                                </span>
-                              </>
-                            ) : (
+                        <div className="gia">
+                          {item.phantramgiam > 0 ? (
+                            <>
                               <span className="giagiam">
+                                {item.giasaukhigiamUSD}USD
+                              </span>
+                              <span className="giachuagiam">
                                 {item.giathucUSD}USD
                               </span>
-                            )}
-                          </Link>
+                            </>
+                          ) : (
+                            <span className="giagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          )}
                         </div>
                       )}
                       <div className="dathang">

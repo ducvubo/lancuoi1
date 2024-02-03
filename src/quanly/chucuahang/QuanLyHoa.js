@@ -319,7 +319,7 @@ class QuanLyHoa extends Component {
   clicksuahoa = (hoa) => {
     let anhnoibatbase64 = "";
 
-    if (hoa.anhnoibat ) {
+    if (hoa.anhnoibat) {
       anhnoibatbase64 = new Buffer(hoa.anhnoibat, "base64").toString("binary");
     }
     this.setState({
@@ -355,9 +355,7 @@ class QuanLyHoa extends Component {
   clickbtnsuahoa = async () => {
     let anhnoibat = "";
     if (this.state.anhnoibat) {
-      anhnoibat = new Buffer(this.state.anhnoibat, "base64").toString(
-        "binary"
-      );
+      anhnoibat = new Buffer(this.state.anhnoibat, "base64").toString("binary");
     }
     let token = await apirefreshtoken();
 
@@ -506,10 +504,10 @@ class QuanLyHoa extends Component {
       tatcahoa,
       ghichuVi,
       ghichuEn,
-      anhnoibat
+      anhnoibat,
     } = this.state;
     let { ngonngu } = this.props;
-    console.log(anhnoibat)
+    console.log(anhnoibat);
     return (
       <div className="quanlyhoa">
         <div className="item1">
@@ -661,7 +659,7 @@ class QuanLyHoa extends Component {
           </div>
           <div className="gia">
             <div className="form-group khoigia">
-              <label>Giá VND</label>
+              <label>Giá đ</label>
               <input
                 className="form-control"
                 type="number"
@@ -694,7 +692,7 @@ class QuanLyHoa extends Component {
               />
             </div>
             <div className="form-group khoigia">
-              <label>Giá bán VND</label>
+              <label>Giá bán đ</label>
               <input
                 className="form-control"
                 type="text"
@@ -736,7 +734,7 @@ class QuanLyHoa extends Component {
             />
           </div>
         </div>
-       
+
         <div className="item4">
           <br />
           <label>Mô tả sản phẩm tiếng Việt</label> <br />
@@ -773,8 +771,8 @@ class QuanLyHoa extends Component {
         )}
 
         <div className="item3">
-        <table className="table table-bordered ">
-              <thead>
+          <table className="table table-bordered ">
+            <thead>
               <tr className="item31">
                 <th scope="col">Danh mục chi tiết</th>
                 <th scope="col">Tên hoa tiếng Việt</th>
@@ -782,7 +780,7 @@ class QuanLyHoa extends Component {
                 <th scope="col">Số lượng còn</th>
                 <th scope="col">Số lượng nhập</th>
                 <th scope="col">Số lượng bán</th>
-                <th scope="col">Giá VND</th>
+                <th scope="col">Giá đ</th>
                 <th scope="col">Giá USD</th>
                 <th scope="col">% Giảm</th>
                 <th scope="col">Độ nổi bật</th>
