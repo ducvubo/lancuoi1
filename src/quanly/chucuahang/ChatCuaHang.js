@@ -50,6 +50,9 @@ class ChatCuaHang extends Component {
     if (prevState.tennguoinhan !== this.state.tennguoinhan) {
       this.xemtinhanmoinhat();
     }
+    // if(prevState.tatcadoanchat !== this.state.tatcadoanchat){
+    //   this.laytatcakhachhang()
+    // }
   }
 
   xuLyDataTuServerTraVe = async (ev) => {
@@ -73,9 +76,33 @@ class ChatCuaHang extends Component {
     nguoidungArr.forEach(({ idchat, ten }) => {
       nguoi[idchat] = ten;
     });
-    this.setState({
-      tatcadoanchat: nguoidungArr,
+    console.log(nguoidungArr);
+    this.setState((prevState) => ({
+      tatcadoanchat: prevState.tatcadoanchat.concat(nguoidungArr),
+    }));
+
+
+    let copy = [...this.state.tatcadoanchat];
+    let demobj = {};
+    copy.forEach((obj) => {
+      demobj[obj.idchat] = (demobj[obj.idchat] || 0) + 1;
     });
+    copy.forEach((obj) => {
+      obj.trangthai = demobj[obj.idchat] > 1;
+    });
+
+    let giatrixuathien = new Set();
+
+    let dataok = copy.filter((obj) => {
+      let isDuplicate = giatrixuathien.has(obj.ten);
+      giatrixuathien.add(obj.ten);
+      return !isDuplicate;
+    });
+    this.setState({
+      tatcadoanchat: dataok,
+    });
+  
+
   };
 
   chonnguoichat(nguoi) {
@@ -199,21 +226,20 @@ class ChatCuaHang extends Component {
     });
   };
 
-  timdoanchat = debounce( (event) => {
+  timdoanchat = debounce((event) => {
     let timkiem = event.target.value;
     if (timkiem) {
       let clonedoanchat = _.cloneDeep(this.state.tatcadoanchat);
       clonedoanchat = clonedoanchat.filter((item) =>
-      item.ten.toLowerCase().includes(timkiem.toLowerCase())
+        item.ten.toLowerCase().includes(timkiem.toLowerCase())
       );
       this.setState({
         tatcadoanchat: clonedoanchat,
       });
+    } else {
+      this.laytatcakhachhang();
     }
-    else{
-      this.laytatcakhachhang()
-    }
-  },1000);
+  }, 1000);
 
   render() {
     let {
@@ -275,11 +301,11 @@ class ChatCuaHang extends Component {
                               ></span>
                             </div>
                             <div className="user_info">
-                              <span>{item.ten}</span>
+                              <span className="ten">{item.ten}</span>
                               {item.trangthai === true ? (
-                                <p>Online</p>
+                                <p className="onof">Online</p>
                               ) : (
-                                <p>Offline</p>
+                                <p  className="onof">Offline</p>
                               )}
                             </div>
                           </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch, Link } from "react-router-dom";
+import Scrollbars from "react-custom-scrollbars";
 import HeaderMenu from "../Admin/menu/HeaderMenu";
 import QuanLyNguoiDung from "../quanly/chucuahang/QuanLyNguoiDung";
 import DanhMucHoaChiTiet from "../quanly/chucuahang/DanhMucHoaChiTiet";
@@ -44,6 +45,7 @@ class QuanLy extends Component {
     let { trangthai } = this.state;
     return (
       <div className="quanly">
+        <Scrollbars style={{ height: 695 }}>
         {thongtinnguoidung.quyenId === "R1" ||
         thongtinnguoidung.quyenId === "R3" ? (
           <React.Fragment>
@@ -86,6 +88,8 @@ class QuanLy extends Component {
             <ChatCuaHang />
           </div>
         ) : null}
+        </Scrollbars>
+
       </div>
     );
   }

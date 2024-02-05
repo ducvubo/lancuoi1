@@ -270,6 +270,7 @@ class ThongTinHoa extends Component {
               </div>
             </div>
           </div>
+
           <div className="item2">
             <span className="mota">Mô tả sản phẩm</span>
             <div className="boder"> </div>
@@ -286,6 +287,7 @@ class ThongTinHoa extends Component {
               ></div>
             </div>
           </div>
+
           <div className="item4">SẢN PHẨM LIÊN QUAN</div>
           <div className="item5">
             {sanphamlienquan &&
