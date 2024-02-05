@@ -95,7 +95,7 @@ class DangKy extends Component {
       gioitinh: this.state.gioitinh,
       diachinha: this.state.diachinha,
       sodienthoai: this.state.sodienthoai,
-      ngonngu: this.props.ngonngu
+      ngonngu: this.props.ngonngu,
     });
     if (data) {
       this.setState({
@@ -109,7 +109,7 @@ class DangKy extends Component {
         : alert(data.thongDiepen);
     }
 
-    if ( data.maCode === 0) {
+    if (data.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Vui lòng xác nhận tài khoản trong email")
         : toast.success("Please confirm your account in email");
@@ -134,132 +134,134 @@ class DangKy extends Component {
 
     return (
       <>
-        <LoadingOverlay active={loading} spinner text="Từ từ đi bạn ei...."> 
-        {/* <HeaderTrangChu /> */}
-        <div className="dangky">
-          <div className="form">
-            <div className="spandangky">
-              <span>Đăng ký</span>
-            </div>
-            <div className="nhapthongtin">
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  className="form-control"
-                  type="email"
-                  onChange={(event) => {
-                    this.onChangeNhap(event, "email");
-                  }}
-                  value={email}
-                />
+        <LoadingOverlay active={loading} spinner text="Từ từ đi bạn ei....">
+          {/* <HeaderTrangChu /> */}
+          <div className="dangky">
+            <div className="form">
+              <div className="spandangky">
+                <span>Đăng ký</span>
               </div>
-              <div className="form-group mk">
-                <label>Mật khẩu</label>
-                <input
-                  className="form-control inputmk"
-                  type={xemmk === false ? "password" : "text"}
-                  onChange={(event) => {
-                    this.onChangeNhap(event, "password");
-                  }}
-                  value={password}
-                />
-                {xemmk === true ? (
-                  <i
-                    className="far fa-eye-slash xemmk"
-                    onClick={() => this.xemmk()}
-                  ></i>
-                ) : (
-                  <i
-                    className="far fa-eye xemmk"
-                    onClick={() => this.xemmk()}
-                  ></i>
-                )}
-              </div>
-              <div className="hoten">
+              <div className="nhapthongtin">
                 <div className="form-group">
-                  <label>Họ</label>
+                  <label>Email</label>
+                  <input
+                    className="form-control"
+                    type="email"
+                    onChange={(event) => {
+                      this.onChangeNhap(event, "email");
+                    }}
+                    value={email}
+                  />
+                </div>
+                <div className="form-group mk">
+                  <label>Mật khẩu</label>
+                  <input
+                    className="form-control inputmk"
+                    type={xemmk === false ? "password" : "text"}
+                    onChange={(event) => {
+                      this.onChangeNhap(event, "password");
+                    }}
+                    value={password}
+                  />
+                  {xemmk === true ? (
+                    <i
+                      className="far fa-eye-slash xemmk"
+                      onClick={() => this.xemmk()}
+                    ></i>
+                  ) : (
+                    <i
+                      className="far fa-eye xemmk"
+                      onClick={() => this.xemmk()}
+                    ></i>
+                  )}
+                </div>
+                <div className="hoten">
+                  <div className="form-group">
+                    <label>Họ</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      onChange={(event) => {
+                        this.onChangeNhap(event, "ho");
+                      }}
+                      value={ho}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Tên</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      onChange={(event) => {
+                        this.onChangeNhap(event, "ten");
+                      }}
+                      value={ten}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Giới tính</label>
+                    <select
+                      className="form-control"
+                      onChange={(event) => {
+                        this.onChangeNhap(event, "gioitinh");
+                      }}
+                      value={gioitinh}
+                    >
+                      {gioitinh1 &&
+                        gioitinh1.length > 0 &&
+                        gioitinh1.map((item, index) => {
+                          return (
+                            <option key={index} value={item.idNoi}>
+                              {ngonngu === "vi"
+                                ? item.tiengViet
+                                : item.tiengAnh}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label>Số điện thoại</label>
                   <input
                     className="form-control"
                     type="text"
                     onChange={(event) => {
-                      this.onChangeNhap(event, "ho");
+                      this.onChangeNhap(event, "sodienthoai");
                     }}
-                    value={ho}
+                    value={sodienthoai}
                   />
                 </div>
                 <div className="form-group">
-                  <label>Tên</label>
+                  <label>Địa chỉ</label>
                   <input
                     className="form-control"
                     type="text"
                     onChange={(event) => {
-                      this.onChangeNhap(event, "ten");
+                      this.onChangeNhap(event, "diachinha");
                     }}
-                    value={ten}
+                    value={diachinha}
                   />
                 </div>
-
-                <div className="form-group">
-                  <label>Giới tính</label>
-                  <select
-                    className="form-control"
-                    onChange={(event) => {
-                      this.onChangeNhap(event, "gioitinh");
-                    }}
-                    value={gioitinh}
-                  >
-                    {gioitinh1 &&
-                      gioitinh1.length > 0 &&
-                      gioitinh1.map((item, index) => {
-                        return (
-                          <option key={index} value={item.idNoi}>
-                            {ngonngu === "vi" ? item.tiengViet : item.tiengAnh}
-                          </option>
-                        );
-                      })}
-                  </select>
-                </div>
               </div>
-              <div className="form-group">
-                <label>Số điện thoại</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  onChange={(event) => {
-                    this.onChangeNhap(event, "sodienthoai");
-                  }}
-                  value={sodienthoai}
-                />
-              </div>
-              <div className="form-group">
-                <label>Địa chỉ</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  onChange={(event) => {
-                    this.onChangeNhap(event, "diachinha");
-                  }}
-                  value={diachinha}
-                />
-              </div>
-            </div>
 
-            <button className="btn butdangky" onClick={() => this.dangky()}>
-              Đăng ký
-            </button>
-            <div className="qmk-dk">
-              <Link className="dangky" to={"/quenmk"}>
-                <span className="qmk">Bạn đã quên mật khẩu</span>
-              </Link>
+              <button className="btn butdangky" onClick={() => this.dangky()}>
+                Đăng ký
+              </button>
+              <div className="qmk-dk">
+                <Link className="dangky" to={"/quenmk"}>
+                  <span className="qmk">Bạn đã quên mật khẩu</span>
+                </Link>
 
-              <Link className="dangnhap" to={"/dangnhap"}>
-                <span className="dk">Bạn đã có tài khoản? Đăng nhập</span>
-              </Link>
+                <Link className="dangnhap" to={"/dangnhap"}>
+                  <span className="dk">Bạn đã có tài khoản? Đăng nhập</span>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-        {/* <FooterTrangChu /> */}
-         </LoadingOverlay> 
+          {/* <FooterTrangChu /> */}
+        </LoadingOverlay>
       </>
     );
   }

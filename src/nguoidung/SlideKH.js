@@ -7,30 +7,31 @@ import slide2 from "../image/slide2.webp";
 import slide3 from "../image/slide3.webp";
 import slide4 from "../image/slide4.webp";
 import slide5 from "../image/slide5.webp";
-import khachhangtieubieu6 from '../image/khachhangtieubieu6.png'
-import khachhangtieubieu7 from '../image/khachhangtieubieu7.png'
-import khachhangtieubieu3 from '../image/khachhangtieubieu3.png'
-import khachhangtieubieu4 from '../image/khachhangtieubieu4.png'
-import khachhangtieubieu5 from '../image/khachhangtieubieu5.png'
+import khachhangtieubieu6 from "../image/khachhangtieubieu6.png";
+import khachhangtieubieu7 from "../image/khachhangtieubieu7.png";
+import khachhangtieubieu3 from "../image/khachhangtieubieu3.png";
+import khachhangtieubieu4 from "../image/khachhangtieubieu4.png";
+import khachhangtieubieu5 from "../image/khachhangtieubieu5.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 class SlideKH extends Component {
   render() {
     let settings = {
-      dots: true,
+      // dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-
+      autoplay: true, // Bật tự động chuyển đổi
+      autoplaySpeed: 3000,
     };
     return (
       <div className="item15">
         <div className="item151">
           <div className="item1511">
             <div className="item15111">
-              <Slider>
+              <Slider {...settings}>
                 <div className="anh">
                   <img
                     src={khachhangtieubieu6}
@@ -40,7 +41,7 @@ class SlideKH extends Component {
                   />
                 </div>
                 <div className="anh">
-                <img
+                  <img
                     src={khachhangtieubieu7}
                     alt="Slide 1"
                     width={"1152px"}
@@ -48,7 +49,7 @@ class SlideKH extends Component {
                   />
                 </div>
                 <div className="anh">
-                <img
+                  <img
                     src={khachhangtieubieu3}
                     alt="Slide 1"
                     width={"1152px"}
@@ -56,7 +57,7 @@ class SlideKH extends Component {
                   />
                 </div>
                 <div className="anh">
-                <img
+                  <img
                     src={khachhangtieubieu4}
                     alt="Slide 1"
                     width={"1152px"}
@@ -64,7 +65,7 @@ class SlideKH extends Component {
                   />
                 </div>
                 <div className="anh">
-                <img
+                  <img
                     src={khachhangtieubieu5}
                     alt="Slide 1"
                     width={"1152px"}

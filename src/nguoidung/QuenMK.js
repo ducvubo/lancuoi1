@@ -46,7 +46,7 @@ class QuenMK extends Component {
     });
     let kq = await apiquenmk({
       email: this.state.email,
-      ngonngu:this.props.ngonngu
+      ngonngu: this.props.ngonngu,
     });
 
     if (kq) {
@@ -54,18 +54,17 @@ class QuenMK extends Component {
         loading: false,
       });
     }
-    if ( kq.maCode === 1) {
+    if (kq.maCode === 1) {
       this.props.ngonngu === "vi" ? alert(kq.thongDiep) : alert(kq.thongDiepen);
     }
-    if ( kq.maCode === 2) {
+    if (kq.maCode === 2) {
       this.props.ngonngu === "vi"
         ? toast.error(
             "Tài khoản chưa được kích hoạt vui lòng kích hoạt trước!!!"
           )
         : toast.error("Account not yet activated, please activate first!!!");
     }
-    if ( kq.maCode === 0) {
-
+    if (kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Vui lòng kiểm tra hộp thư email của ban!!!")
         : toast.success("Please check your email inbox!!!");

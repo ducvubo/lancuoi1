@@ -14,6 +14,7 @@ import {
   apixoahoadonchitiet,
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 class QuanLyNhapHoaChiTiet extends Component {
   constructor(props) {
     super(props);
@@ -400,6 +401,23 @@ class QuanLyNhapHoaChiTiet extends Component {
     }
   };
 
+  timkiem = (event) => {
+    let timkiem = event.target.value;
+    if (timkiem) {
+      let clone = _.cloneDeep(this.state.tatcahoadonchitiet);
+      clone = clone.filter((item) =>
+        (item.maphieunhap ? item.maphieunhap : "")
+          .toLowerCase()
+          .includes(timkiem.toLowerCase())
+      );
+      this.setState({
+        tatcahoadonchitiet: clone,
+      });
+    } else {
+      this.laytatcahoadonchitiet();
+    }
+  };
+
   render() {
     let {
       idnhaphoa,
@@ -420,28 +438,28 @@ class QuanLyNhapHoaChiTiet extends Component {
     return (
       <div className="quanlynhaphoachitiet">
         <div className="item1">
-          <span>Quản lý nhập hoa chi tiết</span>
+          <span><FormattedMessage id="quanlynhaphoachitiet"/></span>
         </div>
         <div className="item11">
-          <span className="mr-4 mt-3">Bạn đang muốn?</span>
+          <span className="mr-4 mt-3"><FormattedMessage id="quanlynhaphoachitietbandangmuon"/></span>
           <button
             className={!trangthai ? "btn mb-1" : "btn mb-1 trangthai"}
             disabled={!trangthai}
             onClick={() => this.doitrangthai()}
           >
-            Thêm hoa mới
+            <FormattedMessage id="quanlynhaphoachitietthemhoamoi"/>
           </button>
           <button
             className={!trangthai ? "btn mr-3 mb-1 trangthai" : "btn mr-3 mb-1"}
             disabled={trangthai}
             onClick={() => this.doitrangthai()}
           >
-            Thêm số lượng hoa cũ
+            <FormattedMessage id="quanlynhaphoachitietthemhoacu"/>
           </button>
         </div>
         <div className="item2 row">
           <div className="form-group col-4">
-            <label>Mã phiếu nhập</label>
+            <label><FormattedMessage id="quanlynhaphoachitietmaphieunhap"/></label>
             <select
               className="form-control"
               onChange={(event) => {
@@ -462,7 +480,7 @@ class QuanLyNhapHoaChiTiet extends Component {
           </div>
           {trangthai === true || trangthainut === true ? (
             <div className="form-group col-4">
-              <label>Tên hoa</label>
+              <label><FormattedMessage id="quanlynhaphoachitiettenhoa"/></label>
               <select
                 className="form-control"
                 onChange={(event) => {
@@ -487,7 +505,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             </div>
           ) : (
             <div className="form-group col-4">
-              <label>Tên hoa</label>
+              <label><FormattedMessage id="quanlynhaphoachitiettenhoa"/></label>
               <input
                 className="form-control"
                 type="text"
@@ -499,7 +517,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             </div>
           )}
           <div className="form-group col-4">
-            <label>Đơn vị tính</label>
+            <label><FormattedMessage id="quanlynhaphoachitietdonvitinh"/></label>
             <input
               className="form-control"
               type="text"
@@ -510,7 +528,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             />
           </div>
           <div className="form-group col-3">
-            <label>Số lượng trên phiếu</label>
+            <label><FormattedMessage id="quanlynhaphoachitietsoluongtrenphieu"/></label>
             <input
               className="form-control"
               type="number"
@@ -521,7 +539,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             />
           </div>
           <div className="form-group col-3">
-            <label>Số lượng nhập thực tế</label>
+            <label><FormattedMessage id="quanlynhaphoachitietsoluongthucte"/></label>
             <input
               className="form-control"
               type="number"
@@ -532,7 +550,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             />
           </div>
           <div className="form-group col-3">
-            <label>Giá nhập</label>
+            <label><FormattedMessage id="quanlynhaphoachitietgianhap"/></label>
             <input
               className="form-control"
               type="number"
@@ -543,7 +561,7 @@ class QuanLyNhapHoaChiTiet extends Component {
             />
           </div>
           <div className="form-group col-3">
-            <label>Tổng giá</label>
+            <label><FormattedMessage id="quanlynhaphoachitiettonggia"/></label>
             <input
               className="form-control"
               type="number"
@@ -559,14 +577,14 @@ class QuanLyNhapHoaChiTiet extends Component {
               className="btn btn-primary"
               onClick={() => this.clickthemhoamoi()}
             >
-              Thêm hoa mới
+              <FormattedMessage id="quanlynhaphoachitietthemhoamoi"/>
             </button>
           ) : (
             <button
               className="btn btn-primary"
               onClick={() => this.clickthemsoluonghoacu()}
             >
-              Thêm số lượng hoa cũ
+              <FormattedMessage id="quanlynhaphoachitietthemhoacu"/>
             </button>
           )
         ) : (
@@ -574,21 +592,26 @@ class QuanLyNhapHoaChiTiet extends Component {
             className="btn btn-primary"
             onClick={() => this.clickbtnhoadonchitiet()}
           >
-            Sửa hóa đơn chi tiết
+            <FormattedMessage id="quanlynhaphoachitietsuahoadonchitet"/>
           </button>
         )}
+        <input
+          className="form-control timkiemhoadonchitiet"
+          placeholder={ngonngu === "vi" ? "Tìm kiếm..." : "Search..."}
+          onChange={(event) => this.timkiem(event)}
+        />
         <div className="item3">
         <table className="table table-bordered ">
               <thead>
               <tr className="item31">
-                <th scope="col">Mã phiếu nhập</th>
-                <th scope="col">Tên hoa</th>
-                <th scope="col">Đơn vị tính</th>
-                <th scope="col">Số lượng nhập trên phiếu</th>
-                <th scope="col">Số lượng nhập thực tế</th>
-                <th scope="col">Giá nhập</th>
-                <th scope="col">Giá tổng</th>
-                <th scope="col">Hành động</th>
+                <th scope="col"><FormattedMessage id="quanlynhaphoachitietmaphieunhap"/></th>
+                <th scope="col"><FormattedMessage id="quanlynhaphoachitiettenhoa"/></th>
+                <th scope="col"><FormattedMessage id="quanlynhaphoachitietdonvitinh"/></th>
+                <th scope="col"><FormattedMessage id="quanlynhaphoachitietsoluongtrenphieu"/></th>
+                <th scope="col"><FormattedMessage id="quanlynhaphoachitietsoluongthucte"/></th>
+                <th scope="col"><FormattedMessage id="quanlynhaphoachitietgianhap"/></th>
+                <th scope="col"><FormattedMessage id="quanlynhaphoachitiettonggia"/></th>
+                <th scope="col"><FormattedMessage id="quanlyhanhdong"/></th>
               </tr>
             </thead>
             <tbody>
@@ -607,8 +630,8 @@ class QuanLyNhapHoaChiTiet extends Component {
                         <td>{item.donvitinh}</td>
                         <td>{item.soluongnhaptrenphieu}</td>
                         <td>{item.soluongnhapthucte}</td>
-                        <td>{item.gianhap}</td>
-                        <td>{item.giatong}</td>
+                        <td>{item.gianhap ? item.gianhap.toLocaleString() : ''} đ</td>
+                        <td>{item.giatong ? item.giatong.toLocaleString() : ''} đ</td>
                         <td>
                           <button>
                             <i

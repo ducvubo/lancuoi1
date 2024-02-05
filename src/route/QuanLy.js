@@ -21,6 +21,7 @@ import "./QuanLy.scss";
 import ChatCuaHang from "../quanly/chucuahang/ChatCuaHang";
 import ThongKeBanHoa from "../quanly/chucuahang/ThongKeBanHoa";
  import ThongKeNhapHoa from "../quanly/chucuahang/ThongKeNhapHoa";
+import { toast } from "react-toastify";
 class QuanLy extends Component {
   constructor(props) {
     super(props);
@@ -29,9 +30,13 @@ class QuanLy extends Component {
     };
   }
   battatchat = () => {
-    this.setState({
-      trangthai: !this.state.trangthai,
-    });
+    if(this.props.thongtinnguoidung){
+      this.setState({
+        trangthai: !this.state.trangthai,
+      });
+    }else{
+     this.props.ngonngu === 'vi' ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập để chat!") : toast.error("You are not logged in, please log in to chat!")
+    }
   };
 
   render() {

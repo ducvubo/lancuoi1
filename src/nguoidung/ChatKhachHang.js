@@ -314,7 +314,7 @@ class ChatKhachHang extends Component {
                             className="d-flex justify-content-end mb-4"
                             key={index}
                           >
-                            <div className="msg_cotainer_send">
+                            <div className="msg_cotainer">
                               {item.noidung ? item.noidung : ""}
                             </div>
                           </div>

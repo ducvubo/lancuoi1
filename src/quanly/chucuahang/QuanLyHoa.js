@@ -17,6 +17,8 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import Xulyanh from "../../XuLyAnh/Xulyanh";
 import { toast } from "react-toastify";
+import _, { debounce } from "lodash";
+import { FormattedMessage } from "react-intl";
 
 const mdParser = new MarkdownIt();
 
@@ -481,6 +483,30 @@ class QuanLyHoa extends Component {
     }
   };
 
+  timkiem = (event) => {
+    let timkiem = event.target.value;
+    if (timkiem) {
+      let clone = _.cloneDeep(this.state.tatcahoa);
+      clone = clone.filter((item) =>
+        (this.props.ngonngu === "vi"
+          ? item.tenhoaVi
+            ? item.tenhoaVi
+            : ""
+          : item.tenhoaEn
+          ? item.tenhoaEn
+          : ""
+        )
+          .toLowerCase()
+          .includes(timkiem.toLowerCase())
+      );
+      this.setState({
+        tatcahoa: clone,
+      });
+    } else {
+      this.laytatcahoa();
+    }
+  };
+
   render() {
     let {
       trangthainut,
@@ -507,15 +533,18 @@ class QuanLyHoa extends Component {
       anhnoibat,
     } = this.state;
     let { ngonngu } = this.props;
-    console.log(anhnoibat);
     return (
       <div className="quanlyhoa">
         <div className="item1">
-          <span>Quản lý hoa</span>
+          <span>
+            <FormattedMessage id="quanlyhoa" />
+          </span>
         </div>
         <div className="row item2">
           <div className="form-group col-4">
-            <label>Danh mục hoa chi tiết</label>
+            <label>
+              <FormattedMessage id="quanlyhoadmct" />
+            </label>
             <select
               className="form-control"
               onChange={(event) => {
@@ -524,7 +553,7 @@ class QuanLyHoa extends Component {
               value={iddanhmuchoachitiet ? iddanhmuchoachitiet : ""}
             >
               <option value={null}>
-                Chưa có danh mục hoa chi tiết vui lòng chọn danh mục!!!
+                <FormattedMessage id="quanlyhoachuacodmct" />
               </option>
               {danhmuchoachitietArr &&
                 danhmuchoachitietArr.length > 0 &&
@@ -540,7 +569,9 @@ class QuanLyHoa extends Component {
             </select>
           </div>
           <div className="form-group col-4">
-            <label>Tên hoa tiếng Việt</label>
+            <label>
+              <FormattedMessage id="quanlyhoatenhoaVi" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -551,7 +582,9 @@ class QuanLyHoa extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Tên hoa tiếng Anh</label>
+            <label>
+              <FormattedMessage id="quanlyhoatenhoaEn" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -562,7 +595,9 @@ class QuanLyHoa extends Component {
             />
           </div>
           <div className="form-group col-6">
-            <label>Tiêu đề hoa tiếng Việt</label>
+            <label>
+              <FormattedMessage id="quanlyhoatieudeVi" />
+            </label>
             <textarea
               className="form-control inputtieude"
               type="text"
@@ -573,7 +608,9 @@ class QuanLyHoa extends Component {
             ></textarea>
           </div>
           <div className="form-group col-6">
-            <label>Tiêu đề hoa tiếng Anh</label>
+            <label>
+              <FormattedMessage id="quanlyhoatieudeEn" />
+            </label>
             <textarea
               className="form-control inputtieude"
               type="text"
@@ -585,7 +622,9 @@ class QuanLyHoa extends Component {
           </div>
           <div className="gia gia1">
             <div className="form-group khoigia">
-              <label>Ảnh nổi bật</label>
+              <label>
+                <FormattedMessage id="quanlyhoaanhnoibat" />
+              </label>
               <div className="anhabc">
                 <input
                   id="anhImg"
@@ -594,7 +633,8 @@ class QuanLyHoa extends Component {
                   onChange={(event) => this.onChangexemanh(event)}
                 />
                 <label className="upanh" htmlFor="anhImg">
-                  Tải ảnh<i className="fas fa-upload"></i>
+                  <FormattedMessage id="quanlyhoataianh" />
+                  <i className="fas fa-upload"></i>
                 </label>
                 <div
                   className="anh"
@@ -615,7 +655,9 @@ class QuanLyHoa extends Component {
               )}
             </div>
             <div className="form-group khoigia">
-              <label>Số lượng hoa nhập</label>
+              <label>
+                <FormattedMessage id="quanlyhoasoluongnhap" />
+              </label>
               <input
                 className="form-control"
                 type="number"
@@ -626,7 +668,9 @@ class QuanLyHoa extends Component {
               />
             </div>
             <div className="form-group khoigia">
-              <label>Số lượng hoa đã bán</label>
+              <label>
+                <FormattedMessage id="quanlyhoasoluongban" />
+              </label>
               <input
                 className="form-control"
                 type="number"
@@ -637,7 +681,9 @@ class QuanLyHoa extends Component {
               />
             </div>
             <div className="form-group khoigia">
-              <label>Số lượng còn</label>
+              <label>
+                <FormattedMessage id="quanlyhoasoluongcon" />
+              </label>
               <input
                 className="form-control"
                 type="number"
@@ -646,7 +692,9 @@ class QuanLyHoa extends Component {
               />
             </div>
             <div className="form-group khoigia">
-              <label>Độ nổi bật</label>
+              <label>
+                <FormattedMessage id="quanlyhoadonoibat" />
+              </label>
               <input
                 className="form-control"
                 type="number"
@@ -659,7 +707,9 @@ class QuanLyHoa extends Component {
           </div>
           <div className="gia">
             <div className="form-group khoigia">
-              <label>Giá đ</label>
+              <label>
+                <FormattedMessage id="quanlyhoagiavnd" />
+              </label>
               <input
                 className="form-control"
                 type="number"
@@ -670,7 +720,9 @@ class QuanLyHoa extends Component {
               />
             </div>
             <div className="form-group khoigia">
-              <label>Giá USD</label>
+              <label>
+                <FormattedMessage id="quanlyhoagiausd" />
+              </label>
               <input
                 className="form-control"
                 type="number"
@@ -681,7 +733,9 @@ class QuanLyHoa extends Component {
               />
             </div>
             <div className="form-group khoigia">
-              <label>Phần trăm giảm giá</label>
+              <label>
+                <FormattedMessage id="quanlyhoaphantramgian" />
+              </label>
               <input
                 className="form-control"
                 type="number"
@@ -692,7 +746,9 @@ class QuanLyHoa extends Component {
               />
             </div>
             <div className="form-group khoigia">
-              <label>Giá bán đ</label>
+              <label>
+                <FormattedMessage id="quanlyhoagiabanvnd" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -701,7 +757,9 @@ class QuanLyHoa extends Component {
               />
             </div>
             <div className="form-group khoigia">
-              <label>Giá bán USD</label>
+              <label>
+                <FormattedMessage id="quanlyhoagiabanusd" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -712,7 +770,9 @@ class QuanLyHoa extends Component {
           </div>
 
           <div className="form-group col-6">
-            <label>Ghi chú tiếng Việt</label>
+            <label>
+              <FormattedMessage id="quanlyhoaghichuVi" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -723,7 +783,9 @@ class QuanLyHoa extends Component {
             />
           </div>
           <div className="form-group col-6">
-            <label>Ghi chú tiếng Anh</label>
+            <label>
+              <FormattedMessage id="quanlyhoaghichuEn" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -737,17 +799,23 @@ class QuanLyHoa extends Component {
 
         <div className="item4">
           <br />
-          <label>Mô tả sản phẩm tiếng Việt</label> <br />
+          <label>
+            <FormattedMessage id="quanlyhoamotaVi" />
+          </label>{" "}
+          <br />
           <MdEditor
-            style={{ height: "500px" }}
+            style={{ height: "200px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.nhapmotaVi}
             value={motaspVi ? motaspVi : ""}
           />
           <br />
-          <label>Mô tả sản phẩm tiếng Anh</label> <br />
+          <label>
+            <FormattedMessage id="quanlyhoamotaEn" />
+          </label>{" "}
+          <br />
           <MdEditor
-            style={{ height: "500px" }}
+            style={{ height: "200px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.nhapmotaEn}
             value={motaspEn ? motaspEn : ""}
@@ -756,35 +824,59 @@ class QuanLyHoa extends Component {
 
         {trangthainut === false ? (
           <button
-            className="btn btn-primary"
+            className="btn btn-primary mt-3"
             onClick={() => this.clickthemhoa()}
           >
-            Thêm hoa
+            <FormattedMessage id="quanlyhoathemhoa" />
           </button>
         ) : (
           <button
-            className="btn btn-primary"
+            className="btn btn-primary mt-3"
             onClick={() => this.clickbtnsuahoa()}
           >
-            Sửa hoa
+            <FormattedMessage id="quanlyhoasuahoa" />
           </button>
         )}
+        <input
+          className="form-control timkiemhoa"
+          placeholder={ngonngu === "vi" ? "Tìm kiếm..." : "Search..."}
+          onChange={(event) => this.timkiem(event)}
+        />
 
         <div className="item3">
           <table className="table table-bordered ">
             <thead>
               <tr className="item31">
-                <th scope="col">Danh mục chi tiết</th>
-                <th scope="col">Tên hoa tiếng Việt</th>
-                <th scope="col">Tên hoa tiếng Anh</th>
-                <th scope="col">Số lượng còn</th>
-                <th scope="col">Số lượng nhập</th>
-                <th scope="col">Số lượng bán</th>
-                <th scope="col">Giá đ</th>
-                <th scope="col">Giá USD</th>
-                <th scope="col">% Giảm</th>
-                <th scope="col">Độ nổi bật</th>
-                <th scope="col">Hành động</th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoadmct" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoatenhoa" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoasoluongnhap" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoasoluongban" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoasoluongcon" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoagiachuagiam" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoaphantramgian" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoagiasaukhigiam" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhoadonoibat" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhanhdong" />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -792,21 +884,39 @@ class QuanLyHoa extends Component {
                 ? tatcahoa.map((item, index) => {
                     return (
                       <tr key={index}>
-                        <th scope="row">
+                        <td>
                           {item.iddanhmuchoachitiet
                             ? ngonngu === "vi"
                               ? item.danhmuchoachitiet.tendanhmucchitietVi
                               : item.danhmuchoachitiet.tendanhmucchitietEn
                             : null}
-                        </th>
-                        <td>{item.tenhoaVi}</td>
-                        <td>{item.tenhoaEn}</td>
-                        <td>{item.soluongcon}</td>
+                        </td>
+                        <td>
+                          {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                        </td>
                         <td>{item.soluongnhap}</td>
                         <td>{item.soluongban}</td>
-                        <td>{item.giathucVND}</td>
-                        <td>{item.giathucUSD}</td>
-                        <td>{item.phantramgiam}</td>
+                        <td>{item.soluongcon}</td>
+
+                        <td>{`${
+                          ngonngu === "vi"
+                            ? `${
+                                item.giathucVND
+                                  ? item.giathucVND.toLocaleString()
+                                  : ""
+                              } đ`
+                            : `${item.giathucUSD} USD`
+                        }`}</td>
+                        <td>{item.phantramgiam} %</td>
+                        <td>{`${
+                          ngonngu === "vi"
+                            ? `${
+                                item.giasaukhigiamVND
+                                  ? item.giasaukhigiamUSD.toLocaleString()
+                                  : ""
+                              } đ`
+                            : `${item.giasaukhigiamUSD} USD`
+                        }`}</td>
                         <td>{item.donoibat}</td>
                         <td>
                           <button>

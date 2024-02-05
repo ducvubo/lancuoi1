@@ -11,6 +11,8 @@ import {
 } from "../../API/GoiApi";
 import "./DanhMucHoaChiTiet.scss";
 import { toast } from "react-toastify";
+import _ from "lodash";
+import { FormattedMessage } from "react-intl";
 
 class DanhMucHoaChiTiet extends Component {
   constructor(props) {
@@ -67,6 +69,13 @@ class DanhMucHoaChiTiet extends Component {
   };
 
   laytatcadanhmucchitiet = async () => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
     let kq = await tatcadanhmucchitiet();
     if (kq.maCode === 6) {
       this.props.ngonngu === "vi"
@@ -90,14 +99,7 @@ class DanhMucHoaChiTiet extends Component {
     }
   };
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    // if(prevState.danhmuchoaArr !== this.state.danhmuchoaArr){
-    //   this.setState({
-    //     danhmuchoaArr: this.state.danhmuchoaArr,
-    //     iddanhmuchoa: this.state.iddanhmuchoa
-    //   })
-    // }
-  }
+  async componentDidUpdate(prevProps, prevState, snapshot) {}
 
   onChangeNhap = (event, id) => {
     let copyState = { ...this.state };
@@ -277,6 +279,28 @@ class DanhMucHoaChiTiet extends Component {
         : toast.success("Delete error detail category");
     }
   };
+
+  timkiem = (event) => {
+    let timkiem = event.target.value;
+    if (timkiem) {
+      let clone = _.cloneDeep(this.state.tatcadanhmuchoachitiet);
+      clone = clone.filter((item) =>
+        (this.props.ngonngu === "vi"
+          ? (item.tendanhmucchitietVi ? item.tendanhmucchitietVi : '')
+          : (item.tendanhmucchitietEn ? item.tendanhmucchitietEn : '')
+        )
+          .toLowerCase()
+          .includes(timkiem.toLowerCase())
+      );
+      this.setState({
+        tatcadanhmuchoachitiet: clone,
+      });
+    } else {
+      this.laytatcadanhmucchitiet();
+      console.log("abc");
+    }
+  };
+
   render() {
     let {
       danhmuchoaArr,
@@ -290,11 +314,15 @@ class DanhMucHoaChiTiet extends Component {
     return (
       <div className="danhmuahoachitiet">
         <div className="item1">
-          <span>Quản lý danh mục hoa chi tiết</span>
+          <span>
+            <FormattedMessage id="quanlydmct" />
+          </span>
         </div>
         <div className="row item2">
           <div className="form-group col-4">
-            <label>Danh mục hoa</label>
+            <label>
+              <FormattedMessage id="quanlydmctdmh" />
+            </label>
             <select
               className="form-control"
               onChange={(event) => {
@@ -314,7 +342,9 @@ class DanhMucHoaChiTiet extends Component {
             </select>
           </div>
           <div className="form-group col-4">
-            <label>Tên danh mục chi tiết tiếng Việt</label>
+            <label>
+              <FormattedMessage id="quanlydmcttendmctVi" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -325,7 +355,9 @@ class DanhMucHoaChiTiet extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Tên danh mục chi tiết tiếng Anh</label>
+            <label>
+              <FormattedMessage id="quanlydmcttendmctEn" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -341,27 +373,34 @@ class DanhMucHoaChiTiet extends Component {
             className="btn btn-primary"
             onClick={() => this.clickthemdanhmucchitiet()}
           >
-            Thêm danh mục
+            <FormattedMessage id="quanlydmctthemdmct" />
           </button>
         ) : (
           <button
             className="btn btn-primary"
             onClick={() => this.clickbtnsuadanhmucchitiet()}
           >
-            Sửa danh mục
+            <FormattedMessage id="quanlydmctsuadmct" />
           </button>
         )}
+        <input
+          className="form-control timkiemdmchitiet"
+          placeholder={ngonngu === "vi" ? "Tìm kiếm..." : "Search..."}
+          onChange={(event) => this.timkiem(event)}
+        />
         <div className="item3">
-        <table className="table table-bordered ">
-              <thead>
+          <table className="table table-bordered ">
+            <thead>
               <tr className="item31">
-                <th scope="col">id</th>
-                <th scope="col">Tên danh mục</th>
-                <th scope="col">Tên danh mục chi tiết tiếng Việt</th>
-                <th scope="col">Tên danh mục chi tiết tiếng Anh</th>
-                <th scope="col">Tên danh mục tiếng Việt</th>
-                <th scope="col">Tên danh mục tiếng Anh</th>
-                <th scope="col">Hành động</th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydmcttendm" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydmcttendmct" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhanhdong" />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -369,16 +408,16 @@ class DanhMucHoaChiTiet extends Component {
                 ? tatcadanhmuchoachitiet.map((item, index) => {
                     return (
                       <tr key={index}>
-                        <th scope="row">{item.id}</th>
                         <td>
                           {ngonngu === "vi"
                             ? item.danhmuc.tendanhmucVi
                             : item.danhmuc.tendanhmucEn}
                         </td>
-                        <td>{item.tendanhmucchitietVi}</td>
-                        <td>{item.tendanhmucchitietEn}</td>
-                        <td>{item.danhmuc && item.danhmuc.tendanhmucVi}</td>
-                        <td>{item.danhmuc && item.danhmuc.tendanhmucEn}</td>
+                        <td>
+                          {ngonngu === "vi"
+                            ? item.tendanhmucchitietVi
+                            : item.tendanhmucchitietEn}
+                        </td>
                         <td>
                           <button>
                             <i

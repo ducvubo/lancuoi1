@@ -5,6 +5,7 @@ import { apitatcacuoctrochuyen, apitatcakhachhang } from "../../API/GoiApi";
 import Xulyanh from "../../XuLyAnh/Xulyanh";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import _, { debounce } from "lodash";
 class ChatCuaHang extends Component {
   constructor(props) {
     super(props);
@@ -198,6 +199,22 @@ class ChatCuaHang extends Component {
     });
   };
 
+  timdoanchat = debounce( (event) => {
+    let timkiem = event.target.value;
+    if (timkiem) {
+      let clonedoanchat = _.cloneDeep(this.state.tatcadoanchat);
+      clonedoanchat = clonedoanchat.filter((item) =>
+      item.ten.toLowerCase().includes(timkiem.toLowerCase())
+      );
+      this.setState({
+        tatcadoanchat: clonedoanchat,
+      });
+    }
+    else{
+      this.laytatcakhachhang()
+    }
+  },1000);
+
   render() {
     let {
       nguoidangnhan,
@@ -211,6 +228,7 @@ class ChatCuaHang extends Component {
     } = this.state;
     tatcadoanchat = tatcadoanchat.filter((item) => item.idchat !== "nhanvien");
     let { ngonngu, thongtinnguoidung } = this.props;
+    console.log(tatcadoanchat);
     return (
       <div className="chatcuahang">
         <div className="container-fluid h-100">
@@ -221,9 +239,12 @@ class ChatCuaHang extends Component {
                   <div className="input-group">
                     <input
                       type="text"
-                      placeholder="Search..."
+                      placeholder={
+                        ngonngu === "vi" ? "Tìm kiếm..." : "Search..."
+                      }
                       name=""
                       className="form-control search"
+                      onChange={(event) => this.timdoanchat(event)}
                     />
                     <div className="input-group-prepend">
                       <span className="input-group-text search_btn">
@@ -430,7 +451,7 @@ class ChatCuaHang extends Component {
                                 className="d-flex justify-content-end mb-4"
                                 key={index}
                               >
-                                <div className="msg_cotainer_send">
+                                <div className="msg_cotainer">
                                   {nguoidangnhan === item.nguoigui ||
                                   nguoidangnhan === item.nguoinhan
                                     ? `${item.noidung ? item.noidung : ""} `

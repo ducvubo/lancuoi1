@@ -11,7 +11,7 @@ import {
   apirefreshtoken,
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
-
+import _, { debounce } from "lodash";
 class DanhMucHoa extends Component {
   constructor(props) {
     super(props);
@@ -231,6 +231,21 @@ class DanhMucHoa extends Component {
     }
   };
 
+  timkiem = (event) => {
+    let timkiem = event.target.value;
+    if (timkiem) {
+      let clonedanhmuchoa = _.cloneDeep(this.state.tatcadanhmuchoa);
+      clonedanhmuchoa = clonedanhmuchoa.filter((item) =>
+        (this.props.ngonngu === 'vi' ? (item.tendanhmucVi ? item.tendanhmucVi : '') : (item.tendanhmucEn ? item.tendanhmucEn : '')).toLowerCase().includes(timkiem.toLowerCase())
+      );
+      this.setState({
+        tatcadanhmuchoa: clonedanhmuchoa,
+      });
+    } else {
+      this.laytatcadanhmuc();
+    }
+  };
+
   render() {
     let {
       tendanhmucVi,
@@ -239,7 +254,6 @@ class DanhMucHoa extends Component {
       tatcadanhmuchoa,
       trangthainut,
     } = this.state;
-
     let { ngonngu } = this.props;
     return (
       <div className="quanlydanhmuc">
@@ -250,7 +264,7 @@ class DanhMucHoa extends Component {
         </div>
         <div className="row item2">
           <div className="form-group col-4">
-            <label>Tên danh mục tiếng Việt</label>
+            <label><FormattedMessage id="quanlydmtendmVi"/></label>
             <input
               className="form-control"
               type="text"
@@ -261,7 +275,7 @@ class DanhMucHoa extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Tên danh mục tiếng Anh</label>
+            <label><FormattedMessage id="quanlydmtendmEn"/></label>
             <input
               className="form-control"
               type="text"
@@ -272,7 +286,7 @@ class DanhMucHoa extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Độ nổi bật</label>
+            <label><FormattedMessage id="quanlydmdonoibat"/></label>
             <input
               className="form-control"
               type="text"
@@ -283,30 +297,38 @@ class DanhMucHoa extends Component {
             />
           </div>
         </div>
+
         {trangthainut === false ? (
-          <button
-            className="btn btn-primary"
-            onClick={() => this.clickthemdanhmuc()}
-          >
-            Thêm danh mục
-          </button>
+          <>
+            <button
+              className="btn btn-primary"
+              onClick={() => this.clickthemdanhmuc()}
+            >
+              <FormattedMessage id="quanlydmthem"/>
+            </button>
+          </>
         ) : (
-          <button
-            className="btn btn-primary"
-            onClick={() => this.clickbtnsuadanhmuc()}
-          >
-            Sửa danh mục
-          </button>
+          <>
+            <button
+              className="btn btn-primary"
+              onClick={() => this.clickbtnsuadanhmuc()}
+            >
+              <FormattedMessage id="quanlydmsua"/>
+            </button>
+          </>
         )}
+        <input
+          className="form-control timkiemdanhmuchoa"
+          placeholder={ngonngu === 'vi' ? "Tìm kiếm..." : "Search..."}
+          onChange={(event) => this.timkiem(event)}
+        />
         <div className="item3">
-        <table className="table table-bordered ">
-              <thead>
+          <table className="table table-bordered ">
+            <thead>
               <tr className="item31">
-                <th scope="col">id</th>
-                <th scope="col">Tên danh mục tiếng Việt</th>
-                <th scope="col">Tên danh mục tiếng Anh</th>
-                <th scope="col">Độ nổi bật</th>
-                <th scope="col">Hành động</th>
+                <th scope="col"><FormattedMessage id="quanlydmtendm"/></th>
+                <th scope="col"><FormattedMessage id="quanlydmdonoibat"/></th>
+                <th scope="col"><FormattedMessage id="quanlyhanhdong"/></th>
               </tr>
             </thead>
             <tbody>
@@ -314,9 +336,11 @@ class DanhMucHoa extends Component {
                 ? tatcadanhmuchoa.map((item, index) => {
                     return (
                       <tr key={index}>
-                        <th scope="row">{item.id}</th>
-                        <td>{item.tendanhmucVi}</td>
-                        <td>{item.tendanhmucEn}</td>
+                        <td>
+                          {ngonngu === "vi"
+                            ? item.tendanhmucVi
+                            : item.tendanhmucEn}
+                        </td>
                         <td>{item.donoibat}</td>
                         <td>
                           <button>
@@ -340,7 +364,6 @@ class DanhMucHoa extends Component {
           </table>
         </div>
       </div>
-
     );
   }
 }

@@ -8,6 +8,7 @@ import logo from "../image/logo.png";
 import "./FooterTrangChu.scss";
 import ChatKhachHang from "./ChatKhachHang";
 import ms from "../image/ms.png";
+import { toast } from "react-toastify";
 class FooterTrangChu extends Component {
   constructor(props) {
     super(props);
@@ -16,10 +17,14 @@ class FooterTrangChu extends Component {
     };
   }
   battatchat = () => {
+    if(this.props.thongtinnguoidung){
+      this.setState({
+        trangthai: !this.state.trangthai,
+      });
+    }else{
+     this.props.ngonngu === 'vi' ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập để chat!") : toast.error("You are not logged in, please log in to chat!")
+    }
     
-    this.setState({
-      trangthai: !this.state.trangthai,
-    });
   };
   render() {
     let { thongtinnguoidung,ktdangnhap } = this.props;
@@ -136,7 +141,8 @@ class FooterTrangChu extends Component {
 const mapStateToProps = (state) => {
   return {
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
-    ktdangnhap:state.thongtinnguoidung.ktdangnhap
+    ktdangnhap:state.thongtinnguoidung.ktdangnhap,
+    ngonngu: state.web.ngonngu
   };
 };
 

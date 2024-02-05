@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { Router } from "react-router";
 import { createBrowserHistory } from "history";
 import { ToastContainer } from "react-toastify";
+import { Scrollbars } from "react-custom-scrollbars";
 import "react-toastify/dist/ReactToastify.css";
 import trangChu from "./nguoidung/trangChu";
 import QuanLy from "./route/QuanLy";
@@ -32,57 +33,64 @@ class App extends Component {
   }
 
   render() {
-    let { thongtinnguoidung,hoatimduoc } = this.props;
+    let { thongtinnguoidung, hoatimduoc } = this.props;
     return (
       <React.Fragment>
-        
-        <Router history={history}>
-        {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
-            thongtinnguoidung.quyenId === "R3" ?null :<HeaderTrangChu/>}
-           {/* {hoatimduoc  ? <TimHoa/> : null} */}
-          <Switch>
-            <Route path={"/trangchu"} exact component={trangChu} />
-            <Route path={"/quanly/"} component={QuanLy} />
-            <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
-            <Route path={"/hoatheodanhmucchitiet/:id"}component={HoaTheoDanhMucTheoChiTiet}/>
-            <Route path={"/hoatheodanhmuc/:id"} component={HoaTheoDanhMuc} />
-            <Route path={"/giohang/:id"} component={GioHang} />
-            <Route path={"/dangnhap"} component={DangNhap} />
-            <Route path={"/dangky"} component={DangKy} />
-            <Route path={"/xacnhantaikhoan"} component={XacNhanTaiKhoan} />
-            <Route path={"/quenmk"} component={QuenMK} />
-            <Route path={"/doimk"} component={DoiMK} />
-            <Route path={"/donhang/:id"} component={QuanLyDonHang}/>
-            <Route path={"/dathang"} component={DatHang}/>
-
+        <Scrollbars style={{ height: 695 }}>
+          <Router history={history}>
             {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
-            thongtinnguoidung.quyenId === "R3" ? (
-              <Redirect to={"/quanly/"} />
-            ) : (
-              <Redirect to={"/trangchu"} />
+            thongtinnguoidung.quyenId === "R3" ? null : (
+              <HeaderTrangChu />
             )}
-          </Switch>
-          {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
-            thongtinnguoidung.quyenId === "R3" ? null :<FooterTrangChu/>}
-        </Router>
-        
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+            {/* {hoatimduoc  ? <TimHoa/> : null} */}
+            <Switch>
+              <Route path={"/trangchu"} exact component={trangChu} />
+              <Route path={"/quanly/"} component={QuanLy} />
+              <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
+              <Route
+                path={"/hoatheodanhmucchitiet/:id"}
+                component={HoaTheoDanhMucTheoChiTiet}
+              />
+              <Route path={"/hoatheodanhmuc/:id"} component={HoaTheoDanhMuc} />
+              <Route path={"/giohang/:id"} component={GioHang} />
+              <Route path={"/dangnhap"} component={DangNhap} />
+              <Route path={"/dangky"} component={DangKy} />
+              <Route path={"/xacnhantaikhoan"} component={XacNhanTaiKhoan} />
+              <Route path={"/quenmk"} component={QuenMK} />
+              <Route path={"/doimk"} component={DoiMK} />
+              <Route path={"/donhang/:id"} component={QuanLyDonHang} />
+              <Route path={"/dathang"} component={DatHang} />
+
+              {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
+              thongtinnguoidung.quyenId === "R3" ? (
+                <Redirect to={"/quanly/"} />
+              ) : (
+                <Redirect to={"/trangchu"} />
+              )}
+            </Switch>
+            {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
+            thongtinnguoidung.quyenId === "R3" ? null : (
+              <FooterTrangChu />
+            )}
+          </Router>
+
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </Scrollbars>
       </React.Fragment>
     );
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {

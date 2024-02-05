@@ -1,80 +1,84 @@
-  .css-42igfv {
-      position : fixed;
-      top      : 50%;
-      left     : 50%;
-      transform: translate(-50%, -50%);
-  }
+.css-df17o1 {
+    position: fixed !important;
+}
 
-  .dangky {
-      display        : flex;
-      justify-content: center;
-      align-items    : center;
+.css-42igfv {
+    position : fixed;
+    top      : 50%;
+    left     : 50%;
+    transform: translate(-50%, -50%);
+}
 
-
-
-      .form {
-          border       : 1px solid #ccc;
-          border-radius: 6px;
-          padding      : 18px;
-
-          .spandangky {
-              text-transform: uppercase;
-              font-weight   : 600;
-              font-size     : 25px;
-              text-align    : center;
-          }
-
-          .mk {
-              .inputmk {
-                  position: relative;
-              }
-
-              .xemmk {
-                  position: absolute;
-                  right   : 506px;
-                  top     : 186px;
-                  cursor  : pointer;
-              }
-          }
-
-
-          .hoten {
-              display: flex;
-              gap    : 16px;
-          }
+.dangky {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
 
 
 
-          .butdangky {
-              background-color: #e91e63;
-              font-weight     : 500;
-              color           : white;
-          }
+    .form {
+        border       : 1px solid #ccc;
+        border-radius: 6px;
+        padding      : 18px;
 
-          .qmk-dk {
-              display   : flex;
-              gap       : 50px;
-              margin-top: 20px;
+        .spandangky {
+            text-transform: uppercase;
+            font-weight   : 600;
+            font-size     : 25px;
+            text-align    : center;
+        }
+
+        .mk {
+            .inputmk {
+                position: relative;
+            }
+
+            .xemmk {
+                position: absolute;
+                right   : 506px;
+                top     : 186px;
+                cursor  : pointer;
+            }
+        }
+
+
+        .hoten {
+            display: flex;
+            gap    : 16px;
+        }
 
 
 
-              .dangky {
-                  text-decoration: none;
-                  color          : #696363;
+        .butdangky {
+            background-color: #e91e63;
+            font-weight     : 500;
+            color           : white;
+        }
 
-                  .qmk {
-                      cursor: pointer;
-                  }
-              }
+        .qmk-dk {
+            display   : flex;
+            gap       : 50px;
+            margin-top: 20px;
 
-              .dangnhap {
-                  text-decoration: none;
-                  color          : #696363;
 
-                  .dk {
-                      cursor: pointer;
-                  }
-              }
-          }
-      }
-  }
+
+            .dangky {
+                text-decoration: none;
+                color          : #696363;
+
+                .qmk {
+                    cursor: pointer;
+                }
+            }
+
+            .dangnhap {
+                text-decoration: none;
+                color          : #696363;
+
+                .dk {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

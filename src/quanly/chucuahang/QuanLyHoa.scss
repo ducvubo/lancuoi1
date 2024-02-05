@@ -10,6 +10,12 @@
 
     }
 
+    .timkiemhoa {
+        width      : 467px;
+        margin-top : -38px;
+        margin-left: 998px;
+    }
+
     .item2 {
 
         .inputtieude {
@@ -19,6 +25,7 @@
         }
 
         .anhabc {
+
             .upanh {
                 padding      : 5px;
                 border-radius: 3px;
@@ -43,7 +50,7 @@
 
         .gia {
             display     : flex;
-            gap         : 37px;
+            gap         : 41px;
             padding-left: 16px;
 
             .khoigia {
@@ -53,7 +60,7 @@
             }
 
             &.gia1 {
-                gap: 87px;
+                gap: 85px;
             }
         }
     }
@@ -62,10 +69,10 @@
         margin-top: 20px;
 
         i {
-            margin: 0px 10px;
+            margin : 0px 10px;
             opacity: 0.5;
 
-            &:hover{
+            &:hover {
                 opacity: 1;
             }
         }

@@ -11,6 +11,8 @@ import {
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import moment from "moment";
+import _ from "lodash";
+import { FormattedMessage } from "react-intl";
 class QuanLyNhapHoa extends Component {
   constructor(props) {
     super(props);
@@ -314,6 +316,23 @@ class QuanLyNhapHoa extends Component {
     }
   };
 
+  timkiem = (event) => {
+    let timkiem = event.target.value;
+    if (timkiem) {
+      let clone = _.cloneDeep(this.state.tatcahoadon);
+      clone = clone.filter((item) =>
+        (item.maphieunhap ? item.maphieunhap : "")
+          .toLowerCase()
+          .includes(timkiem.toLowerCase())
+      );
+      this.setState({
+        tatcahoadon: clone,
+      });
+    } else {
+      this.laytatcahoadon();
+    }
+  };
+
   render() {
     let {
       ngaynhap,
@@ -333,11 +352,15 @@ class QuanLyNhapHoa extends Component {
     return (
       <div className="quanlyhoadonnhaphoa">
         <div className="item1">
-          <span>Quản lý nhập hoa</span>
+          <span>
+            <FormattedMessage id="quanlynhaphoa" />
+          </span>
         </div>
         <div className="item2 row">
           <div className="form-group col-4">
-            <label>Nhân viên nhập</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoanhanvien" />
+            </label>
             <select
               className="form-control"
               onChange={(event) => {
@@ -359,7 +382,9 @@ class QuanLyNhapHoa extends Component {
             </select>
           </div>
           <div className="form-group col-4">
-            <label>Mã phiếu nhập</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoamaphieunhap" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -370,7 +395,9 @@ class QuanLyNhapHoa extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Ngày nhập</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoangaynhap" />
+            </label>
             <input
               className="form-control"
               type="date"
@@ -382,7 +409,9 @@ class QuanLyNhapHoa extends Component {
             />
           </div>
           <div className="form-group col-2">
-            <label>Tên nhà cung cấp</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoatennhacc" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -393,7 +422,9 @@ class QuanLyNhapHoa extends Component {
             />
           </div>
           <div className="form-group col-2">
-            <label>Địa chỉ nhà cung cấp</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoadiachincc" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -404,7 +435,9 @@ class QuanLyNhapHoa extends Component {
             />
           </div>
           <div className="form-group col-2">
-            <label>Số điện thoại nhà cung cấp</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoasdtncc" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -415,7 +448,9 @@ class QuanLyNhapHoa extends Component {
             />
           </div>
           <div className="form-group col-2">
-            <label>Người cung cấp</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoanguoicc" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -426,7 +461,9 @@ class QuanLyNhapHoa extends Component {
             />
           </div>
           <div className="form-group col-2">
-            <label>Số điện người cung cấp</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoasdtnguoicc" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -437,14 +474,13 @@ class QuanLyNhapHoa extends Component {
             />
           </div>
           <div className="form-group col-2">
-            <label>Tổng hóa đơn</label>
+            <label>
+              <FormattedMessage id="quanlynhaphoatonghoadon" />
+            </label>
             <input
               className="form-control"
               type="text"
               disabled={true}
-              // onChange={(event) => {
-              //   this.onChangeNhap(event, "tendanhmucVi");
-              // }}
               defaultValue={tonghoadon}
             />
           </div>
@@ -452,96 +488,60 @@ class QuanLyNhapHoa extends Component {
 
         {trangthainut === false ? (
           <button className="btn btn-primary" onClick={() => this.themhoadon()}>
-            Thêm hóa đơn
+            <FormattedMessage id="quanlynhaphoathemhoadon" />
           </button>
         ) : (
           <button
             className="btn btn-warning"
             onClick={() => this.clickbtnsuahoadon()}
           >
-            Sửa hóa đơn
+            <FormattedMessage id="quanlynhaphoasuahoadon" />
           </button>
         )}
+        <input
+          className="form-control timkiemhoadon"
+          placeholder={ngonngu === "vi" ? "Tìm kiếm..." : "Search..."}
+          onChange={(event) => this.timkiem(event)}
+        />
         <div className="item3">
-          {/* <table className="table table-bordered ">
-              <thead>
-              <tr className="item31">
-                <th scope="col">Mã hóa đơn</th>
-                <th scope="col">Tên nhân viên</th>
-                <th scope="col">Tên nhà cung cấp</th>
-                <th scope="col">Địa chỉ nhà cung cấp</th>
-                <th scope="col">Số điện thoại nhà cung cấp</th>
-                <th scope="col">Người cung cấp</th>
-                <th scope="col">Số điện thoại người cung cấp</th>
-                <th scope="col">Ngày nhập</th>
-                <th scope="col">Tổng hóa đơn</th>
-                <th scope="col">Hành động</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tatcahoadon && tatcahoadon.length > 0
-                ? tatcahoadon.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <th scope="row">{item.maphieunhap}</th>
-                        <td>{`${item.nhanvien.ho} ${item.nhanvien.ten}`}</td>
-                        <td>{item.tennhacungcap}</td>
-                        <td>{item.diachinhacungcap}</td>
-                        <td>{item.sodienthoainhacungcap}</td>
-                        <td>{item.nguoicungcap}</td>
-                        <td>{item.sodienthoainguoicungcap}</td>
-                        <td>{moment(item.ngaynhap).format("YYYY-MM-DD")}</td>
-                        <td>{item.tonghoadon ? item.tatcahoadon : 0}</td>
-                        <td>
-                          <button>
-                            <i
-                              className="fas fa-edit"
-                              onClick={() => this.clicksuahoadon(item)}
-                            ></i>
-                          </button>
-                          <button>
-                            <i
-                              className="fas fa-trash"
-                              onClick={() => this.clickxoahondon(item.id)}
-                            ></i>
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })
-                : null}
-            </tbody>
-          </table> */}
           <table className="table table-bordered">
             <thead>
               <tr className="item31">
                 <th scope="col" rowSpan="2">
-                  Tên nhân viên{" "}
+                  <FormattedMessage id="quanlynhaphoanhanvien" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Mã phiếu nhập{" "}
+                  <FormattedMessage id="quanlynhaphoamaphieunhap" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Ngày nhập{" "}
+                  <FormattedMessage id="quanlynhaphoangaynhap" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Tên nhà cung cấp{" "}
+                  <FormattedMessage id="quanlynhaphoatennhacc" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Tổng hóa đơn{" "}
+                  <FormattedMessage id="quanlynhaphoatonghoadon" />
                 </th>
                 <th scope="col" colSpan="4">
-                  Thông tin
+                  <FormattedMessage id="quanlynhaphoathongtin" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Hành động
+                  <FormattedMessage id="quanlyhanhdong" />
                 </th>
               </tr>
               <tr className="item31">
-                <th scope="col">Tên hoa</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Giá nhập</th>
-                <th scope="col">Giá tổng</th>
+                <th scope="col">
+                  <FormattedMessage id="quanlynhaphoatenhoa" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlynhaphoasoluong" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlynhaphoagianhap" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlynhaphoagiatong" />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -563,7 +563,7 @@ class QuanLyNhapHoa extends Component {
                             {item.tennhacungcap}
                           </td>
                           <td rowSpan={item.hoa123.length + 1}>
-                            {item.tonghoadon}
+                            {item.tonghoadon} đ
                           </td>
                         </tr>
                         {item.hoa123 && item.hoa123.length > 0
@@ -572,8 +572,18 @@ class QuanLyNhapHoa extends Component {
                                 <tr key={index + "-" + hoaIndex}>
                                   <td>{hoa.hoa123.tenhoavi}</td>
                                   <td>{hoa.soluongnhapthucte}</td>
-                                  <td>{hoa.gianhap}</td>
-                                  <td>{hoa.giatong}</td>
+                                  <td>
+                                    {hoa.gianhap
+                                      ? hoa.gianhap.toLocaleString()
+                                      : ""}{" "}
+                                    đ
+                                  </td>
+                                  <td>
+                                    {hoa.giatong
+                                      ? hoa.giatong.toLocaleString()
+                                      : ""}{" "}
+                                    đ
+                                  </td>
                                   <td>
                                     <button>
                                       <i

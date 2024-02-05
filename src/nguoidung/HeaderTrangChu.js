@@ -77,7 +77,10 @@ class HeaderTrangChu extends Component {
               </span>
               <ul>
                 {thongtinnguoidung ? (
-                  <li onClick={() => this.dangxuat()}>
+                  <li
+                    onClick={() => this.dangxuat()}
+                    className={ngonngu === "vi" ? "" : "ml-1"}
+                  >
                     <FormattedMessage id="headerdangxuat" />
                   </li>
                 ) : (

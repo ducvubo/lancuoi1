@@ -18,7 +18,6 @@ class QuanLyNguoiDung extends Component {
       ten: "",
       sodienthoai: "",
       diachinha: "",
-      diachicuahang: "",
       gioitinh: "",
       quyen: "",
 
@@ -70,7 +69,6 @@ class QuanLyNguoiDung extends Component {
       "ten",
       "sodienthoai",
       "diachinha",
-      "diachicuahang",
     ];
     for (let i = 0; i < nhapdaydu.length; i++) {
       if (!this.state[nhapdaydu[i]]) {
@@ -84,8 +82,8 @@ class QuanLyNguoiDung extends Component {
     return kt;
   };
   clickThemMoi = () => {
-    // let kt = this.ktdanhapthongtinchua();
-    // if (kt === false) return;
+    let kt = this.ktdanhapthongtinchua();
+    if (kt === false) return;
 
     this.props.themnguoidung({
       email: this.state.email,
@@ -94,7 +92,6 @@ class QuanLyNguoiDung extends Component {
       ten: this.state.ten,
       sodienthoai: this.state.sodienthoai,
       diachinha: this.state.diachinha,
-      diachicuahang: this.state.diachicuahang,
       gioitinh: this.state.gioitinh,
       quyen: this.state.quyen,
     });
@@ -105,7 +102,6 @@ class QuanLyNguoiDung extends Component {
       ten: "",
       sodienthoai: "",
       diachinha: "",
-      diachicuahang: "",
       gioitinh: "",
       quyen: "",
     });
@@ -120,7 +116,6 @@ class QuanLyNguoiDung extends Component {
       ten: nguoidung.ten,
       sodienthoai: nguoidung.sdt,
       diachinha: nguoidung.diachinha,
-      diachicuahang: nguoidung.diachicuahang,
       gioitinh: nguoidung.gioitinhId,
       quyen: nguoidung.quyenId,
       trangthainut: true,
@@ -135,9 +130,9 @@ class QuanLyNguoiDung extends Component {
       ten: this.state.ten,
       sodienthoai: this.state.sodienthoai,
       diachinha: this.state.diachinha,
-      diachicuahang: this.state.diachicuahang,
       gioitinhId: this.state.gioitinh,
       quyenId: this.state.quyen,
+      ngonngu:this.props.ngonngu
     });
     this.setState({
       trangthainut: false,
@@ -148,7 +143,6 @@ class QuanLyNguoiDung extends Component {
       ten: "",
       sodienthoai: "",
       diachinha: "",
-      diachicuahang: "",
       gioitinh: "",
       quyen: "",
     });
@@ -161,17 +155,8 @@ class QuanLyNguoiDung extends Component {
     let gioitinh1 = this.state.gioitinhArr;
     let quyen1 = this.state.quyenArr;
     let { ngonngu } = this.props;
-    let {
-      email,
-      password,
-      ho,
-      ten,
-      sodienthoai,
-      diachinha,
-      diachicuahang,
-      gioitinh,
-      quyen,
-    } = this.state;
+    let { email, password, ho, ten, sodienthoai, diachinha, gioitinh, quyen } =
+      this.state;
     let tatcanguoidung = this.state.tatcanguoidung;
     console.log(tatcanguoidung);
     let trangthainut = this.state.trangthainut;
@@ -237,8 +222,8 @@ class QuanLyNguoiDung extends Component {
               value={sodienthoai}
             />
           </div>
-          <div className="form-group col-6">
-            <label>Địa chỉ nhà</label>
+          <div className="form-group col-4">
+            <label>Địa chỉ</label>
             <input
               className="form-control"
               type="text"
@@ -248,18 +233,8 @@ class QuanLyNguoiDung extends Component {
               value={diachinha}
             />
           </div>
-          <div className="form-group col-6">
-            <label>Địa chỉ cửa hàng</label>
-            <input
-              className="form-control"
-              type="text"
-              onChange={(event) => {
-                this.onChangeNhap(event, "diachicuahang");
-              }}
-              value={diachicuahang}
-            />
-          </div>
-          <div className="form-group col-6">
+
+          <div className="form-group col-4">
             <label>Giới tính</label>
             <select
               className="form-control"
@@ -279,7 +254,7 @@ class QuanLyNguoiDung extends Component {
                 })}
             </select>
           </div>
-          <div className="form-group col-6">
+          <div className="form-group col-4">
             <label>Quyền</label>
             <select
               className="form-control"
@@ -325,7 +300,6 @@ class QuanLyNguoiDung extends Component {
                 <th scope="col">Tên</th>
                 <th scope="col">Số điện thoại</th>
                 <th scope="col">Địa chỉ nhà</th>
-                <th scope="col">Địa chỉ cửa hàng</th>
                 <th scope="col">Quyền</th>
                 <th scope="col">Hành động</th>
               </tr>
@@ -342,7 +316,6 @@ class QuanLyNguoiDung extends Component {
                       <td>{item.ten}</td>
                       <td>{item.sdt}</td>
                       <td>{item.diachinha}</td>
-                      <td>{item.diachicuahang}</td>
                       <td>
                         {ngonngu === "vi"
                           ? item.quyen.tiengViet

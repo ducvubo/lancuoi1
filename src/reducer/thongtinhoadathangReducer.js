@@ -9,7 +9,12 @@ const adminReducer = (state = INITIAL_STATE, actions) => {
     case actionTypes.THONG_TIN_HOA_DAT_HANG_TRANG_CHU:
       return {
         ...state,
-        thongtinhoadathang : actions.hoa
+        thongtinhoadathang: actions.hoa,
+      };
+    case actionTypes.XOA_THONG_TIN_NGUOI_DUNG:
+      return {
+        ...state,
+        thongtinhoadathang:''
       };
     default:
       return state;

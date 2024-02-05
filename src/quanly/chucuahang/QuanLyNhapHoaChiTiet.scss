@@ -29,14 +29,20 @@
         }
     }
 
+    .timkiemhoadonchitiet {
+        width      : 345px;
+        margin-top : -38px;
+        margin-left: 1122px;
+    }
+
     .item3 {
         margin-top: 20px;
 
         i {
-            margin: 0px 10px;
+            margin : 0px 10px;
             opacity: 0.5;
 
-            &:hover{
+            &:hover {
                 opacity: 1;
             }
         }
