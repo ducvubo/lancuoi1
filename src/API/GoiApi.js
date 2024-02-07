@@ -165,9 +165,15 @@ const apithongkebanhoa = (ngay) => {
 };
 
 const apitatcadonhang = () => {
-  return axios.get("/api/tatcadonhang", );
+  return axios.get("/api/tatcadonhang");
 };
 
+const apilaytatcadanhgia = () => {
+  return axios.get(`api/laytatcabinhluan`);
+};
+const apiduyethuyduyet = (id,bang,trangthai) => {
+  return axios.post(`api/duyethuyduyetdanhgia?id=${id}&bang=${bang}&trangthai=${trangthai}`);
+};
 export {
   layAllCode,
   themnguoidung,
@@ -210,5 +216,6 @@ export {
   apidoanchatkhachang,
   apithongkenhaphoa,
   apithongkebanhoa,
-  apitatcadonhang
+  apitatcadonhang,
+  apilaytatcadanhgia,apiduyethuyduyet
 };

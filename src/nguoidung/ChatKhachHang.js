@@ -334,6 +334,7 @@ class ChatKhachHang extends Component {
                             id="anhchat"
                             type="file"
                             hidden
+                            accept="image/jpeg, image/png, image/gif"
                             onChange={(event) => this.onChangexemanhchat(event)}
                           />
                         </span>

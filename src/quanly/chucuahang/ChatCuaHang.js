@@ -500,6 +500,7 @@ class ChatCuaHang extends Component {
                             <input
                               id="anhchat"
                               type="file"
+                              accept="image/jpeg, image/png, image/gif"
                               hidden
                               onChange={(event) =>
                                 this.onChangexemanhchat(event)

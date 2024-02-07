@@ -70,7 +70,11 @@ class HeaderTrangChu extends Component {
               </span>
               <span>
                 {thongtinnguoidung ? (
-                  `${thongtinnguoidung.ten} ${thongtinnguoidung.ho}`
+                  ngonngu === "vi" ? (
+                    `${thongtinnguoidung.ten} ${thongtinnguoidung.ho}`
+                  ) : (
+                    `${thongtinnguoidung.ho} ${thongtinnguoidung.ten}`
+                  )
                 ) : (
                   <FormattedMessage id="headertaikhoan" />
                 )}{" "}

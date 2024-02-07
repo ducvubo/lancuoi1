@@ -1,0 +1,35 @@
+.quanlydanhgia {
+    margin: 0 35px;
+
+    .item1 {
+        text-transform: uppercase;
+        font-weight   : 600;
+        font-size     : 25px;
+        text-align    : center;
+        margin        : 20px 0;
+
+    }
+
+    // .timkiemhoadon {
+    //     width      : 467px;
+    //     margin-top : -38px;
+    //     margin-left: 998px;
+    // }
+
+    .item3 {
+        margin-top: 20px;
+
+        i {
+            margin : 0px 10px;
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        button {
+            width: 67px;
+        }
+    }
+}

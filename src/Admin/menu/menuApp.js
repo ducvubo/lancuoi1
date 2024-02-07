@@ -77,6 +77,15 @@ export const menu = [
     ],
   },
   {
+    name: "quanlydanhgia",
+    menus: [
+      {
+        name: "quanlydanhgia",
+        link: "/quanly/quanlydanhgia",
+      },
+    ],
+  },
+  {
     name: "thongke",
     menus: [
       {

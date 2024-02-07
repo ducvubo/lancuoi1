@@ -22,6 +22,7 @@ import "./QuanLy.scss";
 import ChatCuaHang from "../quanly/chucuahang/ChatCuaHang";
 import ThongKeBanHoa from "../quanly/chucuahang/ThongKeBanHoa";
  import ThongKeNhapHoa from "../quanly/chucuahang/ThongKeNhapHoa";
+ import QuanLyDanhGia from "../quanly/chucuahang/QuanLyDanhGia";
 import { toast } from "react-toastify";
 class QuanLy extends Component {
   constructor(props) {
@@ -65,9 +66,11 @@ class QuanLy extends Component {
               <Route path={"/quanly/quanlydondahuy"} exact component={QuanLyDonHangDaHuy} />
               <Route path={"/quanly/quanlydonyeucauhoanhanghoantien"} exact component={DonHangYcHHHT} />
               <Route path={"/quanly/quanlydonhangdaxulyhoanhanghoantien"} exact component={DonHangDaXLHHHT} />
+              <Route path={"/quanly/quanlydanhgia"} exact component={QuanLyDanhGia} />
               <Route path={"/quanly/thongkenhaphoa"} exact component={ThongKeNhapHoa} />
               <Route path={"/quanly/thongkebanhoa"} exact component={ThongKeBanHoa} />
 
+              
             </Switch>
           </React.Fragment>
         ) : (

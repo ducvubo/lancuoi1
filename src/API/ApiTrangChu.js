@@ -113,6 +113,20 @@ const apitimhoanguoidung = (data) => {
   return axios.put(`api/timhoanguoidung`,data);
 };
 
+const apithemdanhgia = (data) => {
+  return axios.post("api/themdanhgia", data);
+};
+
+const apibinhluantheohoa = (idhoa) => {
+  return axios.get(`api/laybinhluantheohoa?idhoa=${idhoa}`);
+};
+
+const apithemtraloidanhgia = (data) => {
+  return axios.post("api/themtraloibinhluan", data);
+};
+
+
+
 export {
   danhmuchoanoibat,
   danhmuchoachitiettheodanhmuc,
@@ -140,5 +154,5 @@ export {
   apixacnhandanhanduochang,
   apihuydonhangnguoidung,
   apihoanhanghoantien,
-  apitimhoanguoidung,apidathangtrangchu
+  apitimhoanguoidung,apidathangtrangchu,apithemdanhgia,apibinhluantheohoa,apithemtraloidanhgia
 };

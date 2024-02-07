@@ -166,6 +166,7 @@ class QuanLyHoa extends Component {
       });
     }
   };
+
   nhanxemanh = () => {
     if (!this.state.anhUrlnoibat) return;
     this.setState({
@@ -630,6 +631,7 @@ class QuanLyHoa extends Component {
                   id="anhImg"
                   type="file"
                   hidden
+                  accept="image/jpeg, image/png, image/gif"
                   onChange={(event) => this.onChangexemanh(event)}
                 />
                 <label className="upanh" htmlFor="anhImg">

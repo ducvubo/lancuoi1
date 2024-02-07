@@ -522,11 +522,11 @@ class QuanLyNhapHoa extends Component {
                 <th scope="col" rowSpan="2">
                   <FormattedMessage id="quanlynhaphoatonghoadon" />
                 </th>
-                <th scope="col" colSpan="4">
-                  <FormattedMessage id="quanlynhaphoathongtin" />
-                </th>
                 <th scope="col" rowSpan="2">
                   <FormattedMessage id="quanlyhanhdong" />
+                </th>
+                <th scope="col" colSpan="4">
+                  <FormattedMessage id="quanlynhaphoathongtin" />
                 </th>
               </tr>
               <tr className="item31">
@@ -565,6 +565,20 @@ class QuanLyNhapHoa extends Component {
                           <td rowSpan={item.hoa123.length + 1}>
                             {item.tonghoadon} đ
                           </td>
+                          <td rowSpan={item.hoa123.length + 1}>
+                            <button>
+                              <i
+                                className="fas fa-edit"
+                                onClick={() => this.clicksuahoadon(item)}
+                              ></i>
+                            </button>
+                            <button>
+                              <i
+                                className="fas fa-trash"
+                                onClick={() => this.clickxoahondon(item.id)}
+                              ></i>
+                            </button>
+                          </td>
                         </tr>
                         {item.hoa123 && item.hoa123.length > 0
                           ? item.hoa123.map((hoa, hoaIndex) => {
@@ -583,24 +597,6 @@ class QuanLyNhapHoa extends Component {
                                       ? hoa.giatong.toLocaleString()
                                       : ""}{" "}
                                     đ
-                                  </td>
-                                  <td>
-                                    <button>
-                                      <i
-                                        className="fas fa-edit"
-                                        onClick={() =>
-                                          this.clicksuahoadon(item)
-                                        }
-                                      ></i>
-                                    </button>
-                                    <button>
-                                      <i
-                                        className="fas fa-trash"
-                                        onClick={() =>
-                                          this.clickxoahondon(item.id)
-                                        }
-                                      ></i>
-                                    </button>
                                   </td>
                                 </tr>
                               );
