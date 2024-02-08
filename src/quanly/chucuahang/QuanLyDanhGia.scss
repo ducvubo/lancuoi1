@@ -31,5 +31,17 @@
         button {
             width: 67px;
         }
+
+        .duyethuy {
+            display: flex;
+            gap    : 10px;
+
+            .btnduyethuy {
+                width: 67px;
+            }
+        }
+        .xem {
+            width: 144px;
+        }
     }
 }

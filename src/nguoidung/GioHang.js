@@ -290,7 +290,7 @@ class GioHang extends Component {
 
     return (
       <>
-        {/* <HeaderTrangChu /> */}
+        <HeaderTrangChu />
         {trangthai === false ? (
           <div className="giohang">
             <table className="table table-bordered">
@@ -553,7 +553,7 @@ class GioHang extends Component {
             />
           </>
         )}
-        {/* <FooterTrangChu /> */}
+        <FooterTrangChu />
       </>
     );
   }

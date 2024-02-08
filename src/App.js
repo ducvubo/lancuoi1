@@ -37,19 +37,12 @@ class App extends Component {
     return (
       <React.Fragment>
         <Router history={history}>
-          {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
-          thongtinnguoidung.quyenId === "R3" ? null : (
-            <HeaderTrangChu />
-          )}
           {/* {hoatimduoc  ? <TimHoa/> : null} */}
           <Switch>
             <Route path={"/trangchu"} exact component={trangChu} />
             <Route path={"/quanly/"} component={QuanLy} />
             <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
-            <Route
-              path={"/hoatheodanhmucchitiet/:id"}
-              component={HoaTheoDanhMucTheoChiTiet}
-            />
+            <Route path={"/hoatheodanhmucchitiet/:id"} component={HoaTheoDanhMucTheoChiTiet}/>
             <Route path={"/hoatheodanhmuc/:id"} component={HoaTheoDanhMuc} />
             <Route path={"/giohang/:id"} component={GioHang} />
             <Route path={"/dangnhap"} component={DangNhap} />
@@ -60,17 +53,12 @@ class App extends Component {
             <Route path={"/donhang/:id"} component={QuanLyDonHang} />
             <Route path={"/dathang"} component={DatHang} />
 
-            {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
-            thongtinnguoidung.quyenId === "R3" ? (
-              <Redirect to={"/quanly/"} />
-            ) : (
+            {thongtinnguoidung &&  thongtinnguoidung.quyenId === "R4" ? (
               <Redirect to={"/trangchu"} />
+            ) : (
+              <Redirect to={"/quanly/"} />
             )}
           </Switch>
-          {(thongtinnguoidung && thongtinnguoidung.quyenId === "R1") ||
-          thongtinnguoidung.quyenId === "R3" ? null : (
-            <FooterTrangChu />
-          )}
         </Router>
 
         <ToastContainer

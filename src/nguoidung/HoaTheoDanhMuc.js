@@ -60,7 +60,7 @@ class HoaTheoDanhMuc extends Component {
     let { ngonngu } = this.props;
     return (
       <>
-        {/* <HeaderTrangChu /> */}
+        <HeaderTrangChu />
         <div className="hoatheodanhmuc">
           {hoatheodanhmuc &&
             hoatheodanhmuc.length > 0 &&
@@ -141,7 +141,7 @@ class HoaTheoDanhMuc extends Component {
               );
             })}
         </div>
-        {/* <FooterTrangChu /> */}
+        <FooterTrangChu />
       </>
     );
   }

@@ -6,6 +6,8 @@ import { apitatcaphuongthucvanchuyen } from "../API/ApiTrangChu";
 import NhapTTDHTrangChu from "./NhapTTDHTrangChu";
 import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import HeaderTrangChu from "./HeaderTrangChu";
+import FooterTrangChu from "./FooterTrangChu";
 class DatHang extends Component {
   constructor(props) {
     super(props);
@@ -95,6 +97,8 @@ class DatHang extends Component {
     return (
       <>
         {thongtinnguoidung && thongtinhoadathang ? (
+          <>
+<HeaderTrangChu/>
           <div className="dathangtrangchu">
             <div className="sanpham">
               <table className="table table-bordered">
@@ -224,6 +228,8 @@ class DatHang extends Component {
               doitrangthai={this.doitrangthai}
             />
           </div>
+<FooterTrangChu/>
+          </>
         ) : (
           <Redirect to={"/dangnhap"} />
         )}

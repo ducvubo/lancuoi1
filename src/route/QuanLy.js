@@ -69,8 +69,6 @@ class QuanLy extends Component {
               <Route path={"/quanly/quanlydanhgia"} exact component={QuanLyDanhGia} />
               <Route path={"/quanly/thongkenhaphoa"} exact component={ThongKeNhapHoa} />
               <Route path={"/quanly/thongkebanhoa"} exact component={ThongKeBanHoa} />
-
-              
             </Switch>
           </React.Fragment>
         ) : (

@@ -100,7 +100,7 @@ class DangNhap extends Component {
         thongtinnguoidung123 === "R3" ? (
           <Redirect to={"/quanly/"} />
         ) : null}
-        {/* <HeaderTrangChu /> */}
+        <HeaderTrangChu />
         <div className="dangnhap">
           <div className="form">
             <div className="spandangnhap">
@@ -155,7 +155,7 @@ class DangNhap extends Component {
             </div>
           </div>
         </div>
-        {/* <FooterTrangChu /> */}
+        <FooterTrangChu />
 
       </>
         

@@ -45,7 +45,7 @@ class ThongTinHoa extends Component {
       noidungdanhgia: "",
       noidungdanhgiatraloi: "",
       danhgiachitietid: [],
-      trangthaidanhgiamota: true,
+      trangthaidanhgiamota: false,
       trangthaiphanhoichitiet: false,
       trangthaitraloidanhgia: false,
       sosaodanhgia: "",
@@ -427,7 +427,7 @@ class ThongTinHoa extends Component {
     });
     return (
       <>
-        {/* <HeaderTrangChu /> */}
+        <HeaderTrangChu />
         <div className="thongtinhoa">
           <div className="item1">
             <div className="anh">
@@ -1310,7 +1310,7 @@ class ThongTinHoa extends Component {
               })}
           </div>
         </div>
-        {/* <FooterTrangChu /> */}
+        <FooterTrangChu />
       </>
     );
   }

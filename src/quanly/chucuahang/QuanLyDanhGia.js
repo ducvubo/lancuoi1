@@ -112,6 +112,10 @@ class QuanLyDanhGia extends Component {
     }
   };
 
+  xemchitiet = (id) => {
+    this.props.history.push(`/thongtinhoa/${id}`);
+  };
+
   render() {
     let { danhgiaarr, trangthaixemanhdanhgia } = this.state;
     let { ngonngu } = this.props.ngonngu;
@@ -239,9 +243,10 @@ class QuanLyDanhGia extends Component {
                             {moment(item.thoigian).format("DD-MM-YYYY")}
                           </td>
                           <td rowSpan={item.traloibinhluan.length + 1}>
+                            <div className="duyethuy">
                             {item.trangthaidanhgiaid === "BL1" ? (
                               <button
-                                className="btn btn-primary"
+                                className="btn btn-primary btnduyethuy"
                                 onClick={() =>
                                   this.doitrangthaidanhgia(
                                     item.id,
@@ -254,7 +259,7 @@ class QuanLyDanhGia extends Component {
                               </button>
                             ) : (
                               <button
-                                className="btn btn-warning"
+                                className="btn btn-warning btnduyethuy"
                                 onClick={() =>
                                   this.doitrangthaidanhgia(
                                     item.id,
@@ -267,12 +272,19 @@ class QuanLyDanhGia extends Component {
                               </button>
                             )}
                             <button
-                              className="btn btn-danger mt-2"
+                              className="btn btn-info  btnduyethuy"
                               onClick={() =>
                                 this.xoadanhgia(item.id, "danhgia")
                               }
                             >
                               Xóa
+                            </button>
+                            </div>
+                            <button
+                              className="btn btn-danger mt-2 xem"
+                              onClick={() => this.xemchitiet(item.idhoa)}
+                            >
+                              Xem chi tiết
                             </button>
                           </td>
                         </tr>

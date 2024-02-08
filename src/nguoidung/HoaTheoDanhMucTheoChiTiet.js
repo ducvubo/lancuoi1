@@ -53,7 +53,7 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
     let { ngonngu } = this.props;
     return (
       <>
-        {/* <HeaderTrangChu /> */}
+        <HeaderTrangChu />
         <div className="hoatheodanhmuchoachitiet">
           {hoatheodanhmucchitiet &&
             hoatheodanhmucchitiet.length > 0 &&
@@ -134,7 +134,7 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
               );
             })}
         </div>
-        {/* <FooterTrangChu /> */}
+        <FooterTrangChu />
       </>
     );
   }
