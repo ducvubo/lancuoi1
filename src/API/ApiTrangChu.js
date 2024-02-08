@@ -125,7 +125,9 @@ const apithemtraloidanhgia = (data) => {
   return axios.post("api/themtraloibinhluan", data);
 };
 
-
+const apixoadanhgiatraloikh = (id,bang) => {
+  return axios.delete(`api/xoadanhgiaortraloikh?id=${id}&bang=${bang}`);
+};
 
 export {
   danhmuchoanoibat,
@@ -154,5 +156,5 @@ export {
   apixacnhandanhanduochang,
   apihuydonhangnguoidung,
   apihoanhanghoantien,
-  apitimhoanguoidung,apidathangtrangchu,apithemdanhgia,apibinhluantheohoa,apithemtraloidanhgia
+  apitimhoanguoidung,apidathangtrangchu,apithemdanhgia,apibinhluantheohoa,apithemtraloidanhgia,apixoadanhgiatraloikh
 };

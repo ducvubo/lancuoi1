@@ -171,9 +171,11 @@ const apitatcadonhang = () => {
 const apilaytatcadanhgia = () => {
   return axios.get(`api/laytatcabinhluan`);
 };
+
 const apiduyethuyduyet = (id,bang,trangthai) => {
   return axios.post(`api/duyethuyduyetdanhgia?id=${id}&bang=${bang}&trangthai=${trangthai}`);
 };
+
 export {
   layAllCode,
   themnguoidung,

@@ -16,6 +16,7 @@ import {
   apibinhluantheohoa,
   apithemdanhgia,
   apithemtraloidanhgia,
+  apixoadanhgiatraloikh,
 } from "../API/ApiTrangChu";
 import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
@@ -354,6 +355,30 @@ class ThongTinHoa extends Component {
     this.setState({
       trangthaixemanhdanhgia: true,
     });
+  };
+
+  xoadanhgiatraloikh = async (id, bang) => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
+    let kq = await apixoadanhgiatraloikh(id, bang);
+    if (kq && kq.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục!!!")
+        : toast.success(
+            "You are not logged in, please log in to continue!!!"
+          );
+    }
+    if (kq && kq.data && kq.data.maCode === 0) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Xóa đánh giá thành công!!!")
+        : toast.success("Review removed successfully!!!");
+      this.laybinhluantheohoa();
+    }
   };
   render() {
     let {
@@ -754,6 +779,17 @@ class ThongTinHoa extends Component {
                                   Xem phản hồi({item.traloibinhluan.length})
                                 </span>
                               )}
+                              {item.idnguoidung ===
+                                this.props.thongtinnguoidung.id && (
+                                <span
+                                  className="xemphanhoi ml-3"
+                                  onClick={() =>
+                                    this.xoadanhgiatraloikh(item.id, "danhgia")
+                                  }
+                                >
+                                  Xóa
+                                </span>
+                              )}
                             </div>
                           </div>
 
@@ -842,6 +878,21 @@ class ThongTinHoa extends Component {
                                             <span className="date">
                                               {datetraloidanhgia}
                                             </span>
+                                            {traloibinhluanitem.idnguoidung ===
+                                              this.props.thongtinnguoidung
+                                                .id && (
+                                              <span
+                                                className="ten mt-3"
+                                                onClick={() =>
+                                                  this.xoadanhgiatraloikh(
+                                                    traloibinhluanitem.id,
+                                                    "traloi"
+                                                  )
+                                                }
+                                              >
+                                                <i className="fas fa-times"></i>
+                                              </span>
+                                            )}
                                           </div>
                                           <div className="noidung">
                                             <span className="mt-2">

@@ -5,10 +5,11 @@ import { apilaytatcadanhgia } from "../../API/GoiApi";
 import { FormattedMessage } from "react-intl";
 import moment from "moment";
 import { Button } from "reactstrap";
-import { apiduyethuyduyet,apirefreshtoken } from "../../API/GoiApi";
+import { apiduyethuyduyet, apirefreshtoken } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import { apixoadanhgiatraloikh } from "../../API/ApiTrangChu";
 class QuanLyDanhGia extends Component {
   constructor(props) {
     super(props);
@@ -32,19 +33,19 @@ class QuanLyDanhGia extends Component {
     }
     let kq = await apilaytatcadanhgia();
     if (kq.maCode === 6) {
-        this.props.ngonngu === "vi"
-          ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
-          : toast.error("You are not an admin, please come back!!!");
-      }
-      if (kq.maCode === 7) {
-        this.props.ngonngu === "vi"
-          ? toast.error(
-              "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
-            )
-          : toast.error(
-              "You are not an admin or store employee, please leave!!!"
-            );
-      }
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
@@ -63,19 +64,19 @@ class QuanLyDanhGia extends Component {
     }
     let kq = await apiduyethuyduyet(id, bang, trangthai);
     if (kq.maCode === 6) {
-        this.props.ngonngu === "vi"
-          ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
-          : toast.error("You are not an admin, please come back!!!");
-      }
-      if (kq.maCode === 7) {
-        this.props.ngonngu === "vi"
-          ? toast.error(
-              "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
-            )
-          : toast.error(
-              "You are not an admin or store employee, please leave!!!"
-            );
-      }
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Cập nhật trạng thái thành công")
@@ -88,6 +89,27 @@ class QuanLyDanhGia extends Component {
     this.setState({
       trangthaixemanhdanhgia: true,
     });
+  };
+
+  xoadanhgia = async (id, bang) => {
+    let token = await apirefreshtoken();
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+    }
+    let kq = await apixoadanhgiatraloikh(id, bang);
+    if (kq && kq.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục!!!")
+        : toast.success("You are not logged in, please log in to continue!!!");
+    }
+    if (kq && kq.data && kq.data.maCode === 0) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Xóa đánh giá thành công!!!")
+        : toast.success("Review removed successfully!!!");
+      this.laytatcadanhgia();
+    }
   };
 
   render() {
@@ -244,6 +266,14 @@ class QuanLyDanhGia extends Component {
                                 Hủy
                               </button>
                             )}
+                            <button
+                              className="btn btn-danger mt-2"
+                              onClick={() =>
+                                this.xoadanhgia(item.id, "danhgia")
+                              }
+                            >
+                              Xóa
+                            </button>
                           </td>
                         </tr>
                         {item.traloibinhluan && item.traloibinhluan.length > 0
@@ -345,6 +375,14 @@ class QuanLyDanhGia extends Component {
                                           Hủy
                                         </button>
                                       )}
+                                      <button
+                                        className="btn btn-danger mt-2"
+                                        onClick={() =>
+                                          this.xoadanhgia(binhluan.id, "traloi")
+                                        }
+                                      >
+                                        Xóa
+                                      </button>
                                     </td>
                                   </tr>
                                 );
