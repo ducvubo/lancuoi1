@@ -9,10 +9,7 @@ import SlideKH from "./SlideKH";
 import * as actions from "../action/actions";
 import {
   apihoagiamgia,
-  apihoakhaitruong,
-  apihoasinhnhat,
-  apihoatet,
-  apilanhodiep,
+  apihoatheodanhmucnoibat,
 } from "../API/ApiTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import HeaderTrangChu from "./HeaderTrangChu";
@@ -22,20 +19,17 @@ class trangChu extends Component {
     super(props);
     this.state = {
       hoagiamgia: [],
-      hoatetbanchay: [],
-      hoatetgiamgia: [],
-      hoakhaitruong: [],
-      hoasinhnhat: [],
-      lanhodiep: [],
+      danhmuchoathu1: [],
+      danhmuchoathu2: [],
+      danhmuchoathu3: [],
+      danhmuchoathu4: [],
+      danhmuchoathu5: [],
     };
   }
 
   async componentDidMount() {
     await this.layhoagiamgia();
-    await this.layhoakhaitruong();
-    await this.layhoatet();
-    await this.layhoasinhnhat();
-    await this.laylanhodiep();
+    await this.laydanhmuchoanoibat();
   }
 
   layhoagiamgia = async () => {
@@ -47,77 +41,140 @@ class trangChu extends Component {
       });
     }
   };
-  layhoatet = async () => {
-    let kq = await apihoatet();
+
+  laydanhmuchoanoibat = async () => {
+    let kq = await apihoatheodanhmucnoibat();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
-      let epdata = data1
-        .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
-        .flat();
-
-      epdata.map((item, index) => {
-        item.donoibat = parseFloat(item.donoibat);
-        item.donoibat = parseFloat(item.phantramgiam);
-      });
-      let sxdata = epdata.slice().sort((a, b) => b.soluongban - a.soluongban);
-      let sxdata1 = epdata
-        .slice()
-        .sort((a, b) => b.phantramgiam - a.phantramgiam);
-
-      this.setState({
-        hoatetgiamgia: sxdata1,
-        hoatetbanchay: sxdata,
-      });
-    }
-  };
-  layhoakhaitruong = async () => {
-    let kq = await apihoakhaitruong();
-    if (kq && kq.maCode === 0) {
-      let data1 = kq.data;
-      let epdata = data1
-        .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
-        .flat();
-      epdata.map((item, index) => {
-        item.donoibat = parseFloat(item.donoibat);
-      });
-      let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
-      this.setState({
-        hoakhaitruong: sxdata,
-      });
-    }
-  };
-  layhoasinhnhat = async () => {
-    let kq = await apihoasinhnhat();
-    if (kq && kq.maCode === 0) {
-      let data1 = kq.data;
-      let epdata = data1
-        .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
-        .flat();
-
-      epdata.map((item, index) => {
-        item.donoibat = parseFloat(item.donoibat); // Hoặc parseInt(item.donoibat) nếu donoibat là số nguyên
-      });
-      let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
-      this.setState({
-        hoasinhnhat: sxdata,
-      });
-    }
-  };
-  laylanhodiep = async () => {
-    let kq = await apilanhodiep();
-    if (kq && kq.maCode === 0) {
-      let data1 = kq.data;
-      let epdata = data1
-        .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
-        .flat();
-
-      epdata.map((item, index) => {
-        item.donoibat = parseFloat(item.donoibat); // Hoặc parseInt(item.donoibat) nếu donoibat là số nguyên
-      });
-      let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
-      this.setState({
-        lanhodiep: sxdata,
-      });
+      let data2 = "";
+      console.log(data1);
+      for (let i = 0; i < data1.length; i++) {
+        if (i === 4) {
+          data2 = [data1[i]];
+          let epdata = data2
+            .flatMap((item) =>
+              item.danhmuc.map((item) => item.danhmuchoachitiet)
+            )
+            .flat();
+          epdata.map((item, index) => {
+            item.donoibat = parseFloat(item.donoibat);
+          });
+          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+          this.setState({
+            danhmuchoathu1: {
+              tendanhmuc:
+                data2 &&
+                data2.length > 0 &&
+                data2.map((item) => {
+                  return {
+                    tendanhmucVi: item,
+                  };
+                }),
+              sxdata,
+            },
+          });
+        }
+        if (i === 3) {
+          data2 = [data1[i]];
+          let epdata = data2
+            .flatMap((item) =>
+              item.danhmuc.map((item) => item.danhmuchoachitiet)
+            )
+            .flat();
+          epdata.map((item, index) => {
+            item.donoibat = parseFloat(item.donoibat);
+          });
+          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+          this.setState({
+            danhmuchoathu2: {
+              tendanhmuc:
+                data2 &&
+                data2.length > 0 &&
+                data2.map((item) => {
+                  return {
+                    tendanhmucVi: item,
+                  };
+                }),
+              sxdata,
+            },
+          });
+        }
+        if (i === 2) {
+          data2 = [data1[i]];
+          let epdata = data2
+            .flatMap((item) =>
+              item.danhmuc.map((item) => item.danhmuchoachitiet)
+            )
+            .flat();
+          epdata.map((item, index) => {
+            item.donoibat = parseFloat(item.donoibat);
+          });
+          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+          this.setState({
+            danhmuchoathu3: {
+              tendanhmuc:
+                data2 &&
+                data2.length > 0 &&
+                data2.map((item) => {
+                  return {
+                    tendanhmucVi: item,
+                  };
+                }),
+              sxdata,
+            },
+          });
+        }
+        if (i === 1) {
+          data2 = [data1[i]];
+          let epdata = data2
+            .flatMap((item) =>
+              item.danhmuc.map((item) => item.danhmuchoachitiet)
+            )
+            .flat();
+          epdata.map((item, index) => {
+            item.donoibat = parseFloat(item.donoibat);
+          });
+          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+          this.setState({
+            danhmuchoathu4: {
+              tendanhmuc:
+                data2 &&
+                data2.length > 0 &&
+                data2.map((item) => {
+                  return {
+                    tendanhmucVi: item,
+                  };
+                }),
+              sxdata,
+            },
+          });
+        }
+        if (i === 0) {
+          data2 = [data1[i]];
+          let epdata = data2
+            .flatMap((item) =>
+              item.danhmuc.map((item) => item.danhmuchoachitiet)
+            )
+            .flat();
+          epdata.map((item, index) => {
+            item.donoibat = parseFloat(item.donoibat);
+          });
+          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+          this.setState({
+            danhmuchoathu5: {
+              tendanhmuc:
+                data2 &&
+                data2.length > 0 &&
+                data2.map((item) => {
+                  return {
+                    tendanhmucVi: item,
+                  };
+                }),
+              sxdata,
+            },
+          });
+        }
+      }
     }
   };
 
@@ -135,11 +192,11 @@ class trangChu extends Component {
     let { ngonngu } = this.props;
     let {
       hoagiamgia,
-      hoatetbanchay,
-      hoatetgiamgia,
-      hoakhaitruong,
-      hoasinhnhat,
-      lanhodiep,
+      danhmuchoathu1,
+      danhmuchoathu2,
+      danhmuchoathu3,
+      danhmuchoathu4,
+      danhmuchoathu5,
     } = this.state;
     return (
       <>
@@ -271,13 +328,21 @@ class trangChu extends Component {
 
           <div className="item6">
             <span>
-              <FormattedMessage id="trangchuhoatetgiamgia" />
+              {danhmuchoathu1 &&
+                danhmuchoathu1.tendanhmuc &&
+                danhmuchoathu1.tendanhmuc.length > 0 &&
+                danhmuchoathu1.tendanhmuc.map((item) =>
+                  this.props.ngonngu === "vi"
+                    ? item.tendanhmucVi.tendanhmucVi
+                    : item.tendanhmucVi.tendanhmucEn
+                )}
             </span>
           </div>
           <div className="item9">
-            {hoatetgiamgia &&
-              hoatetgiamgia.length > 0 &&
-              hoatetgiamgia.slice(0, 8).map((item, index) => {
+            {danhmuchoathu1 &&
+              danhmuchoathu1.sxdata &&
+              danhmuchoathu1.sxdata.length > 0 &&
+              danhmuchoathu1.sxdata.slice(0, 8).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -368,13 +433,21 @@ class trangChu extends Component {
 
           <div className="item6">
             <span>
-              <FormattedMessage id="trangchuhoatetbanchay" />
+              {danhmuchoathu2 &&
+                danhmuchoathu2.tendanhmuc &&
+                danhmuchoathu2.tendanhmuc.length > 0 &&
+                danhmuchoathu2.tendanhmuc.map((item) =>
+                  this.props.ngonngu === "vi"
+                    ? item.tendanhmucVi.tendanhmucVi
+                    : item.tendanhmucVi.tendanhmucEn
+                )}
             </span>
           </div>
           <div className="item9">
-            {hoatetbanchay &&
-              hoatetbanchay.length > 0 &&
-              hoatetbanchay.slice(0, 8).map((item, index) => {
+            {danhmuchoathu2 &&
+              danhmuchoathu2.sxdata &&
+              danhmuchoathu2.sxdata.length > 0 &&
+              danhmuchoathu2.sxdata.slice(0, 8).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -465,13 +538,21 @@ class trangChu extends Component {
 
           <div className="item6">
             <span>
-              <FormattedMessage id="trangchuhoasinhnhat" />
+              {danhmuchoathu3 &&
+                danhmuchoathu3.tendanhmuc &&
+                danhmuchoathu3.tendanhmuc.length > 0 &&
+                danhmuchoathu3.tendanhmuc.map((item) =>
+                  this.props.ngonngu === "vi"
+                    ? item.tendanhmucVi.tendanhmucVi
+                    : item.tendanhmucVi.tendanhmucEn
+                )}
             </span>
           </div>
           <div className="item7">
-            {hoasinhnhat &&
-              hoasinhnhat.length > 0 &&
-              hoasinhnhat.slice(0, 4).map((item, index) => {
+            {danhmuchoathu3 &&
+              danhmuchoathu3.sxdata &&
+              danhmuchoathu3.sxdata.length > 0 &&
+              danhmuchoathu3.sxdata.slice(0, 4).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -562,13 +643,22 @@ class trangChu extends Component {
 
           <div className="item6">
             <span>
-              <FormattedMessage id="trangchuhoakhaitruong" />
+              {danhmuchoathu4 &&
+                danhmuchoathu4.tendanhmuc &&
+                danhmuchoathu4.tendanhmuc.length > 0 &&
+                danhmuchoathu4.tendanhmuc.map((item) =>
+                  this.props.ngonngu === "vi"
+                    ? item.tendanhmucVi.tendanhmucVi
+                    : item.tendanhmucVi.tendanhmucEn
+                )}
+              {/* <FormattedMessage id="trangchuhoakhaitruong" /> */}
             </span>
           </div>
           <div className="item9">
-            {hoakhaitruong &&
-              hoakhaitruong.length > 0 &&
-              hoakhaitruong.slice(0, 8).map((item, index) => {
+            {danhmuchoathu4 &&
+              danhmuchoathu4.sxdata &&
+              danhmuchoathu4.sxdata.length > 0 &&
+              danhmuchoathu4.sxdata.slice(0, 8).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -655,14 +745,22 @@ class trangChu extends Component {
 
           <div className="item6">
             <span>
-              <FormattedMessage id="trangchulanhodiep" />
+              {danhmuchoathu5 &&
+                danhmuchoathu5.tendanhmuc &&
+                danhmuchoathu5.tendanhmuc.length > 0 &&
+                danhmuchoathu5.tendanhmuc.map((item) =>
+                  this.props.ngonngu === "vi"
+                    ? item.tendanhmucVi.tendanhmucVi
+                    : item.tendanhmucVi.tendanhmucEn
+                )}
             </span>
           </div>
 
           <div className="item7">
-            {lanhodiep &&
-              lanhodiep.length > 0 &&
-              lanhodiep.slice(0, 4).map((item, index) => {
+            {danhmuchoathu5 &&
+              danhmuchoathu5.sxdata &&
+              danhmuchoathu5.sxdata.length > 0 &&
+              danhmuchoathu5.sxdata.slice(0, 4).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(

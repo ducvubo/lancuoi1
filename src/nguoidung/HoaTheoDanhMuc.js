@@ -32,6 +32,7 @@ class HoaTheoDanhMuc extends Component {
     let kq = await apihoatheodanhmuc(id);
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
+      console.log(data1);
       let epdata = data1
         .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
         .flat();
@@ -40,7 +41,17 @@ class HoaTheoDanhMuc extends Component {
       });
       let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
       this.setState({
-        hoatheodanhmuc: sxdata,
+        hoatheodanhmuc: {
+          tendanhmuc:
+            data1 &&
+            data1.length > 0 &&
+            data1.map((item) => {
+              return {
+                tendanhmucVi: item,
+              };
+            }),
+          sxdata,
+        },
       });
     }
   };
@@ -57,14 +68,28 @@ class HoaTheoDanhMuc extends Component {
 
   render() {
     let { hoatheodanhmuc } = this.state;
+    console.log(hoatheodanhmuc);
     let { ngonngu } = this.props;
     return (
       <>
         <HeaderTrangChu />
         <div className="hoatheodanhmuc">
-          {hoatheodanhmuc &&
-            hoatheodanhmuc.length > 0 &&
-            hoatheodanhmuc.map((item, index) => {
+        <div className="tendanhmuc">
+          <span>
+            {hoatheodanhmuc &&
+              hoatheodanhmuc.tendanhmuc &&
+              hoatheodanhmuc.tendanhmuc.length > 0 &&
+              hoatheodanhmuc.tendanhmuc.map((item) =>
+                this.props.ngonngu === "vi"
+                  ? item.tendanhmucVi.tendanhmucVi
+                  : item.tendanhmucVi.tendanhmucEn
+              )}
+          </span>
+        </div>
+        <div className="hoadanhmuc">
+          {hoatheodanhmuc.sxdata &&
+            hoatheodanhmuc.sxdata.length > 0 &&
+            hoatheodanhmuc.sxdata.map((item, index) => {
               let anhnoibat = "";
               if (item.anhnoibat) {
                 anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -140,6 +165,7 @@ class HoaTheoDanhMuc extends Component {
                 </div>
               );
             })}
+        </div>
         </div>
         <FooterTrangChu />
       </>

@@ -16,18 +16,6 @@ const apitatcahoa = () => {
 const apihoagiamgia = () => {
   return axios.get("/api/hoagiamgia");
 };
-const apihoatet = () => {
-  return axios.get("/api/hoatet");
-};
-const apihoasinhnhat = () => {
-  return axios.get("/api/hoasinhnhat");
-};
-const apihoakhaitruong = () => {
-  return axios.get("/api/hoakhaitruong");
-};
-const apilanhodiep = () => {
-  return axios.get("/api/lanhodiep");
-};
 
 const apithongtinhoa = (id) => {
   return axios.get(`api/thongtinhoa?id=${id}`);
@@ -129,15 +117,16 @@ const apixoadanhgiatraloikh = (id,bang) => {
   return axios.delete(`api/xoadanhgiaortraloikh?id=${id}&bang=${bang}`);
 };
 
+const apihoatheodanhmucnoibat = () => {
+  return axios.get("/api/hoatheodanhmucnoibat");
+};
+
+
 export {
   danhmuchoanoibat,
   danhmuchoachitiettheodanhmuc,
   apitatcahoa,
   apihoagiamgia,
-  apihoakhaitruong,
-  apihoasinhnhat,
-  apihoatet,
-  apilanhodiep,
   apithongtinhoa,
   apidangnhap,
   apidangky,
@@ -156,5 +145,11 @@ export {
   apixacnhandanhanduochang,
   apihuydonhangnguoidung,
   apihoanhanghoantien,
-  apitimhoanguoidung,apidathangtrangchu,apithemdanhgia,apibinhluantheohoa,apithemtraloidanhgia,apixoadanhgiatraloikh
+  apitimhoanguoidung,
+  apidathangtrangchu,
+  apithemdanhgia,
+  apibinhluantheohoa,
+  apithemtraloidanhgia,
+  apixoadanhgiatraloikh,
+  apihoatheodanhmucnoibat
 };
