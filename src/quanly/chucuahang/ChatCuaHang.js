@@ -1,11 +1,15 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./ChatCuaHang.scss";
-import { apitatcacuoctrochuyen, apitatcakhachhang } from "../../API/GoiApi";
+import {
+  apitatcacuoctrochuyen,
+  apitatcakhachhang,
+  apidoitrangthaixem,
+} from "../../API/GoiApi";
 import Xulyanh from "../../XuLyAnh/Xulyanh";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
-import _, { debounce } from "lodash";
+import _, { cloneDeep, debounce } from "lodash";
 class ChatCuaHang extends Component {
   constructor(props) {
     super(props);
@@ -55,9 +59,37 @@ class ChatCuaHang extends Component {
   xuLyDataTuServerTraVe = async (ev) => {
     const tinnhandata = JSON.parse(ev.data);
     if ("online" in tinnhandata) {
-      console.log(tinnhandata);
       this.nguoiDangOnline(tinnhandata.online);
     } else if ("noidung" in tinnhandata) {
+      let doanchatclone = _.cloneDeep(this.state.tatcadoanchat);
+      doanchatclone.forEach((doanchat) => {
+        if (
+          tinnhandata.nguoigui === doanchat.idchat &&
+          tinnhandata.trangthaixem === "chuaxem" &&
+          tinnhandata.nguoigui !== "nhanvien"
+        ) {
+          doanchat.trangthaixem = tinnhandata.trangthaixem;
+        }
+      });
+      this.setState({
+        tatcadoanchat: doanchatclone,
+      });
+
+      if (tinnhandata.nguoigui === this.state.nguoidangnhan) {
+        let kq = await apidoitrangthaixem(this.state.nguoidangnhan);
+        if (kq && kq.data && kq.data.maCode === 0) {
+          let clonekhachhang = _.cloneDeep(this.state.tatcadoanchat);
+          clonekhachhang &&
+            clonekhachhang.map((item) => {
+              if (item.idchat === this.state.nguoidangnhan) {
+                delete item.trangthaixem;
+              }
+            });
+          this.setState({
+            tatcadoanchat: clonekhachhang,
+          });
+        }
+      }
       this.setState((prevState) => ({
         tinnhanArr: [
           ...prevState.tinnhanArr,
@@ -74,7 +106,6 @@ class ChatCuaHang extends Component {
     nguoidungArr.forEach(({ idchat, ten }) => {
       nguoi[idchat] = ten;
     });
-    console.log(nguoidungArr);
     this.setState((prevState) => ({
       tatcadoanchat: prevState.tatcadoanchat.concat(nguoidungArr),
     }));
@@ -100,12 +131,23 @@ class ChatCuaHang extends Component {
     });
   };
 
-  chonnguoichat(nguoi) {
-    this.setState({
-      nguoidangnhan: nguoi.idchat,
-      tennguoinhan: nguoi.ten,
-    });
-  }
+  chonnguoichat = async (nguoi) => {
+    let kq = await apidoitrangthaixem(nguoi.idchat);
+    if (kq && kq.data && kq.data.maCode === 0) {
+      let clonekhachhang = _.cloneDeep(this.state.tatcadoanchat);
+      clonekhachhang &&
+        clonekhachhang.map((item) => {
+          if (item.idchat === nguoi.idchat) {
+            delete item.trangthaixem;
+          }
+        });
+      this.setState({
+        nguoidangnhan: nguoi.idchat,
+        tennguoinhan: nguoi.ten,
+        tatcadoanchat: clonekhachhang,
+      });
+    }
+  };
 
   nhapTinNhan = (event) => {
     this.setState({
@@ -171,8 +213,24 @@ class ChatCuaHang extends Component {
         giatrixuathien.add(obj.ten);
         return !isDuplicate;
       });
+
       this.setState({
         tatcadoanchat: dataok,
+      });
+      let tinnhanclone = _.cloneDeep(this.state.tinnhanArr);
+      let doanchatclone = _.cloneDeep(this.state.tatcadoanchat);
+      tinnhanclone.forEach((tinnhan) => {
+        doanchatclone.forEach((doanchat) => {
+          if (
+            tinnhan.nguoigui === doanchat.idchat &&
+            tinnhan.trangthaixem === "chuaxem"
+          ) {
+            doanchat.trangthaixem = tinnhan.trangthaixem;
+          }
+        });
+      });
+      this.setState({
+        tatcadoanchat: doanchatclone,
       });
     }
   };
@@ -189,6 +247,7 @@ class ChatCuaHang extends Component {
       });
     }
   };
+
   nhanxemanhchat = () => {
     if (!this.state.anhUrl) return;
     this.setState({
@@ -246,10 +305,17 @@ class ChatCuaHang extends Component {
       anhUrl,
       xemanh,
     } = this.state;
-    console.log(tatcadoanchat);
     tatcadoanchat = tatcadoanchat.filter((item) => item.idchat !== "nhanvien");
     let { ngonngu, thongtinnguoidung } = this.props;
-    console.log(tatcadoanchat);
+    tatcadoanchat.sort((a, b) => {
+      if (a.trangthaixem === "chuaxem" && b.trangthaixem !== "chuaxem") {
+        return -1; // a lên đầu
+      } else if (a.trangthaixem !== "chuaxem" && b.trangthaixem === "chuaxem") {
+        return 1; // b lên đầu
+      } else {
+        return 0; // giữ nguyên vị trí
+      }
+    });
     return (
       <div className="chatcuahang">
         <div className="container-fluid h-100">
@@ -301,6 +367,11 @@ class ChatCuaHang extends Component {
                                 <p className="onof">Online</p>
                               ) : (
                                 <p className="onof">Offline</p>
+                              )}
+                            </div>
+                            <div className="img_cont">
+                              {item.trangthaixem === "chuaxem" && (
+                                <span className="online_icon tinnhanmoi"></span>
                               )}
                             </div>
                           </div>

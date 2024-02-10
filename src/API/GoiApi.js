@@ -176,6 +176,10 @@ const apiduyethuyduyet = (id,bang,trangthai) => {
   return axios.post(`api/duyethuyduyetdanhgia?id=${id}&bang=${bang}&trangthai=${trangthai}`);
 };
 
+const apidoitrangthaixem = (idchat) => {
+  return axios.post(`/api/doitrangthaixem?idchat=${idchat}`);
+};
+
 export {
   layAllCode,
   themnguoidung,
@@ -219,5 +223,5 @@ export {
   apithongkenhaphoa,
   apithongkebanhoa,
   apitatcadonhang,
-  apilaytatcadanhgia,apiduyethuyduyet
+  apilaytatcadanhgia,apiduyethuyduyet,apidoitrangthaixem
 };
