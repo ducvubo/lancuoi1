@@ -8,6 +8,7 @@ import {
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import ThongTinDonHang from "./ThongTinDonHang";
+import { FormattedMessage } from "react-intl";
 class QuanLyDonHangChoVanChuyen extends Component {
   constructor(props) {
     super(props);
@@ -93,20 +94,36 @@ class QuanLyDonHangChoVanChuyen extends Component {
     return (
       <div className="donhangchovanchuyen">
         <div className="item1">
-          <span>Quản lý đơn hàng chờ vận chuyển</span>
+          <span><FormattedMessage id="quanlydonchovanchuyen"/></span>
         </div>
         <div className="item3">
           <table className="table table-bordered ">
             <thead>
               <tr className="item31">
-                <th scope="col">Mã đơn hàng</th>
-                <th scope="col">Tên người nhận</th>
-                <th scope="col">Email</th>
-                <th scope="col">Số điện thoại</th>
-                <th scope="col">Địa chỉ</th>
-                <th scope="col">Ghi chú</th>
-                <th scope="col">Tổng tiền</th>
-                <th>Hành động</th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangmadonhang" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangten" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangemail" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangsdt" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangdiachi" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangghichu" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangtongtien" />
+                </th>
+                <th>
+                  <FormattedMessage id="quanlyhanhdong" />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -132,7 +149,7 @@ class QuanLyDonHangChoVanChuyen extends Component {
                               )
                             }
                           >
-                            Xác nhận
+                            <FormattedMessage id="quanlydonhangxacnhan" />
                           </button>
                         </td>
                       </tr>

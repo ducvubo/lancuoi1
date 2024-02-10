@@ -8,6 +8,7 @@ import {
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import ThongTinDonHang from "./ThongTinDonHang";
+import { FormattedMessage } from "react-intl";
 class QuanLyDonHangDaHuy extends Component {
   constructor(props) {
     super(props);
@@ -57,19 +58,19 @@ class QuanLyDonHangDaHuy extends Component {
     return (
       <div className="donhangdahuy">
         <div className="item1">
-          <span>Quản lý đơn hàng đã hủy</span>
+          <span><FormattedMessage id="quanlydondahuy"/></span>
         </div>
         <div className="item3">
           <table className="table table-bordered ">
             <thead>
               <tr className="item31">
-                <th scope="col">Mã đơn hàng</th>
-                <th scope="col">Tên người nhận</th>
-                <th scope="col">Phản hồi khách hàng</th>
-                <th scope="col">Số điện thoại</th>
-                <th scope="col">Địa chỉ</th>
-                <th scope="col">Ghi chú</th>
-                <th scope="col">Tổng tiền</th>
+              <th scope="col"><FormattedMessage id="quanlydonhangmadonhang"/></th>
+                <th scope="col"><FormattedMessage id="quanlydonhangten"/></th>
+                <th scope="col"><FormattedMessage id="quanlydonhangemail"/></th>
+                <th scope="col"><FormattedMessage id="quanlydonhangsdt"/></th>
+                <th scope="col"><FormattedMessage id="quanlydonhangdiachi"/></th>
+                <th scope="col"><FormattedMessage id="quanlydonhangghichu"/></th>
+                <th scope="col"><FormattedMessage id="quanlydonhangtongtien"/></th>
               </tr>
             </thead>
             <tbody>

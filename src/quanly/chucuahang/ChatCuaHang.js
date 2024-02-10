@@ -50,14 +50,12 @@ class ChatCuaHang extends Component {
     if (prevState.tennguoinhan !== this.state.tennguoinhan) {
       this.xemtinhanmoinhat();
     }
-    // if(prevState.tatcadoanchat !== this.state.tatcadoanchat){
-    //   this.laytatcakhachhang()
-    // }
   }
 
   xuLyDataTuServerTraVe = async (ev) => {
     const tinnhandata = JSON.parse(ev.data);
     if ("online" in tinnhandata) {
+      console.log(tinnhandata);
       this.nguoiDangOnline(tinnhandata.online);
     } else if ("noidung" in tinnhandata) {
       this.setState((prevState) => ({
@@ -81,7 +79,6 @@ class ChatCuaHang extends Component {
       tatcadoanchat: prevState.tatcadoanchat.concat(nguoidungArr),
     }));
 
-
     let copy = [...this.state.tatcadoanchat];
     let demobj = {};
     copy.forEach((obj) => {
@@ -101,8 +98,6 @@ class ChatCuaHang extends Component {
     this.setState({
       tatcadoanchat: dataok,
     });
-  
-
   };
 
   chonnguoichat(nguoi) {
@@ -160,7 +155,6 @@ class ChatCuaHang extends Component {
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       let data = [...this.state.tatcadoanchat, ...data1];
-
       let copy = [...data];
       let demobj = {};
       copy.forEach((obj) => {
@@ -252,6 +246,7 @@ class ChatCuaHang extends Component {
       anhUrl,
       xemanh,
     } = this.state;
+    console.log(tatcadoanchat);
     tatcadoanchat = tatcadoanchat.filter((item) => item.idchat !== "nhanvien");
     let { ngonngu, thongtinnguoidung } = this.props;
     console.log(tatcadoanchat);
@@ -305,7 +300,7 @@ class ChatCuaHang extends Component {
                               {item.trangthai === true ? (
                                 <p className="onof">Online</p>
                               ) : (
-                                <p  className="onof">Offline</p>
+                                <p className="onof">Offline</p>
                               )}
                             </div>
                           </div>

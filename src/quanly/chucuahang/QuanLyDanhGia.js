@@ -119,7 +119,6 @@ class QuanLyDanhGia extends Component {
   render() {
     let { danhgiaarr, trangthaixemanhdanhgia } = this.state;
     let { ngonngu } = this.props.ngonngu;
-    console.log(danhgiaarr);
     return (
       <div className="quanlydanhgia">
         <div className="item1">
@@ -132,39 +131,53 @@ class QuanLyDanhGia extends Component {
             <thead>
               <tr className="item31">
                 <th scope="col" rowSpan="2">
-                  Tên người đánh giá
+                  <FormattedMessage id="quanlydanhgiatennguoidanhgia" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Tên hoa
+                  <FormattedMessage id="quanlydanhgiatenhoa" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Số sao
+                  <FormattedMessage id="quanlydanhgiasosao" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Nội dung
+                  <FormattedMessage id="quanlydanhgianoidung" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Hình ảnh
+                  <FormattedMessage id="quanlydanhgiahinhanh" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Video
+                  <FormattedMessage id="quanlydanhgiavideo" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Thời gian
+                  <FormattedMessage id="quanlydanhgiathoigian" />
                 </th>
                 <th scope="col" rowSpan="2">
                   <FormattedMessage id="quanlyhanhdong" />
                 </th>
                 <th scope="col" colSpan="6">
-                  Trả lời đánh giá
+                  <FormattedMessage id="quanlydanhgiatraloidanhgia" />
                 </th>
               </tr>
               <tr className="item31">
-                <th scope="col">Tên người trả lời</th>
-                <th scope="col">Nội dung</th>
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Video</th>
-                <th scope="col">Thời gian</th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydanhgiatennguoitraloi" />
+                </th>
+                <th scope="col">
+                  {" "}
+                  <FormattedMessage id="quanlydanhgianoidung" />
+                </th>
+                <th scope="col">
+                  {" "}
+                  <FormattedMessage id="quanlydanhgiahinhanh" />
+                </th>
+                <th scope="col">
+                  {" "}
+                  <FormattedMessage id="quanlydanhgiavideo" />
+                </th>
+                <th scope="col">
+                  {" "}
+                  <FormattedMessage id="quanlydanhgiathoigian" />
+                </th>
                 <th scope="col">
                   <FormattedMessage id="quanlyhanhdong" />
                 </th>
@@ -244,47 +257,47 @@ class QuanLyDanhGia extends Component {
                           </td>
                           <td rowSpan={item.traloibinhluan.length + 1}>
                             <div className="duyethuy">
-                            {item.trangthaidanhgiaid === "BL1" ? (
+                              {item.trangthaidanhgiaid === "BL1" ? (
+                                <button
+                                  className="btn btn-primary btnduyethuy"
+                                  onClick={() =>
+                                    this.doitrangthaidanhgia(
+                                      item.id,
+                                      "danhgia",
+                                      "duyet"
+                                    )
+                                  }
+                                >
+                                 <FormattedMessage id="quanlydanhgiaduyet"/>
+                                </button>
+                              ) : (
+                                <button
+                                  className="btn btn-warning btnduyethuy"
+                                  onClick={() =>
+                                    this.doitrangthaidanhgia(
+                                      item.id,
+                                      "danhgia",
+                                      "huyduyet"
+                                    )
+                                  }
+                                >
+                                  <FormattedMessage id="quanlydanhgiahuy"/>
+                                </button>
+                              )}
                               <button
-                                className="btn btn-primary btnduyethuy"
+                                className="btn btn-info  btnduyethuy"
                                 onClick={() =>
-                                  this.doitrangthaidanhgia(
-                                    item.id,
-                                    "danhgia",
-                                    "duyet"
-                                  )
+                                  this.xoadanhgia(item.id, "danhgia")
                                 }
                               >
-                                Duyệt
+                                <FormattedMessage id="quanlydanhgiaxoa"/>
                               </button>
-                            ) : (
-                              <button
-                                className="btn btn-warning btnduyethuy"
-                                onClick={() =>
-                                  this.doitrangthaidanhgia(
-                                    item.id,
-                                    "danhgia",
-                                    "huyduyet"
-                                  )
-                                }
-                              >
-                                Hủy
-                              </button>
-                            )}
-                            <button
-                              className="btn btn-info  btnduyethuy"
-                              onClick={() =>
-                                this.xoadanhgia(item.id, "danhgia")
-                              }
-                            >
-                              Xóa
-                            </button>
                             </div>
                             <button
                               className="btn btn-danger mt-2 xem"
                               onClick={() => this.xemchitiet(item.idhoa)}
                             >
-                              Xem chi tiết
+                             <FormattedMessage id="quanlydanhgiaxemchitiet"/>
                             </button>
                           </td>
                         </tr>
@@ -371,7 +384,7 @@ class QuanLyDanhGia extends Component {
                                             )
                                           }
                                         >
-                                          Duyệt
+                                          <FormattedMessage id="quanlydanhgiaduyet"/>
                                         </button>
                                       ) : (
                                         <button
@@ -384,7 +397,7 @@ class QuanLyDanhGia extends Component {
                                             )
                                           }
                                         >
-                                          Hủy
+                                          <FormattedMessage id="quanlydanhgiahuy"/>
                                         </button>
                                       )}
                                       <button
@@ -393,7 +406,7 @@ class QuanLyDanhGia extends Component {
                                           this.xoadanhgia(binhluan.id, "traloi")
                                         }
                                       >
-                                        Xóa
+                                        <FormattedMessage id="quanlydanhgiaxoa"/>
                                       </button>
                                     </td>
                                   </tr>
