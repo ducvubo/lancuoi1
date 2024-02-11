@@ -4,9 +4,10 @@ import NavigationTest from "../navigation/NavigationTest";
 import { menu } from "./menuApp";
 import "./Header.scss";
 import _ from "lodash";
-import { withRouter } from 'react-router-dom';
-import { doiNgonNgu,dangxuat } from "../../action/actions";
+import { withRouter } from "react-router-dom";
+import { doiNgonNgu, dangxuat } from "../../action/actions";
 import { apidangxuat } from "../../API/GoiApi";
+import { FormattedMessage } from "react-intl";
 class HeaderMenu extends Component {
   constructor(props) {
     super(props);
@@ -25,25 +26,37 @@ class HeaderMenu extends Component {
   };
 
   dangxuat = async () => {
-    await apidangxuat()
+    await apidangxuat();
     this.props.dangxuat();
     this.props.history.push("/dangnhap");
   };
   render() {
+    let { thongtinnguoidung, ngonngu } = this.props;
     return (
       <div className="header-container">
         <div className="header-tabs-container">
           <NavigationTest menu={this.state.menuApp} />
         </div>
         <div className="languages">
-          <span className="welcome">{`Wellcome: ${this.props.thongtinnguoidung.ho} ${this.props.thongtinnguoidung.ten}`}</span>
-          <span className="language-vi" onClick={() => this.doiNgonNgu("vi")}>
+          <span className="welcome">
+            <FormattedMessage id="quanlyxinchao" />
+            {ngonngu === "vi"
+              ? `${thongtinnguoidung.ho} ${thongtinnguoidung.ten}`
+              : `${thongtinnguoidung.ten} ${thongtinnguoidung.ho}`}
+            !!!
+          </span>
+          <span
+            className={ngonngu === "vi" ? "language-vi" : "language-vi ngonngu"}
+            onClick={() => this.doiNgonNgu("vi")}
+          >
             VN
           </span>
-          <span className="language-en" onClick={() => this.doiNgonNgu("en")}>
+          <span
+            className={ngonngu === "en" ? "language-en" : "language-en ngonngu"}
+            onClick={() => this.doiNgonNgu("en")}
+          >
             EN
           </span>
-          {/* nút logout */}
           <div className="btn btn-logout" onClick={() => this.dangxuat()}>
             <i className="fas fa-sign-out-alt"></i>
           </div>
@@ -67,4 +80,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderMenu));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HeaderMenu)
+);

@@ -37,7 +37,6 @@ class App extends Component {
     return (
       <React.Fragment>
         <Router history={history}>
-          {/* {hoatimduoc  ? <TimHoa/> : null} */}
           <Switch>
             <Route path={"/trangchu"} exact component={trangChu} />
             <Route path={"/quanly/"} component={QuanLy} />
@@ -52,6 +51,8 @@ class App extends Component {
             <Route path={"/doimk"} component={DoiMK} />
             <Route path={"/donhang/:id"} component={QuanLyDonHang} />
             <Route path={"/dathang"} component={DatHang} />
+            <Route path={"/timhoa"} component={TimHoa} />
+
 
             {thongtinnguoidung &&  thongtinnguoidung.quyenId === "R4" ? (
               <Redirect to={"/trangchu"} />

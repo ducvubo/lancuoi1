@@ -35,17 +35,25 @@ export const themmoinguoidung = (data) => {
     try {
       let token = await apirefreshtoken();
 
-    if (token.maCode === 10) {
-      ngonngu1 === "vi"
-        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-        : toast.error("You are not logged in, please log in!!!");
-    }
-      let res = await themnguoidung(data);
-      if(res.maCode === 6){
-        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      if (token.maCode === 10) {
+        ngonngu1 === "vi"
+          ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+          : toast.error("You are not logged in, please log in!!!");
       }
-      if(res.maCode === 7){
-        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      let res = await themnguoidung(data);
+      if (res.maCode === 6) {
+        ngonngu1 === "vi"
+          ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+          : toast.error("You are not an admin, please come back!!!");
+      }
+      if (res.maCode === 7) {
+        ngonngu1 === "vi"
+          ? toast.error(
+              "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+            )
+          : toast.error(
+              "You are not an admin or store employee, please leave!!!"
+            );
       }
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"
@@ -76,7 +84,6 @@ export const themnguoidungthanhcong = () => ({
 export const layGioiTinh = () => {
   return async (dispatch, getState) => {
     try {
-
       let res = await layAllCode("GIOITINH");
 
       if (res && res.maCode === 0) {
@@ -101,7 +108,6 @@ export const layGioiTinhThatBai = () => ({
 export const layQuyen = () => {
   return async (dispatch, getState) => {
     try {
-
       let kq = await layAllCode("QUYEN");
 
       if (kq && kq.maCode === 0) {
@@ -133,13 +139,21 @@ export const allnguoidung = () => {
           ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
           : toast.error("You are not logged in, please log in!!!");
       }
-  
+
       let res = await laytatcanguoidung();
-      if(res.maCode === 6){
-        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      if (res.maCode === 6) {
+        ngonngu1 === "vi"
+          ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+          : toast.error("You are not an admin, please come back!!!");
       }
-      if(res.maCode === 7){
-        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      if (res.maCode === 7) {
+        ngonngu1 === "vi"
+          ? toast.error(
+              "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+            )
+          : toast.error(
+              "You are not an admin or store employee, please leave!!!"
+            );
       }
       if (res && res.maCode === 0) {
         dispatch(laytatcanguoidungthanhcong(res.data));
@@ -195,11 +209,19 @@ export const xoanguoidung = (id) => {
       }
 
       let res = await apixoanguoidung(id);
-      if(res.maCode === 6){
-        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      if (res.maCode === 6) {
+        ngonngu1 === "vi"
+          ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+          : toast.error("You are not an admin, please come back!!!");
       }
-      if(res.maCode === 7){
-        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      if (res.maCode === 7) {
+        ngonngu1 === "vi"
+          ? toast.error(
+              "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+            )
+          : toast.error(
+              "You are not an admin or store employee, please leave!!!"
+            );
       }
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"
@@ -238,11 +260,19 @@ export const suanguoidung = (data) => {
       }
 
       let res = await apisuanguoidung(data);
-      if(res.maCode === 6){
-        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin vui lòng quay ra!!!") : toast.error("You are not an admin, please come back!!!")
+      if (res.maCode === 6) {
+        ngonngu1 === "vi"
+          ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+          : toast.error("You are not an admin, please come back!!!");
       }
-      if(res.maCode === 7){
-        ngonngu1 === 'vi' ? toast.error("Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!") : toast.error("You are not an admin or store employee, please leave!!!")
+      if (res.maCode === 7) {
+        ngonngu1 === "vi"
+          ? toast.error(
+              "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+            )
+          : toast.error(
+              "You are not an admin or store employee, please leave!!!"
+            );
       }
       if (res && res.maCode === 0) {
         ngonngu1 === "vi"
@@ -269,32 +299,7 @@ export const suanguoidungthanhcong = () => ({
   type: actionTypes.SUA_NGUOI_DUNG_THANH_CONG,
 });
 
-export const timhoa = (data) => {
-  return async (dispatch, getState) => {
-    try {
-      let kq = await apitimhoanguoidung(data);
-      if (kq && kq.maCode === 0) {
-        dispatch(timhoathanhcong(kq.data));
-      } else {
-        dispatch(timhoathatbai());
-      }
-    } catch (e) {
-      dispatch(timhoathatbai());
-      console.log("tim hoa that bai loi: ", e);
-    }
-  };
-};
-export const timhoathanhcong = (data) => ({
-  type: actionTypes.TIM_HOA_THANH_CONG,
-  hoa: data,
+export const thongtinhoadathang = (hoa) => ({
+  type: actionTypes.THONG_TIN_HOA_DAT_HANG_TRANG_CHU,
+  hoa: hoa,
 });
-export const timhoathatbai = () => ({
-  type: actionTypes.TIM_HOA_THAT_BAI,
-});
-
-export const thongtinhoadathang = (hoa) => (
-  {
-    type: actionTypes.THONG_TIN_HOA_DAT_HANG_TRANG_CHU,
-    hoa: hoa,
-  }
-);

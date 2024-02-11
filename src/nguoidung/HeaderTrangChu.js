@@ -5,7 +5,7 @@ import logo from "../image/logo.png";
 import "./HeaderTrangChu.scss";
 import { FormattedMessage } from "react-intl";
 import { danhmuchoanoibat } from "../API/ApiTrangChu";
-import { dangxuat, doiNgonNgu, timhoa } from "../action/actions";
+import { dangxuat, doiNgonNgu } from "../action/actions";
 import { apidangxuat } from "../API/GoiApi";
 import { withRouter } from "react-router-dom";
 import { debounce } from "lodash";
@@ -17,7 +17,7 @@ class HeaderTrangChu extends Component {
       tenhoa: "",
       hoatimduoc: [],
     };
-    this.debouncedSearch = debounce(this.nhaphoacantim, 3000);
+    // this.debouncedSearch = debounce(this.nhaphoacantim, 3000);
   }
 
   async componentDidMount() {
@@ -41,17 +41,6 @@ class HeaderTrangChu extends Component {
   dangxuat = async () => {
     this.props.dangxuat();
     await apidangxuat();
-  };
-
-  nhaphoacantim = async (event) => {
-    console.log(event.target.value);
-    this.setState({
-      tenhoa: event.target.value,
-    });
-    // await this.props.timhoa({
-    //   tenhoa: this.state.tenhoa,
-    //   ngongu: this.props.ngonngu,
-    // });
   };
 
   render() {
@@ -168,12 +157,14 @@ class HeaderTrangChu extends Component {
             </Link>
           </div>
           <div className="tk-gh">
-            <input
-              className="form-control tk"
-              onChange={(event) => this.nhaphoacantim(event)}
-              value={tenhoa}
-            />
-            <i className="fas fa-search search"></i>
+            <span >
+              <Link
+                className="iconlink"
+                to={`/timhoa`}
+              >
+                <i className="fas fa-search search"></i>
+              </Link>
+            </span>
 
             <span>
               <Link
@@ -238,7 +229,6 @@ const mapStateToProps = (state) => {
   return {
     ngonngu: state.web.ngonngu,
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
-    hoa: state.admin.hoa,
   };
 };
 
@@ -246,7 +236,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     doiNgonNgu: (ngongu) => dispatch(doiNgonNgu(ngongu)),
     dangxuat: () => dispatch(dangxuat()),
-    timhoa: (data) => dispatch(timhoa(data)),
+
   };
 };
 

@@ -5,6 +5,8 @@ import { apidoanchatkhachang } from "../API/GoiApi";
 import Xulyanh from "../XuLyAnh/Xulyanh";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import { apirefreshtoken } from "../API/GoiApi";
+import { toast } from "react-toastify";
 class ChatKhachHang extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +23,10 @@ class ChatKhachHang extends Component {
   }
 
   async componentDidMount() {
-    this.ketnoiws();
-    await this.laydoanchatkhachhang();
+    let kq = await this.laydoanchatkhachhang();
+    if (kq !== -1) {
+      this.ketnoiws();
+    }
   }
 
   ketnoiws = () => {
@@ -53,7 +57,38 @@ class ChatKhachHang extends Component {
   }
 
   laydoanchatkhachhang = async () => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+      this.props.tatchat();
+      return -1;
+    }
     let kq = await apidoanchatkhachang(this.props.thongtinnguoidung.idchat);
+    if (kq && kq.maCode === 8) {
+      this.props.tatchat();
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+      return -1;
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.tatchat();
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+      return -1;
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState((prevState) => ({
@@ -142,15 +177,15 @@ class ChatKhachHang extends Component {
   };
 
   xemtinhanmoinhat = () => {
-    this.cuonxuongduoi.current?.scrollIntoView({ behavior: 'smooth' })
-  }
+    this.cuonxuongduoi.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   xemdanhdagui = (anh) => {
     this.setState({
-      anh:anh,
-      xemanh:true
-    })
-  }
+      anh: anh,
+      xemanh: true,
+    });
+  };
 
   render() {
     let { tinnhanmoi, tinnhanArr, anhUrl, xemanh } = this.state;
@@ -204,7 +239,7 @@ class ChatKhachHang extends Component {
                                   }
                                   width={"100px"}
                                   height={"100px"}
-                                  onClick={() =>this.xemdanhdagui(anh)}
+                                  onClick={() => this.xemdanhdagui(anh)}
                                 />
                               ) : (
                                 <img
@@ -220,14 +255,14 @@ class ChatKhachHang extends Component {
                                   onClick={() => this.xemdanhdagui(item.anh)}
                                 />
                               )}
-                                 {xemanh === true && (
-                            <Lightbox
-                              mainSrc={this.state.anh}
-                              onCloseRequest={() =>
-                                this.setState({ xemanh: false })
-                              }
-                            />
-                          )}
+                              {xemanh === true && (
+                                <Lightbox
+                                  mainSrc={this.state.anh}
+                                  onCloseRequest={() =>
+                                    this.setState({ xemanh: false })
+                                  }
+                                />
+                              )}
                             </div>
                           );
                         }
@@ -272,14 +307,14 @@ class ChatKhachHang extends Component {
                                   height={"100px"}
                                   onClick={() => this.xemdanhdagui(anh)}
                                 />
-                                   {xemanh === true && (
-                            <Lightbox
-                              mainSrc={this.state.anh}
-                              onCloseRequest={() =>
-                                this.setState({ xemanh: false })
-                              }
-                            />
-                          )}
+                                {xemanh === true && (
+                                  <Lightbox
+                                    mainSrc={this.state.anh}
+                                    onCloseRequest={() =>
+                                      this.setState({ xemanh: false })
+                                    }
+                                  />
+                                )}
                               </div>
                             );
                           } else {
@@ -295,14 +330,14 @@ class ChatKhachHang extends Component {
                                   height={"100px"}
                                   onClick={() => this.xemdanhdagui(item.anh)}
                                 />
-                                   {xemanh === true && (
-                            <Lightbox
-                              mainSrc={this.state.anh}
-                              onCloseRequest={() =>
-                                this.setState({ xemanh: false })
-                              }
-                            />
-                          )}
+                                {xemanh === true && (
+                                  <Lightbox
+                                    mainSrc={this.state.anh}
+                                    onCloseRequest={() =>
+                                      this.setState({ xemanh: false })
+                                    }
+                                  />
+                                )}
                               </div>
                             );
                           }
@@ -321,7 +356,7 @@ class ChatKhachHang extends Component {
                         );
                       }
                     })}
-                    <div ref={this.cuonxuongduoi}/>
+                    <div ref={this.cuonxuongduoi} />
                   </div>
                   <div className="card-footer">
                     <div className="input-group">

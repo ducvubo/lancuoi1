@@ -5,7 +5,6 @@ const INITIAL_STATE = {
   quyen: [],
   tatcanguoidung: [],
   nguoidung: [],
-  hoa: [],
   thongtinhoadathang: "",
 };
 
@@ -44,15 +43,6 @@ const adminReducer = (state = INITIAL_STATE, actions) => {
         ...state,
       };
     case actionTypes.LAY_1_NGUOI_DUNG_THAT_BAI:
-      return {
-        ...state,
-      };
-    case actionTypes.TIM_HOA_THANH_CONG:
-      state.hoa = actions.hoa;
-      return {
-        ...state,
-      };
-    case actionTypes.TIM_HOA_THAT_BAI:
       return {
         ...state,
       };

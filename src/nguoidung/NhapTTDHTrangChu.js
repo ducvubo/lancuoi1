@@ -84,6 +84,24 @@ class NhapTTDHTrangChu extends Component {
             "You are not logged in, please log in to view your shopping order!!!"
           );
     }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
     if (kq.maCode === 0 && kq) {
       this.props.ngonngu === "vi"
         ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")

@@ -33,20 +33,17 @@
             margin-right: 15px;
             margin-left : 10px;
             cursor      : pointer;
+            opacity     : 1;
 
-            &.active {
-                opacity: 1;
-                color  : #30d663;
-            }
         }
 
         .language-vi {
-            cursor: pointer;
+            cursor : pointer;
+            opacity: 1;
+        }
 
-            &.active {
-                opacity: 1;
-                color  : orange;
-            }
+        .ngonngu {
+            opacity: 0.5 !important;
         }
     }
 }

@@ -6,6 +6,7 @@ import { apirefreshtoken } from "../../API/GoiApi";
 import moment from "moment";
 import * as XLSX from "xlsx";
 import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 class ThongKeNhapHoa extends Component {
   constructor(props) {
     super(props);
@@ -55,6 +56,24 @@ class ThongKeNhapHoa extends Component {
           )
         : toast.error(
             "You are not an admin or store employee, please leave!!!"
+          );
+    }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
           );
     }
     if (kq && kq.maCode === 0) {
@@ -127,6 +146,24 @@ class ThongKeNhapHoa extends Component {
             "You are not an admin or store employee, please leave!!!"
           );
     }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
@@ -196,14 +233,20 @@ class ThongKeNhapHoa extends Component {
     return (
       <div className="thongkenhaphoa">
         <div className="item1">
-          <span>Thống kê nhập hoa</span>
+          <span>
+            <FormattedMessage id="thongkenhaphoa" />
+          </span>
         </div>
         <div className="row item2">
           <div className="col-2 chonngay">
-            <span>Vui lòng chọn ngày thống kê: </span>
+            <span>
+              <FormattedMessage id="thongkenhaphoachonngay" />
+            </span>
           </div>
           <div className="form-group col-4 ml-2">
-            <label>Từ ngày</label>
+            <label>
+              <FormattedMessage id="thongkenhaphoatungay" />
+            </label>
             <input
               className="form-control"
               type="date"
@@ -215,7 +258,9 @@ class ThongKeNhapHoa extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Đến ngày</label>
+            <label>
+              <FormattedMessage id="thongkenhaphoadenngay" />
+            </label>
             <input
               className="form-control"
               type="Date"
@@ -239,29 +284,37 @@ class ThongKeNhapHoa extends Component {
             <thead>
               <tr className="item31">
                 <th scope="col" rowSpan="2">
-                  Tên nhân viên{" "}
+                  <FormattedMessage id="thongkenhaphoatennhanvien" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Mã phiếu nhập{" "}
+                  <FormattedMessage id="thongkenhaphoamaphieunhap" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Ngày nhập{" "}
+                  <FormattedMessage id="thongkenhaphoangaynhap" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Tên nhà cung cấp{" "}
+                  <FormattedMessage id="thongkenhaphoatennhacc" />
                 </th>
                 <th scope="col" rowSpan="2">
-                  Tổng hóa đơn{" "}
+                  <FormattedMessage id="thongkenhaphoatonghoadon" />
                 </th>
                 <th scope="col" colSpan="4">
-                  Thông tin
+                  <FormattedMessage id="thongkenhaphoathongtin" />
                 </th>
               </tr>
               <tr className="item31">
-                <th scope="col">Tên hoa</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Giá nhập</th>
-                <th scope="col">Giá tổng</th>
+                <th scope="col">
+                  <FormattedMessage id="thongkenhaphoatenhoa" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="thongkenhaphoasoluong" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="thongkenhaphoagianhap" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="thongkenhaphoagiatong" />
+                </th>
               </tr>
             </thead>
             <tbody>

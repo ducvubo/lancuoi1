@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../action/actions";
 import "./QuanLyNguoiDung.scss";
-
+import { FormattedMessage } from "react-intl";
 class QuanLyNguoiDung extends Component {
   constructor(props) {
     super(props);
@@ -111,7 +111,7 @@ class QuanLyNguoiDung extends Component {
     this.setState({
       id: nguoidung.id,
       email: nguoidung.email,
-      password: "KHONGCOPASSDAU",
+      password: "************",
       ho: nguoidung.ho,
       ten: nguoidung.ten,
       sodienthoai: nguoidung.sdt,
@@ -132,7 +132,7 @@ class QuanLyNguoiDung extends Component {
       diachinha: this.state.diachinha,
       gioitinhId: this.state.gioitinh,
       quyenId: this.state.quyen,
-      ngonngu:this.props.ngonngu
+      ngonngu: this.props.ngonngu,
     });
     this.setState({
       trangthainut: false,
@@ -163,7 +163,9 @@ class QuanLyNguoiDung extends Component {
     return (
       <div className="quanlynguoidung">
         <div className="item1">
-          <span>Quản lý người dùng</span>
+          <span>
+            <FormattedMessage id="quanlynguoidung" />
+          </span>
         </div>
         <div className="row item2">
           <div className="form-group col-6">
@@ -179,7 +181,9 @@ class QuanLyNguoiDung extends Component {
             />
           </div>
           <div className="form-group col-6">
-            <label>Password</label>
+            <label>
+              <FormattedMessage id="quanlynguoidungmatkhau" />
+            </label>
             <input
               className="form-control"
               onChange={(event) => {
@@ -190,7 +194,9 @@ class QuanLyNguoiDung extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Họ</label>
+            <label>
+              <FormattedMessage id="quanlynguoidungho" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -201,7 +207,9 @@ class QuanLyNguoiDung extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Tên</label>
+            <label>
+              <FormattedMessage id="quanlynguoidungten" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -212,7 +220,9 @@ class QuanLyNguoiDung extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Số điện thoại</label>
+            <label>
+              <FormattedMessage id="quanlynguoidungsdt" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -223,7 +233,9 @@ class QuanLyNguoiDung extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label>Địa chỉ</label>
+            <label>
+              <FormattedMessage id="quanlynguoidungdiachi" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -235,7 +247,9 @@ class QuanLyNguoiDung extends Component {
           </div>
 
           <div className="form-group col-4">
-            <label>Giới tính</label>
+            <label>
+              <FormattedMessage id="quanlynguoidunggioitinh" />
+            </label>
             <select
               className="form-control"
               onChange={(event) => {
@@ -255,7 +269,9 @@ class QuanLyNguoiDung extends Component {
             </select>
           </div>
           <div className="form-group col-4">
-            <label>Quyền</label>
+            <label>
+              <FormattedMessage id="quanlynguoidungquyen" />
+            </label>
             <select
               className="form-control"
               onChange={(event) => {
@@ -280,40 +296,63 @@ class QuanLyNguoiDung extends Component {
             className="btn btn-primary"
             onClick={() => this.clickThemMoi()}
           >
-            Thêm người dùng
+            <FormattedMessage id="quanlynguoidungthemnguoidung" />
           </button>
         ) : (
           <button
             className="btn btn-primary"
             onClick={() => this.clickbtnsua()}
           >
-            Sửa người dùng
+            <FormattedMessage id="quanlynguoidungsuanguoidung" />
           </button>
         )}
         <div className="item3">
           <table className="table table-bordered ">
             <thead>
               <tr className="item31">
-                <th scope="col">id</th>
                 <th scope="col">Email</th>
-                <th scope="col">Họ</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Số điện thoại</th>
-                <th scope="col">Địa chỉ nhà</th>
-                <th scope="col">Quyền</th>
-                <th scope="col">Hành động</th>
+                <th scope="col">
+                  <FormattedMessage id="quanlynguoidungho" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlynguoidungten" />
+                </th>
+                {/* <th scope="col">
+                  <FormattedMessage id="quanlynguoidunggioitinh" />
+                </th> */}
+                <th scope="col">
+                  <FormattedMessage id="quanlynguoidungsdt" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlynguoidungdiachi" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlynguoidungquyen" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhanhdong" />
+                </th>
               </tr>
             </thead>
             <tbody>
               {tatcanguoidung &&
                 tatcanguoidung.length > 0 &&
                 tatcanguoidung.map((item, index) => {
+                  console.log(item);
                   return (
                     <tr key={index}>
-                      <th scope="row">{item.id}</th>
                       <td>{item.email}</td>
                       <td>{item.ho}</td>
                       <td>{item.ten}</td>
+                      {/* <td>
+                        {ngonngu === "vi"
+                          ? item.gioitinh.tiengViet
+                            ? item.gioitinh.tiengViet
+                            : "abc"
+                          : item.gioitinh.tiengAnh
+                          ? item.gioitinh.tiengAnh
+                          : "abc"}
+                      </td> */}
                       <td>{item.sdt}</td>
                       <td>{item.diachinha}</td>
                       <td>

@@ -17,17 +17,23 @@ class FooterTrangChu extends Component {
     };
   }
   battatchat = () => {
-    if(this.props.thongtinnguoidung){
+    if (this.props.thongtinnguoidung) {
       this.setState({
         trangthai: !this.state.trangthai,
       });
-    }else{
-     this.props.ngonngu === 'vi' ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập để chat!") : toast.error("You are not logged in, please log in to chat!")
+    } else {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập để chat!")
+        : toast.error("You are not logged in, please log in to chat!");
     }
-    
   };
+  tatchat = () => {
+    this.setState({
+      trangthai:false
+    })
+  }
   render() {
-    let { thongtinnguoidung,ktdangnhap } = this.props;
+    let { thongtinnguoidung, ktdangnhap } = this.props;
     let { trangthai } = this.state;
     return (
       <div className="footertrangchu">
@@ -110,15 +116,16 @@ class FooterTrangChu extends Component {
           </div>
         </div>
         <div className="item140">
-        {trangthai === true && ktdangnhap === true ? (
-          <div className="manhinhchat">
-            <ChatKhachHang />
-          </div>
-        ) : null}
+          {trangthai === true && ktdangnhap === true ? (
+            <div className="manhinhchat">
+              <ChatKhachHang 
+              tatchat={this.tatchat}
+              />
+            </div>
+          ) : null}
           <div className="chat">
             <img src={ms} onClick={() => this.battatchat()} />
           </div>
-          
         </div>
         <div className="item14">
           <span>
@@ -141,8 +148,8 @@ class FooterTrangChu extends Component {
 const mapStateToProps = (state) => {
   return {
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
-    ktdangnhap:state.thongtinnguoidung.ktdangnhap,
-    ngonngu: state.web.ngonngu
+    ktdangnhap: state.thongtinnguoidung.ktdangnhap,
+    ngonngu: state.web.ngonngu,
   };
 };
 

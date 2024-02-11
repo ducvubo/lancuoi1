@@ -24,6 +24,7 @@ import ThongKeBanHoa from "../quanly/chucuahang/ThongKeBanHoa";
  import ThongKeNhapHoa from "../quanly/chucuahang/ThongKeNhapHoa";
  import QuanLyDanhGia from "../quanly/chucuahang/QuanLyDanhGia";
 import { toast } from "react-toastify";
+import { flatMap } from "lodash";
 class QuanLy extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +41,13 @@ class QuanLy extends Component {
      this.props.ngonngu === 'vi' ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập để chat!") : toast.error("You are not logged in, please log in to chat!")
     }
   };
+
+  eptatchatquanly = () => {
+    this.setState({
+      trangthai:false
+    })
+  }
+
 
   render() {
     let { thongtinnguoidung } = this.props;
@@ -86,7 +94,9 @@ class QuanLy extends Component {
 
         {trangthai === true ? (
           <div className="manhinhchat">
-            <ChatCuaHang />
+            <ChatCuaHang 
+            eptatchatquanly={this.eptatchatquanly}
+            />
           </div>
         ) : null}
         </Scrollbars>

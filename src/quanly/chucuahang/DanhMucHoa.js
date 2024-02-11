@@ -54,6 +54,24 @@ class DanhMucHoa extends Component {
             "You are not an admin or store employee, please leave!!!"
           );
     }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
@@ -117,6 +135,24 @@ class DanhMucHoa extends Component {
             "You are not an admin or store employee, please leave!!!"
           );
     }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
     if (kq.maCode === 0 && kq) {
       this.props.ngonngu === "vi"
         ? toast.success("Thêm danh mục thành công")
@@ -176,6 +212,24 @@ class DanhMucHoa extends Component {
             "You are not an admin or store employee, please leave!!!"
           );
     }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Sửa danh mục thành công")
@@ -217,6 +271,24 @@ class DanhMucHoa extends Component {
           )
         : toast.error(
             "You are not an admin or store employee, please leave!!!"
+          );
+    }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
           );
     }
     if (kq && kq.maCode === 0) {

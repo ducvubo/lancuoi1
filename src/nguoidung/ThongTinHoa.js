@@ -148,16 +148,35 @@ class ThongTinHoa extends Component {
       idhoa: this.state.thongtinhoa.id,
       soluong: this.state.soluong,
     });
-    if (kq && kq.maCode === 0) {
+    if (kq && kq.maCode === 8) {
       this.props.ngonngu === "vi"
-        ? toast.success("Thêm vào giỏ hàng thành công!!!")
-        : toast.success("Add to cart successfully!!!");
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
     }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }  
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
         ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục!!!")
         : toast.success("You are not logged in, please log in to continue!!!");
     }
+    if (kq && kq.maCode === 0) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Thêm vào giỏ hàng thành công!!!")
+        : toast.success("Add to cart successfully!!!");
+    }
+  
   };
 
   dathangtrangchu = (hoa) => {
@@ -269,6 +288,24 @@ class ThongTinHoa extends Component {
               "You are not logged in, please log in to continue!!!"
             );
       }
+      if (kq && kq.maCode === 8) {
+        this.props.ngonngu === "vi"
+          ? toast.error(
+              "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+            )
+          : toast.error(
+              "Your login has expired, please log in again to continue!!!"
+            );
+      }
+      if (kq && kq.maCode === 9) {
+        this.props.ngonngu === "vi"
+          ? toast.error(
+              "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+            )
+          : toast.error(
+              "Your login session is invalid, please log in again to continue!!!"
+            );
+      }
       if (kq && kq.maCode === 0) {
         this.props.ngonngu === "vi"
           ? toast.success(
@@ -311,6 +348,24 @@ class ThongTinHoa extends Component {
               )
             : toast.success(
                 "You are not logged in, please log in to continue!!!"
+              );
+        }
+        if (kq && kq.maCode === 8) {
+          this.props.ngonngu === "vi"
+            ? toast.error(
+                "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+              )
+            : toast.error(
+                "Your login has expired, please log in again to continue!!!"
+              );
+        }
+        if (kq && kq.maCode === 9) {
+          this.props.ngonngu === "vi"
+            ? toast.error(
+                "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+              )
+            : toast.error(
+                "Your login session is invalid, please log in again to continue!!!"
               );
         }
         if (kq && kq.maCode === 0) {
@@ -371,6 +426,24 @@ class ThongTinHoa extends Component {
         ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục!!!")
         : toast.success(
             "You are not logged in, please log in to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
           );
     }
     if (kq && kq.data && kq.data.maCode === 0) {

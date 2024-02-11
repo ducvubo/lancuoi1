@@ -50,6 +50,24 @@ class GioHang extends Component {
     }
 
     let kq = await apigiohang(this.props.thongtinnguoidung.id);
+    if (kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data ? kq.data.hoas : null;
       this.setState({
@@ -70,7 +88,24 @@ class GioHang extends Component {
 
   laytatcaphuongthucvanchuyen = async () => {
     let kq = await apitatcaphuongthucvanchuyen();
-
+    if (kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState({
@@ -166,7 +201,25 @@ class GioHang extends Component {
         };
       }),
     };
-    await apisuagiohang(buildata);
+   let kq = await apisuagiohang(buildata);
+    if (kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
   };
 
   giamsoluong = async (hoa) => {
@@ -202,7 +255,25 @@ class GioHang extends Component {
         };
       }),
     };
-    await apisuagiohang(buildata);
+  let kq =  await apisuagiohang(buildata);
+  if (kq.maCode === 8) {
+    this.props.ngonngu === "vi"
+      ? toast.error(
+          "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+        )
+      : toast.error(
+          "Your login has expired, please log in again to continue!!!"
+        );
+  }
+  if (kq.maCode === 9) {
+    this.props.ngonngu === "vi"
+      ? toast.error(
+          "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+        )
+      : toast.error(
+          "Your login session is invalid, please log in again to continue!!!"
+        );
+  }
   };
 
   thongtinhoa = (id) => {

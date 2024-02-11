@@ -121,6 +121,9 @@ const apihoatheodanhmucnoibat = () => {
   return axios.get("/api/hoatheodanhmucnoibat");
 };
 
+const apitatcahoanguoidung = () => {
+  return axios.get("/api/tatcahoanguoidung");
+};
 
 export {
   danhmuchoanoibat,
@@ -151,5 +154,6 @@ export {
   apibinhluantheohoa,
   apithemtraloidanhgia,
   apixoadanhgiatraloikh,
-  apihoatheodanhmucnoibat
+  apihoatheodanhmucnoibat,
+  apitatcahoanguoidung
 };

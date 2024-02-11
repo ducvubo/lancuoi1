@@ -10,6 +10,8 @@ import Xulyanh from "../../XuLyAnh/Xulyanh";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import _, { cloneDeep, debounce } from "lodash";
+import { toast } from "react-toastify";
+import { apirefreshtoken } from "../../API/GoiApi";
 class ChatCuaHang extends Component {
   constructor(props) {
     super(props);
@@ -28,9 +30,11 @@ class ChatCuaHang extends Component {
   }
 
   async componentDidMount() {
-    this.ketnoiws();
-    await this.laytatcacuoctrochuyen();
-    await this.laytatcakhachhang();
+    let kq = await this.laytatcacuoctrochuyen();
+    let kq1 = await this.laytatcakhachhang();
+    if (kq !== -1 && kq1 !== -1) {
+      this.ketnoiws();
+    }
   }
 
   ketnoiws = () => {
@@ -132,7 +136,52 @@ class ChatCuaHang extends Component {
   };
 
   chonnguoichat = async (nguoi) => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+      this.props.eptatchatquanly();
+    }
+
     let kq = await apidoitrangthaixem(nguoi.idchat);
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+      this.props.eptatchatquanly();
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+      this.props.eptatchatquanly();
+    }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+      this.props.eptatchatquanly();
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+      this.props.eptatchatquanly();
+    }
     if (kq && kq.data && kq.data.maCode === 0) {
       let clonekhachhang = _.cloneDeep(this.state.tatcadoanchat);
       clonekhachhang &&
@@ -183,7 +232,56 @@ class ChatCuaHang extends Component {
   };
 
   laytatcacuoctrochuyen = async () => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+      this.props.eptatchatquanly();
+      return -1;
+    }
     let kq = await apitatcacuoctrochuyen();
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+      this.props.eptatchatquanly();
+      return -1;
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+      this.props.eptatchatquanly();
+      return -1;
+    }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+      this.props.eptatchatquanly();
+      return -1;
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+      this.props.eptatchatquanly();
+      return -1;
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       this.setState((prevState) => ({
@@ -193,7 +291,56 @@ class ChatCuaHang extends Component {
   };
 
   laytatcakhachhang = async () => {
+    let token = await apirefreshtoken();
+
+    if (token.maCode === 10) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+        : toast.error("You are not logged in, please log in!!!");
+      this.props.eptatchatquanly();
+      return -1;
+    }
     let kq = await apitatcakhachhang();
+    if (kq.maCode === 6) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
+        : toast.error("You are not an admin, please come back!!!");
+      this.props.eptatchatquanly();
+      return -1;
+    }
+    if (kq.maCode === 7) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
+          )
+        : toast.error(
+            "You are not an admin or store employee, please leave!!!"
+          );
+      this.props.eptatchatquanly();
+      return -1;
+    }
+    if (kq && kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+      this.props.eptatchatquanly();
+      return -1;
+    }
+    if (kq && kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+      this.props.eptatchatquanly();
+      return -1;
+    }
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       let data = [...this.state.tatcadoanchat, ...data1];
