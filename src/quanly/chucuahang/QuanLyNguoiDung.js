@@ -26,9 +26,9 @@ class QuanLyNguoiDung extends Component {
   }
 
   async componentDidMount() {
-    this.props.laygioitinh();
-    this.props.layQuyen();
-    this.props.laytatcanguoidung();
+    await this.props.laygioitinh();
+    await this.props.layQuyen();
+    await this.props.laytatcanguoidung();
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -317,9 +317,9 @@ class QuanLyNguoiDung extends Component {
                 <th scope="col">
                   <FormattedMessage id="quanlynguoidungten" />
                 </th>
-                {/* <th scope="col">
+                <th scope="col">
                   <FormattedMessage id="quanlynguoidunggioitinh" />
-                </th> */}
+                </th>
                 <th scope="col">
                   <FormattedMessage id="quanlynguoidungsdt" />
                 </th>
@@ -338,27 +338,26 @@ class QuanLyNguoiDung extends Component {
               {tatcanguoidung &&
                 tatcanguoidung.length > 0 &&
                 tatcanguoidung.map((item, index) => {
-                  console.log(item);
                   return (
                     <tr key={index}>
                       <td>{item.email}</td>
                       <td>{item.ho}</td>
                       <td>{item.ten}</td>
-                      {/* <td>
-                        {ngonngu === "vi"
-                          ? item.gioitinh.tiengViet
+                      <td>
+                        {item.gioitinh
+                          ? ngonngu === "vi"
                             ? item.gioitinh.tiengViet
-                            : "abc"
-                          : item.gioitinh.tiengAnh
-                          ? item.gioitinh.tiengAnh
-                          : "abc"}
-                      </td> */}
+                            : item.gioitinh.tiengAnh
+                          : null}
+                      </td>
                       <td>{item.sdt}</td>
                       <td>{item.diachinha}</td>
                       <td>
-                        {ngonngu === "vi"
-                          ? item.quyen.tiengViet
-                          : item.quyen.tiengAnh}
+                        {item.quyen
+                          ? ngonngu === "vi"
+                            ? item.quyen.tiengViet
+                            : item.quyen.tiengAnh
+                          : null}
                       </td>
                       <td>
                         <button onClick={() => this.clicksuanguoidung(item)}>

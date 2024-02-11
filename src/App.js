@@ -22,6 +22,7 @@ import HeaderTrangChu from "./nguoidung/HeaderTrangChu";
 import FooterTrangChu from "./nguoidung/FooterTrangChu";
 import TimHoa from "./nguoidung/TimHoa";
 import DatHang from "./nguoidung/DatHang";
+import ThongTinNguoiDung from "./nguoidung/ThongTinNguoiDung";
 const history = createBrowserHistory();
 
 class App extends Component {
@@ -46,6 +47,7 @@ class App extends Component {
             <Route path={"/giohang/:id"} component={GioHang} />
             <Route path={"/dangnhap"} component={DangNhap} />
             <Route path={"/dangky"} component={DangKy} />
+            <Route path={"/thongtinnguoidung"} component={ThongTinNguoiDung} />
             <Route path={"/xacnhantaikhoan"} component={XacNhanTaiKhoan} />
             <Route path={"/quenmk"} component={QuenMK} />
             <Route path={"/doimk"} component={DoiMK} />

@@ -266,7 +266,53 @@ class QuanLyDanhGia extends Component {
                               : item.hoabinhluan.tenhoaEn}
                           </td>
                           <td rowSpan={item.traloibinhluan.length + 1}>
-                            {item.sosaodanhgia}
+                          <div className="rating">
+                                <input
+                                  value="5"
+                                  name="rating"
+                                  id="star51"
+                                  checked={item.sosaodanhgia === 5}
+                                  readOnly
+                                  type="radio"
+                                />
+                                <label htmlFor="star51"></label>
+                                <input
+                                  value="4"
+                                  name="rating"
+                                  id="star41"
+                                  checked={item.sosaodanhgia === 4}
+                                  readOnly
+                                  type="radio"
+                                />
+                                <label htmlFor="star41"></label>
+                                <input
+                                  value="3"
+                                  name="rating"
+                                  id="star31"
+                                  checked={item.sosaodanhgia === 3}
+                                  readOnly
+                                  type="radio"
+                                />
+                                <label htmlFor="star31"></label>
+                                <input
+                                  value="2"
+                                  name="rating"
+                                  id="star21"
+                                  checked={item.sosaodanhgia === 2}
+                                  readOnly
+                                  type="radio"
+                                />
+                                <label htmlFor="star21"></label>
+                                <input
+                                  value="1"
+                                  name="rating"
+                                  id="star11"
+                                  checked={item.sosaodanhgia === 1}
+                                  readOnly
+                                  type="radio"
+                                />
+                                <label htmlFor="star11"></label>
+                              </div>
                           </td>
                           <td rowSpan={item.traloibinhluan.length + 1}>
                             {item.noidung}

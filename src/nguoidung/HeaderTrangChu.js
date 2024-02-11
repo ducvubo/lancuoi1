@@ -91,6 +91,11 @@ class HeaderTrangChu extends Component {
                     <FormattedMessage id="headerdangky" />
                   </li>
                 </Link>
+                <Link className= "thongtinnguoidung" to={"/thongtinnguoidung"}>
+                  <li className={ngonngu === "vi" ? " " : "thongtinnguoidungen"}>
+                    <FormattedMessage id="headerthongtinnguoidung" />
+                  </li>
+                </Link>
               </ul>
             </div>
             <div className="icon">
@@ -157,11 +162,8 @@ class HeaderTrangChu extends Component {
             </Link>
           </div>
           <div className="tk-gh">
-            <span >
-              <Link
-                className="iconlink"
-                to={`/timhoa`}
-              >
+            <span>
+              <Link className="iconlink" to={`/timhoa`}>
                 <i className="fas fa-search search"></i>
               </Link>
             </span>
@@ -236,7 +238,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     doiNgonNgu: (ngongu) => dispatch(doiNgonNgu(ngongu)),
     dangxuat: () => dispatch(dangxuat()),
-
   };
 };
 

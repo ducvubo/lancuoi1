@@ -22,14 +22,12 @@ import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import * as actions from "../action/actions";
-import video123 from "../image/video.mp4";
-import hoagiamgia2 from "../image/hoagiamgia2.webp";
 import anhdaidien from "../image/anhdaidien.png";
 import moment from "moment";
 import Xulyanh from "../XuLyAnh/Xulyanh";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
-import { iteratee } from "lodash";
+import logo from "../image/logo.png";
 class ThongTinHoa extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +43,7 @@ class ThongTinHoa extends Component {
       noidungdanhgia: "",
       noidungdanhgiatraloi: "",
       danhgiachitietid: [],
-      trangthaidanhgiamota: false,
+      trangthaidanhgiamota: true,
       trangthaiphanhoichitiet: false,
       trangthaitraloidanhgia: false,
       sosaodanhgia: "",
@@ -165,7 +163,7 @@ class ThongTinHoa extends Component {
         : toast.error(
             "Your login session is invalid, please log in again to continue!!!"
           );
-    }  
+    }
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
         ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục!!!")
@@ -176,7 +174,6 @@ class ThongTinHoa extends Component {
         ? toast.success("Thêm vào giỏ hàng thành công!!!")
         : toast.success("Add to cart successfully!!!");
     }
-  
   };
 
   dathangtrangchu = (hoa) => {
@@ -424,9 +421,7 @@ class ThongTinHoa extends Component {
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
         ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục!!!")
-        : toast.success(
-            "You are not logged in, please log in to continue!!!"
-          );
+        : toast.success("You are not logged in, please log in to continue!!!");
     }
     if (kq && kq.maCode === 8) {
       this.props.ngonngu === "vi"
@@ -471,6 +466,7 @@ class ThongTinHoa extends Component {
       noidungdanhgiatraloi,
       danhgiachitietid,
     } = this.state;
+    console.log(binhluantheohoa);
     let anhnoibat = "";
     if (thongtinhoa.anhnoibat) {
       anhnoibat = new Buffer(thongtinhoa.anhnoibat, "base64").toString(
@@ -679,6 +675,16 @@ class ThongTinHoa extends Component {
                   binhluantheohoa.length > 0 &&
                   binhluantheohoa.map((item, index) => {
                     {
+                      let anhnguoidanhgia = "";
+                      if (
+                        item.nguoidungbinhluan &&
+                        item.nguoidungbinhluan.anhdaidien
+                      ) {
+                        anhnguoidanhgia = new Buffer(
+                          item.nguoidungbinhluan.anhdaidien,
+                          "base64"
+                        ).toString("binary");
+                      }
                       let anhdanhgia = "";
                       if (item.hinhanh) {
                         anhdanhgia = new Buffer(
@@ -709,7 +715,14 @@ class ThongTinHoa extends Component {
                             <div className="danhgiatrai">
                               <img
                                 className="anhdaidien"
-                                src={anhdaidien}
+                                src={
+                                  item.nguoidungbinhluan &&
+                                  item.nguoidungbinhluan.quyenId === "R4"
+                                    ? anhnguoidanhgia
+                                      ? anhnguoidanhgia
+                                      : anhdaidien
+                                    : logo
+                                }
                                 width={"50px"}
                                 height={"50px"}
                               />
@@ -870,6 +883,20 @@ class ThongTinHoa extends Component {
                             item.traloibinhluan.length > 0 &&
                             item.traloibinhluan.map(
                               (traloibinhluanitem, traloibinhluanindex) => {
+                                console.log(
+                                  traloibinhluanitem.nguoidungtraloibinhluan
+                                );
+                                let anhnguoidungtraloibinhluan = "";
+                                if (
+                                  traloibinhluanitem.nguoidungtraloibinhluan &&
+                                  traloibinhluanitem.nguoidungtraloibinhluan
+                                    .anhdaidien
+                                ) {
+                                  anhnguoidungtraloibinhluan = new Buffer(
+                                    traloibinhluanitem.nguoidungtraloibinhluan.anhdaidien,
+                                    "base64"
+                                  ).toString("binary");
+                                }
                                 let anhtraloidanhgia = "";
                                 if (traloibinhluanitem.hinhanh) {
                                   anhtraloidanhgia = new Buffer(
@@ -911,9 +938,24 @@ class ThongTinHoa extends Component {
                                     ) ? (
                                       <>
                                         <div className="danhgiatrai">
-                                          <img
+                                          {/* <img
                                             className="anhdaidien"
                                             src={anhdaidien}
+                                            width={"50px"}
+                                            height={"50px"}
+                                          /> */}
+                                          <img
+                                            className="anhdaidien"
+                                            src={
+                                              traloibinhluanitem.nguoidungtraloibinhluan &&
+                                              traloibinhluanitem
+                                                .nguoidungtraloibinhluan
+                                                .quyenId === "R4"
+                                                ? anhnguoidungtraloibinhluan
+                                                  ? anhnguoidungtraloibinhluan
+                                                  : anhdaidien
+                                                : logo
+                                            }
                                             width={"50px"}
                                             height={"50px"}
                                           />
@@ -939,8 +981,36 @@ class ThongTinHoa extends Component {
                                                   }`
                                                 : `${
                                                     ngonngu === "vi"
-                                                      ? `${traloibinhluanitem.nguoidungtraloibinhluan.ten} ${traloibinhluanitem.nguoidungtraloibinhluan.ho}`
-                                                      : `${item.nguoidungtraloibinhluan.ho} ${traloibinhluanitem.nguoidungtraloibinhluan.ten}`
+                                                      ? `${
+                                                          traloibinhluanitem &&
+                                                          traloibinhluanitem.nguoidungtraloibinhluan
+                                                            ? traloibinhluanitem
+                                                                .nguoidungtraloibinhluan
+                                                                .ten
+                                                            : null
+                                                        } ${
+                                                          traloibinhluanitem &&
+                                                          traloibinhluanitem.nguoidungtraloibinhluan
+                                                            ? traloibinhluanitem
+                                                                .nguoidungtraloibinhluan
+                                                                .ho
+                                                            : null
+                                                        }`
+                                                      : `${
+                                                          traloibinhluanitem &&
+                                                          traloibinhluanitem.nguoidungtraloibinhluan
+                                                            ? traloibinhluanitem
+                                                                .nguoidungtraloibinhluan
+                                                                .ho
+                                                            : null
+                                                        } ${
+                                                          traloibinhluanitem &&
+                                                          traloibinhluanitem.nguoidungtraloibinhluan
+                                                            ? traloibinhluanitem
+                                                                .nguoidungtraloibinhluan
+                                                                .ten
+                                                            : null
+                                                        }`
                                                   }`}
                                               {traloibinhluanitem
                                                 .nguoidungtraloibinhluan

@@ -98,7 +98,7 @@ const apihoanhanghoantien = (data) => {
 };
 
 const apitimhoanguoidung = (data) => {
-  return axios.put(`api/timhoanguoidung`,data);
+  return axios.put(`api/timhoanguoidung`, data);
 };
 
 const apithemdanhgia = (data) => {
@@ -113,7 +113,7 @@ const apithemtraloidanhgia = (data) => {
   return axios.post("api/themtraloibinhluan", data);
 };
 
-const apixoadanhgiatraloikh = (id,bang) => {
+const apixoadanhgiatraloikh = (id, bang) => {
   return axios.delete(`api/xoadanhgiaortraloikh?id=${id}&bang=${bang}`);
 };
 
@@ -123,6 +123,14 @@ const apihoatheodanhmucnoibat = () => {
 
 const apitatcahoanguoidung = () => {
   return axios.get("/api/tatcahoanguoidung");
+};
+
+const apithongtinnguoidung = (id, email) => {
+  return axios.get(`api/thongtinnguoidung?id=${id}&email=${email}`);
+};
+
+const apicapnhatthongtinnguoidung = (data) => {
+  return axios.put("/api/capnhapthongtinnguoidung", data);
 };
 
 export {
@@ -155,5 +163,7 @@ export {
   apithemtraloidanhgia,
   apixoadanhgiatraloikh,
   apihoatheodanhmucnoibat,
-  apitatcahoanguoidung
+  apitatcahoanguoidung,
+  apithongtinnguoidung,
+  apicapnhatthongtinnguoidung
 };

@@ -18,6 +18,7 @@ const thongtinnguoidungReducer = (state = INITIAL_STATE, action) => {
           thongtinnguoidung: '',
           ktdangnhap:false
         };
+        
     default:
       return state;
   }

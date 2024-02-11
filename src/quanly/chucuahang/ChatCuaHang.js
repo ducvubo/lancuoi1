@@ -12,6 +12,7 @@ import "react-image-lightbox/style.css";
 import _, { cloneDeep, debounce } from "lodash";
 import { toast } from "react-toastify";
 import { apirefreshtoken } from "../../API/GoiApi";
+import anhdaidien from "../../image/anhdaidien.png";
 class ChatCuaHang extends Component {
   constructor(props) {
     super(props);
@@ -463,6 +464,7 @@ class ChatCuaHang extends Component {
         return 0; // giữ nguyên vị trí
       }
     });
+    console.log(tatcadoanchat);
     return (
       <div className="chatcuahang">
         <div className="container-fluid h-100">
@@ -490,6 +492,13 @@ class ChatCuaHang extends Component {
                 <div className="card-body contacts_body">
                   <ul className="contacts">
                     {tatcadoanchat.map((item, index) => {
+                      let anhdaidienchat = "";
+                      if (item.anhdaidien) {
+                        anhdaidienchat = new Buffer(
+                          item.anhdaidien,
+                          "base64"
+                        ).toString("binary");
+                      }
                       return (
                         <li
                           className={
@@ -500,6 +509,16 @@ class ChatCuaHang extends Component {
                         >
                           <div className="d-flex bd-highlight">
                             <div className="img_cont">
+                              <img
+                                className="anhdaidienchat"
+                                src={
+                                  item.anhdaidien && anhdaidienchat
+                                    ? anhdaidienchat
+                                    : anhdaidien
+                                }
+                                width={"50px"}
+                                height={"50px"}
+                              />
                               <span
                                 className={
                                   item.trangthai === true
@@ -510,13 +529,13 @@ class ChatCuaHang extends Component {
                             </div>
                             <div className="user_info">
                               <span className="ten">{item.ten}</span>
-                              {item.trangthai === true ? (
-                                <p className="onof">Online</p>
-                              ) : (
-                                <p className="onof">Offline</p>
-                              )}
-                            </div>
-                            <div className="img_cont">
+                                {item.trangthai === true ? (
+                                  <p className="onof">Online</p>
+                                ) : (
+                                  <p className="onof">Offline</p>
+                                )}
+                              </div>
+                            <div className="img_conttinhanmoi">
                               {item.trangthaixem === "chuaxem" && (
                                 <span className="online_icon tinnhanmoi"></span>
                               )}

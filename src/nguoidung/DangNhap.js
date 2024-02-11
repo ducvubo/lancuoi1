@@ -56,23 +56,23 @@ class DangNhap extends Component {
       email: this.state.email,
       password: this.state.password,
     });
-    if (data.maCode === 1) {
+    if (data && data.maCode === 1) {
       this.props.ngonngu === "vi"
         ? toast.error("Vui lòng nhập đầy đủ email và mật khẩu!")
         : toast.error("Please enter full email and password!");
     }
-    if (data.maCode === 3) {
+    if (data && data.maCode === 3) {
       this.props.ngonngu === "vi"
         ? toast.error("Vui lòng nhập đúng mật khẩu!")
         : toast.error("Please enter the correct password!");
     }
 
-    if (data.maCode === 4) {
+    if (data && data.maCode === 4) {
       this.props.ngonngu === "vi"
         ? toast.error("Email này chưa được đăng ký!!!")
         : toast.error("This email has not been registered!!!");
     }
-    if (data.maCode === 5) {
+    if (data && data.maCode === 5) {
       this.props.ngonngu === "vi"
         ? toast.error(
             "Tài khoản của bạn chưa được xác nhận vui lòng kiểm tra hộp thư của email để xác nhận!!!"
@@ -81,8 +81,9 @@ class DangNhap extends Component {
             "Your account has not been confirmed, please check your email inbox to confirm!!!"
           );
     }
-    if (data.maCode === 0) {
+    if (data && data.maCode === 0) {
       this.props.thongtinnguoidung(data.nguoidung);
+    
       (data && data.nguoidung && data.nguoidung.quyenId === "R1") ||
       data.nguoidung.quyenId === "R3"
         ? this.props.history.push("/quanly/")
@@ -95,7 +96,7 @@ class DangNhap extends Component {
     let { thongtinnguoidung123 } = this.props;
     return (
       <>
-      {/* {thongtinnguoidung123 ? thongtinnguoidung123.quyenId === "R1" || thongtinnguoidung123.quyenId === "R3" ? (<Redirect to={"/quanly/"}/>) : (<Redirect to={"/trangchu"}/>)} */}
+        {/* {thongtinnguoidung123 ? thongtinnguoidung123.quyenId === "R1" || thongtinnguoidung123.quyenId === "R3" ? (<Redirect to={"/quanly/"}/>) : (<Redirect to={"/trangchu"}/>)} */}
         {(thongtinnguoidung123 && thongtinnguoidung123.quyenId === "R1") ||
         thongtinnguoidung123 === "R3" ? (
           <Redirect to={"/quanly/"} />
@@ -156,9 +157,7 @@ class DangNhap extends Component {
           </div>
         </div>
         <FooterTrangChu />
-
       </>
-        
     );
   }
 }
@@ -172,7 +171,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    thongtinnguoidung: (ngongu) => dispatch(thongtinnguoidung(ngongu)),
+    thongtinnguoidung: (data) => dispatch(thongtinnguoidung(data)),
   };
 };
 

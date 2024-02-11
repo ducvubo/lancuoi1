@@ -2,6 +2,7 @@
   .chat {
     margin-top   : auto;
     margin-bottom: auto;
+    margin-right : 87px;
   }
 
   .card {
@@ -14,6 +15,10 @@
       margin     : auto;
       color      : white;
     }
+  }
+
+  .contacts_card {
+    width: 300px;
   }
 
   .contacts_body {
@@ -143,6 +148,55 @@
     position: relative;
     height  : 70px;
     width   : 70px;
+
+    .anhdaidienchat {
+      border-radius: 50px;
+    }
+
+    .online_icon {
+      position        : absolute;
+      height          : 15px;
+      width           : 15px;
+      background-color: #4cd137;
+      border-radius   : 50%;
+      bottom          : 2.2em !important;
+      right           : 0.4em;
+      top             : 34px;
+      left            : 42px;
+    }
+
+    .offline {
+      background-color: #c23616 !important;
+    }
+
+  }
+
+  .img_conttinhanmoi {
+    position: relative;
+    height  : 70px;
+    width   : 70px;
+
+    .anhdaidienchat {
+      border-radius: 50px;
+    }
+
+    .online_icon {
+      position        : absolute;
+      height          : 15px;
+      width           : 15px;
+      background-color: #4cd137;
+      border-radius   : 50%;
+      bottom          : 2.2em !important;
+      right           : 0.4em;
+      border          : 1.5px solid white;
+    }
+
+    .tinnhanmoi {
+      background-color: #0866ff !important;
+      border          : none;
+
+    }
+
   }
 
   .img_cont_msg {
@@ -150,25 +204,7 @@
     width : 40px;
   }
 
-  .online_icon {
-    position        : absolute;
-    height          : 15px;
-    width           : 15px;
-    background-color: #4cd137;
-    border-radius   : 50%;
-    bottom          : 2.2em !important;
-    right           : 0.4em;
-    border          : 1.5px solid white;
-  }
 
-  .offline {
-    background-color: #c23616 !important;
-  }
-
-  .tinnhanmoi {
-    background-color: #0866ff !important;
-    border          : none;
-  }
 
   .user_info {
     margin-top    : auto;
@@ -177,16 +213,23 @@
     display       : flex;
     flex-direction: column;
     align-items   : start;
+    position      : relative;
+    width         : 168px;
 
     .ten {
       font-size: 20px;
       color    : white;
     }
 
+
+
+
     .onof {
       font-size: 10px;
       color    : rgba(255, 255, 255, 0.6);
     }
+
+
   }
 
   .tinnhananh {
