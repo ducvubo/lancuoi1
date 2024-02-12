@@ -4,9 +4,36 @@
     margin : auto;
     padding: 15px;
 
+    .mk {
+        .inputmk {
+            position: relative;
+        }
+
+        .xemmkdoimk {
+            position: absolute;
+            cursor  : pointer;
+            left    : 925px;
+            top     : 352px;
+            z-index : 2;
+        }
+    }
+
+    .nhaplaimk {
+        .inputmk {
+            position: relative;
+        }
+
+        .xemmkdoimk {
+            position: absolute;
+            cursor  : pointer;
+            left    : 924px;
+            top     : 437px;
+        }
+    }
+
     span {
-        text-transform: uppercase;
-        font-weight   : 600;
+        text-transform : uppercase;
+        font-weight    : 600;
         display        : flex;
         justify-content: center;
         font-size      : 23px;

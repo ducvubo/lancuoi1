@@ -24,17 +24,16 @@ import TimHoa from "./nguoidung/TimHoa";
 import DatHang from "./nguoidung/DatHang";
 import ThongTinNguoiDung from "./nguoidung/ThongTinNguoiDung";
 const history = createBrowserHistory();
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hoatimduoc: this.props.hoa,
     };
   }
 
+
   render() {
-    let { thongtinnguoidung, hoatimduoc } = this.props;
+    let { thongtinnguoidung } = this.props;
     return (
       <React.Fragment>
         <Router history={history}>
@@ -42,7 +41,10 @@ class App extends Component {
             <Route path={"/trangchu"} exact component={trangChu} />
             <Route path={"/quanly/"} component={QuanLy} />
             <Route path={"/thongtinhoa/:id"} component={ThongTinHoa} />
-            <Route path={"/hoatheodanhmucchitiet/:id"} component={HoaTheoDanhMucTheoChiTiet}/>
+            <Route
+              path={"/hoatheodanhmucchitiet/:id"}
+              component={HoaTheoDanhMucTheoChiTiet}
+            />
             <Route path={"/hoatheodanhmuc/:id"} component={HoaTheoDanhMuc} />
             <Route path={"/giohang/:id"} component={GioHang} />
             <Route path={"/dangnhap"} component={DangNhap} />
@@ -55,8 +57,7 @@ class App extends Component {
             <Route path={"/dathang"} component={DatHang} />
             <Route path={"/timhoa"} component={TimHoa} />
 
-
-            {thongtinnguoidung &&  thongtinnguoidung.quyenId === "R4" ? (
+            {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" ? (
               <Redirect to={"/trangchu"} />
             ) : (
               <Redirect to={"/quanly/"} />
@@ -84,7 +85,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
-    hoa: state.admin.hoa,
+    ngonngu: state.web.ngonngu,
   };
 };
 

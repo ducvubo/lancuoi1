@@ -7,10 +7,7 @@ import logothuonghieu2 from "../image/logothuonghieu2.webp";
 import logothuonghieu3 from "../image/logothuonghieu3.webp";
 import SlideKH from "./SlideKH";
 import * as actions from "../action/actions";
-import {
-  apihoagiamgia,
-  apihoatheodanhmucnoibat,
-} from "../API/ApiTrangChu";
+import { apihoagiamgia, apihoatheodanhmucnoibat } from "../API/ApiTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import HeaderTrangChu from "./HeaderTrangChu";
 import { FormattedMessage } from "react-intl";
@@ -47,7 +44,6 @@ class trangChu extends Component {
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
       let data2 = "";
-      console.log(data1);
       for (let i = 0; i < data1.length; i++) {
         if (i === 4) {
           data2 = [data1[i]];

@@ -16,12 +16,14 @@ class DangKy extends Component {
 
       email: "",
       password: "",
+      nhaplaipassword: "",
       ho: "",
       ten: "",
       gioitinh: "",
       diachinha: "",
       sodienthoai: "",
       xemmk: false,
+      xemnhaplaimk: false,
       loading: false,
     };
   }
@@ -58,6 +60,7 @@ class DangKy extends Component {
       "gioitinh",
       "diachinha",
       "sodienthoai",
+      "nhaplaipassword",
     ];
     for (let i = 0; i < nhapdaydu.length; i++) {
       if (!this.state[nhapdaydu[i]]) {
@@ -76,8 +79,20 @@ class DangKy extends Component {
       xemmk: !this.state.xemmk,
     });
   };
+  xemnhaplai = () => {
+    this.setState({
+      xemnhaplaimk: !this.state.xemnhaplaimk,
+    });
+  };
 
   dangky = async () => {
+    if (this.state.password !== this.state.nhaplaipassword) {
+      this.props.ngonngu === "vi"
+        ? alert("Nhập lại mật khẩu không khớp với mật khẩu!!!")
+        : alert("Re-enter the password does not match the password!!!");
+      return;
+    }
+
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
 
@@ -123,6 +138,7 @@ class DangKy extends Component {
     let {
       email,
       password,
+      nhaplaipassword,
       xemmk,
       gioitinh,
       ho,
@@ -130,6 +146,7 @@ class DangKy extends Component {
       diachinha,
       sodienthoai,
       loading,
+      xemnhaplaimk,
     } = this.state;
 
     return (
@@ -172,6 +189,28 @@ class DangKy extends Component {
                     <i
                       className="far fa-eye xemmk"
                       onClick={() => this.xemmk()}
+                    ></i>
+                  )}
+                </div>
+                <div className="form-group nhaplaimk">
+                  <label>Nhập lại password</label>
+                  <input
+                    className="form-control inputmk"
+                    type={xemnhaplaimk === false ? "password" : "text"}
+                    onChange={(event) => {
+                      this.onChangeNhap(event, "nhaplaipassword");
+                    }}
+                    value={nhaplaipassword}
+                  />
+                  {xemnhaplaimk === true ? (
+                    <i
+                      className="far fa-eye-slash xemmk"
+                      onClick={() => this.xemnhaplai()}
+                    ></i>
+                  ) : (
+                    <i
+                      className="far fa-eye xemmk"
+                      onClick={() => this.xemnhaplai()}
                     ></i>
                   )}
                 </div>

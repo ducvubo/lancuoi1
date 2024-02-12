@@ -168,7 +168,6 @@ class ThongTinDonHang extends Component {
 
     doc.autoTable(tableConfig);
     chieucaocuabang = doc.autoTable.previous.finalY;
-    console.log(+chieucaocuabang);
 
     let chieucaoketiepcuabang = chieucaocuabang;
     doc.text(
@@ -302,7 +301,6 @@ KHI CÓ VIDEO QUAY RÕ RÀNG`,
 
     doc.autoTable(tableConfig);
     chieucaocuabang = doc.autoTable.previous.finalY;
-    console.log(+chieucaocuabang);
 
     let chieucaoketiepcuabang = chieucaocuabang;
     doc.text(

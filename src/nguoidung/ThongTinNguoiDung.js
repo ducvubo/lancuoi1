@@ -57,7 +57,6 @@ class ThongTinNguoiDung extends Component {
     );
     if (kq && kq.maCode === 0) {
       let data1 = kq.thongtinnguoidung;
-      console.log(data1);
       let anhdaidienthongtintrave = "";
       if (data1.anhdaidien) {
         anhdaidienthongtintrave = new Buffer(

@@ -158,7 +158,6 @@ class QuanLyNguoiDung extends Component {
     let { email, password, ho, ten, sodienthoai, diachinha, gioitinh, quyen } =
       this.state;
     let tatcanguoidung = this.state.tatcanguoidung;
-    console.log(tatcanguoidung);
     let trangthainut = this.state.trangthainut;
     return (
       <div className="quanlynguoidung">

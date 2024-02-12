@@ -51,7 +51,6 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
   render() {
     let { hoatheodanhmucchitiet } = this.state;
     let { ngonngu } = this.props;
-    console.log(hoatheodanhmucchitiet)
     return (
       <>
         <HeaderTrangChu />

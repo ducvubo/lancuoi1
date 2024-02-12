@@ -32,7 +32,6 @@ class HoaTheoDanhMuc extends Component {
     let kq = await apihoatheodanhmuc(id);
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
-      console.log(data1);
       let epdata = data1
         .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
         .flat();
@@ -68,7 +67,6 @@ class HoaTheoDanhMuc extends Component {
 
   render() {
     let { hoatheodanhmuc } = this.state;
-    console.log(hoatheodanhmuc);
     let { ngonngu } = this.props;
     return (
       <>

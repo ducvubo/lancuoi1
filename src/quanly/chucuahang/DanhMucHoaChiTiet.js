@@ -150,8 +150,6 @@ class DanhMucHoaChiTiet extends Component {
     let nhapdaydu = ["tendanhmucchitietVi", "tendanhmucchitietEn"];
     for (let i = 0; i < nhapdaydu.length; i++) {
       if (!this.state[nhapdaydu[i]]) {
-        console.log(this.state[nhapdaydu[i]]);
-
         kt = false;
         this.props.ngonngu === "vi"
           ? alert("Vui lòng nhập đầy đủ thông tin")
@@ -387,7 +385,6 @@ class DanhMucHoaChiTiet extends Component {
       });
     } else {
       this.laytatcadanhmucchitiet();
-      console.log("abc");
     }
   };
 

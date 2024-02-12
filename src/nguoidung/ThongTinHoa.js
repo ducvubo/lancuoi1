@@ -323,7 +323,6 @@ class ThongTinHoa extends Component {
       }
     } else {
       if (!this.state.noidungdanhgia) {
-        console.log("abc");
         this.props.ngonngu === "vi"
           ? alert("Vui lòng nhập nội dung ")
           : alert("Please enter content");
@@ -466,7 +465,6 @@ class ThongTinHoa extends Component {
       noidungdanhgiatraloi,
       danhgiachitietid,
     } = this.state;
-    console.log(binhluantheohoa);
     let anhnoibat = "";
     if (thongtinhoa.anhnoibat) {
       anhnoibat = new Buffer(thongtinhoa.anhnoibat, "base64").toString(
@@ -883,9 +881,6 @@ class ThongTinHoa extends Component {
                             item.traloibinhluan.length > 0 &&
                             item.traloibinhluan.map(
                               (traloibinhluanitem, traloibinhluanindex) => {
-                                console.log(
-                                  traloibinhluanitem.nguoidungtraloibinhluan
-                                );
                                 let anhnguoidungtraloibinhluan = "";
                                 if (
                                   traloibinhluanitem.nguoidungtraloibinhluan &&

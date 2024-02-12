@@ -13,6 +13,8 @@ class DoiMK extends Component {
       linkxacnhan: "",
       password: "",
       nhaplaipassword: "",
+      xemmkdoimk: false,
+      xemnhaplaimkdoimk: false,
     };
   }
 
@@ -54,8 +56,9 @@ class DoiMK extends Component {
     if (kt === false) return;
     if (this.state.password !== this.state.nhaplaipassword) {
       this.props.ngonngu === "vi"
-        ? alert("Xác nhận mật khẩu không đúng!!!")
-        : alert("Password was wrong!!!");
+        ? alert("Nhập lại mật khẩu không khớp với mật khẩu!!!")
+        : alert("Re-enter the password does not match the password!!!");
+      return;
     } else {
       let kq = await apidoimk({
         email: this.state.email,
@@ -63,24 +66,39 @@ class DoiMK extends Component {
         password: this.state.password,
       });
 
-      if(kq && kq.maCode === 0){
-        this.props.history.push("/dangnhap")
-        this.props.ngonngu === 'vi' ? toast.success("Đổi mật khẩu thành công!!!") : toast.success("Password changed successfully!!!")
+      if (kq && kq.maCode === 0) {
+        this.props.history.push("/dangnhap");
+        this.props.ngonngu === "vi"
+          ? toast.success("Đổi mật khẩu thành công!!!")
+          : toast.success("Password changed successfully!!!");
       }
-      if(kq && kq.maCode === 2 || kq.maCode === 1){
-        this.props.ngonngu === 'vi' ? toast.error("Đổi mật khẩu không thành công!!!") : toast.error("Password change failed!!!")
+      if ((kq && kq.maCode === 2) || kq.maCode === 1) {
+        this.props.ngonngu === "vi"
+          ? toast.error("Đổi mật khẩu không thành công!!!")
+          : toast.error("Password change failed!!!");
       }
     }
   };
 
+  xemmkdoimk = () => {
+    this.setState({
+      xemmkdoimk: !this.state.xemmkdoimk,
+    });
+  };
+  xemnhaplaidoimk = () => {
+    this.setState({
+      xemnhaplaimkdoimk: !this.state.xemnhaplaimkdoimk,
+    });
+  };
+
   render() {
-    let { password, nhaplaipassword } = this.state;
+    let { password, nhaplaipassword, xemmkdoimk, xemnhaplaimkdoimk } = this.state;
     return (
       <>
         <HeaderTrangChu />
         <div className="doimk">
           <span>Đổi mật khẩu</span>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Nhập mật khẩu mới</label>
             <input
               className="form-control"
@@ -101,6 +119,47 @@ class DoiMK extends Component {
               }}
               value={nhaplaipassword}
             />
+          </div> */}
+          <div className="form-group mk">
+            <label>Mật khẩu</label>
+            <input
+              className="form-control inputmk"
+              type={xemmkdoimk === false ? "password" : "text"}
+              onChange={(event) => {
+                this.onChangeNhap(event, "password");
+              }}
+              value={password}
+            />
+            {xemmkdoimk === true ? (
+              <i
+                className="far fa-eye-slash xemmkdoimk"
+                onClick={() => this.xemmkdoimk()}
+              ></i>
+            ) : (
+              <i className="far fa-eye xemmkdoimk" onClick={() => this.xemmkdoimk()}></i>
+            )}
+          </div>
+          <div className="form-group nhaplaimk">
+            <label>Nhập lại password</label>
+            <input
+              className="form-control inputmk"
+              type={xemnhaplaimkdoimk === false ? "password" : "text"}
+              onChange={(event) => {
+                this.onChangeNhap(event, "nhaplaipassword");
+              }}
+              value={nhaplaipassword}
+            />
+            {xemnhaplaimkdoimk === true ? (
+              <i
+                className="far fa-eye-slash xemmkdoimk"
+                onClick={() => this.xemnhaplaidoimk()}
+              ></i>
+            ) : (
+              <i
+                className="far fa-eye xemmkdoimk"
+                onClick={() => this.xemnhaplaidoimk()}
+              ></i>
+            )}
           </div>
           <button className="btn btndoimk" onClick={() => this.clickdoimk()}>
             Đổi mật khẩu

@@ -464,7 +464,6 @@ class ChatCuaHang extends Component {
         return 0; // giữ nguyên vị trí
       }
     });
-    console.log(tatcadoanchat);
     return (
       <div className="chatcuahang">
         <div className="container-fluid h-100">
