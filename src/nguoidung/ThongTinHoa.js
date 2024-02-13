@@ -43,7 +43,7 @@ class ThongTinHoa extends Component {
       noidungdanhgia: "",
       noidungdanhgiatraloi: "",
       danhgiachitietid: [],
-      trangthaidanhgiamota: true,
+      trangthaidanhgiamota: false,
       trangthaiphanhoichitiet: false,
       trangthaitraloidanhgia: false,
       sosaodanhgia: "",
@@ -522,7 +522,8 @@ class ThongTinHoa extends Component {
                   {ngonngu === "vi" ? "đ" : "USD"}
                 </span>
                 <span className="phantram">
-                  {thongtinhoa.phantramgiam}% giảm
+                  {thongtinhoa.phantramgiam}%{" "}
+                  <FormattedMessage id="giohanggiam" />
                 </span>
               </div>
               <span className="tieude">
@@ -531,11 +532,11 @@ class ThongTinHoa extends Component {
                   : thongtinhoa.tieudehoaEn}
               </span>
               <div className="sdt">
-                <span className="goi">Gọi ngay:</span>
+                <span className="goi"><FormattedMessage id="thongtinhoagoingay"/></span>
                 <span className="sodienthoai">0373853243</span>
               </div>
               <div className="chat">
-                <span>Chat ngay:</span>
+                <span><FormattedMessage id="thongtinhoachatngay"/></span>
                 <div className="icon">
                   <img src={ms} />
                   <img src={zalo} />
@@ -543,13 +544,13 @@ class ThongTinHoa extends Component {
               </div>
               <div className="giaohang">
                 <div className="giaohang1">
-                  <span>Vận chuyển: </span>
+                  <span><FormattedMessage id="thongtinhoavanchuyen"/> </span>
                   <span className="giaohang11">
-                    Nhanh chóng theo yêu cầu của quý khách
+                    <FormattedMessage id="thongtinhoanhanhchong"/>
                   </span>
                 </div>
 
-                <span>Phí giao hàng miễn phí</span>
+                <span><FormattedMessage id="thongtinhoaphigh"/></span>
               </div>
               <div className="ghichu">
                 <i className="fas fa-exclamation"></i>
@@ -562,7 +563,7 @@ class ThongTinHoa extends Component {
               <div className="sl-gh-dh">
                 <div className="sl">
                   <div className="form-group">
-                    <label>Số lượng còn</label>
+                    <label><FormattedMessage id="thongtinhoasoluongcon"/></label>
                     <input
                       value={thongtinhoa.soluongcon || 0}
                       disabled={true}
@@ -572,7 +573,7 @@ class ThongTinHoa extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Số lượng mua</label>
+                    <label><FormattedMessage id="thongtinhoasoluongmua"/></label>
                     <div className="soluongmua">
                       {soluong > 1 && (
                         <button
@@ -601,7 +602,7 @@ class ThongTinHoa extends Component {
                   </div>
                 </div>
 
-                <div className="nutbam">
+                <div className={ngonngu === "vi" ? "nutbam" : "nutbam nutbamEn"}>
                   {thongtinhoa.soluongcon > 0 ? (
                     <>
                       <button
@@ -614,7 +615,7 @@ class ThongTinHoa extends Component {
                         className="btn dh"
                         onClick={() => this.dathangthongtinhoa()}
                       >
-                        Đặt hàng
+                        <FormattedMessage id="thongtinhoadathang"/>
                       </button>
                     </>
                   ) : null}
@@ -623,11 +624,11 @@ class ThongTinHoa extends Component {
               <div className="tangkem">
                 <div className="giaohangnhanh">
                   <img src={vanchuyen} width="64" height="53" />
-                  <span>Giao hoa NHANH trong 60 phút</span>
+                  <span><FormattedMessage id="thongtinhoagiaohangnhanh"/></span>
                 </div>
                 <div className="thiep">
                   <img src={banner} width="64" height="53" />
-                  <span>Tặng miễn phí thiệp hoặc banner</span>
+                  <span><FormattedMessage id="thongtinhoatangthiepbanner"/></span>
                 </div>
               </div>
             </div>
@@ -639,7 +640,7 @@ class ThongTinHoa extends Component {
               }
               onClick={() => this.doitrangthaisangmota()}
             >
-              Mô tả hoa
+             <FormattedMessage id="thongtinhoamota"/>
             </span>
             <span
               className={
@@ -649,7 +650,7 @@ class ThongTinHoa extends Component {
               }
               onClick={() => this.doitrangthaisangdanhgia()}
             >
-              Đánh giá
+              <FormattedMessage id="thongtinhoadanhgia"/>
             </span>
             <div className="boder"></div>
           </div>
@@ -844,14 +845,14 @@ class ThongTinHoa extends Component {
                                 className="xemphanhoi ml-3"
                                 onClick={() => this.traloidanhgia(item)}
                               >
-                                Trả lời
+                                <FormattedMessage id="thongtinhoatraloi"/>
                               </span>
                               {danhgiachitietid.includes(item.id) ? (
                                 <span
                                   className="xemphanhoi ml-3"
                                   onClick={() => this.tatxemphanhoi(item.id)}
                                 >
-                                  Đóng phản hồi
+                                  <FormattedMessage id="thongtinhoadongphanhoi"/>
                                 </span>
                               ) : (
                                 <span
@@ -860,7 +861,7 @@ class ThongTinHoa extends Component {
                                     this.xemphanhoichitiet(item.id)
                                   }
                                 >
-                                  Xem phản hồi({item.traloibinhluan.length})
+                                  <FormattedMessage id="thongtinhoaxemphanhoi"/>({item.traloibinhluan.length})
                                 </span>
                               )}
                               {item.idnguoidung ===
@@ -871,7 +872,7 @@ class ThongTinHoa extends Component {
                                     this.xoadanhgiatraloikh(item.id, "danhgia")
                                   }
                                 >
-                                  Xóa
+                                  <FormattedMessage id="thongtinhoaxoa"/>
                                 </span>
                               )}
                             </div>
@@ -933,12 +934,6 @@ class ThongTinHoa extends Component {
                                     ) ? (
                                       <>
                                         <div className="danhgiatrai">
-                                          {/* <img
-                                            className="anhdaidien"
-                                            src={anhdaidien}
-                                            width={"50px"}
-                                            height={"50px"}
-                                          /> */}
                                           <img
                                             className="anhdaidien"
                                             src={
@@ -1224,10 +1219,10 @@ class ThongTinHoa extends Component {
                   </div>
                 ) : (
                   <>
-                    <span className="spanthem mt-3 ml-3">Thêm đánh giá</span>
+                    <span className="spanthem mt-3 ml-3"><FormattedMessage id="thongtinhoathemdanhgia"/></span>
                     <div className="saodanhgia mt-3 ml-3">
                       <span className="spandanhgia mt-1">
-                        Đánh giá của bạn:{" "}
+                        <FormattedMessage id="thongtinhoadanhgiacuaban"/>{" "}
                       </span>
                       <div className="rating">
                         <input
@@ -1276,11 +1271,11 @@ class ThongTinHoa extends Component {
                 )}
                 {trangthaitraloidanhgia === true ? (
                   <span className="spannhanxet mt-3 ml-3">
-                    Nội dung trả lời
+                    <FormattedMessage id="thongtinhoanoidungtraloi"/>
                   </span>
                 ) : (
                   <span className="spannhanxet mt-3 ml-3">
-                    Nhận xét của bạn:
+                   <FormattedMessage id="thongtinhoanhanxetcuaban"/>
                   </span>
                 )}
 
@@ -1346,13 +1341,13 @@ class ThongTinHoa extends Component {
                   className="btn guidanhgia mt-3 mb-3 ml-3"
                   onClick={() => this.guidanhgia()}
                 >
-                  Gửi đi
+                  <FormattedMessage id="thongtinhoaguidi"/>
                 </button>
               </div>
             </div>
           )}
 
-          <div className="item4">SẢN PHẨM LIÊN QUAN</div>
+          <div className="item4"><FormattedMessage id="thongtinhoasanphamlienquan"/></div>
           <div className="item5">
             {sanphamlienquan &&
               sanphamlienquan.length > 0 &&
@@ -1374,7 +1369,7 @@ class ThongTinHoa extends Component {
 
                         {item.phantramgiam > 0 ? (
                           <div className="giamgia">
-                            {item.phantramgiam}% GIẢM
+                            {item.phantramgiam}<FormattedMessage id="trangchugiamgia"/>
                           </div>
                         ) : null}
                       </Link>

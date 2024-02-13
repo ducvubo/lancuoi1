@@ -6,6 +6,7 @@ import FooterTrangChu from "./FooterTrangChu";
 import { apiquenmk } from "../API/ApiTrangChu";
 import { toast } from "react-toastify";
 import LoadingOverlay from "react-loading-overlay";
+import { FormattedMessage } from "react-intl";
 class QuenMK extends Component {
   constructor(props) {
     super(props);
@@ -73,13 +74,16 @@ class QuenMK extends Component {
 
   render() {
     let { email, loading } = this.state;
+    let {ngonngu} = this.props
     return (
       <>
-        <LoadingOverlay active={loading} spinner text="Từ từ đi bạn ei....">
+        <LoadingOverlay active={loading} spinner text={ngonngu === "vi" ? "Vui lòng chờ..." : "Please wait..."}>
           <HeaderTrangChu />
           <div className="quenmk">
             <div className="form-group">
-              <label>Nhập email đã đăng ký</label>
+              <label>
+                <FormattedMessage id="quenmkemaildangky" />
+              </label>
               <input
                 className="form-control"
                 type="email"
@@ -93,7 +97,7 @@ class QuenMK extends Component {
               className="btn btnquenmk"
               onClick={() => this.clickquenmk()}
             >
-              Quên mật khẩu
+              <FormattedMessage id="quenmk" />
             </button>
           </div>
           <FooterTrangChu />

@@ -18,9 +18,11 @@ const persistedStore = persistStore(store1);
 const renderApp = () => {
   ReactDOM.render(
     <Provider store={store1}>
+      <PersistGate persistor={persistedStore} loading={null}>
         <DoiNgonNgu>
-          <App persistor={persistedStore}/>
+          <App />
         </DoiNgonNgu>
+        </PersistGate>
     </Provider>,
     document.getElementById("root")
   );

@@ -74,7 +74,10 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
                     <img src={anhnoibat} width="261" height="326" />
 
                     {item.phantramgiam > 0 ? (
-                      <div className="giamgia">{item.phantramgiam}% GIẢM</div>
+                      <div className="giamgia">
+                        {item.phantramgiam}
+                        <FormattedMessage id="trangchugiamgia" />
+                      </div>
                     ) : null}
                   </div>
                   <div className="thongtin">

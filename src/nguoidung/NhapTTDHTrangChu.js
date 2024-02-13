@@ -6,6 +6,7 @@ import { apidathangtrangchu } from "../API/ApiTrangChu";
 import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
 import { withRouter } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 class NhapTTDHTrangChu extends Component {
   constructor(props) {
     super(props);
@@ -136,14 +137,14 @@ class NhapTTDHTrangChu extends Component {
       >
         <div className="nhapthongtindathangtrangchu">
           <div className="item1">
-            <span className="chu ml-3">Thông tin đặt hàng</span>
+            <span className="chu ml-3"><FormattedMessage id="nhapttdh"/></span>
             <span onClick={huydathang} className="tat mt-1 mr-1">
               <i className="fas fa-times"></i>
             </span>
           </div>
           <div className="item2 row mt-4 ml-3 mr-3 mb-4">
             <div className="form-group col-12">
-              <label>Tên người nhận</label>
+              <label><FormattedMessage id="nhapttdhtennhan"/></label>
               <input
                 className="form-control"
                 type="text"
@@ -165,7 +166,7 @@ class NhapTTDHTrangChu extends Component {
               />
             </div>
             <div className="form-group col-6">
-              <label>Số điện thoại</label>
+              <label><FormattedMessage id="nhapttdhsdt"/></label>
               <input
                 className="form-control"
                 type="text"
@@ -176,7 +177,7 @@ class NhapTTDHTrangChu extends Component {
               />
             </div>
             <div className="form-group col-6">
-              <label>Địa chỉ</label>
+              <label><FormattedMessage id="nhapttdhdiachi"/></label>
               <input
                 className="form-control"
                 type="text"
@@ -187,7 +188,7 @@ class NhapTTDHTrangChu extends Component {
               />
             </div>
             <div className="form-group col-6">
-              <label>Ghi chú</label>
+              <label><FormattedMessage id="nhapttdhghichu"/></label>
               <input
                 className="form-control"
                 type="text"
@@ -200,10 +201,10 @@ class NhapTTDHTrangChu extends Component {
           </div>
           <div className="item3 mb-3">
             <button className="btn nutbam mr-3" onClick={huydathang}>
-              Hủy
+              <FormattedMessage id="nhapttdhhuy"/>
             </button>
             <button className="btn nutbam" onClick={() => this.dathang()}>
-              Xác nhận
+              <FormattedMessage id="nhapttdhxacnhan"/>
             </button>
           </div>
         </div>

@@ -8,6 +8,7 @@ import FooterTrangChu from "./FooterTrangChu";
 import { toast } from "react-toastify";
 import * as actions from "../action/actions";
 import LoadingOverlay from "react-loading-overlay";
+import { FormattedMessage } from "react-intl";
 class DangKy extends Component {
   constructor(props) {
     super(props);
@@ -151,12 +152,18 @@ class DangKy extends Component {
 
     return (
       <>
-        <LoadingOverlay active={loading} spinner text="Từ từ đi bạn ei....">
+        <LoadingOverlay
+          active={loading}
+          spinner
+          text={ngonngu === "vi" ? "Vui lòng chờ..." : "Please wait..."}
+        >
           <HeaderTrangChu />
           <div className="dangky">
             <div className="form">
               <div className="spandangky">
-                <span>Đăng ký</span>
+                <span>
+                  <FormattedMessage id="dangky" />
+                </span>
               </div>
               <div className="nhapthongtin">
                 <div className="form-group">
@@ -171,7 +178,9 @@ class DangKy extends Component {
                   />
                 </div>
                 <div className="form-group mk">
-                  <label>Mật khẩu</label>
+                  <label>
+                    <FormattedMessage id="dangkymk" />
+                  </label>
                   <input
                     className="form-control inputmk"
                     type={xemmk === false ? "password" : "text"}
@@ -182,18 +191,21 @@ class DangKy extends Component {
                   />
                   {xemmk === true ? (
                     <i
-                      className="far fa-eye-slash xemmk"
+                      className={ngonngu === "vi" ? "far fa-eye-slash xemmk" : "far fa-eye-slash xemmk xemmken"}
                       onClick={() => this.xemmk()}
                     ></i>
                   ) : (
                     <i
-                      className="far fa-eye xemmk"
+                      // className="far fa-eye xemmk"
+                      className={ngonngu === "vi" ? "far fa-eye xemmk" : "far fa-eye xemmk xemmken"}
                       onClick={() => this.xemmk()}
                     ></i>
                   )}
                 </div>
                 <div className="form-group nhaplaimk">
-                  <label>Nhập lại password</label>
+                  <label>
+                    <FormattedMessage id="dangkynhaplaimk" />
+                  </label>
                   <input
                     className="form-control inputmk"
                     type={xemnhaplaimk === false ? "password" : "text"}
@@ -204,19 +216,21 @@ class DangKy extends Component {
                   />
                   {xemnhaplaimk === true ? (
                     <i
-                      className="far fa-eye-slash xemmk"
+                    className={ngonngu === "vi" ? "far fa-eye-slash xemmk" : "far fa-eye-slash xemmk xemmken"}
                       onClick={() => this.xemnhaplai()}
                     ></i>
                   ) : (
                     <i
-                      className="far fa-eye xemmk"
+                    className={ngonngu === "vi" ? "far fa-eye xemmk" : "far fa-eye xemmk xemmken"}
                       onClick={() => this.xemnhaplai()}
                     ></i>
                   )}
                 </div>
-                <div className="hoten">
+                <div className={ngonngu === "vi" ? "hoten" : "hotenen"}>
                   <div className="form-group">
-                    <label>Họ</label>
+                    <label>
+                      <FormattedMessage id="dangkyho" />
+                    </label>
                     <input
                       className="form-control"
                       type="text"
@@ -227,7 +241,9 @@ class DangKy extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Tên</label>
+                    <label>
+                      <FormattedMessage id="dangkyten" />
+                    </label>
                     <input
                       className="form-control"
                       type="text"
@@ -239,7 +255,9 @@ class DangKy extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label>Giới tính</label>
+                    <label>
+                      <FormattedMessage id="dangkygioitinh" />
+                    </label>
                     <select
                       className="form-control"
                       onChange={(event) => {
@@ -262,7 +280,9 @@ class DangKy extends Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Số điện thoại</label>
+                  <label>
+                    <FormattedMessage id="dangkysdt" />
+                  </label>
                   <input
                     className="form-control"
                     type="text"
@@ -273,7 +293,9 @@ class DangKy extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Địa chỉ</label>
+                  <label>
+                    <FormattedMessage id="dangkydiachi" />
+                  </label>
                   <input
                     className="form-control"
                     type="text"
@@ -286,15 +308,19 @@ class DangKy extends Component {
               </div>
 
               <button className="btn butdangky" onClick={() => this.dangky()}>
-                Đăng ký
+                <FormattedMessage id="dangky" />
               </button>
               <div className="qmk-dk">
                 <Link className="dangky" to={"/quenmk"}>
-                  <span className="qmk">Bạn đã quên mật khẩu</span>
+                  <span className="qmk">
+                    <FormattedMessage id="bandaquenmk" />
+                  </span>
                 </Link>
 
                 <Link className="dangnhap" to={"/dangnhap"}>
-                  <span className="dk">Bạn đã có tài khoản? Đăng nhập</span>
+                  <span className="dk">
+                    <FormattedMessage id="bandacotaikhoan" />
+                  </span>
                 </Link>
               </div>
             </div>

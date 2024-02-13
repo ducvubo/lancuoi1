@@ -219,7 +219,7 @@ class DanhMucHoaChiTiet extends Component {
           : "";
       this.setState({
         // id: "",
-        iddanhmuchoa: iddanhmuc,
+        // iddanhmuchoa: iddanhmuc,
         tendanhmucchitietVi: "",
         tendanhmucchitietEn: "",
       });
@@ -301,7 +301,7 @@ class DanhMucHoaChiTiet extends Component {
           : "";
       this.setState({
         id: "",
-        iddanhmuchoa: iddanhmuc,
+        // iddanhmuchoa: iddanhmuc,
         tendanhmucchitietVi: "",
         tendanhmucchitietEn: "",
         trangthainut: false,

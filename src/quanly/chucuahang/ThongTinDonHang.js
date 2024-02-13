@@ -136,7 +136,7 @@ class ThongTinDonHang extends Component {
     );
     doc.text(`Địa chỉ: ${this.props.thongtindonhang.diachi}`, 15, 93);
     doc.text(`Ghi chú: ${this.props.thongtindonhang.ghichu}`, 15, 98);
-    doc.text(`Tổng tiền: ${this.props.thongtindonhang.tongtien}`, 15, 103);
+    doc.text(`Tổng tiền: ${this.props.thongtindonhang.tongtien} ${"đ"}`, 15, 103);
     doc.text(
       `------------------------------------------------------------------------------------------------------------------------------------------------------------`,
       15,

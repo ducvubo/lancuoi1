@@ -39,6 +39,10 @@
                 left    : 998px;
                 top     : 445px;
             }
+
+            .xemmken {
+                left: 1024px !important;
+            }
         }
 
         .nhaplaimk {
@@ -52,6 +56,10 @@
                 left    : 998px;
                 top     : 531px;
             }
+
+            .xemmken {
+                left: 1024px !important;
+            }
         }
 
 
@@ -60,7 +68,10 @@
             gap    : 16px;
         }
 
-
+        .hotenen {
+            display: flex;
+            gap    : 36px;
+        }
 
         .butdangky {
             background-color: #e91e63;

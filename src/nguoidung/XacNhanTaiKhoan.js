@@ -4,8 +4,7 @@ import "./XacNhanTaiKhoan.scss";
 import HeaderTrangChu from "./HeaderTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import { apixacnhantaikhoan } from "../API/ApiTrangChu";
-import { withRouter } from "react-router-dom";
-
+import { FormattedMessage } from "react-intl";
 class XacNhanTaiKhoan extends Component {
   constructor(props) {
     super(props);
@@ -50,13 +49,13 @@ class XacNhanTaiKhoan extends Component {
         <HeaderTrangChu />
         <div className="xacnhantaikhoan">
           {trangthaixacnhan === false ? (
-            <div>Đang load</div>
+            <div><FormattedMessage id="xacnhantaikhoandangload"/> </div>
           ) : (
             <div>
               {maCode === 0 ? (
-                <div>Đăng ký tài khoản thành công!!!</div>
+                <div><FormattedMessage id="xacnhantaikhoandkthanhcong"/></div>
               ) : (
-                <div>Tài khoản không tồn tại hoặc đã được xác nhận!!!</div>
+                <div><FormattedMessage id="xacnhantaikhoandaxacnhan"/></div>
               )}
             </div>
           )}

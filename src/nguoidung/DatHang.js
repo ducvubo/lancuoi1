@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HeaderTrangChu from "./HeaderTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
+import { FormattedMessage } from "react-intl";
 class DatHang extends Component {
   constructor(props) {
     super(props);
@@ -16,12 +17,15 @@ class DatHang extends Component {
 
       phuongthucvanchuyenid: "",
       giaship: "",
-
+      lanrender: false,
       trangthainhapthongtin: false,
     };
   }
 
   async componentDidMount() {
+    this.setState({
+      lanrender: true,
+    });
     await this.laytatcaphuongthucvanchuyen();
   }
 
@@ -79,6 +83,7 @@ class DatHang extends Component {
       phuongthucvanchuyenid,
       giaship,
       trangthainhapthongtin,
+      lanrender,
     } = this.state;
     let giaship123 = ngonngu === "vi" ? giaship.giaVND : giaship.giaUSD;
     let tongtien =
@@ -94,20 +99,29 @@ class DatHang extends Component {
         "binary"
       );
     }
+    console.log(this.props.thongtinnguoidung, this.props.thongtinhoadathang);
     return (
       <>
-        {thongtinnguoidung && thongtinhoadathang ? (
-          <>
-<HeaderTrangChu/>
+        {/* {thongtinnguoidung && thongtinhoadathang ? ( */}
+        <>
+          <HeaderTrangChu />
           <div className="dathangtrangchu">
             <div className="sanpham">
               <table className="table table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col">Sản phẩm</th>
-                    <th scope="col">Đơn giá</th>
-                    <th scope="col">Số lượng</th>
-                    <th scope="col">Thành tiền</th>
+                    <th scope="col">
+                      <FormattedMessage id="dathangsanpham" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="dathangdongia" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="dathangsoluong" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="dathangthanhtien" />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -130,15 +144,19 @@ class DatHang extends Component {
                     </td>
                     <td>
                       {ngonngu === "vi"
-                        ? thongtinhoadathang.giasaukhigiamVND.toLocaleString()
+                        ? thongtinhoadathang.giasaukhigiamVND
+                          ? thongtinhoadathang.giasaukhigiamVND.toLocaleString()
+                          : null
                         : thongtinhoadathang.giasaukhigiamUSD}
                     </td>
                     <td>{thongtinhoadathang.soluongmua}</td>
                     <td>
                       {ngonngu === "vi"
-                        ? (
-                            thongtinhoadathang.soluongmua *
-                            thongtinhoadathang.giasaukhigiamVND
+                        ? (thongtinhoadathang.soluongmua *
+                          thongtinhoadathang.giasaukhigiamVND
+                            ? thongtinhoadathang.soluongmua *
+                              thongtinhoadathang.giasaukhigiamVND
+                            : ""
                           ).toLocaleString()
                         : thongtinhoadathang.soluongmua *
                           thongtinhoadathang.giasaukhigiamUSD}
@@ -148,7 +166,9 @@ class DatHang extends Component {
 
                   <tr>
                     <td className="phuongthucvanchuyen">
-                      <span>Phương thức vận chuyển: </span>
+                      <span>
+                        <FormattedMessage id="dathangptvanchuyen" />
+                      </span>
                     </td>
                     <td colSpan="2">
                       <select
@@ -176,13 +196,15 @@ class DatHang extends Component {
                 </tbody>
               </table>
             </div>
-            {/* <div className="tongtien">
-                  <span>Tổng tiền (3 sản phẩm): 500000đ</span>
-                </div> */}
+
             <div className="chitietthanhtoan">
               <div className="phuongthucthanhtoan mt-5">
-                <span className="item1">Phuơng thức thanh toán: </span>
-                <span className="item2">Thanh toán khi nhận hàng</span>
+                <span className="item1">
+                  <FormattedMessage id="dathangptthanhtoan" />
+                </span>
+                <span className="item2">
+                  <FormattedMessage id="dathangthanhtoankhinhan" />
+                </span>
               </div>
             </div>
             <div className="thanhtoan mt-3">
@@ -203,7 +225,7 @@ class DatHang extends Component {
                   : giaship123
               } ${ngonngu === "vi" ? "đ" : "USD"}`}</span>
               <span>
-                Tổng tiền:{" "}
+                <FormattedMessage id="dathangtongtien" />
                 <label>
                   {" "}
                   {ngonngu === "vi"
@@ -214,10 +236,10 @@ class DatHang extends Component {
             </div>
             <div className="nutbam">
               <button className="btn btndathang" onClick={() => this.quaylai()}>
-                Hủy
+                <FormattedMessage id="dathanghuy" />
               </button>
               <button className="btn btndathang" onClick={() => this.dathang()}>
-                Đặt hàng
+                <FormattedMessage id="dathang" />
               </button>
             </div>
             <NhapTTDHTrangChu
@@ -228,11 +250,11 @@ class DatHang extends Component {
               doitrangthai={this.doitrangthai}
             />
           </div>
-<FooterTrangChu/>
-          </>
-        ) : (
-          <Redirect to={"/dangnhap"} />
-        )}
+          <FooterTrangChu />
+        </>
+        {/* // ) : (
+        //   <Redirect to={"/dangnhap"} />
+        // )} */}
       </>
     );
   }

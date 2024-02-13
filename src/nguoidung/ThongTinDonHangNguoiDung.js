@@ -8,8 +8,9 @@ import { apirefreshtoken } from "../API/GoiApi";
 import {
   apixacnhandanhanduochang,
   apihuydonhangnguoidung,
-  apihoanhanghoantien
+  apihoanhanghoantien,
 } from "../API/ApiTrangChu";
+import { FormattedMessage } from "react-intl";
 class ThongTinDonHangNguoiDung extends Component {
   constructor(props) {
     super(props);
@@ -209,6 +210,7 @@ class ThongTinDonHangNguoiDung extends Component {
       ngonngu,
     } = this.props;
     let { phanhoikhachhang } = this.state;
+    console.log(thongtindonhang);
     return (
       <div className="thongtindonhang">
         <Modal
@@ -218,38 +220,69 @@ class ThongTinDonHangNguoiDung extends Component {
         >
           <div className="thongtindonhangnguoidung">
             <div className="item1">
-              <span className="chu ml-3">Thông tin đơn hàng</span>
+              <span className="chu ml-3">
+                <FormattedMessage id="thongtindonhangngdung" />
+              </span>
               <span onClick={huyxemchitietdonhang} className="tat mt-1 mr-1">
                 <i className="fas fa-times"></i>
               </span>
             </div>
             <div className="item2 ml-4 mt-3 mb-3">
               <span>
-                <b>Mã đơn hàng:</b> {thongtindonhang.madonhang}
+                <b>
+                  <FormattedMessage id="thongtindonhangngdungmadonhang" />
+                </b>{" "}
+                {thongtindonhang.madonhang}
               </span>
               <span>
-                <b>Tên người nhận:</b> {thongtindonhang.tennguoinhan}
+                <b>
+                  <FormattedMessage id="thongtindonhangngdungtennguoinhan" />
+                </b>{" "}
+                {thongtindonhang.tennguoinhan}
               </span>
               <span>
                 <b>Email:</b> {thongtindonhang.email}
               </span>
               <span>
-                <b>Số điện thoại:</b> {thongtindonhang.sodienthoai}
+                <b>
+                  <FormattedMessage id="thongtindonhangngdungsdt" />
+                </b>{" "}
+                {thongtindonhang.sodienthoai}
               </span>
               <span>
-                <b>Địa chỉ:</b> {thongtindonhang.diachi}
+                <b>
+                  <FormattedMessage id="thongtindonhangngdungdiachi" />
+                </b>{" "}
+                {thongtindonhang.diachi}
               </span>
               <span>
-                <b>Ghi chú:</b> {thongtindonhang.ghichu}
+                <b>
+                  <FormattedMessage id="qldhndghichu" />
+                </b>{" "}
+                {thongtindonhang.ghichu}
               </span>
+              {thongtindonhang.ngonngu === "vi" ? (
+                <span>
+                  <b>Giá vận chuyển: </b> {thongtindonhang && thongtindonhang.vanchuyen && thongtindonhang.vanchuyen.giaVND ? thongtindonhang.vanchuyen.giaVND : null} đ
+                </span>
+              ) : (
+                <span>
+                  <b>Ship price: </b> {thongtindonhang && thongtindonhang.vanchuyen && thongtindonhang.vanchuyen.giaUSD ? thongtindonhang.vanchuyen.giaUSD : null} USD
+                </span>
+              )}
+
               <span>
-                <b>Tổng tiền:</b>{" "}
+                <b>
+                  <FormattedMessage id="thongtindonhangngdungtongtiendon" />
+                </b>{" "}
                 {`${thongtindonhang.tongtien} ${
                   thongtindonhang.ngonngu === "vi" ? " đ" : " USD"
                 }`}
               </span>
               <span>
-                <b>Lưu ý của của hàng:</b>
+                <b>
+                  <FormattedMessage id="thongtindonhangngdungluuycuahang" />
+                </b>
                 {thongtindonhang.phanhoicuahang
                   ? thongtindonhang.phanhoicuahang
                   : null}
@@ -259,11 +292,18 @@ class ThongTinDonHangNguoiDung extends Component {
               <table className="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">Tên hoa</th>
-                    <th scope="col">Số lượng còn</th>
-                    <th scope="col">Giá</th>
-                    <th scope="col">Số lượng mua</th>
-                    <th scope="col">Tổng tiền</th>
+                    <th scope="col">
+                      <FormattedMessage id="thongtindonhangngdungtenhoa" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="thongtindonhangngdunggia" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="thongtindonhangngdungsoluongmua" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="thongtindonhangngdungtongtien" />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -277,11 +317,11 @@ class ThongTinDonHangNguoiDung extends Component {
                               ? item.tenhoaVi
                               : item.tenhoaVi}
                           </td>
-                          <td>{item.soluongcon}</td>
+
                           <td>
                             {thongtindonhang.ngonngu === "vi"
-                              ? `${item.giathucVND} đ`
-                              : `${item.giathucUSD} USD`}
+                              ? `${item.giasaukhigiamVND} đ`
+                              : `${item.giasaukhigiamUSD} USD`}
                           </td>
                           <td>{item.Donhangchitiet.soluongmua}</td>
                           <td>{`${item.Donhangchitiet.tongtien} ${
@@ -297,7 +337,9 @@ class ThongTinDonHangNguoiDung extends Component {
             thongtindonhang.trangthaidonhangid === "H2" ? (
               <div className="row">
                 <div className="form-group col-12 pl-5 pr-5">
-                  <label>Lý do</label>
+                  <label>
+                    <FormattedMessage id="thongtindonhangngdunglydo" />
+                  </label>
                   <textarea
                     className="form-control"
                     type="text"
@@ -316,7 +358,7 @@ class ThongTinDonHangNguoiDung extends Component {
                   className="btn nutbam"
                   onClick={() => this.huydonhang()}
                 >
-                  Hủy đơn hàng
+                  <FormattedMessage id="thongtindonhangngdunghuydon" />
                 </button>
               ) : null}
               {thongtindonhang.trangthaidonhangid === "H4" ? (
@@ -324,7 +366,7 @@ class ThongTinDonHangNguoiDung extends Component {
                   className="btn nutbam"
                   onClick={() => this.xacnhandanhanduochang()}
                 >
-                  Đã nhận hàng
+                  <FormattedMessage id="thongtindonhangngdungdanhanhang" />
                 </button>
               ) : null}
               {thongtindonhang.trangthaidonhangid === "H5" ? (
@@ -337,7 +379,7 @@ class ThongTinDonHangNguoiDung extends Component {
                   }
                   onClick={() => this.yeucauhoanhanghoantien()}
                 >
-                  Hoàn hàng, tiền
+                  <FormattedMessage id="thongtindonhangngdunghoantienhang" />
                 </button>
               ) : null}
               <button
@@ -352,7 +394,7 @@ class ThongTinDonHangNguoiDung extends Component {
                 }
                 onClick={huyxemchitietdonhang}
               >
-                Đóng
+                <FormattedMessage id="thongtindonhangngdungdong" />
               </button>
             </div>
           </div>

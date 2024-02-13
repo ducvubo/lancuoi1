@@ -15,7 +15,7 @@ class SlideShow extends Component {
   //     autoplay: false,
   //   };
   // }
-  
+
   // componentDidMount() {
   //   setTimeout(() => {
   //     this.setState({
@@ -32,7 +32,6 @@ class SlideShow extends Component {
       slidesToScroll: 1,
       autoplay: true, // Bật tự động chuyển đổi
       autoplaySpeed: 3000,
-
     };
     return (
       <div className="item5">
@@ -49,7 +48,7 @@ class SlideShow extends Component {
                   />
                 </div>
                 <div className="anh">
-                <img
+                  <img
                     src={slide2}
                     alt="Slide 1"
                     width={"1180px"}
@@ -57,7 +56,7 @@ class SlideShow extends Component {
                   />
                 </div>
                 <div className="anh">
-                <img
+                  <img
                     src={slide3}
                     alt="Slide 1"
                     width={"1180px"}
@@ -65,7 +64,7 @@ class SlideShow extends Component {
                   />
                 </div>
                 <div className="anh">
-                <img
+                  <img
                     src={slide4}
                     alt="Slide 1"
                     width={"1180px"}
@@ -73,7 +72,7 @@ class SlideShow extends Component {
                   />
                 </div>
                 <div className="anh">
-                <img
+                  <img
                     src={slide5}
                     alt="Slide 1"
                     width={"1180px"}

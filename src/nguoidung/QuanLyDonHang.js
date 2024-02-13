@@ -7,6 +7,7 @@ import { apidonhangnguoidung } from "../API/ApiTrangChu";
 import { toast } from "react-toastify";
 import { apirefreshtoken } from "../API/GoiApi";
 import ThongTinDonHangNguoiDung from "./ThongTinDonHangNguoiDung";
+import { FormattedMessage } from "react-intl";
 class QuanLyDonHang extends Component {
   constructor(props) {
     super(props);
@@ -37,12 +38,6 @@ class QuanLyDonHang extends Component {
         : toast.error("You are not logged in, please log in!!!");
     }
     let kq = await apidonhangnguoidung(this.props.thongtinnguoidung.id);
-    if (kq && kq.maCode === 0) {
-      let data1 = kq.data;
-      this.setState({
-        tatcadonhang: data1,
-      });
-    }
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
         ? toast.error(
@@ -70,6 +65,13 @@ class QuanLyDonHang extends Component {
             "Your login session is invalid, please log in again to continue!!!"
           );
     }
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data;
+      this.setState({
+        tatcadonhang: data1,
+      });
+    }
+   
   };
 
   xemchitietdonhang = (thongtindonhang) => {
@@ -94,20 +96,38 @@ class QuanLyDonHang extends Component {
         <HeaderTrangChu />
         <div className="donhangnguoidung">
           <div className="item1">
-            <span>Quản lý đơn hàng</span>
+            <span>
+              <FormattedMessage id="qldhnd" />
+            </span>
           </div>
           <div className="item3">
             <table className="table table-bordered ">
               <thead>
                 <tr>
-                  <th scope="col">Mã đơn hàng</th>
-                  <th scope="col">Tên người nhận</th>
-                  <th scope="col">Số điện thoại</th>
-                  <th scope="col">Địa chỉ</th>
-                  <th scope="col">Ghi chú</th>
-                  <th scope="col">Trạng thái</th>
-                  <th scope="col">Tổng tiền</th>
-                  <th scope="col">Hành động</th>
+                  <th scope="col">
+                    <FormattedMessage id="qldhndmadonhang" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="qldhndtennguoinhan" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="qldhndsdt" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="qldhnddiachi" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="qldhndghichu" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="qldhndtrangthai" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="qldhndtongtien" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="quanlyhanhdong" />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -136,7 +156,7 @@ class QuanLyDonHang extends Component {
                             className="btn button"
                             onClick={() => this.xemchitietdonhang(item)}
                           >
-                            Chi tiết
+                            <FormattedMessage id="qldhndchitiet" />
                           </button>
                           <ThongTinDonHangNguoiDung
                             thongtindonhang={thongtindonhang}

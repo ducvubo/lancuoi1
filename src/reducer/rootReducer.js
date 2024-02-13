@@ -32,13 +32,11 @@ const thongtinhoadathang = {
   whitelist: ['thongtinhoadathang']
 }
 
-
-const rootReducer = combineReducers({
+const rootReducer =  combineReducers({
   web: persistReducer(bienngonngu,webReducer),
   thongtinnguoidung: persistReducer(thongtinnguoidung,thongtinnguoidungReducer),
   admin: adminReducer,
   dathanghoa: persistReducer(thongtinhoadathang,thongtinhoadathangReducer),
-
 });
 
 export default rootReducer;

@@ -7,7 +7,7 @@ import FooterTrangChu from "./FooterTrangChu";
 import { apidangnhap } from "../API/ApiTrangChu";
 import { toast } from "react-toastify";
 import { thongtinnguoidung } from "../action/actions";
-
+import { FormattedMessage } from "react-intl";
 class DangNhap extends Component {
   constructor(props) {
     super(props);
@@ -93,7 +93,7 @@ class DangNhap extends Component {
 
   render() {
     let { email, password, xemmk } = this.state;
-    let { thongtinnguoidung123 } = this.props;
+    let { thongtinnguoidung123,ngonngu } = this.props;
     return (
       <>
         {/* {thongtinnguoidung123 ? thongtinnguoidung123.quyenId === "R1" || thongtinnguoidung123.quyenId === "R3" ? (<Redirect to={"/quanly/"}/>) : (<Redirect to={"/trangchu"}/>)} */}
@@ -105,7 +105,7 @@ class DangNhap extends Component {
         <div className="dangnhap">
           <div className="form">
             <div className="spandangnhap">
-              <span>Đăng nhập</span>
+              <span><FormattedMessage id="headerdangnhap"/></span>
             </div>
             <div className="nhapthongtin">
               <div className="form-group">
@@ -120,7 +120,7 @@ class DangNhap extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Password</label>
+                <label><FormattedMessage id="dangkymk"/></label>
                 <input
                   className="form-control inputmk"
                   type={xemmk === false ? "password" : "text"}
@@ -131,27 +131,27 @@ class DangNhap extends Component {
                 />
                 {xemmk === true ? (
                   <i
-                    className="far fa-eye-slash xemmk"
+                    className={ngonngu === "vi" ? "far fa-eye-slash xemmk" : "far fa-eye-slash xemmk xemmkdangnhap"}
                     onClick={() => this.xemmk()}
                   ></i>
                 ) : (
                   <i
-                    className="far fa-eye xemmk"
+                  className={ngonngu === "vi" ? "far fa-eye xemmk" : "far fa-eye xemmk xemmkdangnhap"}
                     onClick={() => this.xemmk()}
                   ></i>
                 )}
               </div>
             </div>
             <button className="btn butdangnhap" onClick={() => this.dangnhap()}>
-              Đăng nhập
+              <FormattedMessage id="headerdangnhap"/>
             </button>
             <div className="qmk-dk">
               <Link className="dangky" to={"/quenmk"}>
-                <span className="qmk">Bạn đã quên mật khẩu</span>
+                <span className="qmk"><FormattedMessage id="bandaquenmk"/></span>
               </Link>
 
               <Link className="dangky" to={"/dangky"}>
-                <span className="dk">Bạn chưa có tài khoản? Đăng ký</span>
+                <span className="dk"><FormattedMessage id="banchuacotaikhoan"/></span>
               </Link>
             </div>
           </div>

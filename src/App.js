@@ -5,6 +5,7 @@ import { Router } from "react-router";
 import { createBrowserHistory } from "history";
 import { ToastContainer } from "react-toastify";
 import { Scrollbars } from "react-custom-scrollbars";
+import { dangxuat, doiNgonNgu } from "./action/actions";
 import "react-toastify/dist/ReactToastify.css";
 import trangChu from "./nguoidung/trangChu";
 import QuanLy from "./route/QuanLy";
@@ -27,13 +28,27 @@ const history = createBrowserHistory();
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
+  handleStorageChange = (event) => {
+    let myVariable = localStorage.getItem("persist:web");
+    let parsedData = JSON.parse(myVariable);
+    let ngonnguValue = parsedData.ngonngu;
+    this.props.doiNgonNgu(ngonnguValue.replace(/^"(.*)"$/, "$1"));
+  }
+  
+  componentDidMount() {
+    window.addEventListener("storage", this.handleStorageChange);
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener("storage", this.handleStorageChange);
+  }
 
   render() {
     let { thongtinnguoidung } = this.props;
+    console.log(this.props.ngonngu);
     return (
       <React.Fragment>
         <Router history={history}>
@@ -56,7 +71,6 @@ class App extends Component {
             <Route path={"/donhang/:id"} component={QuanLyDonHang} />
             <Route path={"/dathang"} component={DatHang} />
             <Route path={"/timhoa"} component={TimHoa} />
-
             {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" ? (
               <Redirect to={"/trangchu"} />
             ) : (
@@ -90,7 +104,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    doiNgonNgu: (ngongu) => dispatch(doiNgonNgu(ngongu)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

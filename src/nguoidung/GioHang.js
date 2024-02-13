@@ -13,6 +13,7 @@ import {
 import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
 import NhapThongTinDatHang from "./NhapThongTinDatHang";
+import { FormattedMessage } from "react-intl";
 class GioHang extends Component {
   constructor(props) {
     super(props);
@@ -368,14 +369,14 @@ class GioHang extends Component {
               <thead>
                 <tr>
                   <th> </th>
-                  <th scope="col">Hình ảnh</th>
-                  <th scope="col">Tên sản phẩm</th>
-                  <th scope="col">Số lượng còn</th>
-                  <th scope="col">Số lượng mua</th>
-                  <th scope="col">Giá thực</th>
-                  <th scope="col">Giảm</th>
-                  <th scope="col">Giá giảm</th>
-                  <th scope="col">Tổng cộng</th>
+                  <th scope="col"><FormattedMessage id="giohanghinhanh"/></th>
+                  <th scope="col"><FormattedMessage id="giohangtensp"/></th>
+                  <th scope="col"><FormattedMessage id="giohangsoluongcon"/></th>
+                  <th scope="col"><FormattedMessage id="giohangsoluongmua"/></th>
+                  <th scope="col"><FormattedMessage id="giohanggiathuc"/></th>
+                  <th scope="col"><FormattedMessage id="giohanggiam"/></th>
+                  <th scope="col"><FormattedMessage id="giohanggiagiam"/></th>
+                  <th scope="col"><FormattedMessage id="giohangtongcong"/></th>
                 </tr>
               </thead>
               <tbody>
@@ -462,13 +463,13 @@ class GioHang extends Component {
                   <>
                     <tr>
                       <td colSpan="8" className="gia">
-                        Giá chưa giảm
+                        <FormattedMessage id="giohanggiachuagiam"/>
                       </td>
                       <td>{giachuagiam.toLocaleString()}</td>
                     </tr>
                     <tr>
                       <td colSpan="8" className="gia">
-                        Giá sau khi giảm
+                       <FormattedMessage id="giohanggiasaukhigiam"/>
                       </td>
                       <td>{giagiam.toLocaleString()}</td>
                     </tr>
@@ -481,7 +482,7 @@ class GioHang extends Component {
                 className="btn btndathang"
                 onClick={() => this.doitrangthai()}
               >
-                Mua hàng
+                <FormattedMessage id="giohangmuahang"/>
               </button>
             ) : null}
           </div>
@@ -492,10 +493,10 @@ class GioHang extends Component {
                 <table className="table table-bordered">
                   <thead>
                     <tr>
-                      <th scope="col">Sản phẩm</th>
-                      <th scope="col">Đơn giá</th>
-                      <th scope="col">Số lượng</th>
-                      <th scope="col">Thành tiền</th>
+                      <th scope="col"><FormattedMessage id="dathangsanpham"/></th>
+                      <th scope="col"><FormattedMessage id="dathangdongia"/></th>
+                      <th scope="col"><FormattedMessage id="dathangsoluong"/></th>
+                      <th scope="col"><FormattedMessage id="dathangthanhtien"/></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -541,7 +542,7 @@ class GioHang extends Component {
 
                     <tr>
                       <td className="phuongthucvanchuyen">
-                        <span>Phương thức vận chuyển: </span>
+                        <span><FormattedMessage id="dathangptvanchuyen"/></span>
                       </td>
                       <td colSpan="2">
                         <select
@@ -569,13 +570,10 @@ class GioHang extends Component {
                   </tbody>
                 </table>
               </div>
-              {/* <div className="tongtien">
-                <span>Tổng tiền (3 sản phẩm): 500000đ</span>
-              </div> */}
               <div className="chitietthanhtoan">
                 <div className="phuongthucthanhtoan mt-5">
-                  <span className="item1">Phuơng thức thanh toán: </span>
-                  <span className="item2">Thanh toán khi nhận hàng</span>
+                  <span className="item1"><FormattedMessage id="dathangptthanhtoan"/></span>
+                  <span className="item2"><FormattedMessage id="dathangthanhtoankhinhan"/></span>
                 </div>
               </div>
               <div className="thanhtoan mt-3">
@@ -588,7 +586,7 @@ class GioHang extends Component {
                 {/* <span>{giagiam}</span>
                 <span>{giaship123}</span> */}
                 <span>
-                  Tổng tiền:{" "}
+                  <FormattedMessage id="dathangtongtien"/>{" "}
                   <label>
                     {" "}
                     {ngonngu === "vi"
@@ -602,13 +600,13 @@ class GioHang extends Component {
                   className="btn btndathang"
                   onClick={() => this.doitrangthai()}
                 >
-                  Hủy
+                  <FormattedMessage id="dathanghuy"/>
                 </button>
                 <button
                   className="btn btndathang"
                   onClick={() => this.dathang()}
                 >
-                  Đặt hàng
+                  <FormattedMessage id="dathang"/>
                 </button>
               </div>
             </div>

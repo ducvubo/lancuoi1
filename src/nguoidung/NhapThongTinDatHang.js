@@ -5,7 +5,8 @@ import "./NhapThongTinDatHang.scss";
 import { apidathang } from "../API/ApiTrangChu";
 import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 class NhapThongTinDatHang extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ class NhapThongTinDatHang extends Component {
       sodienthoai: "",
       diachi: "",
       ghichu: "",
-      tongtien:''
+      tongtien: "",
     };
   }
 
@@ -63,18 +64,16 @@ class NhapThongTinDatHang extends Component {
       sodienthoai: this.state.sodienthoai,
       diachi: this.state.diachi,
       ghichu: this.state.ghichu,
-      phuongthucvanchuyenid:this.props.phuongthucvanchuyenid,
-      tongtien:this.props.tongtien,
-      donhangchitiet:this.props.donhangchitiet,
-      ngonngu:this.props.ngonngu,
-      idgiohangchitietduocchon:this.props.idgiohangchitietduocchon
+      phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
+      tongtien: this.props.tongtien,
+      donhangchitiet: this.props.donhangchitiet,
+      ngonngu: this.props.ngonngu,
+      idgiohangchitietduocchon: this.props.idgiohangchitietduocchon,
     });
-    
+
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
-        ? toast.error(
-            "Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!"
-          )
+        ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!")
         : toast.error(
             "You are not logged in, please log in to view your shopping order!!!"
           );
@@ -101,11 +100,10 @@ class NhapThongTinDatHang extends Component {
       this.props.ngonngu === "vi"
         ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
         : toast.success("Order successful, waiting for staff to confirm!!!");
-        this.props.huydathang()
-        this.props.doitrangthai()
-        this.props.dathangthanhcong ()
-        // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
-
+      this.props.huydathang();
+      this.props.doitrangthai();
+      this.props.dathangthanhcong();
+      // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Đặt hàng thất bại")
@@ -113,15 +111,13 @@ class NhapThongTinDatHang extends Component {
     }
   };
 
-
-
   render() {
     let {
       trangthainhapthongtin,
       huydathang,
       donhangchitiet,
       phuongthucvanchuyenid,
-      ngonngu
+      ngonngu,
     } = this.props;
     let { tennguoinhan, email, sodienthoai, diachi, ghichu } = this.state;
     return (
@@ -133,14 +129,18 @@ class NhapThongTinDatHang extends Component {
       >
         <div className="nhapthongtindathang">
           <div className="item1">
-            <span className="chu ml-3">Thông tin đặt hàng</span>
+            <span className="chu ml-3">
+              <FormattedMessage id="nhapttdh" />
+            </span>
             <span onClick={huydathang} className="tat mt-1 mr-1">
               <i className="fas fa-times"></i>
             </span>
           </div>
           <div className="item2 row mt-4 ml-3 mr-3 mb-4">
             <div className="form-group col-12">
-              <label>Tên người nhận</label>
+              <label>
+                <FormattedMessage id="nhapttdhtennhan" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -162,7 +162,9 @@ class NhapThongTinDatHang extends Component {
               />
             </div>
             <div className="form-group col-6">
-              <label>Số điện thoại</label>
+              <label>
+                <FormattedMessage id="nhapttdhsdt" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -173,7 +175,9 @@ class NhapThongTinDatHang extends Component {
               />
             </div>
             <div className="form-group col-6">
-              <label>Địa chỉ</label>
+              <label>
+                <FormattedMessage id="nhapttdhdiachi" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -184,7 +188,9 @@ class NhapThongTinDatHang extends Component {
               />
             </div>
             <div className="form-group col-6">
-              <label>Ghi chú</label>
+              <label>
+                <FormattedMessage id="nhapttdhghichu"/>
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -197,10 +203,10 @@ class NhapThongTinDatHang extends Component {
           </div>
           <div className="item3 mb-3">
             <button className="btn nutbam mr-3" onClick={huydathang}>
-              Hủy
+              <FormattedMessage id="nhapttdhhuy"/>
             </button>
             <button className="btn nutbam" onClick={() => this.dathang()}>
-              Xác nhận
+              <FormattedMessage id="nhapttdhxacnhan"/>
             </button>
           </div>
         </div>
@@ -211,7 +217,7 @@ class NhapThongTinDatHang extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ngonngu : state.web.ngonngu,
+    ngonngu: state.web.ngonngu,
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
   };
 };
@@ -220,7 +226,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NhapThongTinDatHang));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(NhapThongTinDatHang)
+);

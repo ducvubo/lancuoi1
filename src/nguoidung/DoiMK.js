@@ -5,6 +5,7 @@ import HeaderTrangChu from "./HeaderTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import { apidoimk } from "../API/ApiTrangChu";
 import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 class DoiMK extends Component {
   constructor(props) {
     super(props);
@@ -97,31 +98,9 @@ class DoiMK extends Component {
       <>
         <HeaderTrangChu />
         <div className="doimk">
-          <span>Đổi mật khẩu</span>
-          {/* <div className="form-group">
-            <label>Nhập mật khẩu mới</label>
-            <input
-              className="form-control"
-              type="text"
-              onChange={(event) => {
-                this.onChangeNhap(event, "password");
-              }}
-              value={password}
-            />
-          </div>
-          <div className="form-group">
-            <label>Nhập mật lại khẩu mới</label>
-            <input
-              className="form-control"
-              type="text"
-              onChange={(event) => {
-                this.onChangeNhap(event, "nhaplaipassword");
-              }}
-              value={nhaplaipassword}
-            />
-          </div> */}
+          <span><FormattedMessage id="doimatkhau"/></span>
           <div className="form-group mk">
-            <label>Mật khẩu</label>
+            <label><FormattedMessage id="dangkymk"/></label>
             <input
               className="form-control inputmk"
               type={xemmkdoimk === false ? "password" : "text"}
@@ -140,7 +119,7 @@ class DoiMK extends Component {
             )}
           </div>
           <div className="form-group nhaplaimk">
-            <label>Nhập lại password</label>
+            <label><FormattedMessage id="dangkynhaplaimk"/></label>
             <input
               className="form-control inputmk"
               type={xemnhaplaimkdoimk === false ? "password" : "text"}
@@ -162,7 +141,7 @@ class DoiMK extends Component {
             )}
           </div>
           <button className="btn btndoimk" onClick={() => this.clickdoimk()}>
-            Đổi mật khẩu
+            <FormattedMessage id="doimatkhau"/>
           </button>
         </div>
         <FooterTrangChu />

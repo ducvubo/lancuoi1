@@ -5,6 +5,7 @@ const INITIAL_STATE = {
 const webReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionTypes.DOI_NGON_NGU:
+      console.log(action.ngonngu)
       return {
         ...state,
         ngonngu: action.ngonngu,
