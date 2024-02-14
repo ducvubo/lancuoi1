@@ -1,29 +1,65 @@
-.nhapthongtindathangtrangchu{
-    .item1{
-        display: flex;
-        display: flex;
+
+
+.nhapthongtindathangtrangchu {
+    position: relative;
+    
+
+    .item1 {
+        display        : flex;
+        display        : flex;
         justify-content: space-between;
-        margin: 0 8px; 
-        border-bottom:1px solid #ccc ;
-        padding-bottom: 5px;
-        .chu{
+        margin         : 0 8px;
+        border-bottom  : 1px solid #ccc;
+        padding-bottom : 5px;
+
+        .chu {
             font-weight: 600;
-            font-size: 20px;
+            font-size  : 20px;
         }
-        .tat{
+
+        .tat {
             cursor: pointer;
         }
     }
+
     // .item2{
     //     border-bottom: 1px solid #ccc;
     // }
-    .item3{
+    .item3 {
         margin-left: 564px;
-        .nutbam{
+
+        .nutbam {
             font-weight     : 500;
             background-color: #e91e63;
             color           : white;
             width           : 95px;
+        }
+    }
+
+    .tranthaiotp {
+        position       : absolute;
+        background     : white;
+        left           : 222px;
+        top            : 151px;
+        height         : 300px;
+        width          : 400px;
+        display        : flex;
+        flex-direction : column;
+        justify-content: center;
+        align-items    : center;
+        gap            : 17px;
+        border-radius  : 18px;
+
+        .spanotp {
+            font-weight: 600;
+            margin-left: 83px;
+        }
+
+        input {
+            width        : 35px !important;
+            height       : 40px !important;
+            border-radius: 8px;
+            border       : 1px solid #ccc !important;
         }
     }
 }

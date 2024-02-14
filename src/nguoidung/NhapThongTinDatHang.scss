@@ -1,4 +1,5 @@
 .nhapthongtindathang{
+    position: relative;
     .item1{
         display: flex;
         display: flex;
@@ -24,6 +25,32 @@
             background-color: #e91e63;
             color           : white;
             width           : 95px;
+        }
+    }
+    .tranthaiotp {
+        position       : absolute;
+        background     : white;
+        left           : 222px;
+        top            : 151px;
+        height         : 300px;
+        width          : 400px;
+        display        : flex;
+        flex-direction : column;
+        justify-content: center;
+        align-items    : center;
+        gap            : 17px;
+        border-radius  : 18px;
+
+        .spanotp {
+            font-weight: 600;
+            margin-left: 83px;
+        }
+
+        input {
+            width        : 35px !important;
+            height       : 40px !important;
+            border-radius: 8px;
+            border       : 1px solid #ccc !important;
         }
     }
 }

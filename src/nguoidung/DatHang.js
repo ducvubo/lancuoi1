@@ -83,7 +83,6 @@ class DatHang extends Component {
       phuongthucvanchuyenid,
       giaship,
       trangthainhapthongtin,
-      lanrender,
     } = this.state;
     let giaship123 = ngonngu === "vi" ? giaship.giaVND : giaship.giaUSD;
     let tongtien =
@@ -99,7 +98,6 @@ class DatHang extends Component {
         "binary"
       );
     }
-    console.log(this.props.thongtinnguoidung, this.props.thongtinhoadathang);
     return (
       <>
         {/* {thongtinnguoidung && thongtinhoadathang ? ( */}

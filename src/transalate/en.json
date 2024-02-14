@@ -267,6 +267,10 @@
   "nhapttdhghichu": "Notte",
   "nhapttdhhuy": "Cancel",
   "nhapttdhxacnhan": "Confirm",
+  "nhapttdhxacnhantxt1":"Please check your phone number's messages",
+  "nhapttdhxacnhantxt2":"to confirm the order",
+  "nhapttdhxacnhanxoa":"Clear",
+  "nhapttdhxacnhanguilai":"Resend OTP",
 
   "qldhnd": "Order management",
   "qldhndmadonhang": "Code orders",

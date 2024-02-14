@@ -269,6 +269,10 @@
   "nhapttdhghichu":"Ghi chú",
   "nhapttdhhuy":"Hủy",
   "nhapttdhxacnhan":"Xác nhận",
+  "nhapttdhxacnhantxt1":"Vui lòng kiểm tra tin nhắn của số điện thoại",
+  "nhapttdhxacnhantxt2":"để xác nhận đơn hàng",
+  "nhapttdhxacnhanxoa":"Xóa",
+  "nhapttdhxacnhanguilai":"Gửi lại OTP",
 
   "qldhnd":"Quản lý đơn hàng",
   "qldhndmadonhang":"Mã đơn hàng",
