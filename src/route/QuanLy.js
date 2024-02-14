@@ -30,8 +30,19 @@ class QuanLy extends Component {
     super(props);
     this.state = {
       trangthai: false,
+      tinnhanmoi:false,
     };
   }
+
+  componentDidMount(){
+  }
+
+  componentDidUpdate(prevState){
+    if(this.state.tinnhanmoi === true){
+     this.props.ngonngu === "vi" ? toast.success("Vui lòng kiểm tra tin nhắn, có tin nhắn mới!!!") : toast.success("Please check your messages, there is a new message!!!")
+    }
+  }
+
   battatchat = () => {
     if(this.props.thongtinnguoidung){
       this.setState({
@@ -48,10 +59,22 @@ class QuanLy extends Component {
     })
   }
 
+  thongbaotinnhanmoi = () => {
+    this.setState({
+      tinnhanmoi:true
+    })
+  }
+  tatthongbaotinhanmoi = () => {
+    this.setState({
+      tinnhanmoi:false
+    })
+  }
 
   render() {
     let { thongtinnguoidung } = this.props;
-    let { trangthai } = this.state;
+    let { trangthai,tinnhanmoi } = this.state;
+    console.log(tinnhanmoi)
+    
     return (
       <div className="quanly">
         <Scrollbars style={{ height: 695 }}>
@@ -88,6 +111,8 @@ class QuanLy extends Component {
 
         {thongtinnguoidung.idchat === "nhanvien" ? (
           <div className="chat">
+            {tinnhanmoi && <span className="sotinnhanmoi"><i className="fas fa-circle"></i></span>}
+
             <img className="iconchat" src={ms} onClick={() => this.battatchat()} />
           </div>
         ) : null}
@@ -96,6 +121,8 @@ class QuanLy extends Component {
           <div className="manhinhchat">
             <ChatCuaHang 
             eptatchatquanly={this.eptatchatquanly}
+            thongbaotinnhanmoi={this.thongbaotinnhanmoi}
+            tatthongbaotinhanmoi={this.tatthongbaotinhanmoi}
             />
           </div>
         ) : null}

@@ -1,5 +1,6 @@
 .quanly {
     position: relative;
+
     .chat {
         position    : sticky;
         bottom      : 14px;
@@ -8,11 +9,30 @@
         margin-left : -43px;
 
         .iconchat {
+            position     : relative;
             border-radius: 50%;
-            cursor: pointer;
-            position: fixed;
-            bottom: 8px;
-            right: 25px;
+            cursor       : pointer;
+            position     : fixed;
+            bottom       : 8px;
+            right        : 25px;
+        }
+
+        .sotinnhanmoi {
+            position        : absolute;
+            top             : 595px;
+            right           : 5px;
+            z-index         : 2;
+            font-size       : 15px;
+            background-color: #e91e63;
+            border-radius   : 22px;
+            width           : 20px;
+            text-align      : center;
+            color           : white;
+
+            .fa-circle:before {
+
+                color: #e91e63;
+            }
         }
     }
 

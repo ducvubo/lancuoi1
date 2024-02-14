@@ -13,7 +13,6 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import VerifyOTP from "./VerifyOTP";
 import OtpInput from "react-otp-input";
 import LoadingOverlay from "react-loading-overlay";
 class NhapTTDHTrangChu extends Component {

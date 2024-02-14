@@ -23,6 +23,7 @@ class ChatKhachHang extends Component {
   }
 
   async componentDidMount() {
+    this.props.tatthongbaotinnhanmoingdung()
     let kq = await this.laydoanchatkhachhang();
     if (kq !== -1) {
       this.ketnoiws();
@@ -108,6 +109,7 @@ class ChatKhachHang extends Component {
           },
         ],
       }));
+      this.props.thongbaotinnhanmoingdung()
     }
   };
 

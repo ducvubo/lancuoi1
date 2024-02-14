@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Router } from "react-router";
 import { createBrowserHistory } from "history";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { Scrollbars } from "react-custom-scrollbars";
 import { dangxuat, doiNgonNgu } from "./action/actions";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,12 +36,17 @@ class App extends Component {
     let parsedData = JSON.parse(myVariable);
     let ngonnguValue = parsedData.ngonngu;
     this.props.doiNgonNgu(ngonnguValue.replace(/^"(.*)"$/, "$1"));
-  }
-  
+  };
+
   componentDidMount() {
+    this.props.ngonngu === "vi"
+      ? toast.success("Vui lòng mở tin nhắn để không bỏ lỡ thông báo!!!")
+      : toast.success(
+          "Please open the message so you don't miss the notification!!!"
+        );
     window.addEventListener("storage", this.handleStorageChange);
   }
-  
+
   componentWillUnmount() {
     window.removeEventListener("storage", this.handleStorageChange);
   }

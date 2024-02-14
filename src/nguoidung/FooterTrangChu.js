@@ -14,8 +14,12 @@ class FooterTrangChu extends Component {
     super(props);
     this.state = {
       trangthai: false,
+      tinnhanmoinguoidung: false,
     };
   }
+
+  componentDidMount() {}
+
   battatchat = () => {
     if (this.props.thongtinnguoidung) {
       this.setState({
@@ -29,12 +33,22 @@ class FooterTrangChu extends Component {
   };
   tatchat = () => {
     this.setState({
-      trangthai:false
+      trangthai: false,
+    });
+  };
+  thongbaotinnhanmoingdung = () => {
+    this.setState({
+      tinnhanmoinguoidung:true
+    })
+  }
+  tatthongbaotinnhanmoingdung = () => {
+    this.setState({
+      tinnhanmoinguoidung:false
     })
   }
   render() {
     let { thongtinnguoidung, ktdangnhap } = this.props;
-    let { trangthai } = this.state;
+    let { trangthai, tinnhanmoinguoidung } = this.state;
     return (
       <div className="footertrangchu">
         <div className="item13">
@@ -118,12 +132,18 @@ class FooterTrangChu extends Component {
         <div className="item140">
           {trangthai === true && ktdangnhap === true ? (
             <div className="manhinhchat">
-              <ChatKhachHang 
-              tatchat={this.tatchat}
+              <ChatKhachHang tatchat={this.tatchat} 
+              thongbaotinnhanmoingdung = {this.thongbaotinnhanmoingdung}
+              tatthongbaotinnhanmoingdung = {this.tatthongbaotinnhanmoingdung}
               />
             </div>
           ) : null}
           <div className="chat">
+            {tinnhanmoinguoidung && (
+              <span className="sotinnhanmoi">
+                <i className="fas fa-circle"></i>
+              </span>
+            )}
             <img src={ms} onClick={() => this.battatchat()} />
           </div>
         </div>

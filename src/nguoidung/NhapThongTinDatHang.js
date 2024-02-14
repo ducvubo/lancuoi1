@@ -15,7 +15,6 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import VerifyOTP from "./VerifyOTP";
 class NhapThongTinDatHang extends Component {
   constructor(props) {
     super(props);

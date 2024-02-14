@@ -31,6 +31,7 @@ class ChatCuaHang extends Component {
   }
 
   async componentDidMount() {
+    this.props.tatthongbaotinhanmoi()
     let kq = await this.laytatcacuoctrochuyen();
     let kq1 = await this.laytatcakhachhang();
     if (kq !== -1 && kq1 !== -1) {
@@ -74,6 +75,7 @@ class ChatCuaHang extends Component {
           tinnhandata.nguoigui !== "nhanvien"
         ) {
           doanchat.trangthaixem = tinnhandata.trangthaixem;
+          this.props.thongbaotinnhanmoi()
         }
       });
       this.setState({
