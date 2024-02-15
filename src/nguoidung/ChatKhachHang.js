@@ -23,7 +23,7 @@ class ChatKhachHang extends Component {
   }
 
   async componentDidMount() {
-    this.props.tatthongbaotinnhanmoingdung()
+    this.props.tatthongbaotinnhanmoingdung();
     let kq = await this.laydoanchatkhachhang();
     if (kq !== -1) {
       this.ketnoiws();
@@ -109,7 +109,7 @@ class ChatKhachHang extends Component {
           },
         ],
       }));
-      this.props.thongbaotinnhanmoingdung()
+      this.props.thongbaotinnhanmoingdung();
     }
   };
 
@@ -191,6 +191,7 @@ class ChatKhachHang extends Component {
 
   render() {
     let { tinnhanmoi, tinnhanArr, anhUrl, xemanh } = this.state;
+    console.log(tinnhanArr);
     let { ngonngu } = this.props;
     return (
       <div className="chatkhachhang">

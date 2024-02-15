@@ -31,7 +31,7 @@ class ChatCuaHang extends Component {
   }
 
   async componentDidMount() {
-    this.props.tatthongbaotinhanmoi()
+    this.props.tatthongbaotinhanmoi();
     let kq = await this.laytatcacuoctrochuyen();
     let kq1 = await this.laytatcakhachhang();
     if (kq !== -1 && kq1 !== -1) {
@@ -75,7 +75,7 @@ class ChatCuaHang extends Component {
           tinnhandata.nguoigui !== "nhanvien"
         ) {
           doanchat.trangthaixem = tinnhandata.trangthaixem;
-          this.props.thongbaotinnhanmoi()
+          this.props.thongbaotinnhanmoi();
         }
       });
       this.setState({
@@ -530,12 +530,12 @@ class ChatCuaHang extends Component {
                             </div>
                             <div className="user_info">
                               <span className="ten">{item.ten}</span>
-                                {item.trangthai === true ? (
-                                  <p className="onof">Online</p>
-                                ) : (
-                                  <p className="onof">Offline</p>
-                                )}
-                              </div>
+                              {item.trangthai === true ? (
+                                <p className="onof">Online</p>
+                              ) : (
+                                <p className="onof">Offline</p>
+                              )}
+                            </div>
                             <div className="img_conttinhanmoi">
                               {item.trangthaixem === "chuaxem" && (
                                 <span className="online_icon tinnhanmoi"></span>
@@ -565,8 +565,8 @@ class ChatCuaHang extends Component {
                     <div className="card-header msg_head">
                       <div className="d-flex bd-highlight">
                         <div className="user_info">
-                          <span>
-                            <b>{tennguoinhan}</b>
+                          <span className="tennguoidangchat">
+                            {tennguoinhan}
                           </span>
                         </div>
                       </div>

@@ -184,7 +184,7 @@ class HeaderTrangChu extends Component {
               danhmucnoibat.length > 0 &&
               danhmucnoibat.map((item, index) => {
                 return (
-                  <li key={index}>
+                  <li key={index} className="lidau">
                     <Link
                       style={{ textDecoration: "none", color: "black" }}
                       to={`/hoatheodanhmuc/${item.id}`}

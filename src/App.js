@@ -19,11 +19,10 @@ import GioHang from "./nguoidung/GioHang";
 import HoaTheoDanhMucTheoChiTiet from "./nguoidung/HoaTheoDanhMucTheoChiTiet";
 import HoaTheoDanhMuc from "./nguoidung/HoaTheoDanhMuc";
 import QuanLyDonHang from "./nguoidung/QuanLyDonHang";
-import HeaderTrangChu from "./nguoidung/HeaderTrangChu";
-import FooterTrangChu from "./nguoidung/FooterTrangChu";
 import TimHoa from "./nguoidung/TimHoa";
 import DatHang from "./nguoidung/DatHang";
 import ThongTinNguoiDung from "./nguoidung/ThongTinNguoiDung";
+import BannerShow from "./nguoidung/BannerShow";
 const history = createBrowserHistory();
 class App extends Component {
   constructor(props) {
@@ -39,12 +38,25 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.props.ngonngu === "vi"
-      ? toast.success("Vui lòng mở tin nhắn để không bỏ lỡ thông báo!!!")
-      : toast.success(
-          "Please open the message so you don't miss the notification!!!"
-        );
+    if (this.props.thongtinnguoidung) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Vui lòng mở tin nhắn để không bỏ lỡ thông báo!!!")
+        : toast.success(
+            "Please open the message so you don't miss the notification!!!"
+          );
+    }
+
     window.addEventListener("storage", this.handleStorageChange);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.thongtinnguoidung !== this.props.thongtinnguoidung) {
+      this.props.ngonngu === "vi"
+        ? toast.success("Vui lòng mở tin nhắn để không bỏ lỡ thông báo!!!")
+        : toast.success(
+            "Please open the message so you don't miss the notification!!!"
+          );
+    }
   }
 
   componentWillUnmount() {

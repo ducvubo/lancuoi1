@@ -144,7 +144,8 @@ class FooterTrangChu extends Component {
                 <i className="fas fa-circle"></i>
               </span>
             )}
-            <img src={ms} onClick={() => this.battatchat()} />
+            {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" && <img src={ms} onClick={() => this.battatchat()} />}
+            
           </div>
         </div>
         <div className="item14">

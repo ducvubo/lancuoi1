@@ -644,7 +644,9 @@ class QuanLyHoa extends Component {
               value={iddanhmuchoachitiet ? iddanhmuchoachitiet : ""}
             >
               <option value={null}>
-                <FormattedMessage id="quanlyhoachuacodmct" />
+                {this.props.ngonngu === "vi"
+                  ? "Chưa có danh mục hoa chi tiết vui lòng chọn danh mục!!"
+                  : "here is no detailed flower list yet, please select a category!!!"}
               </option>
               {danhmuchoachitietArr &&
                 danhmuchoachitietArr.length > 0 &&

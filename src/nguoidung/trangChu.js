@@ -10,6 +10,7 @@ import * as actions from "../action/actions";
 import { apihoagiamgia, apihoatheodanhmucnoibat } from "../API/ApiTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import HeaderTrangChu from "./HeaderTrangChu";
+import BannerShow from "./BannerShow";
 import { FormattedMessage } from "react-intl";
 class trangChu extends Component {
   constructor(props) {
@@ -1057,6 +1058,7 @@ class trangChu extends Component {
           </div>
           <FooterTrangChu />
         </div>
+        <BannerShow/>
       </>
     );
   }

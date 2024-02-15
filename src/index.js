@@ -4,32 +4,25 @@ import "./styles.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import { store, persistedStore } from "./redux/store";
 import DoiNgonNgu from "./DoiNgonNgu";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import rootReducer from "./reducer/rootReducer";
-import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 
-const store1 = createStore(rootReducer, applyMiddleware(thunk));
-const persistedStore = persistStore(store1);
 
 const renderApp = () => {
   ReactDOM.render(
-    <Provider store={store1}>
+    <Provider store={store}>
       <PersistGate persistor={persistedStore} loading={null}>
         <DoiNgonNgu>
           <App />
         </DoiNgonNgu>
-        </PersistGate>
+      </PersistGate>
     </Provider>,
     document.getElementById("root")
   );
 };
 
 renderApp();
-
 
 // ReactDOM.render(
 //  <Provider store={store1}>

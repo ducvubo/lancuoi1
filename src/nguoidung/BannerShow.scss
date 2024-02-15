@@ -1,0 +1,17 @@
+.showbanner {
+    font-weight    : 400;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+
+    .anhbanner {
+        position: relative;
+    }
+
+    .tatbanner {
+        position: absolute;
+        z-index : 1;
+        left    : 630px;
+        top     : 0px;
+    }
+}
