@@ -22,7 +22,7 @@ import QuanLyDonHang from "./nguoidung/QuanLyDonHang";
 import TimHoa from "./nguoidung/TimHoa";
 import DatHang from "./nguoidung/DatHang";
 import ThongTinNguoiDung from "./nguoidung/ThongTinNguoiDung";
-import BannerShow from "./nguoidung/BannerShow";
+import TestMap from "./nguoidung/TestMap"
 const history = createBrowserHistory();
 class App extends Component {
   constructor(props) {
@@ -88,6 +88,7 @@ class App extends Component {
             <Route path={"/donhang/:id"} component={QuanLyDonHang} />
             <Route path={"/dathang"} component={DatHang} />
             <Route path={"/timhoa"} component={TimHoa} />
+            <Route path={"/map"} component={TestMap} />
             {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" ? (
               <Redirect to={"/trangchu"} />
             ) : (

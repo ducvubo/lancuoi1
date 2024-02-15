@@ -69,13 +69,6 @@ class GioHang extends Component {
             "Your login session is invalid, please log in again to continue!!!"
           );
     }
-    if (kq && kq.maCode === 0) {
-      let data1 = kq.data ? kq.data.hoas : null;
-      this.setState({
-        giohang: data1,
-        idgiohang: kq.data.id,
-      });
-    }
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
         ? toast.error(
@@ -83,6 +76,22 @@ class GioHang extends Component {
           )
         : toast.error(
             "You are not logged in, please log in to view your shopping cart!!!"
+          );
+    }
+    if (kq && kq.maCode === 0) {
+      let data1 = kq.data ? kq.data.hoas : null;
+      this.setState({
+        giohang: data1,
+        idgiohang: kq.data.id,
+      });
+    }
+    if (kq && kq.maCode === 2) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Xin lỗi vì sự bất tiện này,quý khách vui lòng liên hệ với cửa hàng để khắc phục"
+          )
+        : toast.error(
+            "Sorry for this inconvenience, please contact the store to fix it"
           );
     }
   };
@@ -202,7 +211,7 @@ class GioHang extends Component {
         };
       }),
     };
-   let kq = await apisuagiohang(buildata);
+    let kq = await apisuagiohang(buildata);
     if (kq.maCode === 8) {
       this.props.ngonngu === "vi"
         ? toast.error(
@@ -256,25 +265,25 @@ class GioHang extends Component {
         };
       }),
     };
-  let kq =  await apisuagiohang(buildata);
-  if (kq.maCode === 8) {
-    this.props.ngonngu === "vi"
-      ? toast.error(
-          "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-        )
-      : toast.error(
-          "Your login has expired, please log in again to continue!!!"
-        );
-  }
-  if (kq.maCode === 9) {
-    this.props.ngonngu === "vi"
-      ? toast.error(
-          "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-        )
-      : toast.error(
-          "Your login session is invalid, please log in again to continue!!!"
-        );
-  }
+    let kq = await apisuagiohang(buildata);
+    if (kq.maCode === 8) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login has expired, please log in again to continue!!!"
+          );
+    }
+    if (kq.maCode === 9) {
+      this.props.ngonngu === "vi"
+        ? toast.error(
+            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+          )
+        : toast.error(
+            "Your login session is invalid, please log in again to continue!!!"
+          );
+    }
   };
 
   thongtinhoa = (id) => {
@@ -369,14 +378,30 @@ class GioHang extends Component {
               <thead>
                 <tr>
                   <th> </th>
-                  <th scope="col"><FormattedMessage id="giohanghinhanh"/></th>
-                  <th scope="col"><FormattedMessage id="giohangtensp"/></th>
-                  <th scope="col"><FormattedMessage id="giohangsoluongcon"/></th>
-                  <th scope="col"><FormattedMessage id="giohangsoluongmua"/></th>
-                  <th scope="col"><FormattedMessage id="giohanggiathuc"/></th>
-                  <th scope="col"><FormattedMessage id="giohanggiam"/></th>
-                  <th scope="col"><FormattedMessage id="giohanggiagiam"/></th>
-                  <th scope="col"><FormattedMessage id="giohangtongcong"/></th>
+                  <th scope="col">
+                    <FormattedMessage id="giohanghinhanh" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="giohangtensp" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="giohangsoluongcon" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="giohangsoluongmua" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="giohanggiathuc" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="giohanggiam" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="giohanggiagiam" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="giohangtongcong" />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -411,9 +436,9 @@ class GioHang extends Component {
                               height={"51px"}
                             />
                           </td>
-                          <td 
-                          onClick={() => this.thongtinhoa(item.id)}
-                          style={{ cursor: 'pointer' }}
+                          <td
+                            onClick={() => this.thongtinhoa(item.id)}
+                            style={{ cursor: "pointer" }}
                           >
                             {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                           </td>
@@ -463,13 +488,13 @@ class GioHang extends Component {
                   <>
                     <tr>
                       <td colSpan="8" className="gia">
-                        <FormattedMessage id="giohanggiachuagiam"/>
+                        <FormattedMessage id="giohanggiachuagiam" />
                       </td>
                       <td>{giachuagiam.toLocaleString()}</td>
                     </tr>
                     <tr>
                       <td colSpan="8" className="gia">
-                       <FormattedMessage id="giohanggiasaukhigiam"/>
+                        <FormattedMessage id="giohanggiasaukhigiam" />
                       </td>
                       <td>{giagiam.toLocaleString()}</td>
                     </tr>
@@ -482,7 +507,7 @@ class GioHang extends Component {
                 className="btn btndathang"
                 onClick={() => this.doitrangthai()}
               >
-                <FormattedMessage id="giohangmuahang"/>
+                <FormattedMessage id="giohangmuahang" />
               </button>
             ) : null}
           </div>
@@ -493,10 +518,18 @@ class GioHang extends Component {
                 <table className="table table-bordered">
                   <thead>
                     <tr>
-                      <th scope="col"><FormattedMessage id="dathangsanpham"/></th>
-                      <th scope="col"><FormattedMessage id="dathangdongia"/></th>
-                      <th scope="col"><FormattedMessage id="dathangsoluong"/></th>
-                      <th scope="col"><FormattedMessage id="dathangthanhtien"/></th>
+                      <th scope="col">
+                        <FormattedMessage id="dathangsanpham" />
+                      </th>
+                      <th scope="col">
+                        <FormattedMessage id="dathangdongia" />
+                      </th>
+                      <th scope="col">
+                        <FormattedMessage id="dathangsoluong" />
+                      </th>
+                      <th scope="col">
+                        <FormattedMessage id="dathangthanhtien" />
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -512,9 +545,11 @@ class GioHang extends Component {
                         }
                         return (
                           <tr key={index}>
-                            <td scope="row" className="tenanh"
-                            onClick={() => this.thongtinhoa(item.id)}
-                            style={{ cursor: 'pointer' }}
+                            <td
+                              scope="row"
+                              className="tenanh"
+                              onClick={() => this.thongtinhoa(item.id)}
+                              style={{ cursor: "pointer" }}
                             >
                               <img
                                 src={anhnoibat}
@@ -542,7 +577,9 @@ class GioHang extends Component {
 
                     <tr>
                       <td className="phuongthucvanchuyen">
-                        <span><FormattedMessage id="dathangptvanchuyen"/></span>
+                        <span>
+                          <FormattedMessage id="dathangptvanchuyen" />
+                        </span>
                       </td>
                       <td colSpan="2">
                         <select
@@ -572,8 +609,12 @@ class GioHang extends Component {
               </div>
               <div className="chitietthanhtoan">
                 <div className="phuongthucthanhtoan mt-5">
-                  <span className="item1"><FormattedMessage id="dathangptthanhtoan"/></span>
-                  <span className="item2"><FormattedMessage id="dathangthanhtoankhinhan"/></span>
+                  <span className="item1">
+                    <FormattedMessage id="dathangptthanhtoan" />
+                  </span>
+                  <span className="item2">
+                    <FormattedMessage id="dathangthanhtoankhinhan" />
+                  </span>
                 </div>
               </div>
               <div className="thanhtoan mt-3">
@@ -586,7 +627,7 @@ class GioHang extends Component {
                 {/* <span>{giagiam}</span>
                 <span>{giaship123}</span> */}
                 <span>
-                  <FormattedMessage id="dathangtongtien"/>{" "}
+                  <FormattedMessage id="dathangtongtien" />{" "}
                   <label>
                     {" "}
                     {ngonngu === "vi"
@@ -600,13 +641,13 @@ class GioHang extends Component {
                   className="btn btndathang"
                   onClick={() => this.doitrangthai()}
                 >
-                  <FormattedMessage id="dathanghuy"/>
+                  <FormattedMessage id="dathanghuy" />
                 </button>
                 <button
                   className="btn btndathang"
                   onClick={() => this.dathang()}
                 >
-                  <FormattedMessage id="dathang"/>
+                  <FormattedMessage id="dathang" />
                 </button>
               </div>
             </div>
