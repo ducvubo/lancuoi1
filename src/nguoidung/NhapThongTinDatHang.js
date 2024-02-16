@@ -174,7 +174,7 @@ class NhapThongTinDatHang extends Component {
         ? toast.success("Đặt hàng thất bại")
         : toast.success("Order error");
     }
-  };
+   };
 
   nhapotpgiohang = (event) => {
     console.log(event);

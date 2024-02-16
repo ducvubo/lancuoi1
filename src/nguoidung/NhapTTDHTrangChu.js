@@ -113,10 +113,10 @@ class NhapTTDHTrangChu extends Component {
   };
 
   dathang = async () => {
-    this.guiOTP();
-    this.setState({
-      loadingdathang: true,
-    });
+    // this.guiOTP();
+    // this.setState({
+    //   loadingdathang: true,
+    // });
     let token = await apirefreshtoken();
     if (token.maCode === 10) {
       this.props.ngonngu === "vi"
