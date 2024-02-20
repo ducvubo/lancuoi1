@@ -146,7 +146,9 @@ class QuanLyDonHangChuaXacNhan extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    ngonngu:state.web.ngonngu
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

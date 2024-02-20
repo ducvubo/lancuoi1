@@ -9,33 +9,45 @@
         margin        : 20px 0;
 
     }
-.item2{
-    .chonngay{
-        margin-top: 37px;
-        span{
-            font-weight: 600;
+
+    .item2 {
+        .chonngay {
+            margin-top: 37px;
+
+            span {
+                font-weight: 600;
+            }
+
+        }
+
+        .xuatfileexcel {
+            height    : 38px;
+            margin-top: 31px;
+        }
+
+        div {
+            input[type="date"]::-webkit-clear-button {
+                display: none;
+            }
         }
 
     }
-    .xuatfileexcel{
-        height: 38px;
-        margin-top: 31px;
-    }
-    div{
-        input[type="date"]::-webkit-clear-button {
-            display: none;
-          }
-    }
-    
-}
+
     .item3 {
         margin-top: 20px;
 
+        thead {
+            position        : sticky;
+            top             : 30px;
+            background-color: white;
+            z-index         : 10;
+        }
+
         i {
-            margin: 0px 10px;
+            margin : 0px 10px;
             opacity: 0.5;
 
-            &:hover{
+            &:hover {
                 opacity: 1;
             }
         }

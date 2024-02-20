@@ -12,41 +12,6 @@ import { apitimhoanguoidung } from "../API/ApiTrangChu";
 import { toast } from "react-toastify";
 import store from "../redux/store";
 
-// function handleStorageChange(event) {
-//   return async (dispatch, getState) => {
-//     try {
-//       let myVariable = localStorage.getItem("persist:web");
-//       let parsedData = JSON.parse(myVariable);
-//       let ngonnguValue = parsedData.ngonngu;
-//       dispatch(doiNgonNgu(ngonnguValue.replace(/^"(.*)"$/, "$1")));
-//     } catch (e) {
-//       console.log("layGioiTinhThatBai loi: ", e);
-//     }
-//   };
-// }
-
-// // Lắng nghe sự kiện storage
-// window.addEventListener("storage", handleStorageChange);
-
-// let ngonngu1 = store.getState().web.ngonngu;
-// export const doiNgonNgu = (ngonngu) => {
-//   console.log(ngonngu);
-//   ngonngu1 = ngonngu;
-//   return {
-//     type: actionTypes.DOI_NGON_NGU,
-//     ngonngu: ngonngu,
-//   };
-// };
-
-// function handleStorageChange(event) {
-//   let myVariable = localStorage.getItem("persist:web");
-//   let parsedData = JSON.parse(myVariable);
-//   let ngonnguValue = parsedData.ngonngu;
-//   doiNgonNgu(ngonnguValue.replace(/^"(.*)"$/, "$1"));
-// }
-
-// // Lắng nghe sự kiện storage
-// window.addEventListener("storage", handleStorageChange);
 let myVariable = localStorage.getItem("persist:web");
   let parsedData = JSON.parse(myVariable);
   let ngonnguValue = parsedData.ngonngu;

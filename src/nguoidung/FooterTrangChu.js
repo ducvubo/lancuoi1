@@ -9,6 +9,7 @@ import "./FooterTrangChu.scss";
 import ChatKhachHang from "./ChatKhachHang";
 import ms from "../image/ms.png";
 import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 class FooterTrangChu extends Component {
   constructor(props) {
     super(props);
@@ -38,14 +39,14 @@ class FooterTrangChu extends Component {
   };
   thongbaotinnhanmoingdung = () => {
     this.setState({
-      tinnhanmoinguoidung:true
-    })
-  }
+      tinnhanmoinguoidung: true,
+    });
+  };
   tatthongbaotinnhanmoingdung = () => {
     this.setState({
-      tinnhanmoinguoidung:false
-    })
-  }
+      tinnhanmoinguoidung: false,
+    });
+  };
   render() {
     let { thongtinnguoidung, ktdangnhap } = this.props;
     let { trangthai, tinnhanmoinguoidung } = this.state;
@@ -53,51 +54,91 @@ class FooterTrangChu extends Component {
       <div className="footertrangchu">
         <div className="item13">
           <div className="item131">
-            <img src={logo} width={"200px"} height={"200px"} />
-            <span>
+            <img src={logo} width={"150px"} height={"150px"} />
+            {/* <span>
               <br />
-              Hotline: 0373 853 243 - 0356 417 863
+              <FormattedMessage id="footerhottline" />
               <br />
               Email: vminhduc8@gmail.com
               <br />
-            </span>
-            <div className="qr-app">
+            </span> */}
+            {/* <div className="qr-app">
               <br />
               <div className="qr">
                 <img src={qr} width={"92px"} height={"114px"} />
               </div>
               <div className="app">
-                <span>Tải ứng dụng ngay!</span>
+                <span>
+                  <FormattedMessage id="footertaiungdung" />
+                </span>
                 <img src={apple} width={"139px"} height={"35px"} />
                 <img src={googleplay} width={"139px"} height={"35px"} />
               </div>
               <br />
             </div>
-            <img src={bocongthuong} width={"255px"} height={"96px"} />
+            <img src={bocongthuong} width={"255px"} height={"96px"} /> */}
           </div>
           <div className="item131">
-            <a href="#">
-              <b>CHĂM SÓC KHÁCH HÀNG</b>{" "}
+            <span>
+              <b>
+                <FormattedMessage id="footerlienhe" />
+              </b>
+            </span>
+            <span>
+              <FormattedMessage id="footerhottline" />
+              <br />
+              Email: hhflower0@gmail.com
+              <br />
+            </span>
+            {/* <a href="#">
+              <b>
+                <FormattedMessage id="footercskh" />
+              </b>{" "}
             </a>
-            <a href="#">Giới Thiệu</a>
-            <a href="#">Liên Hệ</a>
-            <a href="#">Chính Sách Vận Chuyển</a>
-            <a href="#">Câu Hỏi Thường Gặp</a>
-            <a href="#">Hình Thức Thanh Toán</a>
-            <a href="#">Bảo Mật Thông Tin</a>
-            <a href="#">Chính Sách Hoàn Tiền</a>
-            <a href="#">Xử Lý Khiếu Nại</a>
-            <a href="#">Tại Sao Nên Chọn Hhflower.vn</a>
-            <a href="#">Blog</a>
+            <a href="#">
+              <FormattedMessage id="footergioithieu" />
+            </a>
+            <a href="#">
+              <FormattedMessage id="footerlienhe" />
+            </a>
+            <a href="#">
+              <FormattedMessage id="footerchinhsach" />
+            </a>
+            <a href="#">
+              <FormattedMessage id="footercauhoi" />
+            </a>
+            <a href="#">
+              <FormattedMessage id="footerginhthucthanhtoan" />
+            </a> */}
+            {/* <a href="#">
+              <FormattedMessage id="footerbaomattt" />
+            </a>
+            <a href="#">
+              <FormattedMessage id="footercskhieunai" />
+            </a>
+            <a href="#">
+              <FormattedMessage id="footerxulykhieunai" />
+            </a>
+            <a href="#">
+              <FormattedMessage id="footertaisaonenchon" />
+            </a>
+            <a href="#">Blog</a> */}
           </div>
-          <div className="item131">
+          <div className="item131 theodoi">
             <span>
-              <b>THEO DÕI</b>
+              <b>
+                <FormattedMessage id="footertheodoi" />
+              </b>
             </span>
-            <span>
-              <i className="fab fa-facebook"></i>Facebook
-            </span>
-            <span>
+            <a
+              href={"https://www.facebook.com/people/HHFlower/61554958726343/"}
+              target="_blank"
+            >
+              <span>
+                <i className="fab fa-facebook"></i>Facebook
+              </span>
+            </a>
+            {/* <span>
               <i className="fab fa-twitter"></i>Twitter
             </span>
             <span>
@@ -108,33 +149,29 @@ class FooterTrangChu extends Component {
             </span>
             <span>
               <i className="fab fa-youtube"></i>Youtube
-            </span>
+            </span> */}
           </div>
           <div className="item131">
             <span>
-              <b>SHOP HOA HHFLOWER</b>
+              <b>
+                <FormattedMessage id="footershophoa" />
+              </b>
             </span>
             <span>
-              <b>Cửa Hàng TP HCM</b>225/3 Nguyễn Đình Chiểu, Phường 5, Quận 3,
-              TP.HCM
+              <b>
+                <FormattedMessage id="footercuahang" />
+              </b>{" "}
+              <FormattedMessage id="footerdiachi" />
             </span>
-            <span>
-              <b>Văn Phòng TP HCM</b>: 412 Lê Hồng Phong, Phường 1, Quận 10,
-              TP.HCM
-            </span>
-            <span>
-              <b>Chi nhánh Hà Nội</b>: 65 Trần Phú, Ba Đình, Hà Nội
-            </span>
-            <span>CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ ZAS</span>
-            <span>Mã số thuế: 0313630426</span>
           </div>
         </div>
         <div className="item140">
           {trangthai === true && ktdangnhap === true ? (
             <div className="manhinhchat">
-              <ChatKhachHang tatchat={this.tatchat} 
-              thongbaotinnhanmoingdung = {this.thongbaotinnhanmoingdung}
-              tatthongbaotinnhanmoingdung = {this.tatthongbaotinnhanmoingdung}
+              <ChatKhachHang
+                tatchat={this.tatchat}
+                thongbaotinnhanmoingdung={this.thongbaotinnhanmoingdung}
+                tatthongbaotinnhanmoingdung={this.tatthongbaotinnhanmoingdung}
               />
             </div>
           ) : null}
@@ -144,22 +181,29 @@ class FooterTrangChu extends Component {
                 <i className="fas fa-circle"></i>
               </span>
             )}
-            {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" && <img src={ms} onClick={() => this.battatchat()} />}
-            
+            {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" && (
+              <img src={ms} onClick={() => this.battatchat()} />
+            )}
           </div>
         </div>
         <div className="item14">
           <span>
             <i className="fas fa-phone"></i>
-            Gọi ngay 0373 853 243
+            <FormattedMessage id="footergoingay" />
           </span>
-          <span className="ke">
+          {/* <span className="ke">
             <i className="fab fa-instagram"></i> Instagram
-          </span>
-          <span>
-            <i className="fab fa-facebook-messenger"></i>
-            Facebook
-          </span>
+          </span> */}
+          <a
+            href={"https://www.facebook.com/people/HHFlower/61554958726343/"}
+            target="_blank"
+            className="afooter"
+          >
+            <span className="ke">
+              <i className="fab fa-facebook"></i>
+              Facebook
+            </span>
+          </a>
         </div>
       </div>
     );

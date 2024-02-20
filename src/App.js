@@ -64,7 +64,6 @@ class App extends Component {
 
   render() {
     let { thongtinnguoidung } = this.props;
-    console.log(this.props.ngonngu);
     return (
       <React.Fragment>
         <Router history={history}>
@@ -87,6 +86,14 @@ class App extends Component {
             <Route path={"/donhang/:id"} component={QuanLyDonHang} />
             <Route path={"/dathang"} component={DatHang} />
             <Route path={"/timhoa"} component={TimHoa} />
+            {/* {!thongtinnguoidung.ktdangnhap ? (
+              <Redirect to={"/trangchu"} />
+            ) : thongtinnguoidung && thongtinnguoidung.quyenId === "R4" ? (
+              <Redirect to={"/trangchu"} />
+            ) : (
+              <Redirect to={"/quanly/"} />
+            )} */}
+
             {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" ? (
               <Redirect to={"/trangchu"} />
             ) : (

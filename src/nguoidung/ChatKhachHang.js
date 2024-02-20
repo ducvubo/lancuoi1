@@ -191,7 +191,6 @@ class ChatKhachHang extends Component {
 
   render() {
     let { tinnhanmoi, tinnhanArr, anhUrl, xemanh } = this.state;
-    console.log(tinnhanArr);
     let { ngonngu } = this.props;
     return (
       <div className="chatkhachhang">

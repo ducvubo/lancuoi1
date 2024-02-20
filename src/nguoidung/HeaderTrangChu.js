@@ -50,7 +50,7 @@ class HeaderTrangChu extends Component {
       <>
         <div className="headeritem1">
           <div className="sdt">
-            <FormattedMessage id="headersdt" />: 1900 633 045 | 0865 160 360
+            <FormattedMessage id="headersdt" />: 0373 853 243 | 0865 160 360
           </div>
           <div className="tk-gh-tt">
             <div className="icon taikhoan">
@@ -91,8 +91,10 @@ class HeaderTrangChu extends Component {
                     <FormattedMessage id="headerdangky" />
                   </li>
                 </Link>
-                <Link className= "thongtinnguoidung" to={"/thongtinnguoidung"}>
-                  <li className={ngonngu === "vi" ? " " : "thongtinnguoidungen"}>
+                <Link className="thongtinnguoidung" to={"/thongtinnguoidung"}>
+                  <li
+                    className={ngonngu === "vi" ? " " : "thongtinnguoidungen"}
+                  >
                     <FormattedMessage id="headerthongtinnguoidung" />
                   </li>
                 </Link>
@@ -146,15 +148,20 @@ class HeaderTrangChu extends Component {
         </div>
         <div className="headeritem2">
           <div className="fb-tw-it">
-            <span className="fb">
-              <i className="fab fa-facebook-f"></i>
-            </span>
-            <span className="tw">
+            <a
+              href={"https://www.facebook.com/people/HHFlower/61554958726343/"}
+              target="_blank"
+            >
+              <span className="fb">
+                <i className="fab fa-facebook-f"></i>
+              </span>
+            </a>
+            {/* <span className="tw">
               <i className="fab fa-twitter"></i>
             </span>
             <span className="it">
               <i className="fab fa-instagram "></i>
-            </span>
+            </span> */}
           </div>
           <div className="logo">
             <Link to={"/trangchu"}>

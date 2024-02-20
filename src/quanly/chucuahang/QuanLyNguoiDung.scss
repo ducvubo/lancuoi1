@@ -1,24 +1,35 @@
-.quanlynguoidung{
+.quanlynguoidung {
     margin: 0 35px;
 
-    .item1{
+    .item1 {
         text-transform: uppercase;
-        font-weight: 600;
-        font-size: 25px;
-        text-align: center;
-        margin: 20px 0;
+        font-weight   : 600;
+        font-size     : 25px;
+        text-align    : center;
+        margin        : 20px 0;
 
     }
 
-    .item3{
+    .item3 {
         margin-top: 20px;
 
-        i{
-            margin: 0px 10px;
+        thead {
+            position        : sticky;
+            top             : 30px;
+            background-color: white;
+            z-index         : 10;
+        }
+        i {
+            margin : 0px 10px;
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 1;
+            }
         }
 
         button {
-            border: none;
+            border          : none;
             background-color: white;
         }
     }

@@ -19,6 +19,13 @@
     .item3 {
         margin-top: 20px;
 
+        thead {
+            position        : sticky;
+            top             : 30px;
+            background-color: white;
+            z-index         : 10;
+        }
+
         i {
             margin : 0px 10px;
             opacity: 0.5;
@@ -44,6 +51,7 @@
         .xem {
             width: 172px;
         }
+
         .rating {
             display   : inline-block;
             margin-top: -6px;

@@ -7,6 +7,7 @@ import { apitatcahoanguoidung } from "../API/ApiTrangChu";
 import { FormattedMessage } from "react-intl";
 import _, { debounce } from "lodash";
 import * as actions from "../action/actions";
+import ReactPaginate from 'react-paginate';
 class TimHoa extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +63,9 @@ class TimHoa extends Component {
       this.laytatcahoanguoidung();
     }
   }, 2000);
+  //  handlePageClick = (event) => {
+  //   alert(event.selected)
+  // };
   render() {
     let { ngonngu } = this.props;
     let { tatcahoanguoidung } = this.state;
@@ -154,7 +158,28 @@ class TimHoa extends Component {
                 </div>
               );
             })}
+             
         </div>
+        {/* <ReactPaginate
+        nextLabel="next >"
+        onPageChange={this.handlePageClick}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
+        pageCount={50}
+        previousLabel="< previous"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
+        renderOnZeroPageCount={null}
+      /> */}
         <FooterTrangChu />
       </>
     );

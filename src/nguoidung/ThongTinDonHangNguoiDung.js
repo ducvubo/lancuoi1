@@ -210,7 +210,6 @@ class ThongTinDonHangNguoiDung extends Component {
       ngonngu,
     } = this.props;
     let { phanhoikhachhang } = this.state;
-    console.log(thongtindonhang);
     return (
       <div className="thongtindonhang">
         <Modal

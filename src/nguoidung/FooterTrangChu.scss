@@ -9,10 +9,12 @@
         margin-bottom  : 40px;
 
         .item131 {
-            width         : 25%;
-            margin-top    : 10px;
-            display       : flex;
-            flex-direction: column;
+            width          : 25%;
+            margin-top     : 10px;
+            display        : flex;
+            flex-direction : column;
+            justify-content: center;
+            align-items    : center;
 
             img {
                 margin-left: 10px;
@@ -38,33 +40,31 @@
             }
 
             span {
-                margin: 10px 0;
-                cursor: pointer;
+                margin   : 10px 0;
+                // cursor: pointer;
 
                 i {
                     margin-right: 5px;
                 }
             }
-
-
         }
-
+        .theodoi {
+            margin-top: -18px;
+        }
     }
-
-
     .item140 {
         .chat {
             position: fixed;
-            z-index: 20;
+            z-index : 20;
             bottom  : 50px;
             right   : 10px;
 
 
             img {
-                position: relative;
+                position     : relative;
                 border-radius: 50%;
-                cursor       : pointer;
             }
+
             .sotinnhanmoi {
                 position        : absolute;
                 top             : -6px;
@@ -76,9 +76,9 @@
                 width           : 20px;
                 text-align      : center;
                 color           : white;
-    
+
                 .fa-circle:before {
-    
+
                     color: #e91e63;
                 }
             }
@@ -102,9 +102,9 @@
 
 
         .ke {
-            border-left : 1px solid #ccc;
-            border-right: 1px solid #ccc;
-            padding     : 0 50px;
+            border-left    : 1px solid #ccc;
+            // border-right: 1px solid #ccc;
+            padding        : 0 50px;
 
 
         }
@@ -115,5 +115,9 @@
             }
         }
 
+        .afooter {
+            color          : #fde7ee;
+            text-decoration: none;
+        }
     }
 }

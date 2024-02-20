@@ -898,7 +898,7 @@ class QuanLyHoa extends Component {
           </label>{" "}
           <br />
           <MdEditor
-            style={{ height: "200px" }}
+            style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.nhapmotaVi}
             value={motaspVi ? motaspVi : ""}
@@ -909,7 +909,7 @@ class QuanLyHoa extends Component {
           </label>{" "}
           <br />
           <MdEditor
-            style={{ height: "200px" }}
+            style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.nhapmotaEn}
             value={motaspEn ? motaspEn : ""}
