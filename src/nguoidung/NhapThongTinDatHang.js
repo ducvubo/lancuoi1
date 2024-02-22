@@ -70,8 +70,7 @@ class NhapThongTinDatHang extends Component {
           callback: (response) => {
             // this.guiOTPgiohang();
           },
-          "expired-callback": (response) => {
-          },
+          "expired-callback": (response) => {},
         }
       );
     }
@@ -108,6 +107,11 @@ class NhapThongTinDatHang extends Component {
             );
       });
   };
+
+  // componentWillUnmount() {
+  //   delete window.confirmationResult;
+  //   delete window.RecaptchVerify;
+  // }
 
   dathang = async () => {
     this.guiOTPgiohang();
@@ -171,7 +175,7 @@ class NhapThongTinDatHang extends Component {
     //     ? toast.success("Đặt hàng thất bại")
     //     : toast.success("Order error");
     // }
-   };
+  };
 
   nhapotpgiohang = (event) => {
     this.setState({
@@ -255,6 +259,8 @@ class NhapThongTinDatHang extends Component {
           this.props.huydathang();
           this.props.doitrangthai();
           this.props.dathangthanhcong();
+          delete window.confirmationResult;
+          delete window.RecaptchVerify;
           // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
         } else {
           this.setState({
@@ -291,7 +297,10 @@ class NhapThongTinDatHang extends Component {
       donhangchitiet,
       phuongthucvanchuyenid,
       ngonngu,
+      idgiohangchitietduocchon,
     } = this.props;
+    console.log(donhangchitiet);
+    console.log(idgiohangchitietduocchon);
     let {
       tennguoinhan,
       email,
@@ -390,10 +399,18 @@ class NhapThongTinDatHang extends Component {
               </div>
             </div>
             <div className="item3 mb-3">
-              <button className="btn nutbam mr-3" onClick={huydathang} disabled={trangthainhapOTPgiohang}>
+              <button
+                className="btn nutbam mr-3"
+                onClick={huydathang}
+                disabled={trangthainhapOTPgiohang}
+              >
                 <FormattedMessage id="nhapttdhhuy" />
               </button>
-              <button className="btn nutbam" onClick={() => this.dathang()} disabled={trangthainhapOTPgiohang}>
+              <button
+                className="btn nutbam"
+                onClick={() => this.dathang()}
+                disabled={trangthainhapOTPgiohang}
+              >
                 <FormattedMessage id="nhapttdhxacnhan" />
               </button>
             </div>

@@ -455,6 +455,7 @@ class ChatCuaHang extends Component {
       anhUrl,
       xemanh,
     } = this.state;
+    console.log(tatcadoanchat);
     tatcadoanchat = tatcadoanchat.filter((item) => item.idchat !== "nhanvien");
     let { ngonngu, thongtinnguoidung } = this.props;
     tatcadoanchat.sort((a, b) => {

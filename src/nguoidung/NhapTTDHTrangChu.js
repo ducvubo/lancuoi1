@@ -70,8 +70,7 @@ class NhapTTDHTrangChu extends Component {
           callback: (response) => {
             // this.guiOTP();
           },
-          "expired-callback": (response) => {
-          },
+          "expired-callback": (response) => {},
         }
       );
     }
@@ -108,7 +107,10 @@ class NhapTTDHTrangChu extends Component {
             );
       });
   };
-
+  // componentWillUnmount() {
+  //   delete window.confirmationResult;
+  //   delete window.RecaptchVerify;
+  // }
   dathang = async () => {
     this.guiOTP();
     this.setState({
@@ -266,6 +268,8 @@ class NhapTTDHTrangChu extends Component {
               );
           this.props.huydathang();
           this.props.history.push("/trangchu");
+          delete window.confirmationResult;
+    delete window.RecaptchVerify;
           // this.props.doitrangthai()
           // this.props.dathangthanhcong ()
           // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
@@ -410,8 +414,9 @@ class NhapTTDHTrangChu extends Component {
             {trangthainhapOTP && (
               <div className="tranthaiotp">
                 <span className=" mr-5 spanotp">
-                  <FormattedMessage id="nhapttdhxacnhantxt1"/>{" "}
-                  {this.state.sodienthoai} <FormattedMessage id="nhapttdhxacnhantxt2"/>{" "}
+                  <FormattedMessage id="nhapttdhxacnhantxt1" />{" "}
+                  {this.state.sodienthoai}{" "}
+                  <FormattedMessage id="nhapttdhxacnhantxt2" />{" "}
                 </span>
                 <OtpInput
                   value={otp}
@@ -425,20 +430,20 @@ class NhapTTDHTrangChu extends Component {
                     className="btn btn-primary mr-3"
                     onClick={() => this.xacnhanotp()}
                   >
-                    <FormattedMessage id="nhapttdhxacnhan"/>
+                    <FormattedMessage id="nhapttdhxacnhan" />
                   </button>
                   <button
                     className="btn btn-warning"
                     onClick={() => this.xoaOTP()}
                   >
-                    <FormattedMessage id="nhapttdhxacnhanxoa"/>
+                    <FormattedMessage id="nhapttdhxacnhanxoa" />
                   </button>
                   <span
                     onClick={() => this.guiLaiOTP()}
                     className="ml-3"
                     style={{ cursor: "pointer" }}
                   >
-                    <FormattedMessage id="nhapttdhxacnhanguilai"/>
+                    <FormattedMessage id="nhapttdhxacnhanguilai" />
                   </span>
                 </div>
               </div>

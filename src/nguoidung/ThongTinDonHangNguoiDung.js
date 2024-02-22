@@ -161,6 +161,7 @@ class ThongTinDonHangNguoiDung extends Component {
     }
     let kq = await apihoanhanghoantien({
       madonhang: this.props.thongtindonhang.madonhang,
+      phanhoikhachhang:this.state.phanhoikhachhang,
     });
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
@@ -262,11 +263,23 @@ class ThongTinDonHangNguoiDung extends Component {
               </span>
               {thongtindonhang.ngonngu === "vi" ? (
                 <span>
-                  <b>Giá vận chuyển: </b> {thongtindonhang && thongtindonhang.vanchuyen && thongtindonhang.vanchuyen.giaVND ? thongtindonhang.vanchuyen.giaVND : null} đ
+                  <b>Giá vận chuyển: </b>{" "}
+                  {thongtindonhang &&
+                  thongtindonhang.vanchuyen &&
+                  thongtindonhang.vanchuyen.giaVND
+                    ? thongtindonhang.vanchuyen.giaVND
+                    : null}{" "}
+                  đ
                 </span>
               ) : (
                 <span>
-                  <b>Ship price: </b> {thongtindonhang && thongtindonhang.vanchuyen && thongtindonhang.vanchuyen.giaUSD ? thongtindonhang.vanchuyen.giaUSD : null} USD
+                  <b>Ship price: </b>{" "}
+                  {thongtindonhang &&
+                  thongtindonhang.vanchuyen &&
+                  thongtindonhang.vanchuyen.giaUSD
+                    ? thongtindonhang.vanchuyen.giaUSD
+                    : null}{" "}
+                  USD
                 </span>
               )}
 
@@ -333,7 +346,8 @@ class ThongTinDonHangNguoiDung extends Component {
               </table>
             </div>
             {thongtindonhang.trangthaidonhangid === "H1" ||
-            thongtindonhang.trangthaidonhangid === "H2" ? (
+            thongtindonhang.trangthaidonhangid === "H2" ||
+            thongtindonhang.trangthaidonhangid === "H5" ? (
               <div className="row">
                 <div className="form-group col-12 pl-5 pr-5">
                   <label>

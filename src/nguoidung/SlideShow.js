@@ -31,7 +31,7 @@ class SlideShow extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true, // Bật tự động chuyển đổi
-      autoplaySpeed: 3000,
+      autoplaySpeed: 2000,
     };
     return (
       <div className="item5">

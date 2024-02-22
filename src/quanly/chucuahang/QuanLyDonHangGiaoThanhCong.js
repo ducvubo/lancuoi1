@@ -105,9 +105,9 @@ class QuanLyDonHangGiaoThanhCong extends Component {
                 <th scope="col">
                   <FormattedMessage id="quanlydonhangtongtien" />
                 </th>
-                <th>
+                {/* <th>
                   <FormattedMessage id="quanlyhanhdong" />
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tbody>
@@ -124,19 +124,19 @@ class QuanLyDonHangGiaoThanhCong extends Component {
                         <td>{`${item.tongtien} ${
                           item.ngonngu === "vi" ? "đ" : "USD"
                         }`}</td>
-                        <td>
-                          <button
+                        {/* <td> */}
+                          {/* <button
                             className="btn btn-primary mr-2"
                             onClick={() => this.xemchitietdonhang(item)}
                           >
                             <FormattedMessage id="quanlydonhangxemchitiet" />
-                          </button>
+                          </button> */}
                           {/* <ThongTinDonHang
                             thongtindonhang={thongtindonhang}
                             trangthaithongtindonhang={trangthaithongtindonhang}
                             huyxemchitietdonhang={this.huyxemchitietdonhang}
                           /> */}
-                        </td>
+                        {/* </td> */}
                       </tr>
                     );
                   })

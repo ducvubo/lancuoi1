@@ -1,35 +1,32 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import {getAuth} from "firebase/auth"
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDRc_c-OI8awcCS9unRxEUc3-6b2bUAFAQ",
-//   authDomain: "tenkai-6ddaf.firebaseapp.com",
-//   projectId: "tenkai-6ddaf",
-//   storageBucket: "tenkai-6ddaf.appspot.com",
-//   messagingSenderId: "687847558248",
-//   appId: "1:687847558248:web:c3f0beb39a1d722868bfdd",
-//   measurementId: "G-SBNL6ZS4JR"
-// };
-
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC_gfFw8GERZnDKWwWmce6AdCQ1f35U4wA",
-  authDomain: "otphhflower.firebaseapp.com",
-  projectId: "otphhflower",
-  storageBucket: "otphhflower.appspot.com",
-  messagingSenderId: "784432944662",
-  appId: "1:784432944662:web:b8014a3b1bc59f43924737",
-  measurementId: "G-E8B7QZ9DB0"
+  apiKey: "AIzaSyDRc_c-OI8awcCS9unRxEUc3-6b2bUAFAQ",
+  authDomain: "tenkai-6ddaf.firebaseapp.com",
+  projectId: "tenkai-6ddaf",
+  storageBucket: "tenkai-6ddaf.appspot.com",
+  messagingSenderId: "687847558248",
+  appId: "1:687847558248:web:c3f0beb39a1d722868bfdd",
+  measurementId: "G-SBNL6ZS4JR",
 };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyC_gfFw8GERZnDKWwWmce6AdCQ1f35U4wA",
+//   authDomain: "otphhflower.firebaseapp.com",
+//   projectId: "otphhflower",
+//   storageBucket: "otphhflower.appspot.com",
+//   messagingSenderId: "784432944662",
+//   appId: "1:784432944662:web:b8014a3b1bc59f43924737",
+//   measurementId: "G-E8B7QZ9DB0"
+// };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+const auth = getAuth(app);
 const analytics = getAnalytics(app);
-export default auth
-
+export default auth;
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyAjsNCH04W4L5xmsv5LLotEcgr648UGIaY",

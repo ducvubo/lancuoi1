@@ -29,6 +29,7 @@ class GioHang extends Component {
       giagiam: 0,
       phuongthucvanchuyenid: "",
       giaship: "",
+      datasuagiohang: "",
 
       trangthai: false,
       trangthainhapthongtin: false,
@@ -148,6 +149,14 @@ class GioHang extends Component {
     if (prevState.trangthainhapthongtin !== this.state.trangthainhapthongtin) {
       await this.laygiohang();
     }
+    // if (prevState.giohang !== this.state.giohang) {
+    //   console.log("abc")
+    //   this.setState({
+    //     idgiohangchitietduocchon: "",
+    //     sanphamduocchon: [],
+    //     donhangchitiet: [],
+    //   });
+    // }
   }
 
   onChangeNhap = (event, id) => {
@@ -180,13 +189,13 @@ class GioHang extends Component {
   };
 
   tangsoluong = async (hoa) => {
-    let token = await apirefreshtoken();
+    // let token = await apirefreshtoken();
 
-    if (token.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-        : toast.error("You are not logged in, please log in!!!");
-    }
+    // if (token.maCode === 10) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+    //     : toast.error("You are not logged in, please log in!!!");
+    // }
 
     let indexhoa = this.state.giohang.findIndex((item) => {
       return item.id == hoa.id;
@@ -211,35 +220,51 @@ class GioHang extends Component {
         };
       }),
     };
-    let kq = await apisuagiohang(buildata);
-    if (kq.maCode === 8) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login has expired, please log in again to continue!!!"
-          );
-    }
-    if (kq.maCode === 9) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login session is invalid, please log in again to continue!!!"
-          );
-    }
+    let copysanphamduocchon = [...this.state.sanphamduocchon];
+    copysanphamduocchon &&
+      copysanphamduocchon.length > 0 &&
+      copysanphamduocchon.map((item) => item.soluongmua--);
+    this.setState({
+      sanphamduocchon: copysanphamduocchon,
+      datasuagiohang: buildata,
+    });
+    // let kq = await apisuagiohang(buildata);
+    // if (kq.maCode === 0) {
+    //   await this.laygiohang();
+    //   this.setState({
+    //     idgiohangchitietduocchon: "",
+    //     sanphamduocchon: [],
+    //     donhangchitiet: [],
+    //   });
+    // }
+    // if (kq.maCode === 8) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login has expired, please log in again to continue!!!"
+    //       );
+    // }
+    // if (kq.maCode === 9) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login session is invalid, please log in again to continue!!!"
+    //       );
+    // }
   };
 
   giamsoluong = async (hoa) => {
-    let token = await apirefreshtoken();
+    // let token = await apirefreshtoken();
 
-    if (token.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-        : toast.error("You are not logged in, please log in!!!");
-    }
+    // if (token.maCode === 10) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+    //     : toast.error("You are not logged in, please log in!!!");
+    // }
 
     let indexhoa = this.state.giohang.findIndex((item) => {
       return item.id == hoa.id;
@@ -265,26 +290,60 @@ class GioHang extends Component {
         };
       }),
     };
-    let kq = await apisuagiohang(buildata);
-    if (kq.maCode === 8) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login has expired, please log in again to continue!!!"
-          );
-    }
-    if (kq.maCode === 9) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login session is invalid, please log in again to continue!!!"
-          );
-    }
+    let copysanphamduocchon = [...this.state.sanphamduocchon];
+    copysanphamduocchon &&
+      copysanphamduocchon.length > 0 &&
+      copysanphamduocchon.map((item) => item.soluongmua--);
+    this.setState({
+      sanphamduocchon: copysanphamduocchon,
+    });
+    let copysanphamduocchon2 = [...this.state.sanphamduocchon];
+    let copyidgiohangchitietduocchon = [...this.state.idgiohangchitietduocchon];
+
+    copysanphamduocchon2 = copysanphamduocchon2.filter(
+      (item) => item.Giohanghoa.soluong !== 0
+    );
+    copyidgiohangchitietduocchon = copyidgiohangchitietduocchon.filter(
+      (item) => item.soluongmua !== 0
+    );
+
+    this.setState({
+      sanphamduocchon: copysanphamduocchon2,
+      idgiohangchitietduocchon: copyidgiohangchitietduocchon,
+      datasuagiohang: buildata,
+    });
+
+    // let kq = await apisuagiohang(buildata);
+    // if (kq.maCode === 0) {
+    //   await this.laygiohang();
+    //   this.setState({
+    //     idgiohangchitietduocchon: "",
+    //     sanphamduocchon: [],
+    //     donhangchitiet: [],
+    //   });
+    // }
+    // if (kq.maCode === 8) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login has expired, please log in again to continue!!!"
+    //       );
+    // }
+    // if (kq.maCode === 9) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login session is invalid, please log in again to continue!!!"
+    //       );
+    // }
   };
+  componentWillUnmount() {
+    apisuagiohang(this.state.datasuagiohang);
+  }
 
   thongtinhoa = (id) => {
     this.props.history.push(`/thongtinhoa/${id}`);
@@ -333,6 +392,7 @@ class GioHang extends Component {
     idgiohangchitietduocchonclone = this.state.sanphamduocchon.map(
       (item, index) => {
         return {
+          soluongmua: item.Giohanghoa.soluong,
           id: item.Giohanghoa.id,
         };
       }
@@ -345,6 +405,7 @@ class GioHang extends Component {
   };
 
   dathangthanhcong = () => {
+    console.log("dbe");
     this.setState({
       sanphamduocchon: [],
       giagiam: 0,
@@ -365,6 +426,9 @@ class GioHang extends Component {
       donhangchitiet,
       idgiohangchitietduocchon,
     } = this.state;
+    console.log(sanphamduocchon);
+    console.log(donhangchitiet);
+    console.log(idgiohangchitietduocchon);
     let { ngonngu } = this.props;
     let giaship123 = ngonngu === "vi" ? giaship.giaVND : giaship.giaUSD;
     let tongtien = giaship123 + giagiam;
@@ -465,12 +529,14 @@ class GioHang extends Component {
                             {ngonngu === "vi"
                               ? item.giathucVND.toLocaleString()
                               : item.giathucUSD}
+                            {this.props.ngonngu === "vi" ? "đ" : "USD"}
                           </td>
                           <td>{item.phantramgiam}%</td>
                           <td>
                             {ngonngu === "vi"
                               ? item.giasaukhigiamVND.toLocaleString()
                               : item.giasaukhigiamUSD}
+                            {this.props.ngonngu === "vi" ? "đ" : "USD"}
                           </td>
                           <td>
                             {ngonngu == "vi"
@@ -479,6 +545,7 @@ class GioHang extends Component {
                                   item.giasaukhigiamVND
                                 ).toLocaleString()
                               : item.Giohanghoa.soluong * item.giasaukhigiamUSD}
+                            {this.props.ngonngu === "vi" ? "đ" : "USD"}
                           </td>
                         </tr>
                       );
@@ -490,13 +557,20 @@ class GioHang extends Component {
                       <td colSpan="8" className="gia">
                         <FormattedMessage id="giohanggiachuagiam" />
                       </td>
-                      <td>{giachuagiam.toLocaleString()}</td>
+                      <td>
+                        {giachuagiam.toLocaleString()}{" "}
+                        {this.props.ngonngu === "vi" ? "đ" : "USD"}
+                      </td>
                     </tr>
                     <tr>
                       <td colSpan="8" className="gia">
                         <FormattedMessage id="giohanggiasaukhigiam" />
                       </td>
-                      <td>{giagiam.toLocaleString()}</td>
+
+                      <td>
+                        {giagiam.toLocaleString()}{" "}
+                        {this.props.ngonngu === "vi" ? "đ" : "USD"}
+                      </td>
                     </tr>
                   </>
                 ) : null}
@@ -563,6 +637,7 @@ class GioHang extends Component {
                               {ngonngu === "vi"
                                 ? item.giasaukhigiamVND.toLocaleString()
                                 : item.giasaukhigiamUSD}
+                              {ngonngu === "vi" ? "đ" : "USD"}
                             </td>
                             <td>{item.Giohanghoa.soluong}</td>
                             <td>
@@ -570,6 +645,7 @@ class GioHang extends Component {
                                 (ngonngu === "vi"
                                   ? item.giasaukhigiamVND
                                   : item.giasaukhigiamUSD)}
+                              {ngonngu === "vi" ? "đ" : "USD"}
                             </td>
                           </tr>
                         );

@@ -91,13 +91,15 @@ class HeaderTrangChu extends Component {
                     <FormattedMessage id="headerdangky" />
                   </li>
                 </Link>
-                <Link className="thongtinnguoidung" to={"/thongtinnguoidung"}>
-                  <li
-                    className={ngonngu === "vi" ? " " : "thongtinnguoidungen"}
-                  >
-                    <FormattedMessage id="headerthongtinnguoidung" />
-                  </li>
-                </Link>
+                {this.props.thongtinnguoidung && (
+                  <Link className="thongtinnguoidung" to={"/thongtinnguoidung"}>
+                    <li
+                      className={ngonngu === "vi" ? " " : "thongtinnguoidungen"}
+                    >
+                      <FormattedMessage id="headerthongtinnguoidung" />
+                    </li>
+                  </Link>
+                )}
               </ul>
             </div>
             <div className="icon">

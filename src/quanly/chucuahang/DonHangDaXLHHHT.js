@@ -82,7 +82,7 @@ class DonHangDaXLHHHT extends Component {
               <tr className="item31">
                  <th scope="col"><FormattedMessage id="quanlydonhangmadonhang"/></th>
                 <th scope="col"><FormattedMessage id="quanlydonhangten"/></th>
-                <th scope="col"><FormattedMessage id="quanlydonhangemail"/></th>
+                {/* <th scope="col"><FormattedMessage id="quanlydonhangemail"/></th> */}
                 <th scope="col"><FormattedMessage id="quanlydonhangsdt"/></th>
                 <th scope="col"><FormattedMessage id="quanlydonhangdiachi"/></th>
                 <th scope="col"><FormattedMessage id="quanlydonhangghichu"/></th>

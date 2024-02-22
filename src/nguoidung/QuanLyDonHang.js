@@ -41,10 +41,10 @@ class QuanLyDonHang extends Component {
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
         ? toast.error(
-            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
+            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem đơn hàng!!!"
           )
         : toast.error(
-            "You are not logged in, please log in to view your shopping cart!!!"
+            "You are not logged in, please log in to view your oder!!!"
           );
     }
     if (kq && kq.maCode === 8) {
