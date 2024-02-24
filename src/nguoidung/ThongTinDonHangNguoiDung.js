@@ -22,6 +22,12 @@ class ThongTinDonHangNguoiDung extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {}
 
+  // componentWillUnmount(){
+  //   this.setState({
+  //     phanhoikhachhang:''
+  //   })
+  // }
+
   onChangeNhap = (event, id) => {
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
@@ -91,6 +97,9 @@ class ThongTinDonHangNguoiDung extends Component {
         : toast.success("Order cancel successful!!!");
       this.props.huyxemchitietdonhang();
       this.props.laytatcadonhang();
+      this.setState({
+        phanhoikhachhang: "",
+      });
     } else {
       this.props.ngonngu === "vi"
         ? toast.success("Hủy đơn hàng thất bại")
@@ -161,7 +170,7 @@ class ThongTinDonHangNguoiDung extends Component {
     }
     let kq = await apihoanhanghoantien({
       madonhang: this.props.thongtindonhang.madonhang,
-      phanhoikhachhang:this.state.phanhoikhachhang,
+      phanhoikhachhang: this.state.phanhoikhachhang,
     });
     if (kq && kq.maCode === 10) {
       this.props.ngonngu === "vi"
@@ -196,6 +205,9 @@ class ThongTinDonHangNguoiDung extends Component {
         : toast.success("Request to return goods and refund successfully!!!");
       this.props.huyxemchitietdonhang();
       this.props.laytatcadonhang();
+      this.setState({
+        phanhoikhachhang: "",
+      });
     } else {
       this.props.ngonngu === "vi"
         ? toast.error("Yêu cầu hoàn hàng, hoàn tiền thất bại")

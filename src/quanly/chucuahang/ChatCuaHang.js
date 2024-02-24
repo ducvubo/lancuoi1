@@ -455,13 +455,22 @@ class ChatCuaHang extends Component {
       anhUrl,
       xemanh,
     } = this.state;
-    console.log(tatcadoanchat);
     tatcadoanchat = tatcadoanchat.filter((item) => item.idchat !== "nhanvien");
     let { ngonngu, thongtinnguoidung } = this.props;
     tatcadoanchat.sort((a, b) => {
-      if (a.trangthaixem === "chuaxem" && b.trangthaixem !== "chuaxem") {
+      if (
+        a.trangthaixem === "chuaxem" &&
+        b.trangthaixem !== "chuaxem" ||
+        a.trangthai === true &&
+        b.trangthai !== true
+      ) {
         return -1; // a lên đầu
-      } else if (a.trangthaixem !== "chuaxem" && b.trangthaixem === "chuaxem") {
+      } else if (
+        a.trangthaixem !== "chuaxem" &&
+        b.trangthaixem === "chuaxem" ||
+        a.trangthai !== true &&
+        b.trangthai === true
+      ) {
         return 1; // b lên đầu
       } else {
         return 0; // giữ nguyên vị trí

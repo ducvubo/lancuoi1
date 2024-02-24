@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Modal } from "reactstrap";
 import "./NhapThongTinDatHang.scss";
-import { apidathang } from "../API/ApiTrangChu";
+import { apidathang, apisuagiohang } from "../API/ApiTrangChu";
 import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
 import { withRouter } from "react-router-dom";
@@ -108,11 +108,6 @@ class NhapThongTinDatHang extends Component {
       });
   };
 
-  // componentWillUnmount() {
-  //   delete window.confirmationResult;
-  //   delete window.RecaptchVerify;
-  // }
-
   dathang = async () => {
     this.guiOTPgiohang();
     this.setState({
@@ -169,6 +164,10 @@ class NhapThongTinDatHang extends Component {
     //   this.props.huydathang();
     //   this.props.doitrangthai();
     //   this.props.dathangthanhcong();
+    //   // if(this.props.datasuagiohang){
+    //   //   console.log(this.props.datasuagiohang)
+    //   //   await apisuagiohang(this.props.datasuagiohang);
+    //   // }
     //   // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
     // } else {
     //   this.props.ngonngu === "vi"
@@ -256,9 +255,11 @@ class NhapThongTinDatHang extends Component {
             : toast.success(
                 "Order successful, waiting for staff to confirm!!!"
               );
+
           this.props.huydathang();
           this.props.doitrangthai();
           this.props.dathangthanhcong();
+
           delete window.confirmationResult;
           delete window.RecaptchVerify;
           // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
@@ -284,6 +285,8 @@ class NhapThongTinDatHang extends Component {
     });
   };
   guiLaiOTPgiohang = () => {
+    // delete window.confirmationResult;
+    // delete window.RecaptchVerify;
     this.guiOTPgiohang();
     this.setState({
       loadingdathanggiohang: true,

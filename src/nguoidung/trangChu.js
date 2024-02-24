@@ -46,7 +46,7 @@ class trangChu extends Component {
       let data1 = kq.data;
       let data2 = "";
       for (let i = 0; i < data1.length; i++) {
-        if (i === 4) {
+        if (i === 5) {
           data2 = [data1[i]];
           let epdata = data2
             .flatMap((item) =>
@@ -71,7 +71,7 @@ class trangChu extends Component {
             },
           });
         }
-        if (i === 3) {
+        if (i === 4) {
           data2 = [data1[i]];
           let epdata = data2
             .flatMap((item) =>
@@ -96,7 +96,7 @@ class trangChu extends Component {
             },
           });
         }
-        if (i === 2) {
+        if (i === 3) {
           data2 = [data1[i]];
           let epdata = data2
             .flatMap((item) =>
@@ -121,7 +121,7 @@ class trangChu extends Component {
             },
           });
         }
-        if (i === 1) {
+        if (i === 2) {
           data2 = [data1[i]];
           let epdata = data2
             .flatMap((item) =>
@@ -132,6 +132,21 @@ class trangChu extends Component {
             item.donoibat = parseFloat(item.donoibat);
           });
           let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+          console.log(sxdata);
+          sxdata &&
+            sxdata.length > 0 &&
+            sxdata.map((item) => {
+              let tongsosao =
+                item.hoabinhluan &&
+                item.hoabinhluan.reduce(
+                  (total, item) => total + item.sosaodanhgia,
+                  0
+                );
+             let trungbinh =
+                tongsosao / item.hoabinhluan.length;
+              item.danhgiatrungbinh = trungbinh;
+            });
+
           this.setState({
             danhmuchoathu4: {
               tendanhmuc:
@@ -146,7 +161,7 @@ class trangChu extends Component {
             },
           });
         }
-        if (i === 0) {
+        if (i === 1) {
           data2 = [data1[i]];
           let epdata = data2
             .flatMap((item) =>
@@ -195,6 +210,7 @@ class trangChu extends Component {
       danhmuchoathu4,
       danhmuchoathu5,
     } = this.state;
+    console.log(danhmuchoathu4);
     return (
       <>
         <div className="trangchu">
@@ -871,11 +887,20 @@ class trangChu extends Component {
               </span>
               <div>
                 <br />
+                {/* <iframe
+                  width="988"
+                  height="556"
+                  src="https://www.youtube.com/embed/20N-4QG0_V4"
+                  title="Hoa tươi hhflower"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe> */}
                 <iframe
                   width="560"
                   height="315"
-                  src="https://www.youtube.com/embed/32sYGCOYJUM"
-                  title="CHẠY NGAY ĐI | RUN NOW | SƠN TÙNG M-TP | Official Music Video"
+                  src="https://www.youtube.com/embed/20N-4QG0_V4"
+                  title="Hoa tươi hhflower"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -1058,7 +1083,7 @@ class trangChu extends Component {
           </div>
           <FooterTrangChu />
         </div>
-        <BannerShow/>
+        <BannerShow />
       </>
     );
   }

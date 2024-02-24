@@ -265,54 +265,54 @@ class QuanLyDanhGia extends Component {
                               ? item.hoabinhluan.tenhoavi
                               : item.hoabinhluan.tenhoaEn}
                           </td>
-                          <td rowSpan={item.traloibinhluan.length + 1}>
-                          <div className="rating">
-                                <input
-                                  value="5"
-                                  name="rating"
-                                  id="star51"
-                                  checked={item.sosaodanhgia === 5}
-                                  readOnly
-                                  type="radio"
-                                />
-                                <label htmlFor="star51"></label>
-                                <input
-                                  value="4"
-                                  name="rating"
-                                  id="star41"
-                                  checked={item.sosaodanhgia === 4}
-                                  readOnly
-                                  type="radio"
-                                />
-                                <label htmlFor="star41"></label>
-                                <input
-                                  value="3"
-                                  name="rating"
-                                  id="star31"
-                                  checked={item.sosaodanhgia === 3}
-                                  readOnly
-                                  type="radio"
-                                />
-                                <label htmlFor="star31"></label>
-                                <input
-                                  value="2"
-                                  name="rating"
-                                  id="star21"
-                                  checked={item.sosaodanhgia === 2}
-                                  readOnly
-                                  type="radio"
-                                />
-                                <label htmlFor="star21"></label>
-                                <input
-                                  value="1"
-                                  name="rating"
-                                  id="star11"
-                                  checked={item.sosaodanhgia === 1}
-                                  readOnly
-                                  type="radio"
-                                />
-                                <label htmlFor="star11"></label>
-                              </div>
+                          <td rowSpan={item.traloibinhluan.length + 1} className="sosao">
+                            <div className="rating">
+                              <input
+                                value="5"
+                                name={`rating${index}`}
+                                id={`star5${index}`}
+                                checked={item.sosaodanhgia === 5}
+                                readOnly
+                                type="radio"
+                              />
+                              <label htmlFor={`star5${index}`}></label>
+                              <input
+                                value="4"
+                                name={`rating${index}`}
+                                id={`star4${index}`}
+                                checked={item.sosaodanhgia === 4}
+                                readOnly
+                                type="radio"
+                              />
+                              <label htmlFor={`star4${index}`}></label>
+                              <input
+                                value="3"
+                                name={`rating${index}`}
+                                id={`star3${index}`}
+                                checked={item.sosaodanhgia === 3}
+                                readOnly
+                                type="radio"
+                              />
+                              <label htmlFor={`star3${index}`}></label>
+                              <input
+                                value="2"
+                                name={`rating${index}`}
+                                id={`star2${index}`}
+                                checked={item.sosaodanhgia === 2}
+                                readOnly
+                                type="radio"
+                              />
+                              <label htmlFor={`star2${index}`}></label>
+                              <input
+                                value="1"
+                                name={`rating${index}`}
+                                id={`star1${index}`}
+                                checked={item.sosaodanhgia === 1}
+                                readOnly
+                                type="radio"
+                              />
+                              <label htmlFor={`star1${index}`}></label>
+                            </div>
                           </td>
                           <td rowSpan={item.traloibinhluan.length + 1}>
                             {item.noidung}
@@ -368,7 +368,7 @@ class QuanLyDanhGia extends Component {
                                     )
                                   }
                                 >
-                                 <FormattedMessage id="quanlydanhgiaduyet"/>
+                                  <FormattedMessage id="quanlydanhgiaduyet" />
                                 </button>
                               ) : (
                                 <button
@@ -381,7 +381,7 @@ class QuanLyDanhGia extends Component {
                                     )
                                   }
                                 >
-                                  <FormattedMessage id="quanlydanhgiahuy"/>
+                                  <FormattedMessage id="quanlydanhgiahuy" />
                                 </button>
                               )}
                               <button
@@ -390,14 +390,14 @@ class QuanLyDanhGia extends Component {
                                   this.xoadanhgia(item.id, "danhgia")
                                 }
                               >
-                                <FormattedMessage id="quanlydanhgiaxoa"/>
+                                <FormattedMessage id="quanlydanhgiaxoa" />
                               </button>
                             </div>
                             <button
                               className="btn btn-danger mt-2 xem"
                               onClick={() => this.xemchitiet(item.idhoa)}
                             >
-                             <FormattedMessage id="quanlydanhgiaxemchitiet"/>
+                              <FormattedMessage id="quanlydanhgiaxemchitiet" />
                             </button>
                           </td>
                         </tr>
@@ -484,7 +484,7 @@ class QuanLyDanhGia extends Component {
                                             )
                                           }
                                         >
-                                          <FormattedMessage id="quanlydanhgiaduyet"/>
+                                          <FormattedMessage id="quanlydanhgiaduyet" />
                                         </button>
                                       ) : (
                                         <button
@@ -497,7 +497,7 @@ class QuanLyDanhGia extends Component {
                                             )
                                           }
                                         >
-                                          <FormattedMessage id="quanlydanhgiahuy"/>
+                                          <FormattedMessage id="quanlydanhgiahuy" />
                                         </button>
                                       )}
                                       <button
@@ -506,7 +506,7 @@ class QuanLyDanhGia extends Component {
                                           this.xoadanhgia(binhluan.id, "traloi")
                                         }
                                       >
-                                        <FormattedMessage id="quanlydanhgiaxoa"/>
+                                        <FormattedMessage id="quanlydanhgiaxoa" />
                                       </button>
                                     </td>
                                   </tr>

@@ -269,7 +269,7 @@ class NhapTTDHTrangChu extends Component {
           this.props.huydathang();
           this.props.history.push("/trangchu");
           delete window.confirmationResult;
-    delete window.RecaptchVerify;
+          delete window.RecaptchVerify;
           // this.props.doitrangthai()
           // this.props.dathangthanhcong ()
           // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
@@ -292,6 +292,8 @@ class NhapTTDHTrangChu extends Component {
     });
   };
   guiLaiOTP = () => {
+    // delete window.confirmationResult;
+    // delete window.RecaptchVerify;
     this.guiOTP();
     this.setState({
       loadingdathang: true,
@@ -313,6 +315,7 @@ class NhapTTDHTrangChu extends Component {
         className={"nhapthongtindathangtrangchu"}
         size="lg"
         //centered
+        toggle={this.toggle}
       >
         <LoadingOverlay
           active={loadingdathang}

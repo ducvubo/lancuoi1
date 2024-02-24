@@ -47,6 +47,7 @@ class ThongTinHoa extends Component {
       trangthaiphanhoichitiet: false,
       trangthaitraloidanhgia: false,
       sosaodanhgia: "",
+      sosaotrungbinh: "",
     };
   }
 
@@ -55,6 +56,7 @@ class ThongTinHoa extends Component {
     await this.thongtinhoa(id);
     await this.sanphamlienquan();
     await this.laybinhluantheohoa();
+    this.tinhsosaotrungbinh();
   }
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -70,7 +72,22 @@ class ThongTinHoa extends Component {
     if (prevState.thongtinhoa !== this.state.thongtinhoa) {
       this.sanphamlienquan();
     }
+    if (prevState.binhluantheohoa !== this.state.binhluantheohoa) {
+      this.tinhsosaotrungbinh();
+    }
   }
+
+  tinhsosaotrungbinh = () => {
+    let tongsosao = this.state.binhluantheohoa.reduce(
+      (total, item) => total + item.sosaodanhgia,
+      0
+    );
+    let trungbinh = tongsosao / this.state.binhluantheohoa.length;
+
+    this.setState({
+      sosaotrungbinh: trungbinh,
+    });
+  };
 
   ktdanhapthongtinchua = () => {
     let kt = true;
@@ -464,6 +481,7 @@ class ThongTinHoa extends Component {
       trangthaitraloidanhgia,
       noidungdanhgiatraloi,
       danhgiachitietid,
+      sosaotrungbinh,
     } = this.state;
     let anhnoibat = "";
     if (thongtinhoa.anhnoibat) {
@@ -532,11 +550,15 @@ class ThongTinHoa extends Component {
                   : thongtinhoa.tieudehoaEn}
               </span>
               <div className="sdt">
-                <span className="goi"><FormattedMessage id="thongtinhoagoingay"/></span>
+                <span className="goi">
+                  <FormattedMessage id="thongtinhoagoingay" />
+                </span>
                 <span className="sodienthoai">0373853243</span>
               </div>
               <div className="chat">
-                <span><FormattedMessage id="thongtinhoachatngay"/></span>
+                <span>
+                  <FormattedMessage id="thongtinhoachatngay" />
+                </span>
                 <div className="icon">
                   <img src={ms} />
                   <img src={zalo} />
@@ -544,13 +566,17 @@ class ThongTinHoa extends Component {
               </div>
               <div className="giaohang">
                 <div className="giaohang1">
-                  <span><FormattedMessage id="thongtinhoavanchuyen"/> </span>
+                  <span>
+                    <FormattedMessage id="thongtinhoavanchuyen" />{" "}
+                  </span>
                   <span className="giaohang11">
-                    <FormattedMessage id="thongtinhoanhanhchong"/>
+                    <FormattedMessage id="thongtinhoanhanhchong" />
                   </span>
                 </div>
 
-                <span><FormattedMessage id="thongtinhoaphigh"/></span>
+                <span>
+                  <FormattedMessage id="thongtinhoaphigh" />
+                </span>
               </div>
               <div className="ghichu">
                 <i className="fas fa-exclamation"></i>
@@ -563,7 +589,9 @@ class ThongTinHoa extends Component {
               <div className="sl-gh-dh">
                 <div className="sl">
                   <div className="form-group">
-                    <label><FormattedMessage id="thongtinhoasoluongcon"/></label>
+                    <label>
+                      <FormattedMessage id="thongtinhoasoluongcon" />
+                    </label>
                     <input
                       value={thongtinhoa.soluongcon || 0}
                       disabled={true}
@@ -573,7 +601,9 @@ class ThongTinHoa extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label><FormattedMessage id="thongtinhoasoluongmua"/></label>
+                    <label>
+                      <FormattedMessage id="thongtinhoasoluongmua" />
+                    </label>
                     <div className="soluongmua">
                       {soluong > 1 && (
                         <button
@@ -602,7 +632,9 @@ class ThongTinHoa extends Component {
                   </div>
                 </div>
 
-                <div className={ngonngu === "vi" ? "nutbam" : "nutbam nutbamEn"}>
+                <div
+                  className={ngonngu === "vi" ? "nutbam" : "nutbam nutbamEn"}
+                >
                   {thongtinhoa.soluongcon > 0 ? (
                     <>
                       <button
@@ -615,7 +647,7 @@ class ThongTinHoa extends Component {
                         className="btn dh"
                         onClick={() => this.dathangthongtinhoa()}
                       >
-                        <FormattedMessage id="thongtinhoadathang"/>
+                        <FormattedMessage id="thongtinhoadathang" />
                       </button>
                     </>
                   ) : null}
@@ -624,11 +656,15 @@ class ThongTinHoa extends Component {
               <div className="tangkem">
                 <div className="giaohangnhanh">
                   <img src={vanchuyen} width="64" height="53" />
-                  <span><FormattedMessage id="thongtinhoagiaohangnhanh"/></span>
+                  <span>
+                    <FormattedMessage id="thongtinhoagiaohangnhanh" />
+                  </span>
                 </div>
                 <div className="thiep">
                   <img src={banner} width="64" height="53" />
-                  <span><FormattedMessage id="thongtinhoatangthiepbanner"/></span>
+                  <span>
+                    <FormattedMessage id="thongtinhoatangthiepbanner" />
+                  </span>
                 </div>
               </div>
             </div>
@@ -640,7 +676,7 @@ class ThongTinHoa extends Component {
               }
               onClick={() => this.doitrangthaisangmota()}
             >
-             <FormattedMessage id="thongtinhoamota"/>
+              <FormattedMessage id="thongtinhoamota" />
             </span>
             <span
               className={
@@ -650,7 +686,8 @@ class ThongTinHoa extends Component {
               }
               onClick={() => this.doitrangthaisangdanhgia()}
             >
-              <FormattedMessage id="thongtinhoadanhgia"/>
+              <FormattedMessage id="thongtinhoadanhgia" /> (
+              {sosaotrungbinh ? sosaotrungbinh : 0})
             </span>
             <div className="boder"></div>
           </div>
@@ -708,6 +745,7 @@ class ThongTinHoa extends Component {
                           year: "numeric",
                         }
                       );
+                      console.log(item.sosaodanhgia);
                       return (
                         <div className="danhgia" key={index}>
                           <div className="danhgiachinh">
@@ -754,49 +792,49 @@ class ThongTinHoa extends Component {
                               <div className="rating">
                                 <input
                                   value="5"
-                                  name="rating"
-                                  id="star51"
+                                  name={`rating${index}`}
+                                  id={`star5${index}`}
                                   checked={item.sosaodanhgia === 5}
                                   readOnly
                                   type="radio"
                                 />
-                                <label htmlFor="star51"></label>
+                                <label htmlFor={`star5${index}`}></label>
                                 <input
                                   value="4"
-                                  name="rating"
-                                  id="star41"
+                                  name={`rating${index}`}
+                                  id={`star4${index}`}
                                   checked={item.sosaodanhgia === 4}
                                   readOnly
                                   type="radio"
                                 />
-                                <label htmlFor="star41"></label>
+                                <label htmlFor={`star4${index}`}></label>
                                 <input
                                   value="3"
-                                  name="rating"
-                                  id="star31"
+                                  name={`rating${index}`}
+                                  id={`star3${index}`}
                                   checked={item.sosaodanhgia === 3}
                                   readOnly
                                   type="radio"
                                 />
-                                <label htmlFor="star31"></label>
+                                <label htmlFor={`star3${index}`}></label>
                                 <input
                                   value="2"
-                                  name="rating"
-                                  id="star21"
+                                  name={`rating${index}`}
+                                  id={`star2${index}`}
                                   checked={item.sosaodanhgia === 2}
                                   readOnly
                                   type="radio"
                                 />
-                                <label htmlFor="star21"></label>
+                                <label htmlFor={`star2${index}`}></label>
                                 <input
                                   value="1"
-                                  name="rating"
-                                  id="star11"
+                                  name={`rating${index}`}
+                                  id={`star1${index}`}
                                   checked={item.sosaodanhgia === 1}
                                   readOnly
                                   type="radio"
                                 />
-                                <label htmlFor="star11"></label>
+                                <label htmlFor={`star1${index}`}></label>
                               </div>
 
                               <div className="noidung">
@@ -845,14 +883,14 @@ class ThongTinHoa extends Component {
                                 className="xemphanhoi ml-3"
                                 onClick={() => this.traloidanhgia(item)}
                               >
-                                <FormattedMessage id="thongtinhoatraloi"/>
+                                <FormattedMessage id="thongtinhoatraloi" />
                               </span>
                               {danhgiachitietid.includes(item.id) ? (
                                 <span
                                   className="xemphanhoi ml-3"
                                   onClick={() => this.tatxemphanhoi(item.id)}
                                 >
-                                  <FormattedMessage id="thongtinhoadongphanhoi"/>
+                                  <FormattedMessage id="thongtinhoadongphanhoi" />
                                 </span>
                               ) : (
                                 <span
@@ -861,7 +899,8 @@ class ThongTinHoa extends Component {
                                     this.xemphanhoichitiet(item.id)
                                   }
                                 >
-                                  <FormattedMessage id="thongtinhoaxemphanhoi"/>({item.traloibinhluan.length})
+                                  <FormattedMessage id="thongtinhoaxemphanhoi" />
+                                  ({item.traloibinhluan.length})
                                 </span>
                               )}
                               {item.idnguoidung ===
@@ -872,7 +911,7 @@ class ThongTinHoa extends Component {
                                     this.xoadanhgiatraloikh(item.id, "danhgia")
                                   }
                                 >
-                                  <FormattedMessage id="thongtinhoaxoa"/>
+                                  <FormattedMessage id="thongtinhoaxoa" />
                                 </span>
                               )}
                             </div>
@@ -1219,10 +1258,12 @@ class ThongTinHoa extends Component {
                   </div>
                 ) : (
                   <>
-                    <span className="spanthem mt-3 ml-3"><FormattedMessage id="thongtinhoathemdanhgia"/></span>
+                    <span className="spanthem mt-3 ml-3">
+                      <FormattedMessage id="thongtinhoathemdanhgia" />
+                    </span>
                     <div className="saodanhgia mt-3 ml-3">
                       <span className="spandanhgia mt-1">
-                        <FormattedMessage id="thongtinhoadanhgiacuaban"/>{" "}
+                        <FormattedMessage id="thongtinhoadanhgiacuaban" />{" "}
                       </span>
                       <div className="rating">
                         <input
@@ -1271,11 +1312,11 @@ class ThongTinHoa extends Component {
                 )}
                 {trangthaitraloidanhgia === true ? (
                   <span className="spannhanxet mt-3 ml-3">
-                    <FormattedMessage id="thongtinhoanoidungtraloi"/>
+                    <FormattedMessage id="thongtinhoanoidungtraloi" />
                   </span>
                 ) : (
                   <span className="spannhanxet mt-3 ml-3">
-                   <FormattedMessage id="thongtinhoanhanxetcuaban"/>
+                    <FormattedMessage id="thongtinhoanhanxetcuaban" />
                   </span>
                 )}
 
@@ -1341,13 +1382,15 @@ class ThongTinHoa extends Component {
                   className="btn guidanhgia mt-3 mb-3 ml-3"
                   onClick={() => this.guidanhgia()}
                 >
-                  <FormattedMessage id="thongtinhoaguidi"/>
+                  <FormattedMessage id="thongtinhoaguidi" />
                 </button>
               </div>
             </div>
           )}
 
-          <div className="item4"><FormattedMessage id="thongtinhoasanphamlienquan"/></div>
+          <div className="item4">
+            <FormattedMessage id="thongtinhoasanphamlienquan" />
+          </div>
           <div className="item5">
             {sanphamlienquan &&
               sanphamlienquan.length > 0 &&
@@ -1369,7 +1412,8 @@ class ThongTinHoa extends Component {
 
                         {item.phantramgiam > 0 ? (
                           <div className="giamgia">
-                            {item.phantramgiam}<FormattedMessage id="trangchugiamgia"/>
+                            {item.phantramgiam}
+                            <FormattedMessage id="trangchugiamgia" />
                           </div>
                         ) : null}
                       </Link>
