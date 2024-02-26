@@ -224,7 +224,7 @@
             border-left    : 1px solid #ccc;
             padding        : 11px;
             cursor         : pointer;
-            width          : 174px;
+            width          : 180px;
             display        : flex;
             justify-content: center;
             align-items    : center;
@@ -237,7 +237,7 @@
             border-left : 1px solid #ccc;
             padding     : 11px;
             cursor      : pointer;
-            width       : 140px;
+            width       : 162px;
 
         }
 
@@ -643,6 +643,33 @@
 
                     .ten {
                         font-weight: 700;
+                    }
+
+                }
+
+                .rating {
+                    display   : inline-block;
+                    height    : 14px;
+                    margin-top: -14px;
+
+                    input {
+                        display: none;
+                    }
+
+                    label {
+                        float     : right;
+                        color     : #ccc;
+                        transition: color 0.3s;
+
+                        &:before {
+                            content  : '\2605';
+                            font-size: 20px;
+                        }
+                    }
+
+                    input:checked~label {
+                        color     : #e91e63;
+                        transition: color 0.3s;
                     }
                 }
 

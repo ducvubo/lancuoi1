@@ -7,16 +7,24 @@ import logothuonghieu2 from "../image/logothuonghieu2.webp";
 import logothuonghieu3 from "../image/logothuonghieu3.webp";
 import SlideKH from "./SlideKH";
 import * as actions from "../action/actions";
-import { apihoagiamgia, apihoatheodanhmucnoibat } from "../API/ApiTrangChu";
+import {
+  apihoagiamgia,
+  apihoatheodanhmucnoibat,
+  apihoabannhieunhat,
+  apitatcahoanguoidung,
+} from "../API/ApiTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import HeaderTrangChu from "./HeaderTrangChu";
 import BannerShow from "./BannerShow";
 import { FormattedMessage } from "react-intl";
+import { scryRenderedDOMComponentsWithClass } from "react-dom/test-utils";
 class trangChu extends Component {
   constructor(props) {
     super(props);
     this.state = {
       hoagiamgia: [],
+      hoabannhieunhat: [],
+      hoadanhgiacaonhat: [],
       danhmuchoathu1: [],
       danhmuchoathu2: [],
       danhmuchoathu3: [],
@@ -26,16 +34,43 @@ class trangChu extends Component {
   }
 
   async componentDidMount() {
-    await this.layhoagiamgia();
     await this.laydanhmuchoanoibat();
+    await this.laytatcahoa();
   }
 
-  layhoagiamgia = async () => {
-    let kq = await apihoagiamgia();
+  laytatcahoa = async () => {
+    let kq = await apitatcahoanguoidung();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
+      data1 &&
+        data1.length > 0 &&
+        data1.map((item) => {
+          let tongsosao =
+            item.hoabinhluan &&
+            item.hoabinhluan.reduce(
+              (total, item) => total + item.sosaodanhgia,
+              0
+            );
+          let trungbinh = tongsosao / item.hoabinhluan.length;
+          trungbinh = item.hoabinhluan.length ? trungbinh : 0;
+          item.danhgiatrungbinh = trungbinh;
+          if (item.danhgiatrungbinh % 1 >= 0.5) {
+            item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+          } else {
+            item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+          }
+        });
+      let sxdata = data1
+        .slice()
+        .sort((a, b) => b.danhgiatrungbinh - a.danhgiatrungbinh);
+      let sxdata1 = data1.slice().sort((a, b) => b.soluongban - a.soluongban);
+      let sxdata2 = data1
+        .slice()
+        .sort((a, b) => b.phantramgiam - a.phantramgiam);
       this.setState({
-        hoagiamgia: data1,
+        hoadanhgiacaonhat: sxdata,
+        hoabannhieunhat: sxdata1,
+        hoagiamgia: sxdata2,
       });
     }
   };
@@ -57,6 +92,25 @@ class trangChu extends Component {
             item.donoibat = parseFloat(item.donoibat);
           });
           let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+
+          sxdata &&
+            sxdata.length > 0 &&
+            sxdata.map((item) => {
+              let tongsosao =
+                item.hoabinhluan &&
+                item.hoabinhluan.reduce(
+                  (total, item) => total + item.sosaodanhgia,
+                  0
+                );
+              let trungbinh = tongsosao / item.hoabinhluan.length;
+              item.danhgiatrungbinh = trungbinh;
+              if (item.danhgiatrungbinh % 1 >= 0.5) {
+                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+              } else {
+                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+              }
+            });
+
           this.setState({
             danhmuchoathu1: {
               tendanhmuc:
@@ -82,6 +136,25 @@ class trangChu extends Component {
             item.donoibat = parseFloat(item.donoibat);
           });
           let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+
+          sxdata &&
+            sxdata.length > 0 &&
+            sxdata.map((item) => {
+              let tongsosao =
+                item.hoabinhluan &&
+                item.hoabinhluan.reduce(
+                  (total, item) => total + item.sosaodanhgia,
+                  0
+                );
+              let trungbinh = tongsosao / item.hoabinhluan.length;
+              item.danhgiatrungbinh = trungbinh;
+              if (item.danhgiatrungbinh % 1 >= 0.5) {
+                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+              } else {
+                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+              }
+            });
+
           this.setState({
             danhmuchoathu2: {
               tendanhmuc:
@@ -107,6 +180,25 @@ class trangChu extends Component {
             item.donoibat = parseFloat(item.donoibat);
           });
           let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+
+          sxdata &&
+            sxdata.length > 0 &&
+            sxdata.map((item) => {
+              let tongsosao =
+                item.hoabinhluan &&
+                item.hoabinhluan.reduce(
+                  (total, item) => total + item.sosaodanhgia,
+                  0
+                );
+              let trungbinh = tongsosao / item.hoabinhluan.length;
+              item.danhgiatrungbinh = trungbinh;
+              if (item.danhgiatrungbinh % 1 >= 0.5) {
+                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+              } else {
+                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+              }
+            });
+
           this.setState({
             danhmuchoathu3: {
               tendanhmuc:
@@ -132,7 +224,7 @@ class trangChu extends Component {
             item.donoibat = parseFloat(item.donoibat);
           });
           let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
-          console.log(sxdata);
+
           sxdata &&
             sxdata.length > 0 &&
             sxdata.map((item) => {
@@ -142,9 +234,13 @@ class trangChu extends Component {
                   (total, item) => total + item.sosaodanhgia,
                   0
                 );
-             let trungbinh =
-                tongsosao / item.hoabinhluan.length;
+              let trungbinh = tongsosao / item.hoabinhluan.length;
               item.danhgiatrungbinh = trungbinh;
+              if (item.danhgiatrungbinh % 1 >= 0.5) {
+                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+              } else {
+                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+              }
             });
 
           this.setState({
@@ -172,6 +268,25 @@ class trangChu extends Component {
             item.donoibat = parseFloat(item.donoibat);
           });
           let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+
+          sxdata &&
+            sxdata.length > 0 &&
+            sxdata.map((item) => {
+              let tongsosao =
+                item.hoabinhluan &&
+                item.hoabinhluan.reduce(
+                  (total, item) => total + item.sosaodanhgia,
+                  0
+                );
+              let trungbinh = tongsosao / item.hoabinhluan.length;
+              item.danhgiatrungbinh = trungbinh;
+              if (item.danhgiatrungbinh % 1 >= 0.5) {
+                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+              } else {
+                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+              }
+            });
+
           this.setState({
             danhmuchoathu5: {
               tendanhmuc:
@@ -209,8 +324,9 @@ class trangChu extends Component {
       danhmuchoathu3,
       danhmuchoathu4,
       danhmuchoathu5,
+      hoabannhieunhat,
+      hoadanhgiacaonhat,
     } = this.state;
-    console.log(danhmuchoathu4);
     return (
       <>
         <div className="trangchu">
@@ -221,10 +337,10 @@ class trangChu extends Component {
               <FormattedMessage id="trangchudanggiamgia" />
             </span>
           </div>
-          <div className="item7">
+          <div className="item9">
             {hoagiamgia &&
               hoagiamgia.length > 0 &&
-              hoagiamgia.slice(0, 4).map((item, index) => {
+              hoagiamgia.slice(0, 8).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -255,9 +371,341 @@ class trangChu extends Component {
                       >
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
-
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating26${index}`}
+                          id={`star526${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star526${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating27${index}`}
+                          id={`star427${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star427${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating28${index}`}
+                          id={`star328${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star328${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating29${index}`}
+                          id={`star229${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star229${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating30${index}`}
+                          id={`star130${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star130${index}`}></label>
+                      </div>
                       {ngonngu === "vi" ? (
                         <div className="gia">
+                          {item.phantramgiam > 0 ? (
+                            <>
+                              <span className="giagiam">
+                                {item.giasaukhigiamVND.toLocaleString()}đ
+                              </span>
+                              <span className="giachuagiam">
+                                {item.giathucVND.toLocaleString()}đ
+                              </span>
+                            </>
+                          ) : (
+                            <span className="giagiam">
+                              {item.giathucVND.toLocaleString()}đ
+                            </span>
+                          )}
+                        </div>
+                      ) : (
+                        <div
+                          className="gia"
+                          onClick={() => this.thongtinhoa(item)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {item.phantramgiam > 0 ? (
+                            <>
+                              <span className="giagiam">
+                                {item.giasaukhigiamUSD}USD
+                              </span>
+                              <span className="giachuagiam">
+                                {item.giathucUSD}USD
+                              </span>
+                            </>
+                          ) : (
+                            <span className="giagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      <div className="dathang">
+                        <span
+                          className="btn"
+                          onClick={() => this.dathangtrangchu(item)}
+                        >
+                          <FormattedMessage id="trangchudathang" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+
+          <div className="item6">
+            <span>
+              <FormattedMessage id="trangchubannhieunhat" />
+            </span>
+          </div>
+          <div className="item9">
+            {hoabannhieunhat &&
+              hoabannhieunhat.length > 0 &&
+              hoabannhieunhat.slice(0, 4).map((item, index) => {
+                let anhnoibat = "";
+                if (item.anhnoibat) {
+                  anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                    "binary"
+                  );
+                }
+                return (
+                  <div className="hoa" key={index}>
+                    <div
+                      className="anhhoa"
+                      onClick={() => this.thongtinhoa(item)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img src={anhnoibat} width="261" height="326" />
+
+                      {item.phantramgiam > 0 ? (
+                        <div className="giamgia">
+                          {item.phantramgiam}
+                          <FormattedMessage id="trangchugiamgia" />
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="thongtin">
+                      <span
+                        className="ten"
+                        onClick={() => this.thongtinhoa(item)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                      </span>
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating31${index}`}
+                          id={`star531${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star531${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating32${index}`}
+                          id={`star432${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star432${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating333${index}`}
+                          id={`star333${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star333${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating34${index}`}
+                          id={`star234${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star234${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating35${index}`}
+                          id={`star135${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star135${index}`}></label>
+                      </div>
+                      {ngonngu === "vi" ? (
+                        <div
+                          className="gia"
+                          onClick={() => this.thongtinhoa(item)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {item.phantramgiam > 0 ? (
+                            <>
+                              <span className="giagiam">
+                                {item.giasaukhigiamVND.toLocaleString()}đ
+                              </span>
+                              <span className="giachuagiam">
+                                {item.giathucVND.toLocaleString()}đ
+                              </span>
+                            </>
+                          ) : (
+                            <span className="giagiam">
+                              {item.giathucVND.toLocaleString()}đ
+                            </span>
+                          )}
+                        </div>
+                      ) : (
+                        <div
+                          className="gia"
+                          onClick={() => this.thongtinhoa(item)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {item.phantramgiam > 0 ? (
+                            <>
+                              <span className="giagiam">
+                                {item.giasaukhigiamUSD}USD
+                              </span>
+                              <span className="giachuagiam">
+                                {item.giathucUSD}USD
+                              </span>
+                            </>
+                          ) : (
+                            <span className="giagiam">
+                              {item.giathucUSD}USD
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      <div className="dathang">
+                        <span
+                          className="btn"
+                          onClick={() => this.dathangtrangchu(item)}
+                        >
+                          <FormattedMessage id="trangchudathang" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+
+          <div className="item6">
+            <span>
+              <FormattedMessage id="trangchudanhgiacaonhat" />
+            </span>
+          </div>
+          <div className="item9">
+            {hoadanhgiacaonhat &&
+              hoadanhgiacaonhat.length > 0 &&
+              hoadanhgiacaonhat.slice(0, 8).map((item, index) => {
+                let anhnoibat = "";
+                if (item.anhnoibat) {
+                  anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                    "binary"
+                  );
+                }
+                return (
+                  <div className="hoa" key={index}>
+                    <div
+                      className="anhhoa"
+                      onClick={() => this.thongtinhoa(item)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img src={anhnoibat} width="261" height="326" />
+
+                      {item.phantramgiam > 0 ? (
+                        <div className="giamgia">
+                          {item.phantramgiam}
+                          <FormattedMessage id="trangchugiamgia" />
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="thongtin">
+                      <span
+                        className="ten"
+                        onClick={() => this.thongtinhoa(item)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                      </span>
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating31${index}`}
+                          id={`star531${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star531${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating32${index}`}
+                          id={`star432${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star432${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating333${index}`}
+                          id={`star333${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star333${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating34${index}`}
+                          id={`star234${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star234${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating35${index}`}
+                          id={`star135${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star135${index}`}></label>
+                      </div>
+                      {ngonngu === "vi" ? (
+                        <div
+                          className="gia"
+                          onClick={() => this.thongtinhoa(item)}
+                          style={{ cursor: "pointer" }}
+                        >
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
@@ -386,7 +834,53 @@ class trangChu extends Component {
                       >
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
-
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating5${index}`}
+                          id={`star55${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star55${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating4${index}`}
+                          id={`star44${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star44${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating3${index}`}
+                          id={`star33${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star33${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating2${index}`}
+                          id={`star22${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star22${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating11${index}`}
+                          id={`star11${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star11${index}`}></label>
+                      </div>
                       {ngonngu === "vi" ? (
                         <div
                           className="gia"
@@ -491,7 +985,53 @@ class trangChu extends Component {
                       >
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
-
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating6${index}`}
+                          id={`star56${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star56${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating7${index}`}
+                          id={`star47${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star47${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating8${index}`}
+                          id={`star38${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star38${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating9${index}`}
+                          id={`star29${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star29${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating10${index}`}
+                          id={`star110${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star110${index}`}></label>
+                      </div>
                       {ngonngu === "vi" ? (
                         <div
                           className="gia"
@@ -596,6 +1136,53 @@ class trangChu extends Component {
                       >
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating11${index}`}
+                          id={`star511${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star511${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating12${index}`}
+                          id={`star412${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star412${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating13${index}`}
+                          id={`star313${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star313${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating14${index}`}
+                          id={`star214${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star214${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating15${index}`}
+                          id={`star115${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star115${index}`}></label>
+                      </div>
 
                       {ngonngu === "vi" ? (
                         <div
@@ -698,7 +1285,53 @@ class trangChu extends Component {
                       <span className="ten">
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
-
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating16${index}`}
+                          id={`star516${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star516${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating17${index}`}
+                          id={`star417${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star417${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating18${index}`}
+                          id={`star318${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star318${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating19${index}`}
+                          id={`star219${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star219${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating20${index}`}
+                          id={`star120${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star120${index}`}></label>
+                      </div>
                       {ngonngu === "vi" ? (
                         <div
                           className="gia"
@@ -800,7 +1433,53 @@ class trangChu extends Component {
                       <span className="ten">
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
-
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating21${index}`}
+                          id={`star521${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star521${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating22${index}`}
+                          id={`star422${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star422${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating23${index}`}
+                          id={`star323${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star323${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating24${index}`}
+                          id={`star224${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star224${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating25${index}`}
+                          id={`star125${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star125${index}`}></label>
+                      </div>
                       {ngonngu === "vi" ? (
                         <div
                           className="gia"

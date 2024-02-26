@@ -38,6 +38,23 @@ class HoaTheoDanhMuc extends Component {
         item.donoibat = parseFloat(item.donoibat);
       });
       let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+      sxdata &&
+      sxdata.length > 0 &&
+      sxdata.map((item) => {
+        let tongsosao =
+          item.hoabinhluan &&
+          item.hoabinhluan.reduce(
+            (total, item) => total + item.sosaodanhgia,
+            0
+          );
+        let trungbinh = tongsosao / item.hoabinhluan.length;
+        item.danhgiatrungbinh = trungbinh;
+        if (item.danhgiatrungbinh % 1 >= 0.5) {
+          item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+        } else {
+          item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+        }
+      });
       this.setState({
         hoatheodanhmuc: {
           tendanhmuc:
@@ -113,7 +130,53 @@ class HoaTheoDanhMuc extends Component {
                       <span className="ten">
                         {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
                       </span>
-
+                      <div className="rating">
+                        <input
+                          value="5"
+                          name={`rating26${index}`}
+                          id={`star526${index}`}
+                          checked={item.danhgiatrungbinh === 5}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star526${index}`}></label>
+                        <input
+                          value="4"
+                          name={`rating27${index}`}
+                          id={`star427${index}`}
+                          checked={item.danhgiatrungbinh === 4}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star427${index}`}></label>
+                        <input
+                          value="3"
+                          name={`rating28${index}`}
+                          id={`star328${index}`}
+                          checked={item.danhgiatrungbinh === 3}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star328${index}`}></label>
+                        <input
+                          value="2"
+                          name={`rating29${index}`}
+                          id={`star229${index}`}
+                          checked={item.danhgiatrungbinh === 2}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star229${index}`}></label>
+                        <input
+                          value="1"
+                          name={`rating30${index}`}
+                          id={`star130${index}`}
+                          checked={item.danhgiatrungbinh === 1}
+                          readOnly
+                          type="radio"
+                        />
+                        <label htmlFor={`star130${index}`}></label>
+                      </div>
                       {ngonngu === "vi" ? (
                         <div
                           className="gia"
@@ -123,14 +186,16 @@ class HoaTheoDanhMuc extends Component {
                           {item.phantramgiam > 0 ? (
                             <>
                               <span className="giagiam">
-                                {item.giasaukhigiamVND}đ
+                                {item.giasaukhigiamVND.toLocaleString()}đ
                               </span>
                               <span className="giachuagiam">
-                                {item.giathucVND}đ
+                                {item.giathucVND.toLocaleString()}đ
                               </span>
                             </>
                           ) : (
-                            <span className="giagiam">{item.giathucVND}đ</span>
+                            <span className="giagiam">
+                              {item.giathucVND.toLocaleString()}đ
+                            </span>
                           )}
                         </div>
                       ) : (

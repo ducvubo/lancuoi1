@@ -17,6 +17,10 @@ const apihoagiamgia = () => {
   return axios.get("/api/hoagiamgia");
 };
 
+const apihoabannhieunhat = () => {
+  return axios.get("/api/hoabannhieunhat");
+};
+
 const apithongtinhoa = (id) => {
   return axios.get(`api/thongtinhoa?id=${id}`);
 };
@@ -138,6 +142,7 @@ export {
   danhmuchoachitiettheodanhmuc,
   apitatcahoa,
   apihoagiamgia,
+  apihoabannhieunhat,
   apithongtinhoa,
   apidangnhap,
   apidangky,
