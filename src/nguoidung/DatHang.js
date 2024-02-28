@@ -100,7 +100,7 @@ class DatHang extends Component {
     }
     return (
       <>
-        {thongtinnguoidung && thongtinhoadathang ? (
+        {/* {thongtinnguoidung && thongtinhoadathang ? ( */}
         <>
           <HeaderTrangChu />
           <div className="dathangtrangchu">
@@ -250,9 +250,9 @@ class DatHang extends Component {
           </div>
           <FooterTrangChu />
         </>
-        ) : (
-          <Redirect to={"/dangnhap"} />
-        )}
+        {/* // ) : (
+        //   <Redirect to={"/dangnhap"} />
+        // )} */}
       </>
     );
   }

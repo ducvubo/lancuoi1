@@ -24,7 +24,7 @@ class QuanLyDonHang extends Component {
 
   async componentDidUpdate(prevProps, prevState) {
     if (prevProps.thongtinnguoidung !== this.props.thongtinnguoidung) {
-     await this.laytatcadonhang()
+      await this.laytatcadonhang();
     }
   }
   laytatcadonhang = async () => {
@@ -70,7 +70,7 @@ class QuanLyDonHang extends Component {
         });
       }
     } else {
-      if(this.props.thongtindonhangchuadangnhap) {
+      if (this.props.thongtindonhangchuadangnhap) {
         let kq = await apidonhangchuaDN(this.props.thongtindonhangchuadangnhap);
         if (kq && kq.maCode === 0) {
           let data1 = kq.data;
@@ -78,13 +78,14 @@ class QuanLyDonHang extends Component {
             tatcadonhang: data1,
           });
         }
-      }else{
-       this.props.ngonngu === "vi" ? toast.error("Bạn chưa có đơn hàng nào!!!") : toast.error("You don't have any orders yet!!!")
+      } else {
+        this.props.ngonngu === "vi"
+          ? toast.error("Bạn chưa có đơn hàng nào!!!")
+          : toast.error("You don't have any orders yet!!!");
         this.setState({
-          tatcadonhang:[]
-        })
+          tatcadonhang: [],
+        });
       }
-     
     }
   };
 
@@ -240,8 +241,10 @@ class QuanLyDonHang extends Component {
                           <td>{item.ghichu}</td>
                           <td>
                             {ngonngu === "vi"
-                              ? item.trangthaidonhang && item.trangthaidonhang.tiengViet
-                              : item.trangthaidonhang && item.trangthaidonhang.tiengAnh}
+                              ? item.trangthaidonhang &&
+                                item.trangthaidonhang.tiengViet
+                              : item.trangthaidonhang &&
+                                item.trangthaidonhang.tiengAnh}
                           </td>
                           <td>
                             {item.ngonngu === "vi"
