@@ -12,6 +12,7 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
     super(props);
     this.state = {
       hoatheodanhmucchitiet: "",
+      danhmucchitiet: "",
     };
   }
 
@@ -51,6 +52,7 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
         });
       this.setState({
         hoatheodanhmucchitiet: data1,
+        danhmucchitiet: kq.datadanhmucchitiet,
       });
     }
   };
@@ -66,42 +68,51 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
   };
 
   render() {
-    let { hoatheodanhmucchitiet } = this.state;
+    let { hoatheodanhmucchitiet, danhmucchitiet } = this.state;
     let { ngonngu } = this.props;
+
     return (
       <>
         <HeaderTrangChu />
         <div className="hoatheodanhmuchoachitiet">
-          {hoatheodanhmucchitiet &&
-            hoatheodanhmucchitiet.length > 0 &&
-            hoatheodanhmucchitiet.map((item, index) => {
-              let anhnoibat = "";
-              if (item.anhnoibat) {
-                anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
-                  "binary"
-                );
-              }
-              return (
-                <div className="hoa" key={index}>
-                  <div
-                    className="anhhoa"
-                    onClick={() => this.thongtinhoa(item)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <img src={anhnoibat} width="261" height="326" />
+          <div className="item1">
+            <span>
+              {this.props.ngonngu === "vi"
+                ? danhmucchitiet.tendanhmucchitietVi
+                : danhmucchitiet.tendanhmucchitietEn}
+            </span>
+          </div>
+          <div className="item2">
+            {hoatheodanhmucchitiet &&
+              hoatheodanhmucchitiet.length > 0 &&
+              hoatheodanhmucchitiet.map((item, index) => {
+                let anhnoibat = "";
+                if (item.anhnoibat) {
+                  anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
+                    "binary"
+                  );
+                }
+                return (
+                  <div className="hoa" key={index}>
+                    <div
+                      className="anhhoa"
+                      onClick={() => this.thongtinhoa(item)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img src={anhnoibat} width="261" height="326" />
 
-                    {item.phantramgiam > 0 ? (
-                      <div className="giamgia">
-                        {item.phantramgiam}
-                        <FormattedMessage id="trangchugiamgia" />
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className="thongtin">
-                    <span className="ten">
-                      {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
-                    </span>
-                    <div className="rating">
+                      {item.phantramgiam > 0 ? (
+                        <div className="giamgia">
+                          {item.phantramgiam}
+                          <FormattedMessage id="trangchugiamgia" />
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="thongtin">
+                      <span className="ten">
+                        {ngonngu === "vi" ? item.tenhoaVi : item.tenhoaEn}
+                      </span>
+                      <div className="rating">
                         <input
                           value="5"
                           name={`rating26${index}`}
@@ -148,59 +159,62 @@ class HoaTheoDanhMucTheoChiTiet extends Component {
                         />
                         <label htmlFor={`star130${index}`}></label>
                       </div>
-                    {ngonngu === "vi" ? (
-                      <div
-                        className="gia"
-                        onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {item.phantramgiam > 0 ? (
-                          <>
+                      {ngonngu === "vi" ? (
+                        <div
+                          className="gia"
+                          onClick={() => this.thongtinhoa(item)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {item.phantramgiam > 0 ? (
+                            <>
+                              <span className="giagiam">
+                                {item.giasaukhigiamVND.toLocaleString()}đ
+                              </span>
+                              <span className="giachuagiam">
+                                {item.giathucVND.toLocaleString()}đ
+                              </span>
+                            </>
+                          ) : (
                             <span className="giagiam">
-                              {item.giasaukhigiamVND.toLocaleString()}đ
-                            </span>
-                            <span className="giachuagiam">
                               {item.giathucVND.toLocaleString()}đ
                             </span>
-                          </>
-                        ) : (
-                          <span className="giagiam">
-                            {item.giathucVND.toLocaleString()}đ
-                          </span>
-                        )}
-                      </div>
-                    ) : (
-                      <div
-                        className="gia"
-                        onClick={() => this.thongtinhoa(item)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {item.phantramgiam > 0 ? (
-                          <>
+                          )}
+                        </div>
+                      ) : (
+                        <div
+                          className="gia"
+                          onClick={() => this.thongtinhoa(item)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {item.phantramgiam > 0 ? (
+                            <>
+                              <span className="giagiam">
+                                {item.giasaukhigiamUSD}USD
+                              </span>
+                              <span className="giachuagiam">
+                                {item.giathucUSD}USD
+                              </span>
+                            </>
+                          ) : (
                             <span className="giagiam">
-                              {item.giasaukhigiamUSD}USD
-                            </span>
-                            <span className="giachuagiam">
                               {item.giathucUSD}USD
                             </span>
-                          </>
-                        ) : (
-                          <span className="giagiam">{item.giathucUSD}USD</span>
-                        )}
+                          )}
+                        </div>
+                      )}
+                      <div className="dathang">
+                        <span
+                          className="btn"
+                          onClick={() => this.dathangtrangchu(item)}
+                        >
+                          <FormattedMessage id="trangchudathang" />
+                        </span>
                       </div>
-                    )}
-                    <div className="dathang">
-                      <span
-                        className="btn"
-                        onClick={() => this.dathangtrangchu(item)}
-                      >
-                        <FormattedMessage id="trangchudathang" />
-                      </span>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+          </div>
         </div>
         <FooterTrangChu />
       </>

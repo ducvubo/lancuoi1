@@ -30,6 +30,7 @@ class trangChu extends Component {
       danhmuchoathu3: [],
       danhmuchoathu4: [],
       danhmuchoathu5: [],
+      hoatheodanhmucnoibat: [],
     };
   }
 
@@ -79,229 +80,255 @@ class trangChu extends Component {
     let kq = await apihoatheodanhmucnoibat();
     if (kq && kq.maCode === 0) {
       let data1 = kq.data;
-      let data2 = "";
-      for (let i = 0; i < data1.length; i++) {
-        if (i === 5) {
-          data2 = [data1[i]];
-          let epdata = data2
-            .flatMap((item) =>
-              item.danhmuc.map((item) => item.danhmuchoachitiet)
-            )
-            .flat();
-          epdata.map((item, index) => {
-            item.donoibat = parseFloat(item.donoibat);
-          });
-          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
 
-          sxdata &&
-            sxdata.length > 0 &&
-            sxdata.map((item) => {
-              let tongsosao =
-                item.hoabinhluan &&
-                item.hoabinhluan.reduce(
-                  (total, item) => total + item.sosaodanhgia,
-                  0
-                );
-              let trungbinh = tongsosao / item.hoabinhluan.length;
-              item.danhgiatrungbinh = trungbinh;
-              if (item.danhgiatrungbinh % 1 >= 0.5) {
-                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
-              } else {
-                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
-              }
-            });
+      data1.slice(1, 6).forEach((item, index) => {
+        const data2 = [item];
+        let epdata = data2
+          .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
+          .flat();
+        let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+        sxdata.forEach((item) => {
+          let tongsosao = item.hoabinhluan
+            ? item.hoabinhluan.reduce(
+                (total, item) => total + item.sosaodanhgia,
+                0
+              )
+            : 0;
+          let trungbinh =
+            tongsosao / (item.hoabinhluan ? item.hoabinhluan.length : 1);
+          item.danhgiatrungbinh = Math.round(trungbinh);
+        });
 
-          this.setState({
-            danhmuchoathu1: {
-              tendanhmuc:
-                data2 &&
-                data2.length > 0 &&
-                data2.map((item) => {
-                  return {
-                    tendanhmucVi: item,
-                  };
-                }),
-              sxdata,
-            },
-          });
-        }
-        if (i === 4) {
-          data2 = [data1[i]];
-          let epdata = data2
-            .flatMap((item) =>
-              item.danhmuc.map((item) => item.danhmuchoachitiet)
-            )
-            .flat();
-          epdata.map((item, index) => {
-            item.donoibat = parseFloat(item.donoibat);
-          });
-          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+        const danhmuchoa = {
+          tendanhmuc: data2.map((item) => ({ tendanhmucVi: item })),
+          sxdata,
+        };
 
-          sxdata &&
-            sxdata.length > 0 &&
-            sxdata.map((item) => {
-              let tongsosao =
-                item.hoabinhluan &&
-                item.hoabinhluan.reduce(
-                  (total, item) => total + item.sosaodanhgia,
-                  0
-                );
-              let trungbinh = tongsosao / item.hoabinhluan.length;
-              item.danhgiatrungbinh = trungbinh;
-              if (item.danhgiatrungbinh % 1 >= 0.5) {
-                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
-              } else {
-                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
-              }
-            });
+        this.setState({ [`danhmuchoathu${5 - index}`]: danhmuchoa });
+      });
+      // let data2 = "";
+      // data1.map((item0,index) => {
+      //   if (index === 5) {
+      //     data2 = [item0];
+      //     let epdata = data2
+      //       .flatMap((item) =>
+      //         item.danhmuc.map((item) => item.danhmuchoachitiet)
+      //       )
+      //       .flat();
+      //     epdata.map((item, index) => {
+      //       item.donoibat = parseFloat(item.donoibat);
+      //     });
+      //     let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
 
-          this.setState({
-            danhmuchoathu2: {
-              tendanhmuc:
-                data2 &&
-                data2.length > 0 &&
-                data2.map((item) => {
-                  return {
-                    tendanhmucVi: item,
-                  };
-                }),
-              sxdata,
-            },
-          });
-        }
-        if (i === 3) {
-          data2 = [data1[i]];
-          let epdata = data2
-            .flatMap((item) =>
-              item.danhmuc.map((item) => item.danhmuchoachitiet)
-            )
-            .flat();
-          epdata.map((item, index) => {
-            item.donoibat = parseFloat(item.donoibat);
-          });
-          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+      //     sxdata &&
+      //       sxdata.length > 0 &&
+      //       sxdata.map((item) => {
+      //         let tongsosao =
+      //           item.hoabinhluan &&
+      //           item.hoabinhluan.reduce(
+      //             (total, item) => total + item.sosaodanhgia,
+      //             0
+      //           );
+      //         let trungbinh = tongsosao / item.hoabinhluan.length;
+      //         item.danhgiatrungbinh = trungbinh;
+      //         if (item.danhgiatrungbinh % 1 >= 0.5) {
+      //           item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+      //         } else {
+      //           item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+      //         }
+      //       });
 
-          sxdata &&
-            sxdata.length > 0 &&
-            sxdata.map((item) => {
-              let tongsosao =
-                item.hoabinhluan &&
-                item.hoabinhluan.reduce(
-                  (total, item) => total + item.sosaodanhgia,
-                  0
-                );
-              let trungbinh = tongsosao / item.hoabinhluan.length;
-              item.danhgiatrungbinh = trungbinh;
-              if (item.danhgiatrungbinh % 1 >= 0.5) {
-                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
-              } else {
-                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
-              }
-            });
+      //     this.setState({
+      //       danhmuchoathu1: {
+      //         tendanhmuc:
+      //           data2 &&
+      //           data2.length > 0 &&
+      //           data2.map((item) => {
+      //             return {
+      //               tendanhmucVi: item,
+      //             };
+      //           }),
+      //         sxdata,
+      //       },
+      //     });
+      //   }
+      //   if (index === 4) {
+      //     data2 = [item0];
+      //     let epdata = data2
+      //       .flatMap((item) =>
+      //         item.danhmuc.map((item) => item.danhmuchoachitiet)
+      //       )
+      //       .flat();
+      //     epdata.map((item, index) => {
+      //       item.donoibat = parseFloat(item.donoibat);
+      //     });
+      //     let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
 
-          this.setState({
-            danhmuchoathu3: {
-              tendanhmuc:
-                data2 &&
-                data2.length > 0 &&
-                data2.map((item) => {
-                  return {
-                    tendanhmucVi: item,
-                  };
-                }),
-              sxdata,
-            },
-          });
-        }
-        if (i === 2) {
-          data2 = [data1[i]];
-          let epdata = data2
-            .flatMap((item) =>
-              item.danhmuc.map((item) => item.danhmuchoachitiet)
-            )
-            .flat();
-          epdata.map((item, index) => {
-            item.donoibat = parseFloat(item.donoibat);
-          });
-          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+      //     sxdata &&
+      //       sxdata.length > 0 &&
+      //       sxdata.map((item) => {
+      //         let tongsosao =
+      //           item.hoabinhluan &&
+      //           item.hoabinhluan.reduce(
+      //             (total, item) => total + item.sosaodanhgia,
+      //             0
+      //           );
+      //         let trungbinh = tongsosao / item.hoabinhluan.length;
+      //         item.danhgiatrungbinh = trungbinh;
+      //         if (item.danhgiatrungbinh % 1 >= 0.5) {
+      //           item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+      //         } else {
+      //           item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+      //         }
+      //       });
 
-          sxdata &&
-            sxdata.length > 0 &&
-            sxdata.map((item) => {
-              let tongsosao =
-                item.hoabinhluan &&
-                item.hoabinhluan.reduce(
-                  (total, item) => total + item.sosaodanhgia,
-                  0
-                );
-              let trungbinh = tongsosao / item.hoabinhluan.length;
-              item.danhgiatrungbinh = trungbinh;
-              if (item.danhgiatrungbinh % 1 >= 0.5) {
-                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
-              } else {
-                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
-              }
-            });
+      //     this.setState({
+      //       danhmuchoathu2: {
+      //         tendanhmuc:
+      //           data2 &&
+      //           data2.length > 0 &&
+      //           data2.map((item) => {
+      //             return {
+      //               tendanhmucVi: item,
+      //             };
+      //           }),
+      //         sxdata,
+      //       },
+      //     });
+      //   }
+      //   if (index === 3) {
+      //     data2 = [item0];
+      //     let epdata = data2
+      //       .flatMap((item) =>
+      //         item.danhmuc.map((item) => item.danhmuchoachitiet)
+      //       )
+      //       .flat();
+      //     epdata.map((item, index) => {
+      //       item.donoibat = parseFloat(item.donoibat);
+      //     });
+      //     let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
 
-          this.setState({
-            danhmuchoathu4: {
-              tendanhmuc:
-                data2 &&
-                data2.length > 0 &&
-                data2.map((item) => {
-                  return {
-                    tendanhmucVi: item,
-                  };
-                }),
-              sxdata,
-            },
-          });
-        }
-        if (i === 1) {
-          data2 = [data1[i]];
-          let epdata = data2
-            .flatMap((item) =>
-              item.danhmuc.map((item) => item.danhmuchoachitiet)
-            )
-            .flat();
-          epdata.map((item, index) => {
-            item.donoibat = parseFloat(item.donoibat);
-          });
-          let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+      //     sxdata &&
+      //       sxdata.length > 0 &&
+      //       sxdata.map((item) => {
+      //         let tongsosao =
+      //           item.hoabinhluan &&
+      //           item.hoabinhluan.reduce(
+      //             (total, item) => total + item.sosaodanhgia,
+      //             0
+      //           );
+      //         let trungbinh = tongsosao / item.hoabinhluan.length;
+      //         item.danhgiatrungbinh = trungbinh;
+      //         if (item.danhgiatrungbinh % 1 >= 0.5) {
+      //           item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+      //         } else {
+      //           item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+      //         }
+      //       });
 
-          sxdata &&
-            sxdata.length > 0 &&
-            sxdata.map((item) => {
-              let tongsosao =
-                item.hoabinhluan &&
-                item.hoabinhluan.reduce(
-                  (total, item) => total + item.sosaodanhgia,
-                  0
-                );
-              let trungbinh = tongsosao / item.hoabinhluan.length;
-              item.danhgiatrungbinh = trungbinh;
-              if (item.danhgiatrungbinh % 1 >= 0.5) {
-                item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
-              } else {
-                item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
-              }
-            });
+      //     this.setState({
+      //       danhmuchoathu3: {
+      //         tendanhmuc:
+      //           data2 &&
+      //           data2.length > 0 &&
+      //           data2.map((item) => {
+      //             return {
+      //               tendanhmucVi: item,
+      //             };
+      //           }),
+      //         sxdata,
+      //       },
+      //     });
+      //   }
+      //   if (index === 2) {
+      //     data2 = [item0];
+      //     let epdata = data2
+      //       .flatMap((item) =>
+      //         item.danhmuc.map((item) => item.danhmuchoachitiet)
+      //       )
+      //       .flat();
+      //     epdata.map((item, index) => {
+      //       item.donoibat = parseFloat(item.donoibat);
+      //     });
+      //     let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
 
-          this.setState({
-            danhmuchoathu5: {
-              tendanhmuc:
-                data2 &&
-                data2.length > 0 &&
-                data2.map((item) => {
-                  return {
-                    tendanhmucVi: item,
-                  };
-                }),
-              sxdata,
-            },
-          });
-        }
-      }
+      //     sxdata &&
+      //       sxdata.length > 0 &&
+      //       sxdata.map((item) => {
+      //         let tongsosao =
+      //           item.hoabinhluan &&
+      //           item.hoabinhluan.reduce(
+      //             (total, item) => total + item.sosaodanhgia,
+      //             0
+      //           );
+      //         let trungbinh = tongsosao / item.hoabinhluan.length;
+      //         item.danhgiatrungbinh = trungbinh;
+      //         if (item.danhgiatrungbinh % 1 >= 0.5) {
+      //           item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+      //         } else {
+      //           item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+      //         }
+      //       });
+
+      //     this.setState({
+      //       danhmuchoathu4: {
+      //         tendanhmuc:
+      //           data2 &&
+      //           data2.length > 0 &&
+      //           data2.map((item) => {
+      //             return {
+      //               tendanhmucVi: item,
+      //             };
+      //           }),
+      //         sxdata,
+      //       },
+      //     });
+      //   }
+      //   if (index === 1) {
+      //     data2 = [item0];
+      //     let epdata = data2
+      //       .flatMap((item) =>
+      //         item.danhmuc.map((item) => item.danhmuchoachitiet)
+      //       )
+      //       .flat();
+      //     epdata.map((item, index) => {
+      //       item.donoibat = parseFloat(item.donoibat);
+      //     });
+      //     let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
+
+      //     sxdata &&
+      //       sxdata.length > 0 &&
+      //       sxdata.map((item) => {
+      //         let tongsosao =
+      //           item.hoabinhluan &&
+      //           item.hoabinhluan.reduce(
+      //             (total, item) => total + item.sosaodanhgia,
+      //             0
+      //           );
+      //         let trungbinh = tongsosao / item.hoabinhluan.length;
+      //         item.danhgiatrungbinh = trungbinh;
+      //         if (item.danhgiatrungbinh % 1 >= 0.5) {
+      //           item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+      //         } else {
+      //           item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+      //         }
+      //       });
+
+      //     this.setState({
+      //       danhmuchoathu5: {
+      //         tendanhmuc:
+      //           data2 &&
+      //           data2.length > 0 &&
+      //           data2.map((item) => {
+      //             return {
+      //               tendanhmucVi: item,
+      //             };
+      //           }),
+      //         sxdata,
+      //       },
+      //     });
+      //   }
+      // })
     }
   };
 
@@ -340,7 +367,7 @@ class trangChu extends Component {
           <div className="item9">
             {hoagiamgia &&
               hoagiamgia.length > 0 &&
-              hoagiamgia.slice(0, 8).map((item, index) => {
+              hoagiamgia.slice(0, 4).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -470,7 +497,6 @@ class trangChu extends Component {
                 );
               })}
           </div>
-
           <div className="item6">
             <span>
               <FormattedMessage id="trangchubannhieunhat" />
@@ -622,7 +648,7 @@ class trangChu extends Component {
           <div className="item9">
             {hoadanhgiacaonhat &&
               hoadanhgiacaonhat.length > 0 &&
-              hoadanhgiacaonhat.slice(0, 8).map((item, index) => {
+              hoadanhgiacaonhat.slice(0, 4).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -803,7 +829,7 @@ class trangChu extends Component {
             {danhmuchoathu1 &&
               danhmuchoathu1.sxdata &&
               danhmuchoathu1.sxdata.length > 0 &&
-              danhmuchoathu1.sxdata.slice(0, 8).map((item, index) => {
+              danhmuchoathu1.sxdata.slice(0, 4).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -937,7 +963,6 @@ class trangChu extends Component {
                 );
               })}
           </div>
-
           <div className="item6">
             <span>
               {danhmuchoathu2 &&
@@ -954,7 +979,7 @@ class trangChu extends Component {
             {danhmuchoathu2 &&
               danhmuchoathu2.sxdata &&
               danhmuchoathu2.sxdata.length > 0 &&
-              danhmuchoathu2.sxdata.slice(0, 8).map((item, index) => {
+              danhmuchoathu2.sxdata.slice(0, 4).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -1101,7 +1126,7 @@ class trangChu extends Component {
                 )}
             </span>
           </div>
-          <div className="item7">
+          <div className="item9">
             {danhmuchoathu3 &&
               danhmuchoathu3.sxdata &&
               danhmuchoathu3.sxdata.length > 0 &&
@@ -1240,7 +1265,6 @@ class trangChu extends Component {
                 );
               })}
           </div>
-
           <div className="item6">
             <span>
               {danhmuchoathu4 &&
@@ -1258,7 +1282,7 @@ class trangChu extends Component {
             {danhmuchoathu4 &&
               danhmuchoathu4.sxdata &&
               danhmuchoathu4.sxdata.length > 0 &&
-              danhmuchoathu4.sxdata.slice(0, 8).map((item, index) => {
+              danhmuchoathu4.sxdata.slice(0, 4).map((item, index) => {
                 let anhnoibat = "";
                 if (item.anhnoibat) {
                   anhnoibat = new Buffer(item.anhnoibat, "base64").toString(
@@ -1388,7 +1412,6 @@ class trangChu extends Component {
                 );
               })}
           </div>
-
           <div className="item6">
             <span>
               {danhmuchoathu5 &&
@@ -1401,8 +1424,7 @@ class trangChu extends Component {
                 )}
             </span>
           </div>
-
-          <div className="item7">
+          <div className="item9">
             {danhmuchoathu5 &&
               danhmuchoathu5.sxdata &&
               danhmuchoathu5.sxdata.length > 0 &&

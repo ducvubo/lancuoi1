@@ -13,19 +13,16 @@ import { toast } from "react-toastify";
 import store from "../redux/store";
 
 let myVariable = localStorage.getItem("persist:web");
-  let parsedData = JSON.parse(myVariable);
-  let ngonnguValue = parsedData.ngonngu;
-//   doiNgonNgu(ngonnguValue.replace(/^"(.*)"$/, "$1"));
-// let ngonngu1 = store.getState().web.ngonngu;
+let parsedData = JSON.parse(myVariable);
+let ngonnguValue = parsedData.ngonngu;
 let ngonngu1 = ngonnguValue.replace(/^"(.*)"$/, "$1");
-export const doiNgonNgu = (ngonngu) => (
+export const doiNgonNgu = (ngonngu) =>
   // console.log(ngonngu),
   // (ngonngu1 = ngonngu),
-  {
+  ({
     type: actionTypes.DOI_NGON_NGU,
     ngonngu: ngonngu,
-  }
-);
+  });
 
 export const thongtinnguoidung = (thongtinnguoidung) => ({
   type: actionTypes.LUU_THONG_TIN_NGUOI_DUNG,
@@ -308,4 +305,27 @@ export const suanguoidungthanhcong = () => ({
 export const thongtinhoadathang = (hoa) => ({
   type: actionTypes.THONG_TIN_HOA_DAT_HANG_TRANG_CHU,
   hoa: hoa,
+});
+
+export const themgiohangchuadangnhap = (thongtingiohang) => ({
+  type: actionTypes.THEM_GIO_HANG_CHUA_DANG_NHAP,
+  thongtingiohang: thongtingiohang,
+});
+
+export const suagiohangchuadangnhap = (thongtingiohangmoi) => ({
+  type: actionTypes.SUA_GIO_HANG_CHUA_DANG_NHAP,
+  thongtingiohangmoi: thongtingiohangmoi,
+});
+
+export const themmadonhangmoi = (madonhang) => ({
+  type: actionTypes.THEM_MA_DON_HANG_CHUA_DANG_NHAP,
+  madonhang: madonhang,
+});
+
+export const xoagiohangchuaDN = () => ({
+  type: actionTypes.XOA_GIO_HANG_CHUA_DANG_NHAP,
+});
+
+export const xoadonhangchuaDN = () => ({
+  type: actionTypes.XOA_MA_DON_HANG_CHUA_DANG_NHAP,
 });

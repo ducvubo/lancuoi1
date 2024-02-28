@@ -34,9 +34,6 @@ class HoaTheoDanhMuc extends Component {
       let epdata = data1
         .flatMap((item) => item.danhmuc.map((item) => item.danhmuchoachitiet))
         .flat();
-      epdata.map((item, index) => {
-        item.donoibat = parseFloat(item.donoibat);
-      });
       let sxdata = epdata.slice().sort((a, b) => b.donoibat - a.donoibat);
       sxdata &&
       sxdata.length > 0 &&

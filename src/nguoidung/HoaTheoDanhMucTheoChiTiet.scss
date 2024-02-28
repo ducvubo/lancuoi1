@@ -1,109 +1,124 @@
 .hoatheodanhmuchoachitiet {
-    display        : flex;
-    justify-content: center;
-    flex-wrap      : wrap;
-    margin-left    : 135px;
-    gap            : 45px;
-    margin-right   : 135px;
 
-    .hoa {
-        margin-top: 25px;
-
-        .anhhoa {
-            position: relative;
-
-            .giamgia {
-                position        : absolute;
-                color           : white;
-                position        : absolute;
-                width           : 50px;
-                height          : 50px;
-                border          : 1px solid red;
-                border-radius   : 50%;
-                left            : 205px;
-                top             : 11px;
-                background-color: red;
-                font-weight     : 500;
-                display         : inline-block;
-                text-align      : center;
-                font-size       : 13px;
-            }
+    .item1 {
+        span {
+            text-transform : uppercase;
+            font-size      : 25px;
+            display        : flex;
+            justify-content: center;
+            margin-top     : 35px;
+            margin-bottom  : 25px;
         }
-
-        .thongtin {
-            margin-top    : 15px;
-            display       : flex;
-            flex-direction: column;
-            align-items   : center;
-            gap           : 10px;
-            margin-right  : 8px;
-
-            .ten {
-                font-weight: 700;
-            }
-
-            .rating {
-                display   : inline-block;
-                height    : 14px;
-                margin-top: -14px;
-
-                input {
-                    display: none;
-                }
-
-                label {
-                    float     : right;
-                    color     : #ccc;
-                    transition: color 0.3s;
-
-                    &:before {
-                        content  : '\2605';
-                        font-size: 20px;
-                    }
-                }
-
-                input:checked~label {
-                    color     : #e91e63;
-                    transition: color 0.3s;
-                }
-            }
-
-            .gia {
-                display    : flex;
-                gap        : 5px;
-                font-weight: 400;
-
-                .giagiam {
-                    color: #e91e63;
-                }
-
-                .giachuagiam {
-                    text-decoration: line-through;
-                }
-            }
-
-            .dathang {
-                background-color: #e91e63;
-                border-radius   : 6px;
-                width           : 91px;
-                height          : 24px;
-
-                span {
-                    color          : white;
-                    text-decoration: none;
-                    font-size      : 12px;
-                    display        : flex;
-                    font-weight    : 500;
-                    justify-content: center;
-                    align-items    : center;
-                    text-align     : center;
-                    margin-top     : -3px;
-                }
-            }
-
-        }
-
     }
 
+    .item2{
+        display        : flex;
+        justify-content: center;
+        flex-wrap      : wrap;
+        margin-left    : 135px;
+        gap            : 45px;
+        margin-right   : 135px;
+    
+        .hoa {
+            margin-top: 25px;
+    
+            .anhhoa {
+                position: relative;
+    
+                .giamgia {
+                    position        : absolute;
+                    color           : white;
+                    position        : absolute;
+                    width           : 50px;
+                    height          : 50px;
+                    border          : 1px solid red;
+                    border-radius   : 50%;
+                    left            : 205px;
+                    top             : 11px;
+                    background-color: red;
+                    font-weight     : 500;
+                    display         : inline-block;
+                    text-align      : center;
+                    font-size       : 13px;
+                }
+            }
+    
+            .thongtin {
+                margin-top    : 15px;
+                display       : flex;
+                flex-direction: column;
+                align-items   : center;
+                gap           : 10px;
+                margin-right  : 8px;
+    
+                .ten {
+                    font-weight: 700;
+                }
+    
+                .rating {
+                    display   : inline-block;
+                    height    : 14px;
+                    margin-top: -14px;
+    
+                    input {
+                        display: none;
+                    }
+    
+                    label {
+                        float     : right;
+                        color     : #ccc;
+                        transition: color 0.3s;
+    
+                        &:before {
+                            content  : '\2605';
+                            font-size: 20px;
+                        }
+                    }
+    
+                    input:checked~label {
+                        color     : #e91e63;
+                        transition: color 0.3s;
+                    }
+                }
+    
+                .gia {
+                    display    : flex;
+                    gap        : 5px;
+                    font-weight: 400;
+    
+                    .giagiam {
+                        color: #e91e63;
+                    }
+    
+                    .giachuagiam {
+                        text-decoration: line-through;
+                    }
+                }
+    
+                .dathang {
+                    background-color: #e91e63;
+                    border-radius   : 6px;
+                    width           : 91px;
+                    height          : 24px;
+    
+                    span {
+                        color          : white;
+                        text-decoration: none;
+                        font-size      : 12px;
+                        display        : flex;
+                        font-weight    : 500;
+                        justify-content: center;
+                        align-items    : center;
+                        text-align     : center;
+                        margin-top     : -3px;
+                    }
+                }
+    
+            }
+    
+        }
+    
+    }
+   
 
 }

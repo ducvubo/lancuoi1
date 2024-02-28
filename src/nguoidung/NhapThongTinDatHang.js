@@ -2,7 +2,11 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Modal } from "reactstrap";
 import "./NhapThongTinDatHang.scss";
-import { apidathang, apisuagiohang } from "../API/ApiTrangChu";
+import {
+  apidathang,
+  apisuagiohang,
+  apidathangchuaDN,
+} from "../API/ApiTrangChu";
 import { apirefreshtoken } from "../API/GoiApi";
 import { toast } from "react-toastify";
 import { withRouter } from "react-router-dom";
@@ -15,6 +19,7 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
+import * as actions from "../action/actions";
 class NhapThongTinDatHang extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +33,8 @@ class NhapThongTinDatHang extends Component {
       trangthainhapOTPgiohang: false,
       otpgiohang: "",
       loadingdathanggiohang: false,
+
+      buildatasuagiohang: "",
     };
   }
 
@@ -113,66 +120,96 @@ class NhapThongTinDatHang extends Component {
     this.setState({
       loadingdathanggiohang: true,
     });
-    // let token = await apirefreshtoken();
-    // if (token.maCode === 10) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-    //     : toast.error("You are not logged in, please log in!!!");
-    // }
-    // let kq = await apidathang({
-    //   idnguoidung: this.props.thongtinnguoidung.id,
-    //   tennguoinhan: this.state.tennguoinhan,
-    //   email: this.state.email,
-    //   sodienthoai: this.state.sodienthoai,
-    //   diachi: this.state.diachi,
-    //   ghichu: this.state.ghichu,
-    //   phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
-    //   tongtien: this.props.tongtien,
-    //   donhangchitiet: this.props.donhangchitiet,
-    //   ngonngu: this.props.ngonngu,
-    //   idgiohangchitietduocchon: this.props.idgiohangchitietduocchon,
-    // });
-    // if (kq && kq.maCode === 10) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!")
-    //     : toast.error(
-    //         "You are not logged in, please log in to view your shopping order!!!"
-    //       );
-    // }
-    // if (kq && kq.maCode === 8) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.error(
-    //         "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-    //       )
-    //     : toast.error(
-    //         "Your login has expired, please log in again to continue!!!"
-    //       );
-    // }
-    // if (kq && kq.maCode === 9) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.error(
-    //         "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-    //       )
-    //     : toast.error(
-    //         "Your login session is invalid, please log in again to continue!!!"
-    //       );
-    // }
-    // if (kq.maCode === 0 && kq) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
-    //     : toast.success("Order successful, waiting for staff to confirm!!!");
-    //   this.props.huydathang();
-    //   this.props.doitrangthai();
-    //   this.props.dathangthanhcong();
-    //   // if(this.props.datasuagiohang){
-    //   //   console.log(this.props.datasuagiohang)
-    //   //   await apisuagiohang(this.props.datasuagiohang);
-    //   // }
-    //   // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
+    // if (this.props.thongtinnguoidung) {
+    //   let token = await apirefreshtoken();
+    //   if (token.maCode === 10) {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+    //       : toast.error("You are not logged in, please log in!!!");
+    //   }
+    //   let kq = await apidathang({
+    //     idnguoidung: this.props.thongtinnguoidung.id,
+    //     tennguoinhan: this.state.tennguoinhan,
+    //     email: this.state.email,
+    //     sodienthoai: this.state.sodienthoai,
+    //     diachi: this.state.diachi,
+    //     ghichu: this.state.ghichu,
+    //     phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
+    //     tongtien: this.props.tongtien,
+    //     donhangchitiet: this.props.donhangchitiet,
+    //     ngonngu: this.props.ngonngu,
+    //     idgiohangchitietduocchon: this.props.idgiohangchitietduocchon,
+    //   });
+    //   if (kq && kq.maCode === 10) {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!")
+    //       : toast.error(
+    //           "You are not logged in, please log in to view your shopping order!!!"
+    //         );
+    //   }
+    //   if (kq && kq.maCode === 8) {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.error(
+    //           "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+    //         )
+    //       : toast.error(
+    //           "Your login has expired, please log in again to continue!!!"
+    //         );
+    //   }
+    //   if (kq && kq.maCode === 9) {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.error(
+    //           "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+    //         )
+    //       : toast.error(
+    //           "Your login session is invalid, please log in again to continue!!!"
+    //         );
+    //   }
+    //   if (kq.maCode === 0 && kq) {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
+    //       : toast.success("Order successful, waiting for staff to confirm!!!");
+    //     this.props.huydathang();
+    //     this.props.doitrangthai();
+    //     this.props.dathangthanhcong();
+    //     // if(this.props.datasuagiohang){
+    //     //   console.log(this.props.datasuagiohang)
+    //     //   await apisuagiohang(this.props.datasuagiohang);
+    //     // }
+    //     // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
+    //   } else {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.success("Đặt hàng thất bại")
+    //       : toast.success("Order error");
+    //   }
     // } else {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.success("Đặt hàng thất bại")
-    //     : toast.success("Order error");
+    //   let kq = await apidathangchuaDN({
+    //     tennguoinhan: this.state.tennguoinhan,
+    //     email: this.state.email,
+    //     sodienthoai: this.state.sodienthoai,
+    //     diachi: this.state.diachi,
+    //     ghichu: this.state.ghichu,
+    //     phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
+    //     tongtien: this.props.tongtien,
+    //     donhangchitiet: this.props.donhangchitiet,
+    //     ngonngu: this.props.ngonngu,
+    //   });
+    //   if (kq.maCode === 0 && kq) {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
+    //       : toast.success("Order successful, waiting for staff to confirm!!!");
+    //     this.props.huydathang();
+    //     this.props.doitrangthai();
+    //     this.props.dathangthanhcong();
+    //     this.props.themmadonhangmoi(kq.madonhang);
+    //     let idhoadathangchuaDN = this.props.donhangchitiet.map(
+    //       (item) => item.idhoa
+    //     );
+    //     let datasuagiohang = this.props.thongtingiohangchuadangnhap.filter(
+    //       (item) => !idhoadathangchuaDN.includes(parseInt(item.idhoa))
+    //     );
+    //     this.props.suagiohangchuadangnhap(datasuagiohang);
+    //   }
     // }
   };
 
@@ -181,6 +218,7 @@ class NhapThongTinDatHang extends Component {
       otpgiohang: event,
     });
   };
+
   xacnhanotpgiohang = () => {
     this.setState({
       loadingdathanggiohang: true,
@@ -189,87 +227,117 @@ class NhapThongTinDatHang extends Component {
       .confirm(+this.state.otpgiohang)
       .then(async (result) => {
         this.setState({ loadingdathanggiohang: false });
-        let token = await apirefreshtoken();
 
-        if (token.maCode === 10) {
-          this.props.ngonngu === "vi"
-            ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-            : toast.error("You are not logged in, please log in!!!");
-        }
-        let kq = await apidathang({
-          idnguoidung: this.props.thongtinnguoidung.id,
-          tennguoinhan: this.state.tennguoinhan,
-          email: this.state.email,
-          sodienthoai: this.state.sodienthoai,
-          diachi: this.state.diachi,
-          ghichu: this.state.ghichu,
-          phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
-          tongtien: this.props.tongtien,
-          donhangchitiet: this.props.donhangchitiet,
-          ngonngu: this.props.ngonngu,
-          idgiohangchitietduocchon: this.props.idgiohangchitietduocchon,
-        });
-
-        if (kq && kq.maCode === 10) {
-          this.props.ngonngu === "vi"
-            ? toast.error(
-                "Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!"
-              )
-            : toast.error(
-                "You are not logged in, please log in to view your shopping order!!!"
-              );
-          this.setState({
-            trangthainhapOTPgiohang: false,
+        if(this.props.thongtinnguoidung){
+          let token = await apirefreshtoken();
+          if (token.maCode === 10) {
+            this.props.ngonngu === "vi"
+              ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+              : toast.error("You are not logged in, please log in!!!");
+          }
+          let kq = await apidathang({
+            idnguoidung: this.props.thongtinnguoidung.id,
+            tennguoinhan: this.state.tennguoinhan,
+            email: this.state.email,
+            sodienthoai: this.state.sodienthoai,
+            diachi: this.state.diachi,
+            ghichu: this.state.ghichu,
+            phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
+            tongtien: this.props.tongtien,
+            donhangchitiet: this.props.donhangchitiet,
+            ngonngu: this.props.ngonngu,
+            idgiohangchitietduocchon: this.props.idgiohangchitietduocchon,
           });
-        }
-        if (kq && kq.maCode === 8) {
-          this.props.ngonngu === "vi"
-            ? toast.error(
-                "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-              )
-            : toast.error(
-                "Your login has expired, please log in again to continue!!!"
-              );
-          this.setState({
-            trangthainhapOTPgiohang: false,
+  
+          if (kq && kq.maCode === 10) {
+            this.props.ngonngu === "vi"
+              ? toast.error(
+                  "Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!"
+                )
+              : toast.error(
+                  "You are not logged in, please log in to view your shopping order!!!"
+                );
+            this.setState({
+              trangthainhapOTPgiohang: false,
+            });
+          }
+          if (kq && kq.maCode === 8) {
+            this.props.ngonngu === "vi"
+              ? toast.error(
+                  "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+                )
+              : toast.error(
+                  "Your login has expired, please log in again to continue!!!"
+                );
+            this.setState({
+              trangthainhapOTPgiohang: false,
+            });
+          }
+          if (kq && kq.maCode === 9) {
+            this.props.ngonngu === "vi"
+              ? toast.error(
+                  "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+                )
+              : toast.error(
+                  "Your login session is invalid, please log in again to continue!!!"
+                );
+            this.setState({
+              trangthainhapOTPgiohang: false,
+            });
+          }
+          if (kq.maCode === 0 && kq) {
+            this.setState({
+              trangthainhapOTPgiohang: false,
+            });
+            this.props.ngonngu === "vi"
+              ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
+              : toast.success(
+                  "Order successful, waiting for staff to confirm!!!"
+                );
+  
+            this.props.huydathang();
+            this.props.doitrangthai();
+            this.props.dathangthanhcong();
+  
+            delete window.confirmationResult;
+            delete window.RecaptchVerify;
+            // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
+          } else {
+            this.setState({
+              trangthainhapOTPgiohang: false,
+            });
+            this.props.ngonngu === "vi"
+              ? toast.success("Đặt hàng thất bại")
+              : toast.success("Order error");
+          }
+        }else{
+          let kq = await apidathangchuaDN({
+            tennguoinhan: this.state.tennguoinhan,
+            email: this.state.email,
+            sodienthoai: this.state.sodienthoai,
+            diachi: this.state.diachi,
+            ghichu: this.state.ghichu,
+            phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
+            tongtien: this.props.tongtien,
+            donhangchitiet: this.props.donhangchitiet,
+            ngonngu: this.props.ngonngu,
           });
-        }
-        if (kq && kq.maCode === 9) {
-          this.props.ngonngu === "vi"
-            ? toast.error(
-                "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-              )
-            : toast.error(
-                "Your login session is invalid, please log in again to continue!!!"
-              );
-          this.setState({
-            trangthainhapOTPgiohang: false,
-          });
-        }
-        if (kq.maCode === 0 && kq) {
-          this.setState({
-            trangthainhapOTPgiohang: false,
-          });
-          this.props.ngonngu === "vi"
-            ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
-            : toast.success(
-                "Order successful, waiting for staff to confirm!!!"
-              );
-
-          this.props.huydathang();
-          this.props.doitrangthai();
-          this.props.dathangthanhcong();
-
-          delete window.confirmationResult;
-          delete window.RecaptchVerify;
-          // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
-        } else {
-          this.setState({
-            trangthainhapOTPgiohang: false,
-          });
-          this.props.ngonngu === "vi"
-            ? toast.success("Đặt hàng thất bại")
-            : toast.success("Order error");
+          if (kq.maCode === 0 && kq) {
+            this.props.ngonngu === "vi"
+              ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
+              : toast.success("Order successful, waiting for staff to confirm!!!");
+            this.props.huydathang();
+            this.props.doitrangthai();
+            this.props.dathangthanhcong();
+            this.props.themmadonhangmoi(kq.madonhang);
+            let idhoadathangchuaDN = this.props.donhangchitiet.map(
+              (item) => item.idhoa
+            );
+            let datasuagiohang = this.props.thongtingiohangchuadangnhap.filter(
+              (item) => !idhoadathangchuaDN.includes(parseInt(item.idhoa))
+            );
+            this.props.suagiohangchuadangnhap(datasuagiohang);
+          }
         }
       })
       .catch((err) => {
@@ -279,11 +347,13 @@ class NhapThongTinDatHang extends Component {
           : toast.error("Confirm OTP is incorrect, please re-enter");
       });
   };
+
   xoaOTPgiohang = () => {
     this.setState({
       otpgiohang: "",
     });
   };
+
   guiLaiOTPgiohang = () => {
     // delete window.confirmationResult;
     // delete window.RecaptchVerify;
@@ -302,8 +372,6 @@ class NhapThongTinDatHang extends Component {
       ngonngu,
       idgiohangchitietduocchon,
     } = this.props;
-    console.log(donhangchitiet);
-    console.log(idgiohangchitietduocchon);
     let {
       tennguoinhan,
       email,
@@ -466,11 +534,17 @@ const mapStateToProps = (state) => {
   return {
     ngonngu: state.web.ngonngu,
     thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
+    thongtingiohangchuadangnhap: state.giohanghoa.thongtingiohang,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    themmadonhangmoi: (madonhang) =>
+      dispatch(actions.themmadonhangmoi(madonhang)),
+    suagiohangchuadangnhap: (datathemgiohang) =>
+      dispatch(actions.suagiohangchuadangnhap(datathemgiohang)),
+  };
 };
 
 export default withRouter(

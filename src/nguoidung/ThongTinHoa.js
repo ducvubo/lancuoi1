@@ -133,22 +133,22 @@ class ThongTinHoa extends Component {
       let data1 = kq.data;
 
       data1 &&
-      data1.length > 0 &&
-      data1.map((item) => {
-        let tongsosao =
-          item.hoabinhluan &&
-          item.hoabinhluan.reduce(
-            (total, item) => total + item.sosaodanhgia,
-            0
-          );
-        let trungbinh = tongsosao / item.hoabinhluan.length;
-        item.danhgiatrungbinh = trungbinh;
-        if (item.danhgiatrungbinh % 1 >= 0.5) {
-          item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
-        } else {
-          item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
-        }
-      });
+        data1.length > 0 &&
+        data1.map((item) => {
+          let tongsosao =
+            item.hoabinhluan &&
+            item.hoabinhluan.reduce(
+              (total, item) => total + item.sosaodanhgia,
+              0
+            );
+          let trungbinh = tongsosao / item.hoabinhluan.length;
+          item.danhgiatrungbinh = trungbinh;
+          if (item.danhgiatrungbinh % 1 >= 0.5) {
+            item.danhgiatrungbinh = Math.ceil(item.danhgiatrungbinh);
+          } else {
+            item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
+          }
+        });
 
       this.setState({
         sanphamlienquan: data1,
@@ -169,43 +169,54 @@ class ThongTinHoa extends Component {
   };
 
   themgiohang = async () => {
-    let token = await apirefreshtoken();
+    if (this.props.thongtinnguoidung) {
+      let token = await apirefreshtoken();
+      if (token.maCode === 10) {
+        this.props.ngonngu === "vi"
+          ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+          : toast.error("You are not logged in, please log in!!!");
+      }
 
-    if (token.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-        : toast.error("You are not logged in, please log in!!!");
-    }
-
-    let kq = await apithemgiohang({
-      idnguoidung: this.props.thongtinnguoidung.id,
-      idhoa: this.state.thongtinhoa.id,
-      soluong: this.state.soluong,
-    });
-    if (kq && kq.maCode === 8) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login has expired, please log in again to continue!!!"
-          );
-    }
-    if (kq && kq.maCode === 9) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login session is invalid, please log in again to continue!!!"
-          );
-    }
-    if (kq && kq.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục!!!")
-        : toast.success("You are not logged in, please log in to continue!!!");
-    }
-    if (kq && kq.maCode === 0) {
+      let kq = await apithemgiohang({
+        idnguoidung: this.props.thongtinnguoidung.id,
+        idhoa: this.state.thongtinhoa.id,
+        soluong: this.state.soluong,
+      });
+      if (kq && kq.maCode === 8) {
+        this.props.ngonngu === "vi"
+          ? toast.error(
+              "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+            )
+          : toast.error(
+              "Your login has expired, please log in again to continue!!!"
+            );
+      }
+      if (kq && kq.maCode === 9) {
+        this.props.ngonngu === "vi"
+          ? toast.error(
+              "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+            )
+          : toast.error(
+              "Your login session is invalid, please log in again to continue!!!"
+            );
+      }
+      if (kq && kq.maCode === 10) {
+        this.props.ngonngu === "vi"
+          ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục!!!")
+          : toast.success(
+              "You are not logged in, please log in to continue!!!"
+            );
+      }
+      if (kq && kq.maCode === 0) {
+        this.props.ngonngu === "vi"
+          ? toast.success("Thêm vào giỏ hàng thành công!!!")
+          : toast.success("Add to cart successfully!!!");
+      }
+    } else {
+      this.props.thongtingiohangchuadangnhap({
+        idhoa: this.props.match.params.id,
+        soluong: this.state.soluong,
+      });
       this.props.ngonngu === "vi"
         ? toast.success("Thêm vào giỏ hàng thành công!!!")
         : toast.success("Add to cart successfully!!!");
@@ -652,7 +663,9 @@ class ThongTinHoa extends Component {
                 </div>
 
                 <div
-                  className={ngonngu === "vi" ? "nutbam" : "nutbam nutbamEn"}
+                  className={
+                    ngonngu === "vi" ? "nutbam mb-3" : "nutbam nutbamEn mb-3"
+                  }
                 >
                   {thongtinhoa.soluongcon > 0 ? (
                     <>
@@ -1567,6 +1580,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     thongtinhoadathang: (hoa) => dispatch(actions.thongtinhoadathang(hoa)),
+    thongtingiohangchuadangnhap: (datathemgiohang) =>
+      dispatch(actions.themgiohangchuadangnhap(datathemgiohang)),
   };
 };
 

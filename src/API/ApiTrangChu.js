@@ -137,6 +137,18 @@ const apicapnhatthongtinnguoidung = (data) => {
   return axios.put("/api/capnhapthongtinnguoidung", data);
 };
 
+const apigiohangchuadangnhap = (data) => {
+  return axios.post("api/giohangchuadangnhap", data);
+};
+
+const apidathangchuaDN = (data) => {
+  return axios.post("api/dathangchuadangnhap", data);
+};
+
+const apidonhangchuaDN = (data) => {
+  return axios.post("api/donhangchuaDN", data);
+};
+
 export {
   danhmuchoanoibat,
   danhmuchoachitiettheodanhmuc,
@@ -170,5 +182,8 @@ export {
   apihoatheodanhmucnoibat,
   apitatcahoanguoidung,
   apithongtinnguoidung,
-  apicapnhatthongtinnguoidung
+  apicapnhatthongtinnguoidung,
+  apigiohangchuadangnhap,
+  apidathangchuaDN,
+  apidonhangchuaDN,
 };

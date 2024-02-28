@@ -53,44 +53,44 @@ class ThongTinDonHangNguoiDung extends Component {
   huydonhang = async () => {
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
-    let token = await apirefreshtoken();
+    // let token = await apirefreshtoken();
 
-    if (token.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-        : toast.error("You are not logged in, please log in!!!");
-    }
+    // if (token.maCode === 10) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+    //     : toast.error("You are not logged in, please log in!!!");
+    // }
     let kq = await apihuydonhangnguoidung({
       madonhang: this.props.thongtindonhang.madonhang,
       phanhoikhachhang: this.state.phanhoikhachhang,
     });
-    if (kq && kq.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
-          )
-        : toast.error(
-            "You are not logged in, please log in to view your shopping cart!!!"
-          );
-    }
-    if (kq && kq.maCode === 8) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login has expired, please log in again to continue!!!"
-          );
-    }
-    if (kq && kq.maCode === 9) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login session is invalid, please log in again to continue!!!"
-          );
-    }
+    // if (kq && kq.maCode === 10) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
+    //       )
+    //     : toast.error(
+    //         "You are not logged in, please log in to view your shopping cart!!!"
+    //       );
+    // }
+    // if (kq && kq.maCode === 8) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login has expired, please log in again to continue!!!"
+    //       );
+    // }
+    // if (kq && kq.maCode === 9) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login session is invalid, please log in again to continue!!!"
+    //       );
+    // }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Hủy đơn hàng thành công!!!")
@@ -108,43 +108,43 @@ class ThongTinDonHangNguoiDung extends Component {
   };
 
   xacnhandanhanduochang = async () => {
-    let token = await apirefreshtoken();
+    // let token = await apirefreshtoken();
 
-    if (token.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-        : toast.error("You are not logged in, please log in!!!");
-    }
+    // if (token.maCode === 10) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+    //     : toast.error("You are not logged in, please log in!!!");
+    // }
     let kq = await apixacnhandanhanduochang({
       madonhang: this.props.thongtindonhang.madonhang,
     });
-    if (kq && kq.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
-          )
-        : toast.error(
-            "You are not logged in, please log in to view your shopping cart!!!"
-          );
-    }
-    if (kq && kq.maCode === 8) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login has expired, please log in again to continue!!!"
-          );
-    }
-    if (kq && kq.maCode === 9) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login session is invalid, please log in again to continue!!!"
-          );
-    }
+    // if (kq && kq.maCode === 10) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
+    //       )
+    //     : toast.error(
+    //         "You are not logged in, please log in to view your shopping cart!!!"
+    //       );
+    // }
+    // if (kq && kq.maCode === 8) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login has expired, please log in again to continue!!!"
+    //       );
+    // }
+    // if (kq && kq.maCode === 9) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login session is invalid, please log in again to continue!!!"
+    //       );
+    // }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Xác nhận đơn hàng thành công!!!")
@@ -161,44 +161,44 @@ class ThongTinDonHangNguoiDung extends Component {
   yeucauhoanhanghoantien = async () => {
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
-    let token = await apirefreshtoken();
+    // let token = await apirefreshtoken();
 
-    if (token.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-        : toast.error("You are not logged in, please log in!!!");
-    }
+    // if (token.maCode === 10) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
+    //     : toast.error("You are not logged in, please log in!!!");
+    // }
     let kq = await apihoanhanghoantien({
       madonhang: this.props.thongtindonhang.madonhang,
       phanhoikhachhang: this.state.phanhoikhachhang,
     });
-    if (kq && kq.maCode === 10) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
-          )
-        : toast.error(
-            "You are not logged in, please log in to view your shopping cart!!!"
-          );
-    }
-    if (kq && kq.maCode === 8) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login has expired, please log in again to continue!!!"
-          );
-    }
-    if (kq && kq.maCode === 9) {
-      this.props.ngonngu === "vi"
-        ? toast.error(
-            "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-          )
-        : toast.error(
-            "Your login session is invalid, please log in again to continue!!!"
-          );
-    }
+    // if (kq && kq.maCode === 10) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Bạn chưa đăng nhập, vui lòng đăng nhập để xem giỏ hàng!!!"
+    //       )
+    //     : toast.error(
+    //         "You are not logged in, please log in to view your shopping cart!!!"
+    //       );
+    // }
+    // if (kq && kq.maCode === 8) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login has expired, please log in again to continue!!!"
+    //       );
+    // }
+    // if (kq && kq.maCode === 9) {
+    //   this.props.ngonngu === "vi"
+    //     ? toast.error(
+    //         "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
+    //       )
+    //     : toast.error(
+    //         "Your login session is invalid, please log in again to continue!!!"
+    //       );
+    // }
     if (kq && kq.maCode === 0) {
       this.props.ngonngu === "vi"
         ? toast.success("Yêu cầu hoàn hàng, hoàn tiền thành công!!!")
@@ -358,7 +358,6 @@ class ThongTinDonHangNguoiDung extends Component {
               </table>
             </div>
             {thongtindonhang.trangthaidonhangid === "H1" ||
-            thongtindonhang.trangthaidonhangid === "H2" ||
             thongtindonhang.trangthaidonhangid === "H5" ? (
               <div className="row">
                 <div className="form-group col-12 pl-5 pr-5">
@@ -377,8 +376,7 @@ class ThongTinDonHangNguoiDung extends Component {
               </div>
             ) : null}
             <div className="item4 mb-3">
-              {thongtindonhang.trangthaidonhangid === "H1" ||
-              thongtindonhang.trangthaidonhangid === "H2" ? (
+              {thongtindonhang.trangthaidonhangid === "H1" ? (
                 <button
                   className="btn nutbam"
                   onClick={() => this.huydonhang()}
@@ -411,7 +409,6 @@ class ThongTinDonHangNguoiDung extends Component {
                 className={
                   "btn nutbam ml-4" +
                   (thongtindonhang.trangthaidonhangid !== "H1" &&
-                  thongtindonhang.trangthaidonhangid !== "H2" &&
                   thongtindonhang.trangthaidonhangid !== "H4" &&
                   thongtindonhang.trangthaidonhangid !== "H5"
                     ? " dong"

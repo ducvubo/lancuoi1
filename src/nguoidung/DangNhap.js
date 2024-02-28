@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import "./DangNhap.scss";
+import * as actions from "../action/actions";
 import HeaderTrangChu from "./HeaderTrangChu";
 import FooterTrangChu from "./FooterTrangChu";
 import { apidangnhap } from "../API/ApiTrangChu";
@@ -55,6 +56,8 @@ class DangNhap extends Component {
     let data = await apidangnhap({
       email: this.state.email,
       password: this.state.password,
+      thongtingiohangchuadangnhap: this.props.thongtingiohangchuadangnhap,
+      thongtindonhangchuadangnhap: this.props.thongtindonhangchuadangnhap,
     });
     if (data && data.maCode === 1) {
       this.props.ngonngu === "vi"
@@ -83,17 +86,18 @@ class DangNhap extends Component {
     }
     if (data && data.maCode === 0) {
       this.props.thongtinnguoidung(data.nguoidung);
-    
       (data && data.nguoidung && data.nguoidung.quyenId === "R1") ||
       data.nguoidung.quyenId === "R3"
         ? this.props.history.push("/quanly/")
         : this.props.history.push("/trangchu");
+        this.props.xoadonhangchuaDN()
+        this.props.xoagiohangchuaDN()
     }
   };
 
   render() {
     let { email, password, xemmk } = this.state;
-    let { thongtinnguoidung123,ngonngu } = this.props;
+    let { thongtinnguoidung123, ngonngu } = this.props;
     return (
       <>
         {/* {thongtinnguoidung123 ? thongtinnguoidung123.quyenId === "R1" || thongtinnguoidung123.quyenId === "R3" ? (<Redirect to={"/quanly/"}/>) : (<Redirect to={"/trangchu"}/>)} */}
@@ -105,7 +109,9 @@ class DangNhap extends Component {
         <div className="dangnhap">
           <div className="form">
             <div className="spandangnhap">
-              <span><FormattedMessage id="headerdangnhap"/></span>
+              <span>
+                <FormattedMessage id="headerdangnhap" />
+              </span>
             </div>
             <div className="nhapthongtin">
               <div className="form-group">
@@ -120,7 +126,9 @@ class DangNhap extends Component {
                 />
               </div>
               <div className="form-group">
-                <label><FormattedMessage id="dangkymk"/></label>
+                <label>
+                  <FormattedMessage id="dangkymk" />
+                </label>
                 <input
                   className="form-control inputmk"
                   type={xemmk === false ? "password" : "text"}
@@ -131,27 +139,39 @@ class DangNhap extends Component {
                 />
                 {xemmk === true ? (
                   <i
-                    className={ngonngu === "vi" ? "far fa-eye-slash xemmk" : "far fa-eye-slash xemmk xemmkdangnhap"}
+                    className={
+                      ngonngu === "vi"
+                        ? "far fa-eye-slash xemmk"
+                        : "far fa-eye-slash xemmk xemmkdangnhap"
+                    }
                     onClick={() => this.xemmk()}
                   ></i>
                 ) : (
                   <i
-                  className={ngonngu === "vi" ? "far fa-eye xemmk" : "far fa-eye xemmk xemmkdangnhap"}
+                    className={
+                      ngonngu === "vi"
+                        ? "far fa-eye xemmk"
+                        : "far fa-eye xemmk xemmkdangnhap"
+                    }
                     onClick={() => this.xemmk()}
                   ></i>
                 )}
               </div>
             </div>
             <button className="btn butdangnhap" onClick={() => this.dangnhap()}>
-              <FormattedMessage id="headerdangnhap"/>
+              <FormattedMessage id="headerdangnhap" />
             </button>
             <div className="qmk-dk">
               <Link className="dangky" to={"/quenmk"}>
-                <span className="qmk"><FormattedMessage id="bandaquenmk"/></span>
+                <span className="qmk">
+                  <FormattedMessage id="bandaquenmk" />
+                </span>
               </Link>
 
               <Link className="dangky" to={"/dangky"}>
-                <span className="dk"><FormattedMessage id="banchuacotaikhoan"/></span>
+                <span className="dk">
+                  <FormattedMessage id="banchuacotaikhoan" />
+                </span>
               </Link>
             </div>
           </div>
@@ -166,12 +186,16 @@ const mapStateToProps = (state) => {
   return {
     ngonngu: state.web.ngonngu,
     thongtinnguoidung123: state.thongtinnguoidung.thongtinnguoidung,
+    thongtingiohangchuadangnhap: state.giohanghoa.thongtingiohang,
+    thongtindonhangchuadangnhap: state.madonhang.madonhangArr,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     thongtinnguoidung: (data) => dispatch(thongtinnguoidung(data)),
+    xoagiohangchuaDN: () => dispatch(actions.themgiohangchuadangnhap()),
+    xoadonhangchuaDN: () => dispatch(actions.xoadonhangchuaDN()),
   };
 };
 
