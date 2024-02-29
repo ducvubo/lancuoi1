@@ -25,6 +25,7 @@ const mdParser = new MarkdownIt();
 class QuanLyHoa extends Component {
   constructor(props) {
     super(props);
+    this.cuontrendau = React.createRef();
     this.state = {
       danhmuchoachitietArr: [],
       anhUrlnoibat: "",
@@ -374,6 +375,8 @@ class QuanLyHoa extends Component {
   };
 
   clicksuahoa = (hoa) => {
+    this.cuonlendautrang()
+
     let anhnoibatbase64 = "";
 
     if (hoa.anhnoibat) {
@@ -597,7 +600,9 @@ class QuanLyHoa extends Component {
       this.laytatcahoa();
     }
   };
-
+  cuonlendautrang = () => {
+    this.cuontrendau.current?.scrollIntoView({ behavior: "smooth" });
+  };
   render() {
     let {
       trangthainut,
@@ -626,6 +631,8 @@ class QuanLyHoa extends Component {
     let { ngonngu } = this.props;
     return (
       <div className="quanlyhoa">
+        <div ref={this.cuontrendau}/>
+
         <div className="item1">
           <span>
             <FormattedMessage id="quanlyhoa" />

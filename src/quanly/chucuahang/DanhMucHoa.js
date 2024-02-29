@@ -15,6 +15,8 @@ import _, { debounce } from "lodash";
 class DanhMucHoa extends Component {
   constructor(props) {
     super(props);
+    this.cuontrendau = React.createRef();
+
     this.state = {
       iddanhmuc: "",
       tendanhmucVi: "",
@@ -171,6 +173,8 @@ class DanhMucHoa extends Component {
   };
 
   clicksuadanhmuc = (danhmuc) => {
+    this.cuonlendautrang();
+
     this.setState({
       iddanhmuc: danhmuc.id,
       tendanhmucVi: danhmuc.tendanhmucVi,
@@ -308,7 +312,16 @@ class DanhMucHoa extends Component {
     if (timkiem) {
       let clonedanhmuchoa = _.cloneDeep(this.state.tatcadanhmuchoa);
       clonedanhmuchoa = clonedanhmuchoa.filter((item) =>
-        (this.props.ngonngu === 'vi' ? (item.tendanhmucVi ? item.tendanhmucVi : '') : (item.tendanhmucEn ? item.tendanhmucEn : '')).toLowerCase().includes(timkiem.toLowerCase())
+        (this.props.ngonngu === "vi"
+          ? item.tendanhmucVi
+            ? item.tendanhmucVi
+            : ""
+          : item.tendanhmucEn
+          ? item.tendanhmucEn
+          : ""
+        )
+          .toLowerCase()
+          .includes(timkiem.toLowerCase())
       );
       this.setState({
         tatcadanhmuchoa: clonedanhmuchoa,
@@ -317,7 +330,9 @@ class DanhMucHoa extends Component {
       this.laytatcadanhmuc();
     }
   };
-
+  cuonlendautrang = () => {
+    this.cuontrendau.current?.scrollIntoView({ behavior: "smooth" });
+  };
   render() {
     let {
       tendanhmucVi,
@@ -329,6 +344,7 @@ class DanhMucHoa extends Component {
     let { ngonngu } = this.props;
     return (
       <div className="quanlydanhmuc">
+        <div ref={this.cuontrendau} />
         <div className="item1">
           <span>
             <FormattedMessage id="quanlydanhmuchoa" />
@@ -336,7 +352,9 @@ class DanhMucHoa extends Component {
         </div>
         <div className="row item2">
           <div className="form-group col-4">
-            <label><FormattedMessage id="quanlydmtendmVi"/></label>
+            <label>
+              <FormattedMessage id="quanlydmtendmVi" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -347,7 +365,9 @@ class DanhMucHoa extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label><FormattedMessage id="quanlydmtendmEn"/></label>
+            <label>
+              <FormattedMessage id="quanlydmtendmEn" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -358,7 +378,9 @@ class DanhMucHoa extends Component {
             />
           </div>
           <div className="form-group col-4">
-            <label><FormattedMessage id="quanlydmdonoibat"/></label>
+            <label>
+              <FormattedMessage id="quanlydmdonoibat" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -376,7 +398,7 @@ class DanhMucHoa extends Component {
               className="btn btn-primary"
               onClick={() => this.clickthemdanhmuc()}
             >
-              <FormattedMessage id="quanlydmthem"/>
+              <FormattedMessage id="quanlydmthem" />
             </button>
           </>
         ) : (
@@ -385,22 +407,28 @@ class DanhMucHoa extends Component {
               className="btn btn-primary"
               onClick={() => this.clickbtnsuadanhmuc()}
             >
-              <FormattedMessage id="quanlydmsua"/>
+              <FormattedMessage id="quanlydmsua" />
             </button>
           </>
         )}
         <input
           className="form-control timkiemdanhmuchoa"
-          placeholder={ngonngu === 'vi' ? "Tìm kiếm..." : "Search..."}
+          placeholder={ngonngu === "vi" ? "Tìm kiếm..." : "Search..."}
           onChange={(event) => this.timkiem(event)}
         />
         <div className="item3">
           <table className="table table-bordered ">
             <thead>
               <tr className="item31">
-                <th scope="col"><FormattedMessage id="quanlydmtendm"/></th>
-                <th scope="col"><FormattedMessage id="quanlydmdonoibat"/></th>
-                <th scope="col"><FormattedMessage id="quanlyhanhdong"/></th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydmtendm" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydmdonoibat" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlyhanhdong" />
+                </th>
               </tr>
             </thead>
             <tbody>

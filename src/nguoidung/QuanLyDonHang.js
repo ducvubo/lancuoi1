@@ -106,7 +106,6 @@ class QuanLyDonHang extends Component {
     let { tatcadonhang, trangthaithongtindonhang, thongtindonhang } =
       this.state;
     let { ngonngu } = this.props;
-    console.log(tatcadonhang);
     return (
       <>
         <HeaderTrangChu />

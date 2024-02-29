@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 class QuanLyNguoiDung extends Component {
   constructor(props) {
     super(props);
+    this.cuontrendau = React.createRef();
     this.state = {
       gioitinhArr: [],
       quyenArr: [],
@@ -108,6 +109,7 @@ class QuanLyNguoiDung extends Component {
   };
 
   clicksuanguoidung = (nguoidung) => {
+    this.cuonlendautrang()
     this.setState({
       id: nguoidung.id,
       email: nguoidung.email,
@@ -151,6 +153,11 @@ class QuanLyNguoiDung extends Component {
   clickxoanguoidung = (id) => {
     this.props.xoanguoidung(id);
   };
+
+  cuonlendautrang = () => {
+    this.cuontrendau.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   render() {
     let gioitinh1 = this.state.gioitinhArr;
     let quyen1 = this.state.quyenArr;
@@ -161,6 +168,7 @@ class QuanLyNguoiDung extends Component {
     let trangthainut = this.state.trangthainut;
     return (
       <div className="quanlynguoidung">
+        <div ref={this.cuontrendau}/>
         <div className="item1">
           <span>
             <FormattedMessage id="quanlynguoidung" />

@@ -18,6 +18,7 @@ class QuanLyNhapHoa extends Component {
     super(props);
     const ngay = new Date();
     this.ngayhomnay = ngay.toISOString().split("T")[0];
+    this.cuontrendau = React.createRef();
     this.state = {
       nhanvienArr: [],
 
@@ -257,6 +258,8 @@ class QuanLyNhapHoa extends Component {
   };
 
   clicksuahoadon = (hoadon) => {
+    this.cuonlendautrang()
+
     this.setState({
       id: hoadon.id,
       idnhanvien: hoadon.idnhanvien,
@@ -422,7 +425,9 @@ class QuanLyNhapHoa extends Component {
       this.laytatcahoadon();
     }
   };
-
+  cuonlendautrang = () => {
+    this.cuontrendau.current?.scrollIntoView({ behavior: "smooth" });
+  };
   render() {
     let {
       ngaynhap,
@@ -441,6 +446,7 @@ class QuanLyNhapHoa extends Component {
     let { ngonngu } = this.props;
     return (
       <div className="quanlyhoadonnhaphoa">
+        <div ref={this.cuontrendau}/>
         <div className="item1">
           <span>
             <FormattedMessage id="quanlynhaphoa" />

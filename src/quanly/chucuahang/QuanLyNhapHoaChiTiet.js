@@ -18,6 +18,7 @@ import { FormattedMessage } from "react-intl";
 class QuanLyNhapHoaChiTiet extends Component {
   constructor(props) {
     super(props);
+    this.cuontrendau = React.createRef();
     this.state = {
       nhaphoaArr: [],
       hoaArr: [],
@@ -383,6 +384,8 @@ class QuanLyNhapHoaChiTiet extends Component {
   };
 
   clicksuahoadonchitiet = (hoadonchitiet) => {
+    this.cuonlendautrang()
+
     this.setState({
       id: hoadonchitiet.id,
       idnhaphoa: hoadonchitiet.idnhaphoa,
@@ -543,7 +546,9 @@ class QuanLyNhapHoaChiTiet extends Component {
       this.laytatcahoadonchitiet();
     }
   };
-
+  cuonlendautrang = () => {
+    this.cuontrendau.current?.scrollIntoView({ behavior: "smooth" });
+  };
   render() {
     let {
       idnhaphoa,
@@ -563,6 +568,7 @@ class QuanLyNhapHoaChiTiet extends Component {
     let { ngonngu } = this.props;
     return (
       <div className="quanlynhaphoachitiet">
+        <div ref={this.cuontrendau}/>
         <div className="item1">
           <span><FormattedMessage id="quanlynhaphoachitiet"/></span>
         </div>
