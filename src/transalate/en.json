@@ -157,6 +157,7 @@
   "quanlynguoidungquyen": "Possiton",
   "quanlynguoidungthemnguoidung": "Add users",
   "quanlynguoidungsuanguoidung": "Edit users",
+  "quanlynguoidungchonnguoichat": "Please choose a chat partner!!!",
 
   "headersdt": "HOTLINE",
   "headertaikhoan": "Account",
@@ -294,6 +295,8 @@
   "nhapttdhxacnhanguilai": "Resend OTP",
 
   "qldhnd": "Order management",
+  "qldhchontrangthai": "Select order status: ",
+  "qldhtatcadonhang": "All orders",
   "qldhndmadonhang": "Code orders",
   "qldhndtennguoinhan": "Recipient's name",
   "qldhndsdt": "Phone number",
@@ -355,6 +358,7 @@
   "thongtinnguoidunghuy": "Cancel",
 
   "timhoa": "Enter the flower name you want to find: ",
+  "timhoasx": "Sorted by: ",
 
   "xacnhantaikhoandangload": "Please wait !!!",
   "xacnhantaikhoandkthanhcong": "Account registration successful!!!",

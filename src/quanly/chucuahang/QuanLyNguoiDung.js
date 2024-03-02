@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../action/actions";
 import "./QuanLyNguoiDung.scss";
 import { FormattedMessage } from "react-intl";
+import { toast } from "react-toastify";
 class QuanLyNguoiDung extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +55,7 @@ class QuanLyNguoiDung extends Component {
       });
     }
   }
+
   onChangeNhap = (event, id) => {
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
@@ -61,6 +63,7 @@ class QuanLyNguoiDung extends Component {
       ...copyState,
     });
   };
+
   ktdanhapthongtinchua = () => {
     let kt = true;
     let nhapdaydu = [
@@ -82,6 +85,7 @@ class QuanLyNguoiDung extends Component {
     }
     return kt;
   };
+
   clickThemMoi = () => {
     let kt = this.ktdanhapthongtinchua();
     if (kt === false) return;
@@ -109,7 +113,7 @@ class QuanLyNguoiDung extends Component {
   };
 
   clicksuanguoidung = (nguoidung) => {
-    this.cuonlendautrang()
+    this.cuonlendautrang();
     this.setState({
       id: nguoidung.id,
       email: nguoidung.email,
@@ -151,7 +155,13 @@ class QuanLyNguoiDung extends Component {
   };
 
   clickxoanguoidung = (id) => {
-    this.props.xoanguoidung(id);
+    if (id === this.props.thongtinnguoidung.id) {
+      this.props.ngonngu === "vi"
+        ? toast.error("Bạn không thể xóa chính mình!!!")
+        : toast.error("You can't delete yourself!!!");
+    } else {
+      this.props.xoanguoidung(id);
+    }
   };
 
   cuonlendautrang = () => {
@@ -168,7 +178,7 @@ class QuanLyNguoiDung extends Component {
     let trangthainut = this.state.trangthainut;
     return (
       <div className="quanlynguoidung">
-        <div ref={this.cuontrendau}/>
+        <div ref={this.cuontrendau} />
         <div className="item1">
           <span>
             <FormattedMessage id="quanlynguoidung" />
@@ -394,6 +404,7 @@ const mapStateToProps = (state) => {
     quyen: state.admin.quyen,
     ngonngu: state.web.ngonngu,
     tatcanguoidung: state.admin.tatcanguoidung,
+    thongtinnguoidung: state.thongtinnguoidung.thongtinnguoidung,
   };
 };
 

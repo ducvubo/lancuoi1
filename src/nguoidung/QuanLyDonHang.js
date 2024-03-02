@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { apirefreshtoken } from "../API/GoiApi";
 import ThongTinDonHangNguoiDung from "./ThongTinDonHangNguoiDung";
 import { FormattedMessage } from "react-intl";
+import { layAllCode } from "../API/GoiApi";
 class QuanLyDonHang extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +16,13 @@ class QuanLyDonHang extends Component {
       thongtindonhang: {},
       tatcadonhang: [],
       trangthaithongtindonhang: false,
+      tatcatrangthaidonhang: [],
     };
   }
 
   async componentDidMount() {
     await this.laytatcadonhang();
+    await this.laytatcatrangthaidonhang();
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -27,6 +30,7 @@ class QuanLyDonHang extends Component {
       await this.laytatcadonhang();
     }
   }
+
   laytatcadonhang = async () => {
     if (this.props.thongtinnguoidung) {
       let token = await apirefreshtoken();
@@ -102,9 +106,38 @@ class QuanLyDonHang extends Component {
     });
   };
 
+  laytatcatrangthaidonhang = async () => {
+    let kq = await layAllCode("TRANGTHAIDONHANG");
+    if (kq && kq.maCode === 0) {
+      this.setState({
+        tatcatrangthaidonhang: kq.data,
+      });
+    }
+  };
+
+  chontrangthai = async (event) => {
+    if (event.target.value === "all") {
+      await this.laytatcadonhang();
+    } else {
+      await this.laytatcadonhang();
+      let tatcadonhangclone = this.state.tatcadonhang;
+      let locdonhang = tatcadonhangclone.filter((item) => {
+        return item.trangthaidonhangid === event.target.value;
+      });
+      this.setState({
+        tatcadonhang: locdonhang,
+      });
+    }
+  };
+
   render() {
-    let { tatcadonhang, trangthaithongtindonhang, thongtindonhang } =
-      this.state;
+    let {
+      tatcadonhang,
+      trangthaithongtindonhang,
+      thongtindonhang,
+      tatcatrangthaidonhang,
+    } = this.state;
+    console.log(tatcadonhang);
     let { ngonngu } = this.props;
     return (
       <>
@@ -115,6 +148,28 @@ class QuanLyDonHang extends Component {
               <span>
                 <FormattedMessage id="qldhnd" />
               </span>
+            </div>
+            <div className="item2">
+              <label>
+                <FormattedMessage id="qldhchontrangthai" />
+              </label>
+              <select
+                className="form-control chontrangthai"
+                onChange={(event) => this.chontrangthai(event)}
+              >
+                <option value="all">
+                  {ngonngu === "vi" ? "Tất cả đơn hàng" : "All orders"}
+                </option>
+                {tatcatrangthaidonhang &&
+                  tatcatrangthaidonhang.length > 0 &&
+                  tatcatrangthaidonhang.map((item, index) => {
+                    return (
+                      <option value={item.idNoi} key={index}>
+                        {ngonngu === "vi" ? item.tiengViet : item.tiengAnh}
+                      </option>
+                    );
+                  })}
+              </select>
             </div>
             <div className="item3">
               <table className="table table-bordered ">
@@ -196,6 +251,28 @@ class QuanLyDonHang extends Component {
               <span>
                 <FormattedMessage id="qldhnd" />
               </span>
+            </div>
+            <div className="item2">
+              <label>
+                <FormattedMessage id="qldhchontrangthai" />
+              </label>
+              <select
+                className="form-control chontrangthai"
+                onChange={(event) => this.chontrangthai(event)}
+              >
+                <option value="all">
+                  {ngonngu === "vi" ? "Tất cả đơn hàng" : "All orders"}
+                </option>
+                {tatcatrangthaidonhang &&
+                  tatcatrangthaidonhang.length > 0 &&
+                  tatcatrangthaidonhang.map((item, index) => {
+                    return (
+                      <option value={item.idNoi} key={index}>
+                        {ngonngu === "vi" ? item.tiengViet : item.tiengAnh}
+                      </option>
+                    );
+                  })}
+              </select>
             </div>
             <div className="item3">
               <table className="table table-bordered ">

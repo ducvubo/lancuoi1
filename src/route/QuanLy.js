@@ -24,7 +24,6 @@ import ThongKeBanHoa from "../quanly/chucuahang/ThongKeBanHoa";
 import ThongKeNhapHoa from "../quanly/chucuahang/ThongKeNhapHoa";
 import QuanLyDanhGia from "../quanly/chucuahang/QuanLyDanhGia";
 import { toast } from "react-toastify";
-import { flatMap } from "lodash";
 class QuanLy extends Component {
   constructor(props) {
     super(props);

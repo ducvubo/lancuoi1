@@ -10,6 +10,21 @@
 
     }
 
+    .item2 {
+        display    : flex;
+        gap        : 10px;
+        margin-left: 548px;
+
+        label {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .chontrangthai {
+            width: 432px;
+        }
+    }
+
     .item3 {
         margin-top: 20px;
 
@@ -26,7 +41,7 @@
             font-weight     : 500;
             background-color: #e91e63;
             color           : white;
-            width: 78px;
+            width           : 78px;
         }
     }
 

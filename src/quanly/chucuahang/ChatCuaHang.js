@@ -13,6 +13,7 @@ import _, { cloneDeep, debounce } from "lodash";
 import { toast } from "react-toastify";
 import { apirefreshtoken } from "../../API/GoiApi";
 import anhdaidien from "../../image/anhdaidien.png";
+import { FormattedMessage } from "react-intl";
 class ChatCuaHang extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +28,7 @@ class ChatCuaHang extends Component {
       tinnhanArr: [],
       tennguoinhan: "",
       tatcadoanchat: [],
+      honguoidangnhan: "",
     };
   }
 
@@ -125,12 +127,12 @@ class ChatCuaHang extends Component {
     copy.forEach((obj) => {
       obj.trangthai = demobj[obj.idchat] > 1;
     });
-
+    console.log(copy);
     let giatrixuathien = new Set();
 
     let dataok = copy.filter((obj) => {
-      let isDuplicate = giatrixuathien.has(obj.ten);
-      giatrixuathien.add(obj.ten);
+      let isDuplicate = giatrixuathien.has(obj.idchat);
+      giatrixuathien.add(obj.idchat);
       return !isDuplicate;
     });
     this.setState({
@@ -193,9 +195,11 @@ class ChatCuaHang extends Component {
             delete item.trangthaixem;
           }
         });
+      console.log(nguoi);
       this.setState({
         nguoidangnhan: nguoi.idchat,
         tennguoinhan: nguoi.ten,
+        honguoidangnhan: nguoi.ho,
         tatcadoanchat: clonekhachhang,
       });
     }
@@ -304,14 +308,14 @@ class ChatCuaHang extends Component {
       return -1;
     }
     let kq = await apitatcakhachhang();
-    if (kq.maCode === 6) {
+    if (kq && kq.maCode === 6) {
       this.props.ngonngu === "vi"
         ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
         : toast.error("You are not an admin, please come back!!!");
       this.props.eptatchatquanly();
       return -1;
     }
-    if (kq.maCode === 7) {
+    if (kq && kq.maCode === 7) {
       this.props.ngonngu === "vi"
         ? toast.error(
             "Bạn không phải admin hay nhân viên của cửa hàng vui lòng quay ra!!!"
@@ -355,12 +359,12 @@ class ChatCuaHang extends Component {
       copy.forEach((obj) => {
         obj.trangthai = demobj[obj.idchat] > 1;
       });
-
+      console.log(copy);
       let giatrixuathien = new Set();
 
       let dataok = copy.filter((obj) => {
-        let isDuplicate = giatrixuathien.has(obj.ten);
-        giatrixuathien.add(obj.ten);
+        let isDuplicate = giatrixuathien.has(obj.idchat);
+        giatrixuathien.add(obj.idchat);
         return !isDuplicate;
       });
 
@@ -454,22 +458,19 @@ class ChatCuaHang extends Component {
       anh,
       anhUrl,
       xemanh,
+      honguoidangnhan,
     } = this.state;
     tatcadoanchat = tatcadoanchat.filter((item) => item.idchat !== "nhanvien");
     let { ngonngu, thongtinnguoidung } = this.props;
     tatcadoanchat.sort((a, b) => {
       if (
-        a.trangthaixem === "chuaxem" &&
-        b.trangthaixem !== "chuaxem" ||
-        a.trangthai === true &&
-        b.trangthai !== true
+        (a.trangthaixem === "chuaxem" && b.trangthaixem !== "chuaxem") ||
+        (a.trangthai === true && b.trangthai !== true)
       ) {
         return -1; // a lên đầu
       } else if (
-        a.trangthaixem !== "chuaxem" &&
-        b.trangthaixem === "chuaxem" ||
-        a.trangthai !== true &&
-        b.trangthai === true
+        (a.trangthaixem !== "chuaxem" && b.trangthaixem === "chuaxem") ||
+        (a.trangthai !== true && b.trangthai === true)
       ) {
         return 1; // b lên đầu
       } else {
@@ -539,7 +540,12 @@ class ChatCuaHang extends Component {
                               ></span>
                             </div>
                             <div className="user_info">
-                              <span className="ten">{item.ten}</span>
+                              <span className="ten">
+                                {ngonngu === "vi"
+                                  ? `${item.ho} ${item.ten}`
+                                  : `${item.ten} ${item.ho}`}
+                              </span>
+
                               {item.trangthai === true ? (
                                 <p className="onof">Online</p>
                               ) : (
@@ -567,8 +573,8 @@ class ChatCuaHang extends Component {
               <div className="card">
                 {!nguoidangnhan ? (
                   <div className="chonnguoichat">
-                    <i className="fas fa-hand-point-left"></i> Vui lòng chọn
-                    người chat
+                    <i className="fas fa-hand-point-left"></i>{" "}
+                    <FormattedMessage id="quanlynguoidungchonnguoichat" />
                   </div>
                 ) : (
                   <>
@@ -576,7 +582,9 @@ class ChatCuaHang extends Component {
                       <div className="d-flex bd-highlight">
                         <div className="user_info">
                           <span className="tennguoidangchat">
-                            {tennguoinhan}
+                            {ngonngu === "vi"
+                              ? `${tennguoinhan} ${honguoidangnhan}`
+                              : `${honguoidangnhan} ${tennguoinhan}`}
                           </span>
                         </div>
                       </div>

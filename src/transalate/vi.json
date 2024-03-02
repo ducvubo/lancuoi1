@@ -26,6 +26,7 @@
   "quanlynguoidungquyen": "Quyền",
   "quanlynguoidungthemnguoidung": "Thêm người dùng",
   "quanlynguoidungsuanguoidung": "Sửa người dùng",
+  "quanlynguoidungchonnguoichat":"Vui lòng chọn người chat!!!",
 
   "quanlydmtendmVi": "Tên danh mục tiếng Việt",
   "quanlydmtendmEn": "Tên danh mục tiếng Anh",
@@ -295,6 +296,8 @@
   "nhapttdhxacnhanguilai": "Gửi lại OTP",
 
   "qldhnd": "Quản lý đơn hàng",
+  "qldhchontrangthai":"Chọn trạng thái đơn hàng: ",
+  "qldhtatcadonhang":"Tất cả đơn hàng",
   "qldhndmadonhang": "Mã đơn hàng",
   "qldhndtennguoinhan": "Tên người nhận",
   "qldhndsdt": "Số điện thoại",
@@ -356,6 +359,7 @@
   "thongtinnguoidunghuy": "Hủy",
 
   "timhoa": "Nhập tên hoa cần tìm: ",
+  "timhoasx":"Sắp xếp theo: ",
 
   "xacnhantaikhoandangload": "Vui lòng chờ!!!",
   "xacnhantaikhoandkthanhcong": "Đăng ký tài khoản thành công!!!",
