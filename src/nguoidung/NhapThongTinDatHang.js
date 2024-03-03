@@ -116,10 +116,10 @@ class NhapThongTinDatHang extends Component {
   };
 
   dathang = async () => {
-    this.guiOTPgiohang();
-    this.setState({
-      loadingdathanggiohang: true,
-    });
+    // this.guiOTPgiohang();
+    // this.setState({
+    //   loadingdathanggiohang: true,
+    // });
     // if (this.props.thongtinnguoidung) {
     //   let token = await apirefreshtoken();
     //   if (token.maCode === 10) {

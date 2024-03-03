@@ -48,6 +48,7 @@ class TimHoa extends Component {
             item.danhgiatrungbinh = Math.floor(item.danhgiatrungbinh);
           }
         });
+
       this.setState({
         tatcahoanguoidung: data1,
       });
@@ -91,51 +92,53 @@ class TimHoa extends Component {
   //  handlePageClick = (event) => {
   //   alert(event.selected)
   // };
-  // sxhoa = (event) => {
-  //   let tatcahoaclone = "";
-  //   this.setState({
-  //     kieusx: event.target.value ?
-  //   });
-  //   if (this.state.kieusx === "caothap") {
-  //     tatcahoaclone =
-  //       this.props.ngonngu === "vi"
-  //         ? this.state.tatcahoanguoidung
-  //             .slice()
-  //             .sort((a, b) => +b.giasaukhigiamVND - +a.giasaukhigiamVND)
-  //         : this.state.tatcahoanguoidung
-  //             .slice()
-  //             .sort((a, b) => +b.giasaukhigiamUSD - +a.giasaukhigiamUSD);
-  //   }
-  //   if (this.state.kieusx === "thapcao") {
-  //     tatcahoaclone =
-  //       this.props.ngonngu === "vi"
-  //         ? this.state.tatcahoanguoidung
-  //             .slice()
-  //             .sort((a, b) => +a.giasaukhigiamVND - +b.giasaukhigiamVND)
-  //         : this.state.tatcahoanguoidung
-  //             .slice()
-  //             .sort((a, b) => +a.giasaukhigiamUSD - +b.giasaukhigiamUSD);
-  //   }
-  //   if (this.state.kieusx === "caonhat") {
-  //     tatcahoaclone = this.state.tatcahoanguoidung
-  //       .slice()
-  //       .filter((item) => !isNaN(item.danhgiatrungbinh)) // Lọc bỏ các phần tử có giá trị NaN
-  //       .sort((a, b) => b.danhgiatrungbinh - a.danhgiatrungbinh);
-  //   }
-  //   this.setState({
-  //     tatcahoanguoidung: tatcahoaclone,
-  //   });
-
-  //   // alert(event.target.value);
-  // };
+  sxhoa = (event) => {
+    let tatcahoaclone = "";
+    if (event.target.value === "caothap") {
+      tatcahoaclone =
+        this.props.ngonngu === "vi"
+          ? this.state.tatcahoanguoidung
+              .slice()
+              .sort((a, b) => +b.giasaukhigiamVND - +a.giasaukhigiamVND)
+          : this.state.tatcahoanguoidung
+              .slice()
+              .sort((a, b) => +b.giasaukhigiamUSD - +a.giasaukhigiamUSD);
+    }
+    if (event.target.value === "thapcao") {
+      tatcahoaclone =
+        this.props.ngonngu === "vi"
+          ? this.state.tatcahoanguoidung
+              .slice()
+              .sort((a, b) => +a.giasaukhigiamVND - +b.giasaukhigiamVND)
+          : this.state.tatcahoanguoidung
+              .slice()
+              .sort((a, b) => +a.giasaukhigiamUSD - +b.giasaukhigiamUSD);
+    }
+    if (event.target.value === "bannhieu") {
+      tatcahoaclone =
+        this.props.ngonngu === "vi"
+          ? this.state.tatcahoanguoidung
+              .slice()
+              .sort((a, b) => +b.soluongban - +a.soluongban)
+          : this.state.tatcahoanguoidung
+              .slice()
+              .sort((a, b) => +b.soluongban - +a.soluongban);
+    }
+    if (event.target.value === "caonhat") {
+      tatcahoaclone = this.state.tatcahoanguoidung
+        .slice()
+        .sort((a, b) => +b.danhgiatrungbinh - +a.danhgiatrungbinh);
+    }
+    this.setState({
+      tatcahoanguoidung: tatcahoaclone,
+    });
+  };
   render() {
     let { ngonngu } = this.props;
     let { tatcahoanguoidung } = this.state;
-    console.log(tatcahoanguoidung);
     return (
       <>
         <HeaderTrangChu />
-
         <div className="timhoa">
           <span className="sptimhoa mr-3">
             <FormattedMessage id="timhoa" />{" "}
@@ -145,7 +148,7 @@ class TimHoa extends Component {
             onChange={(event) => this.timhoanguoidung(event)}
           />
         </div>
-        {/* <div className="sxhoa mt-3">
+        <div className="sxhoa mt-3">
           <span className="spansx mr-3">
             <FormattedMessage id="timhoasx" />
           </span>
@@ -157,8 +160,9 @@ class TimHoa extends Component {
             <option value="caothap">Giá cao tới thấp</option>
             <option value="thapcao">Giá thấp tới cao</option>
             <option value="caonhat">Đánh giá cao nhất</option>
+            <option value="bannhieu">Bán nhiều nhất</option>
           </select>
-        </div> */}
+        </div>
         <div className="tatcahoanguoidung">
           {tatcahoanguoidung &&
             tatcahoanguoidung.length > 0 &&
