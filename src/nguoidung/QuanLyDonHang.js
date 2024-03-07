@@ -164,7 +164,7 @@ class QuanLyDonHang extends Component {
                   tatcatrangthaidonhang.length > 0 &&
                   tatcatrangthaidonhang.map((item, index) => {
                     return (
-                      <option value={item.idNoi} key={index}>
+                      <option value={item.id} key={index}>
                         {ngonngu === "vi" ? item.tiengViet : item.tiengAnh}
                       </option>
                     );
@@ -267,7 +267,7 @@ class QuanLyDonHang extends Component {
                   tatcatrangthaidonhang.length > 0 &&
                   tatcatrangthaidonhang.map((item, index) => {
                     return (
-                      <option value={item.idNoi} key={index}>
+                      <option value={item.id} key={index}>
                         {ngonngu === "vi" ? item.tiengViet : item.tiengAnh}
                       </option>
                     );

@@ -357,8 +357,8 @@ class ThongTinDonHangNguoiDung extends Component {
                 </tbody>
               </table>
             </div>
-            {thongtindonhang.trangthaidonhangid === "H1" ||
-            thongtindonhang.trangthaidonhangid === "H5" ? (
+            {thongtindonhang.trangthaidonhangid === 18 ||
+            thongtindonhang.trangthaidonhangid === 22 ? (
               <div className="row">
                 <div className="form-group col-12 pl-5 pr-5">
                   <label>
@@ -376,7 +376,7 @@ class ThongTinDonHangNguoiDung extends Component {
               </div>
             ) : null}
             <div className="item4 mb-3">
-              {thongtindonhang.trangthaidonhangid === "H1" ? (
+              {thongtindonhang.trangthaidonhangid === 18 ? (
                 <button
                   className="btn nutbam"
                   onClick={() => this.huydonhang()}
@@ -384,7 +384,7 @@ class ThongTinDonHangNguoiDung extends Component {
                   <FormattedMessage id="thongtindonhangngdunghuydon" />
                 </button>
               ) : null}
-              {thongtindonhang.trangthaidonhangid === "H4" ? (
+              {thongtindonhang.trangthaidonhangid === 21 ? (
                 <button
                   className="btn nutbam"
                   onClick={() => this.xacnhandanhanduochang()}
@@ -392,11 +392,11 @@ class ThongTinDonHangNguoiDung extends Component {
                   <FormattedMessage id="thongtindonhangngdungdanhanhang" />
                 </button>
               ) : null}
-              {thongtindonhang.trangthaidonhangid === "H5" ? (
+              {thongtindonhang.trangthaidonhangid === 22 ? (
                 <button
                   className={
                     "btn nutbam" +
-                    (thongtindonhang.trangthaidonhangid === "H5"
+                    (thongtindonhang.trangthaidonhangid === 22
                       ? " hoanhang"
                       : "")
                   }
@@ -408,9 +408,9 @@ class ThongTinDonHangNguoiDung extends Component {
               <button
                 className={
                   "btn nutbam ml-4" +
-                  (thongtindonhang.trangthaidonhangid !== "H1" &&
-                  thongtindonhang.trangthaidonhangid !== "H4" &&
-                  thongtindonhang.trangthaidonhangid !== "H5"
+                  (thongtindonhang.trangthaidonhangid !== 18 &&
+                  thongtindonhang.trangthaidonhangid !== 21 &&
+                  thongtindonhang.trangthaidonhangid !== 22
                     ? " dong"
                     : "")
                 }

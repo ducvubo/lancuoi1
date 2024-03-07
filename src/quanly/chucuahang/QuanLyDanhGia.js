@@ -265,7 +265,10 @@ class QuanLyDanhGia extends Component {
                               ? item.hoabinhluan.tenhoavi
                               : item.hoabinhluan.tenhoaEn}
                           </td>
-                          <td rowSpan={item.traloibinhluan.length + 1} className="sosao">
+                          <td
+                            rowSpan={item.traloibinhluan.length + 1}
+                            className="sosao"
+                          >
                             <div className="rating">
                               <input
                                 value="5"
@@ -357,7 +360,7 @@ class QuanLyDanhGia extends Component {
                           </td>
                           <td rowSpan={item.traloibinhluan.length + 1}>
                             <div className="duyethuy">
-                              {item.trangthaidanhgiaid === "BL1" ? (
+                              {item.trangthaidanhgiaid === 27 ? (
                                 <button
                                   className="btn btn-primary btnduyethuy"
                                   onClick={() =>
@@ -473,7 +476,7 @@ class QuanLyDanhGia extends Component {
                                     </td>
                                     <td>
                                       {binhluan.trangthaitraloidanhgiaid ===
-                                      "BL1" ? (
+                                      27 ? (
                                         <button
                                           className="btn btn-primary"
                                           onClick={() =>

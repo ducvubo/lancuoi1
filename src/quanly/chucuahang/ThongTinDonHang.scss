@@ -1,30 +1,39 @@
-.thongtindonhang{
-    .item1{
-        display: flex;
-        display: flex;
+.thongtindonhang {
+    .item1 {
+        display        : flex;
+        display        : flex;
         justify-content: space-between;
-        margin: 0 8px; 
-        border-bottom:1px solid #ccc ;
-        padding-bottom: 5px;
-        .chu{
+        margin         : 0 8px;
+        border-bottom  : 1px solid #ccc;
+        padding-bottom : 5px;
+
+        .chu {
             font-weight: 600;
-            font-size: 20px;
+            font-size  : 20px;
         }
-        .tat{
+
+        .tat {
             cursor: pointer;
         }
     }
-    .item2{
-        display: flex;
+
+    .item2 {
+        display       : flex;
         flex-direction: column;
     }
-    .item4{
+
+    .item4 {
         margin-left: 808px;
-        .nutbam{
+
+        .nutbam {
             font-weight     : 500;
             background-color: #e91e63;
             color           : white;
             width           : 137px;
+        }
+
+        .daxuly {
+            margin-left: 168px;
         }
     }
 }

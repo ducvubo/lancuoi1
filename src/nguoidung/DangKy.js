@@ -39,7 +39,7 @@ class DangKy extends Component {
       this.setState({
         gioitinhArr: arrgioitinh,
         gioitinh:
-          arrgioitinh && arrgioitinh.length > 0 ? arrgioitinh[0].idNoi : "",
+          arrgioitinh && arrgioitinh.length > 0 ? arrgioitinh[0].id : "",
       });
     }
   }
@@ -191,13 +191,21 @@ class DangKy extends Component {
                   />
                   {xemmk === true ? (
                     <i
-                      className={ngonngu === "vi" ? "far fa-eye-slash xemmk" : "far fa-eye-slash xemmk xemmken"}
+                      className={
+                        ngonngu === "vi"
+                          ? "far fa-eye-slash xemmk"
+                          : "far fa-eye-slash xemmk xemmken"
+                      }
                       onClick={() => this.xemmk()}
                     ></i>
                   ) : (
                     <i
                       // className="far fa-eye xemmk"
-                      className={ngonngu === "vi" ? "far fa-eye xemmk" : "far fa-eye xemmk xemmken"}
+                      className={
+                        ngonngu === "vi"
+                          ? "far fa-eye xemmk"
+                          : "far fa-eye xemmk xemmken"
+                      }
                       onClick={() => this.xemmk()}
                     ></i>
                   )}
@@ -216,12 +224,20 @@ class DangKy extends Component {
                   />
                   {xemnhaplaimk === true ? (
                     <i
-                    className={ngonngu === "vi" ? "far fa-eye-slash xemmk" : "far fa-eye-slash xemmk xemmken"}
+                      className={
+                        ngonngu === "vi"
+                          ? "far fa-eye-slash xemmk"
+                          : "far fa-eye-slash xemmk xemmken"
+                      }
                       onClick={() => this.xemnhaplai()}
                     ></i>
                   ) : (
                     <i
-                    className={ngonngu === "vi" ? "far fa-eye xemmk" : "far fa-eye xemmk xemmken"}
+                      className={
+                        ngonngu === "vi"
+                          ? "far fa-eye xemmk"
+                          : "far fa-eye xemmk xemmken"
+                      }
                       onClick={() => this.xemnhaplai()}
                     ></i>
                   )}
@@ -269,7 +285,7 @@ class DangKy extends Component {
                         gioitinh1.length > 0 &&
                         gioitinh1.map((item, index) => {
                           return (
-                            <option key={index} value={item.idNoi}>
+                            <option key={index} value={item.id}>
                               {ngonngu === "vi"
                                 ? item.tiengViet
                                 : item.tiengAnh}

@@ -80,12 +80,12 @@ class QuanLy extends Component {
     return (
       <div className="quanly">
         <Scrollbars style={{ height: 695 }}>
-          {thongtinnguoidung.quyenId === "R1" ||
-          thongtinnguoidung.quyenId === "R3" ||
+          {thongtinnguoidung.quyenId === 9 ||
+          thongtinnguoidung.quyenId === 11 ||
           thongtinnguoidung.idchat === "nhanvien" ? (
             <React.Fragment>
-              {(thongtinnguoidung.quyenId === "R1" ||
-                thongtinnguoidung.quyenId === "R3") &&
+              {(thongtinnguoidung.quyenId === 9 ||
+                thongtinnguoidung.quyenId === 11) &&
                 thongtinnguoidung.idchat === "nhanvien" && <HeaderMenu />}
               <Switch>
                 <Route path={"/quanly/quanlyhoa"} exact component={QuanLyHoa} />

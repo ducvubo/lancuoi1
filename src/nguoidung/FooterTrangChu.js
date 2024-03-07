@@ -181,7 +181,7 @@ class FooterTrangChu extends Component {
                 <i className="fas fa-circle"></i>
               </span>
             )}
-            {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" && (
+            {thongtinnguoidung && thongtinnguoidung.quyenId === 12 && (
               <img src={ms} onClick={() => this.battatchat()} />
             )}
           </div>

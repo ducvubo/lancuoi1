@@ -47,7 +47,7 @@ class ThongTinNguoiDung extends Component {
       this.setState({
         gioitinhArr: arrgioitinh,
         gioitinhselect:
-          arrgioitinh && arrgioitinh.length > 0 ? arrgioitinh[0].idNoi : "",
+          arrgioitinh && arrgioitinh.length > 0 ? arrgioitinh[0].id : "",
       });
     }
   }
@@ -200,7 +200,8 @@ class ThongTinNguoiDung extends Component {
               {trangthai === true && (
                 <>
                   <label className="capnhatanh" htmlFor="anhthongtinnguoidung">
-                    <i className="fas fa-upload"></i> <FormattedMessage id="thongtinnguoidungtaianh"/>
+                    <i className="fas fa-upload"></i>{" "}
+                    <FormattedMessage id="thongtinnguoidungtaianh" />
                   </label>
                   <input
                     id="anhthongtinnguoidung"
@@ -223,7 +224,9 @@ class ThongTinNguoiDung extends Component {
                 />
               </div>
               <div className="form-group col-3">
-                <label><FormattedMessage id="thongtinnguoidungho"/></label>
+                <label>
+                  <FormattedMessage id="thongtinnguoidungho" />
+                </label>
                 <input
                   className="form-control"
                   type="text"
@@ -234,7 +237,9 @@ class ThongTinNguoiDung extends Component {
                 />
               </div>
               <div className="form-group col-3">
-                <label><FormattedMessage id="thongtinnguoidungten"/></label>
+                <label>
+                  <FormattedMessage id="thongtinnguoidungten" />
+                </label>
                 <input
                   className="form-control"
                   type="text"
@@ -245,7 +250,9 @@ class ThongTinNguoiDung extends Component {
                 />
               </div>
               <div className="form-group col-3">
-                <label><FormattedMessage id="thongtinnguoidunggioitinh"/></label>
+                <label>
+                  <FormattedMessage id="thongtinnguoidunggioitinh" />
+                </label>
                 {trangthai === false ? (
                   <input
                     className="form-control"
@@ -264,7 +271,7 @@ class ThongTinNguoiDung extends Component {
                       gioitinhArr.length > 0 &&
                       gioitinhArr.map((item, index) => {
                         return (
-                          <option key={index} value={item.idNoi}>
+                          <option key={index} value={item.id}>
                             {ngonngu === "vi" ? item.tiengViet : item.tiengAnh}
                           </option>
                         );
@@ -273,7 +280,9 @@ class ThongTinNguoiDung extends Component {
                 )}
               </div>
               <div className="form-group col-3">
-                <label><FormattedMessage id="thongtinnguoidungsdt"/></label>
+                <label>
+                  <FormattedMessage id="thongtinnguoidungsdt" />
+                </label>
                 <input
                   className="form-control"
                   type="number"
@@ -284,7 +293,9 @@ class ThongTinNguoiDung extends Component {
                 />
               </div>
               <div className="form-group col-6">
-                <label><FormattedMessage id="thongtinnguoidungdiachi"/></label>
+                <label>
+                  <FormattedMessage id="thongtinnguoidungdiachi" />
+                </label>
                 <input
                   className="form-control"
                   type="text"
@@ -302,7 +313,7 @@ class ThongTinNguoiDung extends Component {
                 className="btn buttonthongtin"
                 onClick={() => this.doitrangthaithongtin()}
               >
-                <FormattedMessage id="thongtinnguoidungsuathongtin"/>
+                <FormattedMessage id="thongtinnguoidungsuathongtin" />
               </button>
             ) : (
               <>
@@ -310,13 +321,13 @@ class ThongTinNguoiDung extends Component {
                   className="btn buttonthongtin"
                   onClick={() => this.capnhatthongtinnguoidung()}
                 >
-                  <FormattedMessage id="thongtinnguoidungcapnhat"/>
+                  <FormattedMessage id="thongtinnguoidungcapnhat" />
                 </button>
                 <button
                   className="btn buttonthongtin ml-3"
                   onClick={() => this.huycapnhatthongtin()}
                 >
-                  <FormattedMessage id="thongtinnguoidunghuy"/>
+                  <FormattedMessage id="thongtinnguoidunghuy" />
                 </button>
               </>
             )}

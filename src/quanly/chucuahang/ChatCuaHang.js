@@ -127,7 +127,6 @@ class ChatCuaHang extends Component {
     copy.forEach((obj) => {
       obj.trangthai = demobj[obj.idchat] > 1;
     });
-    console.log(copy);
     let giatrixuathien = new Set();
 
     let dataok = copy.filter((obj) => {
@@ -195,7 +194,6 @@ class ChatCuaHang extends Component {
             delete item.trangthaixem;
           }
         });
-      console.log(nguoi);
       this.setState({
         nguoidangnhan: nguoi.idchat,
         tennguoinhan: nguoi.ten,
@@ -477,6 +475,7 @@ class ChatCuaHang extends Component {
         return 0; // giữ nguyên vị trí
       }
     });
+    console.log(tinnhanArr);
     return (
       <div className="chatcuahang">
         <div className="container-fluid h-100">
@@ -593,6 +592,7 @@ class ChatCuaHang extends Component {
                       {tinnhanArr.map((item, index) => {
                         if (item.nguoigui === nguoidangnhan) {
                           let anh = "";
+                          console.log(item)
                           if (item.anh) {
                             anh = new Buffer(item.anh, "base64").toString(
                               "binary"

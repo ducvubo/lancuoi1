@@ -30,7 +30,7 @@ class QuanLyDonHangChuaXacNhan extends Component {
         ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
         : toast.error("You are not logged in, please log in!!!");
     }
-    let kq = await apitatcadonhangtheotrangthai("H1");
+    let kq = await apitatcadonhangtheotrangthai(18);
     if (kq.maCode === 6) {
       this.props.ngonngu === "vi"
         ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
@@ -86,23 +86,42 @@ class QuanLyDonHangChuaXacNhan extends Component {
   render() {
     let { tatcadonhangchuaxacnhan, trangthaithongtindonhang, thongtindonhang } =
       this.state;
+    console.log(tatcadonhangchuaxacnhan);
     return (
       <div className="donhangchuaxacnhan">
         <div className="item1">
-          <span><FormattedMessage id="quanlydonchuaxacnhan"/></span>
+          <span>
+            <FormattedMessage id="quanlydonchuaxacnhan" />
+          </span>
         </div>
         <div className="item3">
           <table className="table table-bordered ">
             <thead>
               <tr className="item31">
-                <th scope="col"><FormattedMessage id="quanlydonhangmadonhang"/></th>
-                <th scope="col"><FormattedMessage id="quanlydonhangten"/></th>
-                <th scope="col"><FormattedMessage id="quanlydonhangemail"/></th>
-                <th scope="col"><FormattedMessage id="quanlydonhangsdt"/></th>
-                <th scope="col"><FormattedMessage id="quanlydonhangdiachi"/></th>
-                <th scope="col"><FormattedMessage id="quanlydonhangghichu"/></th>
-                <th scope="col"><FormattedMessage id="quanlydonhangtongtien"/></th>
-                <th><FormattedMessage id="quanlyhanhdong"/></th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangmadonhang" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangten" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangemail" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangsdt" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangdiachi" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangghichu" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="quanlydonhangtongtien" />
+                </th>
+                <th>
+                  <FormattedMessage id="quanlyhanhdong" />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -124,7 +143,7 @@ class QuanLyDonHangChuaXacNhan extends Component {
                             className="btn btn-primary mr-2"
                             onClick={() => this.xemchitietdonhang(item)}
                           >
-                            <FormattedMessage id="quanlydonhangxemchitiet"/>
+                            <FormattedMessage id="quanlydonhangxemchitiet" />
                           </button>
                           <ThongTinDonHang
                             thongtindonhang={thongtindonhang}
@@ -147,7 +166,7 @@ class QuanLyDonHangChuaXacNhan extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ngonngu:state.web.ngonngu
+    ngonngu: state.web.ngonngu,
   };
 };
 

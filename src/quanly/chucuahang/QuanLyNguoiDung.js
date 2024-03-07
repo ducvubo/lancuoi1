@@ -39,14 +39,14 @@ class QuanLyNguoiDung extends Component {
       this.setState({
         gioitinhArr: arrgioitinh,
         gioitinh:
-          arrgioitinh && arrgioitinh.length > 0 ? arrgioitinh[0].idNoi : "",
+          arrgioitinh && arrgioitinh.length > 0 ? arrgioitinh[0].id : "",
       });
     }
     if (prevProps.quyen !== this.props.quyen) {
       let arrquyen = this.props.quyen;
       this.setState({
         quyenArr: arrquyen,
-        quyen: arrquyen && arrquyen.length > 0 ? arrquyen[0].idNoi : "",
+        quyen: arrquyen && arrquyen.length > 0 ? arrquyen[0].id : "",
       });
     }
     if (prevProps.tatcanguoidung !== this.props.tatcanguoidung) {
@@ -278,7 +278,7 @@ class QuanLyNguoiDung extends Component {
                 gioitinh1.length > 0 &&
                 gioitinh1.map((item, index) => {
                   return (
-                    <option key={index} value={item.idNoi}>
+                    <option key={index} value={item.id}>
                       {ngonngu === "vi" ? item.tiengViet : item.tiengAnh}
                     </option>
                   );
@@ -300,7 +300,7 @@ class QuanLyNguoiDung extends Component {
                 quyen1.length > 0 &&
                 quyen1.map((item, index) => {
                   return (
-                    <option key={index} value={item.idNoi}>
+                    <option key={index} value={item.id}>
                       {ngonngu === "vi" ? item.tiengViet : item.tiengAnh}
                     </option>
                   );

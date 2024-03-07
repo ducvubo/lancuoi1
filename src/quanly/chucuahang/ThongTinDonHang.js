@@ -6,7 +6,7 @@ import {
   apixacnhandonhang,
   apihuydonhang,
   apixacnhandaxulyyeucauhoanhanghoantien,
-  apirefreshtoken
+  apirefreshtoken,
 } from "../../API/GoiApi";
 import { toast } from "react-toastify";
 import _ from "lodash";
@@ -136,7 +136,11 @@ class ThongTinDonHang extends Component {
     );
     doc.text(`Địa chỉ: ${this.props.thongtindonhang.diachi}`, 15, 93);
     doc.text(`Ghi chú: ${this.props.thongtindonhang.ghichu}`, 15, 98);
-    doc.text(`Tổng tiền: ${this.props.thongtindonhang.tongtien} ${"đ"}`, 15, 103);
+    doc.text(
+      `Tổng tiền: ${this.props.thongtindonhang.tongtien} ${"đ"}`,
+      15,
+      103
+    );
     doc.text(
       `------------------------------------------------------------------------------------------------------------------------------------------------------------`,
       15,
@@ -177,7 +181,7 @@ class ThongTinDonHang extends Component {
     );
 
     doc.text(
-      `Lưu ý: ${this.state.phanhoicuahang ? this.state.phanhoicuahang : ''}`,
+      `Lưu ý: ${this.state.phanhoicuahang ? this.state.phanhoicuahang : ""}`,
       15,
       chieucaoketiepcuabang + 13
     );
@@ -534,6 +538,7 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
       ngonngu,
     } = this.props;
     let { phanhoicuahang } = this.state;
+    console.log(thongtindonhang);
     return (
       <div className="thongtindonhang">
         <Modal
@@ -567,7 +572,7 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
               <span>
                 <b>Ghi chú:</b> {thongtindonhang.ghichu}
               </span>
-              {thongtindonhang.trangthaidonhangid === "H7" ? (
+              {thongtindonhang.trangthaidonhangid === 24 ? (
                 <span>
                   <b>Lý do:</b> {thongtindonhang.phanhoikhachhang}
                 </span>
@@ -617,7 +622,7 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
                 </tbody>
               </table>
             </div>
-            {thongtindonhang.trangthaidonhangid === "H1" ? (
+            {thongtindonhang.trangthaidonhangid === 18 ? (
               <div className="row">
                 <div className="form-group col-12 pl-5 pr-5">
                   <label>Ghi chú</label>
@@ -634,7 +639,7 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
             ) : null}
 
             <div className="item4 mb-3">
-              {thongtindonhang.trangthaidonhangid === "H1" ? (
+              {thongtindonhang.trangthaidonhangid === 18 ? (
                 <button
                   className="btn nutbam"
                   onClick={() => this.huydonhang()}
@@ -642,17 +647,21 @@ EXCHANGES AND REFUNDS WHEN THERE IS A CLEAR VIDEO`,
                   Hủy đơn hàng
                 </button>
               ) : (
-                <button className="btn nutbam" onClick={() => this.daxuly()}>
+                <button
+                  className="btn nutbam daxuly"
+                  onClick={() => this.daxuly()}
+                >
                   Đã xử lý
                 </button>
               )}
-
-              <button
-                className="btn nutbam ml-4"
-                onClick={() => this.xacnhandonhang()}
-              >
-                Xác nhận
-              </button>
+              {thongtindonhang.trangthaidonhangid === 18 && (
+                <button
+                  className="btn nutbam ml-4"
+                  onClick={() => this.xacnhandonhang()}
+                >
+                  Xác nhận
+                </button>
+              )}
             </div>
           </div>
         </Modal>

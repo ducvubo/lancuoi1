@@ -29,7 +29,7 @@ class QuanLyDonHangChoVanChuyen extends Component {
         ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
         : toast.error("You are not logged in, please log in!!!");
     }
-    let kq = await apitatcadonhangtheotrangthai("H2");
+    let kq = await apitatcadonhangtheotrangthai(19);
     if (kq.maCode === 6) {
       this.props.ngonngu === "vi"
         ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
@@ -130,7 +130,9 @@ class QuanLyDonHangChoVanChuyen extends Component {
     return (
       <div className="donhangchovanchuyen">
         <div className="item1">
-          <span><FormattedMessage id="quanlydonchovanchuyen"/></span>
+          <span>
+            <FormattedMessage id="quanlydonchovanchuyen" />
+          </span>
         </div>
         <div className="item3">
           <table className="table table-bordered ">
@@ -202,7 +204,7 @@ class QuanLyDonHangChoVanChuyen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ngonngu:state.web.ngonngu
+    ngonngu: state.web.ngonngu,
   };
 };
 

@@ -482,7 +482,7 @@ class GioHang extends Component {
     let { ngonngu } = this.props;
     let giaship123 = ngonngu === "vi" ? giaship.giaVND : giaship.giaUSD;
     let tongtien = giaship123 + giagiam;
-    console.log(giohangchuadangnhap)
+    console.log(donhangchitiet)
     return (
       <>
         <HeaderTrangChu />

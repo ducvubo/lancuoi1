@@ -785,7 +785,7 @@ class ThongTinHoa extends Component {
                                 className="anhdaidien"
                                 src={
                                   item.nguoidungbinhluan &&
-                                  item.nguoidungbinhluan.quyenId === "R4"
+                                  item.nguoidungbinhluan.quyenId === 12
                                     ? anhnguoidanhgia
                                       ? anhnguoidanhgia
                                       : anhdaidien
@@ -1010,7 +1010,7 @@ class ThongTinHoa extends Component {
                                               traloibinhluanitem.nguoidungtraloibinhluan &&
                                               traloibinhluanitem
                                                 .nguoidungtraloibinhluan
-                                                .quyenId === "R4"
+                                                .quyenId === 12
                                                 ? anhnguoidungtraloibinhluan
                                                   ? anhnguoidungtraloibinhluan
                                                   : anhdaidien

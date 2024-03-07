@@ -86,12 +86,12 @@ class DangNhap extends Component {
     }
     if (data && data.maCode === 0) {
       this.props.thongtinnguoidung(data.nguoidung);
-      (data && data.nguoidung && data.nguoidung.quyenId === "R1") ||
-      data.nguoidung.quyenId === "R3"
+      (data && data.nguoidung && data.nguoidung.quyenId === 9) ||
+      data.nguoidung.quyenId === 11
         ? this.props.history.push("/quanly/")
         : this.props.history.push("/trangchu");
-        this.props.xoadonhangchuaDN()
-        this.props.xoagiohangchuaDN()
+      this.props.xoadonhangchuaDN();
+      this.props.xoagiohangchuaDN();
     }
   };
 
@@ -100,9 +100,9 @@ class DangNhap extends Component {
     let { thongtinnguoidung123, ngonngu } = this.props;
     return (
       <>
-        {/* {thongtinnguoidung123 ? thongtinnguoidung123.quyenId === "R1" || thongtinnguoidung123.quyenId === "R3" ? (<Redirect to={"/quanly/"}/>) : (<Redirect to={"/trangchu"}/>)} */}
-        {(thongtinnguoidung123 && thongtinnguoidung123.quyenId === "R1") ||
-        thongtinnguoidung123 === "R3" ? (
+        {/* {thongtinnguoidung123 ? thongtinnguoidung123.quyenId === 9 || thongtinnguoidung123.quyenId === 11 ? (<Redirect to={"/quanly/"}/>) : (<Redirect to={"/trangchu"}/>)} */}
+        {(thongtinnguoidung123 && thongtinnguoidung123.quyenId === 9) ||
+        thongtinnguoidung123 === 11 ? (
           <Redirect to={"/quanly/"} />
         ) : null}
         <HeaderTrangChu />

@@ -31,7 +31,7 @@ class QuanLyDonHangGiaoThanhCong extends Component {
         ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
         : toast.error("You are not logged in, please log in!!!");
     }
-    let kq = await apitatcadonhangtheotrangthai("H5");
+    let kq = await apitatcadonhangtheotrangthai(22);
     if (kq.maCode === 6) {
       this.props.ngonngu === "vi"
         ? toast.error("Bạn không phải admin vui lòng quay ra!!!")
@@ -125,13 +125,13 @@ class QuanLyDonHangGiaoThanhCong extends Component {
                           item.ngonngu === "vi" ? "đ" : "USD"
                         }`}</td>
                         {/* <td> */}
-                          {/* <button
+                        {/* <button
                             className="btn btn-primary mr-2"
                             onClick={() => this.xemchitietdonhang(item)}
                           >
                             <FormattedMessage id="quanlydonhangxemchitiet" />
                           </button> */}
-                          {/* <ThongTinDonHang
+                        {/* <ThongTinDonHang
                             thongtindonhang={thongtindonhang}
                             trangthaithongtindonhang={trangthaithongtindonhang}
                             huyxemchitietdonhang={this.huyxemchitietdonhang}
@@ -151,7 +151,7 @@ class QuanLyDonHangGiaoThanhCong extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ngonngu:state.web.ngonngu
+    ngonngu: state.web.ngonngu,
   };
 };
 

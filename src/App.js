@@ -88,13 +88,13 @@ class App extends Component {
             <Route path={"/timhoa"} component={TimHoa} />
             {/* {!thongtinnguoidung.ktdangnhap ? (
               <Redirect to={"/trangchu"} />
-            ) : thongtinnguoidung && thongtinnguoidung.quyenId === "R4" ? (
+            ) : thongtinnguoidung && thongtinnguoidung.quyenId === 12 ? (
               <Redirect to={"/trangchu"} />
             ) : (
               <Redirect to={"/quanly/"} />
             )} */}
 
-            {thongtinnguoidung && thongtinnguoidung.quyenId === "R4" ? (
+            {thongtinnguoidung && thongtinnguoidung.quyenId === 12 ? (
               <Redirect to={"/trangchu"} />
             ) : (
               <Redirect to={"/quanly/"} />
