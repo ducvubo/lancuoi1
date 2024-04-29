@@ -105,11 +105,11 @@ class ThongKeNhapHoa extends Component {
             item.maphieunhap,
             moment(item.ngaynhap).format("DD-MM-YYYY"),
             item.tennhacungcap,
-            item.tonghoadon.toLocaleString(),
+            `${item.tonghoadon.toLocaleString()} đ`,
             hoa.hoa123.tenhoavi,
             hoa.soluongnhapthucte,
-            hoa.gianhap.toLocaleString(),
-            hoa.giatong.toLocaleString(),
+            `${hoa.gianhap.toLocaleString()} đ`,
+            `${hoa.giatong.toLocaleString()} đ`,
           ];
           builddataexcel.push(arr);
         });
@@ -336,7 +336,7 @@ class ThongKeNhapHoa extends Component {
                             {item.tennhacungcap}
                           </td>
                           <td rowSpan={item.hoa123.length + 1}>
-                            {item.tonghoadon}
+                            {item.tonghoadon.toLocaleString()} đ
                           </td>
                         </tr>
 
@@ -346,8 +346,8 @@ class ThongKeNhapHoa extends Component {
                                 <tr key={index + "-" + hoaIndex}>
                                   <td>{hoa.hoa123.tenhoavi}</td>
                                   <td>{hoa.soluongnhapthucte}</td>
-                                  <td>{hoa.gianhap}</td>
-                                  <td>{hoa.giatong}</td>
+                                  <td>{hoa.gianhap.toLocaleString()}</td>
+                                  <td>{hoa.giatong.toLocaleString()} đ</td>
                                 </tr>
                               );
                             })

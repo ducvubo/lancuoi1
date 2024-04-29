@@ -117,7 +117,7 @@ class QuanLyNguoiDung extends Component {
     this.setState({
       id: nguoidung.id,
       email: nguoidung.email,
-      password: "************",
+      password: "KHONGCOPASSWORDDAU",
       ho: nguoidung.ho,
       ten: nguoidung.ten,
       sodienthoai: nguoidung.sdt,
@@ -202,6 +202,7 @@ class QuanLyNguoiDung extends Component {
               <FormattedMessage id="quanlynguoidungmatkhau" />
             </label>
             <input
+            type={trangthainut ? 'password' : 'text'}
               className="form-control"
               onChange={(event) => {
                 this.onChangeNhap(event, "password");

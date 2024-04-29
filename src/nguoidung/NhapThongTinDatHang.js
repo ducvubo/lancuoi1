@@ -120,7 +120,8 @@ class NhapThongTinDatHang extends Component {
     this.setState({
       loadingdathanggiohang: true,
     });
-    // if (this.props.thongtinnguoidung) {
+  
+    // if(this.props.thongtinnguoidung){
     //   let token = await apirefreshtoken();
     //   if (token.maCode === 10) {
     //     this.props.ngonngu === "vi"
@@ -140,9 +141,12 @@ class NhapThongTinDatHang extends Component {
     //     ngonngu: this.props.ngonngu,
     //     idgiohangchitietduocchon: this.props.idgiohangchitietduocchon,
     //   });
+
     //   if (kq && kq.maCode === 10) {
     //     this.props.ngonngu === "vi"
-    //       ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!")
+    //       ? toast.error(
+    //           "Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!"
+    //         )
     //       : toast.error(
     //           "You are not logged in, please log in to view your shopping order!!!"
     //         );
@@ -164,25 +168,28 @@ class NhapThongTinDatHang extends Component {
     //       : toast.error(
     //           "Your login session is invalid, please log in again to continue!!!"
     //         );
+   
     //   }
     //   if (kq.maCode === 0 && kq) {
+    //     this.setState({
+    //       trangthainhapOTPgiohang: false,
+    //     });
     //     this.props.ngonngu === "vi"
     //       ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
-    //       : toast.success("Order successful, waiting for staff to confirm!!!");
+    //       : toast.success(
+    //           "Order successful, waiting for staff to confirm!!!"
+    //         );
+
     //     this.props.huydathang();
     //     this.props.doitrangthai();
     //     this.props.dathangthanhcong();
-    //     // if(this.props.datasuagiohang){
-    //     //   console.log(this.props.datasuagiohang)
-    //     //   await apisuagiohang(this.props.datasuagiohang);
-    //     // }
-    //     // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
     //   } else {
+      
     //     this.props.ngonngu === "vi"
     //       ? toast.success("Đặt hàng thất bại")
     //       : toast.success("Order error");
     //   }
-    // } else {
+    // }else{
     //   let kq = await apidathangchuaDN({
     //     tennguoinhan: this.state.tennguoinhan,
     //     email: this.state.email,
@@ -211,6 +218,7 @@ class NhapThongTinDatHang extends Component {
     //     this.props.suagiohangchuadangnhap(datasuagiohang);
     //   }
     // }
+
   };
 
   nhapotpgiohang = (event) => {
@@ -301,7 +309,6 @@ class NhapThongTinDatHang extends Component {
   
             delete window.confirmationResult;
             delete window.RecaptchVerify;
-            // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
           } else {
             this.setState({
               trangthainhapOTPgiohang: false,
@@ -355,8 +362,6 @@ class NhapThongTinDatHang extends Component {
   };
 
   guiLaiOTPgiohang = () => {
-    // delete window.confirmationResult;
-    // delete window.RecaptchVerify;
     this.guiOTPgiohang();
     this.setState({
       loadingdathanggiohang: true,

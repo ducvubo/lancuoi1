@@ -88,95 +88,28 @@ class QuanLy extends Component {
                 thongtinnguoidung.quyenId === 11) &&
                 thongtinnguoidung.idchat === "nhanvien" && <HeaderMenu />}
               <Switch>
+                <Route path={"/quanly/"} exact component={QuanLyHoa} />
                 <Route path={"/quanly/quanlyhoa"} exact component={QuanLyHoa} />
-                <Route
-                  path={"/quanly/quanlynguoidung"}
-                  exact
-                  component={QuanLyNguoiDung}
-                />
-                <Route
-                  path={"/quanly/quanlydanhmuchoa"}
-                  exact
-                  component={DanhMucHoa}
-                />
-                <Route
-                  path={"/quanly/quanlydanhmuchoachitiet"}
-                  exact
-                  component={DanhMucHoaChiTiet}
-                />
-                <Route
-                  path={"/quanly/quanlyhoadonnhaphoa"}
-                  exact
-                  component={QuanLyNhapHoa}
-                />
-                <Route
-                  path={"/quanly/quanlynhaphoachitiet"}
-                  exact
-                  component={QuanLyNhapHoaChiTiet}
-                />
-                <Route
-                  path={"/quanly/quanlydonhangchuaxacnhan"}
-                  exact
-                  component={QuanLyDonHangChuaXacNhan}
-                />
-                <Route
-                  path={"/quanly/quanlydonhangchovanchuyen"}
-                  exact
-                  component={QuanLyDonHangChoVanChuyen}
-                />
-                <Route
-                  path={"/quanly/quanlydondanggiao"}
-                  exact
-                  component={QuanLyDonHangDangVanChuyen}
-                />
-                <Route
-                  path={"/quanly/quanlydondagiaodenkhachhang"}
-                  exact
-                  component={DonHangDaGiaoDenKH}
-                />
-                <Route
-                  path={"/quanly/quanlydonkhachdanhan"}
-                  exact
-                  component={QuanLyDonHangGiaoThanhCong}
-                />
-                <Route
-                  path={"/quanly/quanlydondahuy"}
-                  exact
-                  component={QuanLyDonHangDaHuy}
-                />
-                <Route
-                  path={"/quanly/quanlydonyeucauhoanhanghoantien"}
-                  exact
-                  component={DonHangYcHHHT}
-                />
-                <Route
-                  path={"/quanly/quanlydonhangdaxulyhoanhanghoantien"}
-                  exact
-                  component={DonHangDaXLHHHT}
-                />
-                <Route
-                  path={"/quanly/quanlydanhgia"}
-                  exact
-                  component={QuanLyDanhGia}
-                />
-                <Route
-                  path={"/quanly/thongkenhaphoa"}
-                  exact
-                  component={ThongKeNhapHoa}
-                />
-                <Route
-                  path={"/quanly/thongkebanhoa"}
-                  exact
-                  component={ThongKeBanHoa}
-                />
+                <Route path={"/quanly/quanlynguoidung"} exact component={QuanLyNguoiDung} />
+                <Route path={"/quanly/quanlydanhmuchoa"} exact component={DanhMucHoa} />
+                <Route path={"/quanly/quanlydanhmuchoachitiet"} exact component={DanhMucHoaChiTiet} />
+                <Route path={"/quanly/quanlyhoadonnhaphoa"} exact component={QuanLyNhapHoa} />
+                <Route path={"/quanly/quanlynhaphoachitiet"} exact component={QuanLyNhapHoaChiTiet} />
+                <Route path={"/quanly/quanlydonhangchuaxacnhan"} exact component={QuanLyDonHangChuaXacNhan} />
+                <Route path={"/quanly/quanlydonhangchovanchuyen"} exact component={QuanLyDonHangChoVanChuyen} />
+                <Route path={"/quanly/quanlydondanggiao"} exact component={QuanLyDonHangDangVanChuyen} />
+                <Route path={"/quanly/quanlydondagiaodenkhachhang"} exact component={DonHangDaGiaoDenKH} />
+                <Route path={"/quanly/quanlydonkhachdanhan"} exact component={QuanLyDonHangGiaoThanhCong} />
+                <Route path={"/quanly/quanlydondahuy"} exact component={QuanLyDonHangDaHuy} />
+                <Route path={"/quanly/quanlydonyeucauhoanhanghoantien"} exact component={DonHangYcHHHT} />
+                <Route path={"/quanly/quanlydonhangdaxulyhoanhanghoantien"} exact component={DonHangDaXLHHHT} />
+                <Route path={"/quanly/quanlydanhgia"} exact component={QuanLyDanhGia} />
+                <Route path={"/quanly/thongkenhaphoa"} exact component={ThongKeNhapHoa} />
+                <Route path={"/quanly/thongkebanhoa"} exact component={ThongKeBanHoa} />
               </Switch>
             </React.Fragment>
           ) : (
             <Redirect to={"/trangchu"} />
-            // <div>
-            //   Trang này chỉ dành cho nhân viên và chủ cửa hàng. Nếu bạn là khách
-            //   hàng, vui lòng <Link to={"/trangchu"}>nhấn vào đây</Link>.
-            // </div>
           )}
           {thongtinnguoidung.idchat !== "nhanvien" ? (
             <div>

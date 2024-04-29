@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component,  } from "react";
 import { connect } from "react-redux";
 import "./SlideShow.scss";
 import Slider from "react-slick";
@@ -10,19 +10,7 @@ import slide5 from "../image/slide5.webp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 class SlideShow extends Component {
-  // constructor() {
-  //   this.state = {
-  //     autoplay: false,
-  //   };
-  // }
 
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     this.setState({
-  //       autoplay: true,
-  //     });
-  //   }, 2000);
-  // }
   render() {
     let settings = {
       // dots: true,

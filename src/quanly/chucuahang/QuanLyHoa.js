@@ -278,8 +278,8 @@ class QuanLyHoa extends Component {
         : toast.error("You are not logged in, please log in!!!");
     }
 
-    // let kt = this.ktdanhapthongtinchua();
-    // if (kt === false) return;
+    let kt = this.ktdanhapthongtinchua();
+    if (kt === false) return;
 
     let kq = await apithemhoa({
       iddanhmuchoachitiet: this.state.iddanhmuchoachitiet,

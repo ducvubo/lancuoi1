@@ -643,7 +643,6 @@ class ThongTinHoa extends Component {
                           <i className="fas fa-angle-left"></i>
                         </button>
                       )}
-
                       <input
                         className="form-control inputsoluongmua"
                         value={soluong}

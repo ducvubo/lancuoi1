@@ -86,13 +86,6 @@ class App extends Component {
             <Route path={"/donhang/:id"} component={QuanLyDonHang} />
             <Route path={"/dathang"} component={DatHang} />
             <Route path={"/timhoa"} component={TimHoa} />
-            {/* {!thongtinnguoidung.ktdangnhap ? (
-              <Redirect to={"/trangchu"} />
-            ) : thongtinnguoidung && thongtinnguoidung.quyenId === 12 ? (
-              <Redirect to={"/trangchu"} />
-            ) : (
-              <Redirect to={"/quanly/"} />
-            )} */}
 
             {thongtinnguoidung && thongtinnguoidung.quyenId === 12 ? (
               <Redirect to={"/trangchu"} />

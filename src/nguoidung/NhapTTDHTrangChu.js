@@ -108,79 +108,84 @@ class NhapTTDHTrangChu extends Component {
             );
       });
   };
-  // componentWillUnmount() {
-  //   delete window.confirmationResult;
-  //   delete window.RecaptchVerify;
-  // }
   dathang = async () => {
     this.guiOTP();
     this.setState({
       loadingdathang: true,
     });
-    // let token = await apirefreshtoken();
-    // if (token.maCode === 10) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-    //     : toast.error("You are not logged in, please log in!!!");
-    // }
-    // let kq = await apidathangtrangchu({
-    //   idnguoidung: this.props.thongtinnguoidung.id,
-    //   tennguoinhan: this.state.tennguoinhan,
-    //   email: this.state.email,
-    //   sodienthoai: this.state.sodienthoai,
-    //   diachi: this.state.diachi,
-    //   ghichu: this.state.ghichu,
-    //   phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
-    //   tongtien: this.props.tongtien,
-    //   ngonngu: this.props.ngonngu,
-    //   idhoa: this.props.thongtinhoadathang.id,
-    //   soluongmua: this.props.thongtinhoadathang.soluongmua,
-    //   tongtienhang:
-    //     this.props.thongtinhoadathang.soluongmua *
-    //     (this.props.ngonngu === "vi"
-    //       ? this.props.thongtinhoadathang.giasaukhigiamVND *
-    //         this.props.thongtinhoadathang.soluongmua
-    //       : this.props.thongtinhoadathang.giasaukhigiamUSD *
-    //         this.props.thongtinhoadathang.soluongmua),
-    // });
-    // if (kq && kq.maCode === 10) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.error("Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!")
-    //     : toast.error(
-    //         "You are not logged in, please log in to view your shopping order!!!"
-    //       );
-    // }
-    // if (kq && kq.maCode === 8) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.error(
-    //         "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-    //       )
-    //     : toast.error(
-    //         "Your login has expired, please log in again to continue!!!"
-    //       );
-    // }
-    // if (kq && kq.maCode === 9) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.error(
-    //         "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-    //       )
-    //     : toast.error(
-    //         "Your login session is invalid, please log in again to continue!!!"
-    //       );
-    // }
-    // if (kq.maCode === 0 && kq) {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
-    //     : toast.success("Order successful, waiting for staff to confirm!!!");
-    //   this.props.huydathang();
-    //   this.props.history.push("/trangchu");
-    //   // this.props.doitrangthai()
-    //   // this.props.dathangthanhcong ()
-    //   // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
-    // } else {
-    //   this.props.ngonngu === "vi"
-    //     ? toast.success("Đặt hàng thất bại")
-    //     : toast.success("Order error");
+
+    // if(this.props.thongtinnguoidung){
+    //   let kq = await apidathangtrangchu({
+    //     idnguoidung: this.props.thongtinnguoidung.id,
+    //     tennguoinhan: this.state.tennguoinhan,
+    //     email: this.state.email,
+    //     sodienthoai: this.state.sodienthoai,
+    //     diachi: this.state.diachi,
+    //     ghichu: this.state.ghichu,
+    //     phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
+    //     tongtien: this.props.tongtien,
+    //     ngonngu: this.props.ngonngu,
+    //     idhoa: this.props.thongtinhoadathang.id,
+    //     soluongmua: this.props.thongtinhoadathang.soluongmua,
+    //     tongtienhang:
+    //       this.props.thongtinhoadathang.soluongmua *
+    //       (this.props.ngonngu === "vi"
+    //         ? this.props.thongtinhoadathang.giasaukhigiamVND *
+    //           this.props.thongtinhoadathang.soluongmua
+    //         : this.props.thongtinhoadathang.giasaukhigiamUSD *
+    //           this.props.thongtinhoadathang.soluongmua),
+    //   });
+
+    //   if (kq.maCode === 0 && kq) {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
+    //       : toast.success(
+    //           "Order successful, waiting for staff to confirm!!!"
+    //         );
+    //     this.props.huydathang();
+    //     this.props.history.push("/trangchu");
+    //     delete window.confirmationResult;
+    //     delete window.RecaptchVerify;
+    //   } else {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.success("Đặt hàng thất bại")
+    //       : toast.success("Order error");
+    //   }
+    // }else{
+    //   let kq = await apidathangtrangchu({
+    //     tennguoinhan: this.state.tennguoinhan,
+    //     email: this.state.email,
+    //     sodienthoai: this.state.sodienthoai,
+    //     diachi: this.state.diachi,
+    //     ghichu: this.state.ghichu,
+    //     phuongthucvanchuyenid: this.props.phuongthucvanchuyenid,
+    //     tongtien: this.props.tongtien,
+    //     ngonngu: this.props.ngonngu,
+    //     idhoa: this.props.thongtinhoadathang.id,
+    //     soluongmua: this.props.thongtinhoadathang.soluongmua,
+    //     tongtienhang:
+    //       this.props.thongtinhoadathang.soluongmua *
+    //       (this.props.ngonngu === "vi"
+    //         ? this.props.thongtinhoadathang.giasaukhigiamVND *
+    //           this.props.thongtinhoadathang.soluongmua
+    //         : this.props.thongtinhoadathang.giasaukhigiamUSD *
+    //           this.props.thongtinhoadathang.soluongmua),
+    //   });
+    //   if (kq.maCode === 0 && kq) {
+    
+    //     this.props.ngonngu === "vi"
+    //       ? toast.success("Đặt hàng thành công, chờ nhân viên xác nhận!!!")
+    //       : toast.success(
+    //           "Order successful, waiting for staff to confirm!!!"
+    //         );
+    //     this.props.huydathang();
+    //     this.props.history.push("/trangchu");
+    //     this.props.themmadonhangmoi(kq.madonhang)
+    //   } else {
+    //     this.props.ngonngu === "vi"
+    //       ? toast.success("Đặt hàng thất bại")
+    //       : toast.success("Order error");
+    //   }
     // }
   };
   nhapotp = (event) => {
@@ -197,12 +202,6 @@ class NhapTTDHTrangChu extends Component {
       .then(async (result) => {
         this.setState({ loadingdathang: false });
         if(this.props.thongtinnguoidung){
-          // let token = await apirefreshtoken();
-          // if (token.maCode === 10) {
-          //   this.props.ngonngu === "vi"
-          //     ? toast.error("Bạn chưa đăng nhập vui lòng đăng nhập!!!")
-          //     : toast.error("You are not logged in, please log in!!!");
-          // }
           let kq = await apidathangtrangchu({
             idnguoidung: this.props.thongtinnguoidung.id,
             tennguoinhan: this.state.tennguoinhan,
@@ -223,42 +222,7 @@ class NhapTTDHTrangChu extends Component {
                 : this.props.thongtinhoadathang.giasaukhigiamUSD *
                   this.props.thongtinhoadathang.soluongmua),
           });
-          // if (kq && kq.maCode === 10) {
-          //   this.props.ngonngu === "vi"
-          //     ? toast.error(
-          //         "Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!!!"
-          //       )
-          //     : toast.error(
-          //         "You are not logged in, please log in to view your shopping order!!!"
-          //       );
-          //   this.setState({
-          //     trangthainhapOTP: false,
-          //   });
-          // }
-          // if (kq && kq.maCode === 8) {
-          //   this.props.ngonngu === "vi"
-          //     ? toast.error(
-          //         "Phiên đăng nhập của bạn đã hết hạn vui lòng đăng nhập lại để tiếp tục!!!"
-          //       )
-          //     : toast.error(
-          //         "Your login has expired, please log in again to continue!!!"
-          //       );
-          //   this.setState({
-          //     trangthainhapOTP: false,
-          //   });
-          // }
-          // if (kq && kq.maCode === 9) {
-          //   this.props.ngonngu === "vi"
-          //     ? toast.error(
-          //         "Phiên đăng nhập của bạn không hợp lệ vui lòng đăng nhập lại để tiếp tục!!!"
-          //       )
-          //     : toast.error(
-          //         "Your login session is invalid, please log in again to continue!!!"
-          //       );
-          //   this.setState({
-          //     trangthainhapOTP: false,
-          //   });
-          // }
+
           if (kq.maCode === 0 && kq) {
             this.setState({
               trangthainhapOTP: false,
@@ -272,9 +236,6 @@ class NhapTTDHTrangChu extends Component {
             this.props.history.push("/trangchu");
             delete window.confirmationResult;
             delete window.RecaptchVerify;
-            // this.props.doitrangthai()
-            // this.props.dathangthanhcong ()
-            // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
           } else {
             this.props.ngonngu === "vi"
               ? toast.success("Đặt hàng thất bại")
@@ -314,9 +275,6 @@ class NhapTTDHTrangChu extends Component {
             this.props.themmadonhangmoi(kq.madonhang)
             delete window.confirmationResult;
             delete window.RecaptchVerify;
-            // this.props.doitrangthai()
-            // this.props.dathangthanhcong ()
-            // this.props.history.push(`/giohang/${this.props.thongtinnguoidung.id}`)
           } else {
             this.props.ngonngu === "vi"
               ? toast.success("Đặt hàng thất bại")
@@ -338,8 +296,6 @@ class NhapTTDHTrangChu extends Component {
     });
   };
   guiLaiOTP = () => {
-    // delete window.confirmationResult;
-    // delete window.RecaptchVerify;
     this.guiOTP();
     this.setState({
       loadingdathang: true,

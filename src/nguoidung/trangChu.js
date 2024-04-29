@@ -445,80 +445,6 @@ class trangChu extends Component {
                         />
                         <label htmlFor={`star130${index}`}></label>
                       </div>
-
-                      {/* <div className="rating">
-                        <input
-                          type="radio"
-                          id="rating10"
-                          name="rating"
-                          value="10"
-                        />
-                        <label htmlFor="rating10"></label>
-                        <input
-                          type="radio"
-                          id="rating9"
-                          name="rating"
-                          value="9"
-                        />
-                        <label className="half" htmlFor="rating9"></label>
-                        <input
-                          type="radio"
-                          id="rating8"
-                          name="rating"
-                          value="8"
-                        />
-                        <label htmlFor="rating8"></label>
-                        <input
-                          type="radio"
-                          id="rating7"
-                          name="rating"
-                          value="7"
-                        />
-                        <label className="half" htmlFor="rating7"></label>
-                        <input
-                          type="radio"
-                          id="rating6"
-                          name="rating"
-                          value="6"
-                        />
-                        <label htmlFor="rating6"></label>
-                        <input
-                          type="radio"
-                          id="rating5"
-                          name="rating"
-                          value="5"
-                        />
-                        <label className="half" htmlFor="rating5"></label>
-                        <input
-                          type="radio"
-                          id="rating4"
-                          name="rating"
-                          value="4"
-                        />
-                        <label htmlFor="rating4"></label>
-                        <input
-                          type="radio"
-                          id="rating3"
-                          name="rating"
-                          value="3"
-                        />
-                        <label className="half" htmlFor="rating3"></label>
-                        <input
-                          type="radio"
-                          id="rating2"
-                          name="rating"
-                          value="2"
-                        />
-                        <label htmlFor="rating2"></label>
-                        <input
-                          type="radio"
-                          id="rating1"
-                          name="rating"
-                          value="1"
-                        />
-                        <label className="half" htmlFor="rating1"></label>
-                      </div> */}
-
                       {ngonngu === "vi" ? (
                         <div className="gia">
                           {item.phantramgiam > 0 ? (
@@ -593,7 +519,9 @@ class trangChu extends Component {
                       onClick={() => this.thongtinhoa(item)}
                       style={{ cursor: "pointer" }}
                     >
-                      <img src={anhnoibat} width="261" height="326" />
+                      <img src={anhnoibat} width="261" height="326" 
+                      
+                      />
 
                       {item.phantramgiam > 0 ? (
                         <div className="giamgia">

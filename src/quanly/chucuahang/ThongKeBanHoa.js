@@ -32,7 +32,7 @@ class ThongKeBanHoa extends Component {
       prevState.tungay !== this.state.tungay ||
       prevState.denngay !== this.state.denngay
     ) {
-      this.thongkenhaphoa();
+      this.thongkebanhoa();
     }
   }
   laytatcadonhang = async () => {
@@ -129,7 +129,7 @@ class ThongKeBanHoa extends Component {
       });
     }
   };
-  thongkenhaphoa = async () => {
+  thongkebanhoa = async () => {
     let token = await apirefreshtoken();
 
     if (token.maCode === 10) {
